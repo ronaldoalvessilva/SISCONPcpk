@@ -177,6 +177,50 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jSeparator2 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jFotoInternoKitBio = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        jCheckBoxCueca = new javax.swing.JCheckBox();
+        jCheckBoxPrato = new javax.swing.JCheckBox();
+        jCheckBoxSandalia = new javax.swing.JCheckBox();
+        jCheckBoxCamisa = new javax.swing.JCheckBox();
+        jCheckBoxGarfo = new javax.swing.JCheckBox();
+        jCheckBoxColchao = new javax.swing.JCheckBox();
+        jCheckBoxBermuda = new javax.swing.JCheckBox();
+        jCheckBoxCobertor = new javax.swing.JCheckBox();
+        jCheckBoxBolaFutsal = new javax.swing.JCheckBox();
+        jCheckBoxCalcaoJogo = new javax.swing.JCheckBox();
+        jCheckBoxCamisaJogo = new javax.swing.JCheckBox();
+        jCheckBoxParMeiao = new javax.swing.JCheckBox();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jCheckBoxAbsorvente = new javax.swing.JCheckBox();
+        jCheckBoxDesodorante = new javax.swing.JCheckBox();
+        jPanel15 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jCheckBoxPapel = new javax.swing.JCheckBox();
+        jCheckBoxSabonete = new javax.swing.JCheckBox();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jCheckBoxSabaoPo = new javax.swing.JCheckBox();
+        jCheckBoxBarbeador = new javax.swing.JCheckBox();
+        jCheckBoxCreme = new javax.swing.JCheckBox();
+        jPanel16 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        jCheckBoxDesodorante1 = new javax.swing.JCheckBox();
+        jCheckBoxAbsorvente1 = new javax.swing.JCheckBox();
+        jPanel17 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        jCheckBoxLencol = new javax.swing.JCheckBox();
+        jCheckBoxToalha = new javax.swing.JCheckBox();
+        jCheckBoxCopo = new javax.swing.JCheckBox();
+        jCheckBoxVasilha = new javax.swing.JCheckBox();
+        jCheckBoxColher = new javax.swing.JCheckBox();
+        jCheckBoxEscova = new javax.swing.JCheckBox();
+        jPanel18 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("...::: Registro de Kit de Internos {Biometria} :::...");
@@ -433,12 +477,517 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jFotoInternoKitBio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jFotoInternoKitBio, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jFotoInternoKitBio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+
+        jCheckBoxCueca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxCueca.setText("Cueca");
+        jCheckBoxCueca.setEnabled(false);
+
+        jCheckBoxPrato.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxPrato.setText("Prato ");
+        jCheckBoxPrato.setEnabled(false);
+
+        jCheckBoxSandalia.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxSandalia.setText("Sandália");
+        jCheckBoxSandalia.setEnabled(false);
+
+        jCheckBoxCamisa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxCamisa.setText("Camisa");
+        jCheckBoxCamisa.setEnabled(false);
+
+        jCheckBoxGarfo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxGarfo.setText("Garfo");
+        jCheckBoxGarfo.setEnabled(false);
+
+        jCheckBoxColchao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxColchao.setText("Colchão");
+        jCheckBoxColchao.setEnabled(false);
+
+        jCheckBoxBermuda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxBermuda.setText("Bermuda");
+        jCheckBoxBermuda.setEnabled(false);
+
+        jCheckBoxCobertor.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxCobertor.setText("Cobertor");
+        jCheckBoxCobertor.setEnabled(false);
+
+        jCheckBoxBolaFutsal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxBolaFutsal.setText("Bola Futsal");
+        jCheckBoxBolaFutsal.setEnabled(false);
+
+        jCheckBoxCalcaoJogo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxCalcaoJogo.setText("Calção Jg.");
+        jCheckBoxCalcaoJogo.setEnabled(false);
+
+        jCheckBoxCamisaJogo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxCamisaJogo.setText("Camisa Jg.");
+        jCheckBoxCamisaJogo.setEnabled(false);
+
+        jCheckBoxParMeiao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxParMeiao.setText("Par meião");
+        jCheckBoxParMeiao.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxBolaFutsal)
+                    .addComponent(jCheckBoxCueca))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxPrato)
+                    .addComponent(jCheckBoxCalcaoJogo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(jCheckBoxCamisaJogo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBoxParMeiao))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(jCheckBoxSandalia, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBoxCamisa)))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxGarfo)
+                    .addComponent(jCheckBoxCobertor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxBermuda)
+                    .addComponent(jCheckBoxColchao))
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBoxCueca)
+                    .addComponent(jCheckBoxPrato)
+                    .addComponent(jCheckBoxSandalia)
+                    .addComponent(jCheckBoxCamisa)
+                    .addComponent(jCheckBoxGarfo)
+                    .addComponent(jCheckBoxBermuda))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBoxBolaFutsal)
+                    .addComponent(jCheckBoxCalcaoJogo)
+                    .addComponent(jCheckBoxCamisaJogo)
+                    .addComponent(jCheckBoxParMeiao)
+                    .addComponent(jCheckBoxCobertor)
+                    .addComponent(jCheckBoxColchao))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Anual", jPanel3);
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+
+        jCheckBoxAbsorvente.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxAbsorvente.setForeground(new java.awt.Color(153, 0, 102));
+        jCheckBoxAbsorvente.setText("Absorvente");
+        jCheckBoxAbsorvente.setEnabled(false);
+
+        jCheckBoxDesodorante.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxDesodorante.setForeground(new java.awt.Color(153, 0, 102));
+        jCheckBoxDesodorante.setText("Desodorante");
+        jCheckBoxDesodorante.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxDesodorante)
+                    .addComponent(jCheckBoxAbsorvente))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCheckBoxAbsorvente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBoxDesodorante)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 441, Short.MAX_VALUE)
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Mensal", jPanel4);
+
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+
+        jCheckBoxPapel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxPapel.setForeground(new java.awt.Color(0, 153, 0));
+        jCheckBoxPapel.setText("Papel Higiênico");
+        jCheckBoxPapel.setEnabled(false);
+
+        jCheckBoxSabonete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxSabonete.setForeground(new java.awt.Color(0, 153, 0));
+        jCheckBoxSabonete.setText("Sabonete");
+        jCheckBoxSabonete.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxSabonete)
+                    .addComponent(jCheckBoxPapel))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCheckBoxPapel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jCheckBoxSabonete)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(458, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Decendial", jPanel5);
+
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+
+        jCheckBoxSabaoPo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxSabaoPo.setForeground(new java.awt.Color(204, 0, 0));
+        jCheckBoxSabaoPo.setText("Sabão Pó");
+        jCheckBoxSabaoPo.setEnabled(false);
+
+        jCheckBoxBarbeador.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxBarbeador.setForeground(new java.awt.Color(204, 0, 0));
+        jCheckBoxBarbeador.setText("Barbeador");
+        jCheckBoxBarbeador.setEnabled(false);
+
+        jCheckBoxCreme.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxCreme.setForeground(new java.awt.Color(204, 0, 0));
+        jCheckBoxCreme.setText("C. Dental");
+        jCheckBoxCreme.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jCheckBoxSabaoPo)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBoxCreme))
+                    .addComponent(jCheckBoxBarbeador))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBoxSabaoPo)
+                    .addComponent(jCheckBoxCreme))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jCheckBoxBarbeador)
+                .addContainerGap())
+        );
+
+        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 358, Short.MAX_VALUE)
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 61, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Quinzenal", jPanel6);
+
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+
+        jCheckBoxDesodorante1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxDesodorante1.setForeground(new java.awt.Color(153, 0, 102));
+        jCheckBoxDesodorante1.setText("Desodorante");
+        jCheckBoxDesodorante1.setEnabled(false);
+
+        jCheckBoxAbsorvente1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxAbsorvente1.setForeground(new java.awt.Color(153, 0, 102));
+        jCheckBoxAbsorvente1.setText("Absorvente");
+        jCheckBoxAbsorvente1.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxDesodorante1)
+                    .addComponent(jCheckBoxAbsorvente1))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCheckBoxAbsorvente1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jCheckBoxDesodorante1))
+        );
+
+        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 418, Short.MAX_VALUE)
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 53, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 5, Short.MAX_VALUE))
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Mensal", jPanel7);
+
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+
+        jCheckBoxLencol.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxLencol.setForeground(new java.awt.Color(0, 0, 255));
+        jCheckBoxLencol.setText("Lençol");
+        jCheckBoxLencol.setEnabled(false);
+
+        jCheckBoxToalha.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxToalha.setForeground(new java.awt.Color(0, 0, 255));
+        jCheckBoxToalha.setText("Toalha");
+        jCheckBoxToalha.setEnabled(false);
+
+        jCheckBoxCopo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxCopo.setForeground(new java.awt.Color(0, 0, 255));
+        jCheckBoxCopo.setText("Copo/Caneca");
+        jCheckBoxCopo.setEnabled(false);
+
+        jCheckBoxVasilha.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxVasilha.setForeground(new java.awt.Color(0, 0, 255));
+        jCheckBoxVasilha.setText("Vasilha/Pote");
+        jCheckBoxVasilha.setEnabled(false);
+
+        jCheckBoxColher.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxColher.setForeground(new java.awt.Color(0, 0, 255));
+        jCheckBoxColher.setText("Colher ");
+        jCheckBoxColher.setEnabled(false);
+
+        jCheckBoxEscova.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBoxEscova.setForeground(new java.awt.Color(0, 0, 255));
+        jCheckBoxEscova.setText("Escova Dente");
+        jCheckBoxEscova.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(jCheckBoxLencol)
+                        .addGap(57, 57, 57)
+                        .addComponent(jCheckBoxColher))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(jCheckBoxCopo)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBoxEscova)))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxVasilha)
+                    .addComponent(jCheckBoxToalha))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jCheckBoxToalha)
+                    .addComponent(jCheckBoxColher)
+                    .addComponent(jCheckBoxLencol))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBoxCopo)
+                    .addComponent(jCheckBoxEscova)
+                    .addComponent(jCheckBoxVasilha))
+                .addContainerGap())
+        );
+
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 211, Short.MAX_VALUE)
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Semestral", jPanel8);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -447,7 +996,10 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -471,7 +1023,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -488,15 +1040,17 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtSair, jBtSalvar});
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtCancelarLeitura, jBtIniciarLeitor});
 
-        setSize(new java.awt.Dimension(657, 414));
+        setSize(new java.awt.Dimension(657, 516));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1343,12 +1897,39 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     private javax.swing.JButton jBtSair;
     private javax.swing.JButton jBtSalvar;
     public static javax.swing.JTextField jCelaKitBio;
+    public static javax.swing.JCheckBox jCheckBoxAbsorvente;
+    public static javax.swing.JCheckBox jCheckBoxAbsorvente1;
+    public static javax.swing.JCheckBox jCheckBoxBarbeador;
+    public static javax.swing.JCheckBox jCheckBoxBermuda;
+    public static javax.swing.JCheckBox jCheckBoxBolaFutsal;
+    public static javax.swing.JCheckBox jCheckBoxCalcaoJogo;
+    public static javax.swing.JCheckBox jCheckBoxCamisa;
+    public static javax.swing.JCheckBox jCheckBoxCamisaJogo;
+    public static javax.swing.JCheckBox jCheckBoxCobertor;
+    public static javax.swing.JCheckBox jCheckBoxColchao;
+    public static javax.swing.JCheckBox jCheckBoxColher;
+    public static javax.swing.JCheckBox jCheckBoxCopo;
+    public static javax.swing.JCheckBox jCheckBoxCreme;
+    public static javax.swing.JCheckBox jCheckBoxCueca;
     public static javax.swing.JCheckBox jCheckBoxDecimal;
+    public static javax.swing.JCheckBox jCheckBoxDesodorante;
+    public static javax.swing.JCheckBox jCheckBoxDesodorante1;
+    public static javax.swing.JCheckBox jCheckBoxEscova;
+    public static javax.swing.JCheckBox jCheckBoxGarfo;
     private javax.swing.JCheckBox jCheckBoxKitAnual;
     private javax.swing.JCheckBox jCheckBoxKitQuinzenal;
+    public static javax.swing.JCheckBox jCheckBoxLencol;
     private javax.swing.JCheckBox jCheckBoxMarcaTodos;
     private javax.swing.JCheckBox jCheckBoxMensal;
+    public static javax.swing.JCheckBox jCheckBoxPapel;
+    public static javax.swing.JCheckBox jCheckBoxParMeiao;
+    public static javax.swing.JCheckBox jCheckBoxPrato;
+    public static javax.swing.JCheckBox jCheckBoxSabaoPo;
+    public static javax.swing.JCheckBox jCheckBoxSabonete;
+    public static javax.swing.JCheckBox jCheckBoxSandalia;
     private javax.swing.JCheckBox jCheckBoxSemestral;
+    public static javax.swing.JCheckBox jCheckBoxToalha;
+    public static javax.swing.JCheckBox jCheckBoxVasilha;
     private com.toedter.calendar.JDateChooser jDataEntrega;
     public static javax.swing.JLabel jFotoInternoKitBio;
     private javax.swing.JFormattedTextField jHorarioPagto;
@@ -1364,11 +1945,28 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     public static javax.swing.JTextField jMatriculaPenalKitBio;
     public static javax.swing.JTextField jNomeInternoKitBio;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     public static javax.swing.JTextField jPavilhaoKitBio;
     public static javax.swing.JTextField jRegimeKitBio;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 
     private static Runnable LerDigital1 = new Runnable() {
