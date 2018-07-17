@@ -272,7 +272,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jHorarioPagto.setEnabled(false);
 
         jCheckBoxMarcaTodos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxMarcaTodos.setText("Marca Todos");
+        jCheckBoxMarcaTodos.setText("Kit Inicial");
         jCheckBoxMarcaTodos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jCheckBoxMarcaTodosItemStateChanged(evt);
