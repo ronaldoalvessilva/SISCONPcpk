@@ -1194,6 +1194,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             objItensPagto.setKitDecimal(kitDecimal);
             objItensPagto.setKitQuinzenal(kitQuinzenal);
             objItensPagto.setKitMensal(kitMensal);
+            objItensPagto.setKitPersonalizado(kitPersonalizado);
             //
             objItensPagto.setTipoEntrada(tipoEntrada);
             objItensPagto.setDataEntrega(jDataEntrega.getDate());
