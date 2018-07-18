@@ -719,10 +719,10 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void jBtLocalizacaoInternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtLocalizacaoInternoActionPerformed
         // TODO add your handling code here:
-        String grupoSeg = "TRIAGEM";
+        String grupoSeg = "PAGAMENTO KIT TABLET";
         String grupoAdm = "ADMINISTRADORES";
         String permissaoGrupoSeg = "Sim";
-        String moduloSeg = "TRIAGEM";
+        String moduloSeg = "PAGAMENTO KIT TABLET";
         idGrupo = 0;
         nomeGrupo = "";
         idModulo = 0;
