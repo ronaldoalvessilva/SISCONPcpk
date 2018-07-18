@@ -583,10 +583,10 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void jBtPagamentoKitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPagamentoKitActionPerformed
         // TODO add your handling code here:
-        String grupoSeg = "SEGURANCA";
+        String grupoSeg = "PAGAMENTO KIT TABLET";
         String grupoAdm = "ADMINISTRADORES";
         String permissaoGrupoSeg = "Sim";
-        String moduloSeg = "SEGURANCA";
+        String moduloSeg = "PAGAMENTO KIT TABLET";
         idGrupo = 0;
         nomeGrupo = "";
         idModulo = 0;
@@ -719,10 +719,10 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void jBtLocalizacaoInternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtLocalizacaoInternoActionPerformed
         // TODO add your handling code here:
-        String grupoSeg = "SEGURANCA";
+        String grupoSeg = "TRIAGEM";
         String grupoAdm = "ADMINISTRADORES";
         String permissaoGrupoSeg = "Sim";
-        String moduloSeg = "SEGURANCA";
+        String moduloSeg = "TRIAGEM";
         idGrupo = 0;
         nomeGrupo = "";
         idModulo = 0;
@@ -855,10 +855,10 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void jBtCadastroBiometriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCadastroBiometriaActionPerformed
         // TODO add your handling code here:
-        String grupoSeg = "SEGURANCA";
+        String grupoSeg = "TRIAGEM";
         String grupoAdm = "ADMINISTRADORES";
         String permissaoGrupoSeg = "Sim";
-        String moduloSeg = "SEGURANCA";
+        String moduloSeg = "TRIAGEM";
         idGrupo = 0;
         nomeGrupo = "";
         idModulo = 0;
