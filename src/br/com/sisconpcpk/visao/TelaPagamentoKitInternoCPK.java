@@ -1091,6 +1091,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jBtNovoInterno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/page_add.png"))); // NOI18N
         jBtNovoInterno.setText("Novo");
         jBtNovoInterno.setContentAreaFilled(false);
+        jBtNovoInterno.setEnabled(false);
         jBtNovoInterno.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtNovoInterno.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jBtNovoInterno.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1514,6 +1515,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             jBtFinalizar.setEnabled(true);
             jBtBiometria.setEnabled(true);
             //
+            if(!jIdLanc.getText().equals("")){
+                jBtNovoInterno.setEnabled(true);
+            }
             limparCamposManutencao();
             //
             bloquearCampos();
@@ -2358,6 +2362,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             jCheckBoxPrato.setSelected(true);
             jCheckBoxColchao.setSelected(true);
             jCheckBoxCamisa.setSelected(true);
+            jCheckBoxGarfo.setSelected(true);
             jCheckBoxBermuda.setSelected(true);
             jCheckBoxCueca.setSelected(true);
             jCheckBoxSandalia.setSelected(true);
@@ -2394,7 +2399,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             jCheckBoxPrato.setSelected(!true);
             jCheckBoxColchao.setSelected(!true);
             jCheckBoxCamisa.setSelected(!true);
-            jCheckBoxBermuda.setSelected(true);
+            jCheckBoxGarfo.setSelected(!true);
+            jCheckBoxBermuda.setSelected(!true);
             jCheckBoxCueca.setSelected(!true);
             jCheckBoxSandalia.setSelected(!true);
             jCheckBoxCobertor.setSelected(!true);
@@ -3147,6 +3153,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             jBtAuditoria.setEnabled(true);
             //       
             jBtNovoInterno.setEnabled(true);
+            jBtBiometria.setEnabled(true);
         }
     }
 
@@ -3189,7 +3196,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jIdInterno.setText("");
         jNomeInterno.setText("");
         jDataEntrega.setCalendar(Calendar.getInstance());
-        jHorarioPagto.setText("00:00");
+        jHorarioPagto.setText(jHoraSistema.getText());
         //
         jCheckBoxMarcaTodos.setEnabled(true);
         jCheckBoxKitAnual.setEnabled(true);
@@ -3394,6 +3401,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jCheckBoxBolaFutsal.setEnabled(!true);
         jCheckBoxCalcaoJogo.setEnabled(!true);
         jCheckBoxCamisaJogo.setEnabled(!true);
+        jCheckBoxGarfo.setEnabled(!true);
         jCheckBoxParMeiao.setEnabled(!true);
         // DECIMAL
         jCheckBoxPapel.setEnabled(!true);
@@ -3422,6 +3430,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jBtSalvarInterno.setEnabled(!true);
         jBtCancelarInterno.setEnabled(!true);
         jBtAuditoriaItens.setEnabled(!true);
+        jBtBiometria.setEnabled(true);
         //
         jBtNovo.setEnabled(true);
         jBtAlterar.setEnabled(true);
@@ -3456,6 +3465,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jBtSalvarInterno.setEnabled(!true);
         jBtCancelarInterno.setEnabled(!true);
         jBtAuditoriaItens.setEnabled(!true);
+        jBtBiometria.setEnabled(true);
         // ABA MANUTENÇÃO
         jBtNovo.setEnabled(true);
         jBtAlterar.setEnabled(true);
