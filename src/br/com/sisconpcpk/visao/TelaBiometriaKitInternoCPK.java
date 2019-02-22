@@ -101,6 +101,9 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     int kitMensal = 0;
     int kitSemetral = 0;
     int kitPersonalizado = 0;
+    //
+    int estoque = 0;
+    String codigoInternoKit;
 
     /**
      * Creates new form TelaBiometriaKitInterno
@@ -219,6 +222,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jPanel18 = new javax.swing.JPanel();
         jCheckBoxPersonalizada = new javax.swing.JCheckBox();
         jSeparator2 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("...::: Registro de Kit de Internos {Biometria} :::...");
@@ -909,6 +913,13 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jCheckBoxPersonalizada.setForeground(new java.awt.Color(204, 0, 0));
         jCheckBoxPersonalizada.setText("Seleção Personalizada");
 
+        jButton1.setText("Verificar Kit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -923,7 +934,9 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jBtSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(240, 240, 240)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(75, 75, 75)
                                         .addComponent(jBtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -949,23 +962,29 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBtIniciarLeitor)
-                            .addComponent(jBtCancelarLeitura)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jBtIniciarLeitor)
+                                    .addComponent(jBtCancelarLeitura)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBtSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBoxPersonalizada)
@@ -993,7 +1012,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         } else if (marcaTodos == 0 && kitAnual == 0 && kitQuinzenal == 0 && kitDecimal == 0 && kitSemetral == 0 && kitMensal == 0) {
             JOptionPane.showMessageDialog(rootPane, "Informe um tipo de kit para ser entregue ao interno.");
         } else {
-           // KIT ANUAL            
+            // KIT ANUAL            
             if (jCheckBoxPrato.isSelected()) {
                 prato = 1;
             } else if (!jCheckBoxPrato.isSelected()) {
@@ -1156,9 +1175,9 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             } else if (!jCheckBoxMensal.isSelected()) {
                 kitMensal = 0;
             }
-            if(jCheckBoxPersonalizada.isSelected()){
+            if (jCheckBoxPersonalizada.isSelected()) {
                 kitPersonalizado = 1;
-            }else if(!jCheckBoxPersonalizada.isSelected()){
+            } else if (!jCheckBoxPersonalizada.isSelected()) {
                 kitPersonalizado = 0;
             }
             // KIT ANUAL            
@@ -1306,6 +1325,8 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         }
         jBtCancelarLeitura.setEnabled(true);
         new Thread(LerDigital1).start();
+        // PESQUISAR OS PRODUTOS APÓS PEGAR O INTERNO
+//        pesquisarProdutoKitInterno();
     }//GEN-LAST:event_jBtIniciarLeitorActionPerformed
 
     private void jBtCancelarLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancelarLeituraActionPerformed
@@ -1784,6 +1805,11 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jCheckBoxMensalItemStateChanged
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        pesquisarProdutoKitInterno();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1832,6 +1858,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     private javax.swing.JButton jBtIniciarLeitor;
     private javax.swing.JButton jBtSair;
     private javax.swing.JButton jBtSalvar;
+    private javax.swing.JButton jButton1;
     public static javax.swing.JTextField jCelaKitBio;
     public static javax.swing.JCheckBox jCheckBoxAbsorvente;
     public static javax.swing.JCheckBox jCheckBoxBarbeador;
@@ -2230,7 +2257,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jBtIniciarLeitor.setEnabled(true);
     }
 
-    public void abrirCampos(){
+    public void abrirCampos() {
         jCheckBoxMarcaTodos.setEnabled(true);
         jCheckBoxKitQuinzenal.setEnabled(true);
         jCheckBoxMensal.setEnabled(true);
@@ -2279,6 +2306,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jDataEntrega.setEnabled(!true);
         jHorarioPagto.setEnabled(!true);
     }
+
     public void bloquearCampos() {
         //
         jCheckBoxMarcaTodos.setEnabled(!true);
@@ -2322,6 +2350,29 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         //
         jDataEntrega.setEnabled(!true);
         jHorarioPagto.setEnabled(!true);
+    }
+
+    public void pesquisarProdutoKitInterno() {
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL("SELECT * FROM ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
+                    + "INNER JOIN PRONTUARIOSCRC "
+                    + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                    + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
+                    + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
+                    + "INNER JOIN PRODUTOS_AC "
+                    + "ON ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd=PRODUTOS_AC.IdProd "
+                    + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + estoque + "'");
+            conecta.rs.first();
+            codigoInternoKit = conecta.rs.getString("IdInternoCrc");
+        } catch (Exception e) {
+        }
+        if (jIdInternoKitBio.getText().equals(codigoInternoKit)) {
+            JOptionPane.showMessageDialog(rootPane, "Achei o kit do interno.");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Não existe kit para esse interno.");
+        }
     }
 
     public void verificarInternos() {
