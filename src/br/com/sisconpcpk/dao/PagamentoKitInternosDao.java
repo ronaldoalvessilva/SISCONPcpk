@@ -32,55 +32,22 @@ public class PagamentoKitInternosDao {
         buscarInterno(objItensPagto.getNomeInternoCrcKit(), objItensPagto.getIdInternoCrc());
         conecta.abrirConexao();
         try {
-            PreparedStatement pst = conecta.con.prepareStatement("INSERT INTO ITENS_PAGAMENTO_KIT_INTERNOS (IdPagto,IdInternoCrc,Copo,Prato,Colher,Vasilha,Garfo,"
-                    + "Absorvente,Bermuda,Colchas,Colchao,Toalha,Camisa,Cueca,Sandalia,CremeDental,Sabonete,PapelHigienico,Barbeador,EscovaDente,MostraTodos,KitInicial,"
-                    + "KitQuinzenal,TipoEntrada,DataEntrega,Horario,AssinaturaDigital,UsuarioInsert,DataInsert,"
-                    + "HorarioInsert,Cobertor,BolaFutSal,CalcaoJg,CamisaJg,ParMeiao,SabaoPo,Desodorante,KitDecimal,KitSemestral,kitMensal,KitPersonalizado) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pst = conecta.con.prepareStatement("INSERT INTO ITENS_PAGAMENTO_KIT_INTERNOS (IdPagto,IdInternoCrc,"
+                    + "DataEntrega,Horario,AssinaturaDigital,UsuarioInsert,DataInsert,"
+                    + "HorarioInsert) VALUES(?,?,?,?,?,?,?,?)");
             pst.setInt(1, objItensPagto.getIdPagto());
             pst.setInt(2, codInterno);
-            pst.setInt(3, objItensPagto.getCopo());
-            pst.setInt(4, objItensPagto.getPrato());
-            pst.setInt(5, objItensPagto.getColher());
-            pst.setInt(6, objItensPagto.getVasilha());
-            pst.setInt(7, objItensPagto.getGarfo());
-            pst.setInt(8, objItensPagto.getAbsorvente());
-            pst.setInt(9, objItensPagto.getBermuda());
-            pst.setInt(10, objItensPagto.getLencol());
-            pst.setInt(11, objItensPagto.getColchao());
-            pst.setInt(12, objItensPagto.getToalha());
-            pst.setInt(13, objItensPagto.getCamisa());
-            pst.setInt(14, objItensPagto.getCueca());
-            pst.setInt(15, objItensPagto.getSandalia());
-            pst.setInt(16, objItensPagto.getCremeDental());
-            pst.setInt(17, objItensPagto.getSabonete());
-            pst.setInt(18, objItensPagto.getPapelHigienico());
-            pst.setInt(19, objItensPagto.getBarbeador());
-            pst.setInt(20, objItensPagto.getEscovaDente());
-            pst.setInt(21, objItensPagto.getMostraTodos());
-            pst.setInt(22, objItensPagto.getKitInicial());
-            pst.setInt(23, objItensPagto.getKitQuinzenal());
-            pst.setInt(24, objItensPagto.getTipoEntrada());
+            
             if (objItensPagto.getDataEntrega() != null) {
-                pst.setTimestamp(25, new java.sql.Timestamp(objItensPagto.getDataEntrega().getTime()));
+                pst.setTimestamp(3, new java.sql.Timestamp(objItensPagto.getDataEntrega().getTime()));
             } else {
-                pst.setDate(25, null);
+                pst.setDate(3, null);
             }
-            pst.setString(26, objItensPagto.getHoraEntrega());
-            pst.setBytes(27, objItensPagto.getAssinaturaDigital());
-            pst.setString(28, objItensPagto.getUsuarioInsert());
-            pst.setString(29, objItensPagto.getDataInsert());
-            pst.setString(30, objItensPagto.getHorarioInsert());
-            pst.setInt(31, objItensPagto.getCobertor());
-            pst.setInt(32, objItensPagto.getBolaJogo());
-            pst.setInt(33, objItensPagto.getCalcaoJogo());
-            pst.setInt(34, objItensPagto.getCamisaJogo());
-            pst.setInt(35, objItensPagto.getParMeiao());
-            pst.setInt(36, objItensPagto.getSabaoPo());
-            pst.setInt(37, objItensPagto.getDesodorante());
-            pst.setInt(38, objItensPagto.getKitDecimal());
-            pst.setInt(39, objItensPagto.getKitSemestral());
-            pst.setInt(40, objItensPagto.getKitMensal());
-            pst.setInt(41, objItensPagto.getKitPersonalizado());
+            pst.setString(4, objItensPagto.getHoraEntrega());
+            pst.setBytes(5, objItensPagto.getAssinaturaDigital());
+            pst.setString(6, objItensPagto.getUsuarioInsert());
+            pst.setString(7, objItensPagto.getDataInsert());
+            pst.setString(8, objItensPagto.getHorarioInsert());           
             pst.execute();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel INSERIR os Dados.\n\nERRO:" + ex);
@@ -93,56 +60,20 @@ public class PagamentoKitInternosDao {
         buscarInterno(objItensPagto.getNomeInternoCrcKit(), objItensPagto.getIdInternoCrc());
         conecta.abrirConexao();
         try {
-            PreparedStatement pst = conecta.con.prepareStatement("UPDATE ITENS_PAGAMENTO_KIT_INTERNOS SET IdPagto=?,IdInternoCrc=?,Copo=?,Prato=?,Colher=?,"
-                    + "Vasilha=?,Garfo=?,Absorvente=?,Bermuda=?,Colchas=?,Colchao=?,Toalha=?,Camisa=?,Cueca=?,Sandalia=?,CremeDental=?,Sabonete=?,"
-                    + "PapelHigienico=?,Barbeador=?,EscovaDente=?,MostraTodos=?,KitInicial=?,KitQuinzenal=?,TipoEntrada=?,DataEntrega=?,Horario=?,"
-                    + "UsuarioUp=?,DataUp=?,HorarioUp=?,Cobertor=?,BolaFutSal=?,CalcaoJg=?,CamisaJg=?,ParMeiao=?,SabaoPo=?,Desodorante=?,KitDecimal=?,"
-                    + "KitSemestral=?,kitMensal=?,AssinaturaDigital=?,KitPersonalizado=? WHERE IdItem='" + objItensPagto.getIdItem() + "'");
+            PreparedStatement pst = conecta.con.prepareStatement("UPDATE ITENS_PAGAMENTO_KIT_INTERNOS SET IdPagto=?,IdInternoCrc=?,"
+                    + "DataEntrega=?,Horario=?,UsuarioUp=?,DataUp=?,HorarioUp=?,AssinaturaDigital=? WHERE IdItem='" + objItensPagto.getIdItem() + "'");
             pst.setInt(1, objItensPagto.getIdPagto());
-            pst.setInt(2, codInterno);
-            pst.setInt(3, objItensPagto.getCopo());
-            pst.setInt(4, objItensPagto.getPrato());
-            pst.setInt(5, objItensPagto.getColher());
-            pst.setInt(6, objItensPagto.getVasilha());
-            pst.setInt(7, objItensPagto.getGarfo());
-            pst.setInt(8, objItensPagto.getAbsorvente());
-            pst.setInt(9, objItensPagto.getBermuda());
-            pst.setInt(10, objItensPagto.getLencol());
-            pst.setInt(11, objItensPagto.getColchao());
-            pst.setInt(12, objItensPagto.getToalha());
-            pst.setInt(13, objItensPagto.getCamisa());
-            pst.setInt(14, objItensPagto.getCueca());
-            pst.setInt(15, objItensPagto.getSandalia());
-            pst.setInt(16, objItensPagto.getCremeDental());
-            pst.setInt(17, objItensPagto.getSabonete());
-            pst.setInt(18, objItensPagto.getPapelHigienico());
-            pst.setInt(19, objItensPagto.getBarbeador());
-            pst.setInt(20, objItensPagto.getEscovaDente());
-            pst.setInt(21, objItensPagto.getMostraTodos());
-            pst.setInt(22, objItensPagto.getKitInicial());
-            pst.setInt(23, objItensPagto.getKitQuinzenal());
-            pst.setInt(24, objItensPagto.getTipoEntrada());
+            pst.setInt(2, codInterno);            
             if (objItensPagto.getDataEntrega() != null) {
-                pst.setTimestamp(25, new java.sql.Timestamp(objItensPagto.getDataEntrega().getTime()));
+                pst.setTimestamp(3, new java.sql.Timestamp(objItensPagto.getDataEntrega().getTime()));
             } else {
-                pst.setDate(25, null);
+                pst.setDate(3, null);
             }
-            pst.setString(26, objItensPagto.getHoraEntrega());
-            pst.setString(27, objItensPagto.getUsuarioUp());
-            pst.setString(28, objItensPagto.getDataUp());
-            pst.setString(29, objItensPagto.getHorarioUp());
-            pst.setInt(30, objItensPagto.getCobertor());
-            pst.setInt(31, objItensPagto.getBolaJogo());
-            pst.setInt(32, objItensPagto.getCalcaoJogo());
-            pst.setInt(33, objItensPagto.getCamisaJogo());
-            pst.setInt(34, objItensPagto.getParMeiao());
-            pst.setInt(35, objItensPagto.getSabaoPo());
-            pst.setInt(36, objItensPagto.getDesodorante());
-            pst.setInt(37, objItensPagto.getKitDecimal());
-            pst.setInt(38, objItensPagto.getKitSemestral());
-            pst.setInt(39, objItensPagto.getKitMensal());
-            pst.setBytes(40, objItensPagto.getAssinaturaDigital());
-            pst.setInt(41, objItensPagto.getKitPersonalizado());
+            pst.setString(4, objItensPagto.getHoraEntrega());
+            pst.setBytes(5, objItensPagto.getAssinaturaDigital());
+            pst.setString(6, objItensPagto.getUsuarioUp());
+            pst.setString(7, objItensPagto.getDataUp());
+            pst.setString(8, objItensPagto.getHorarioUp());     
             pst.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel ALTERAR os Dados.\n\nERRO: " + ex);

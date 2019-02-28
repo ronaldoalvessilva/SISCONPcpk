@@ -81,6 +81,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     int tipoEntrada = 0; // MANUAL É (0) - BIOMETRIA (1)
     String codigoInterno;
     String codigoKit;
+    public static int codItem;
     /**
      * Creates new form TelaPagamentoKitInterno
      */
@@ -158,10 +159,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jObservacao = new javax.swing.JTextArea();
-        jBtAuditoria = new javax.swing.JButton();
-        jBtFinalizar = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jBtImpressao = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -169,32 +166,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jNomeInterno = new javax.swing.JTextField();
         jBtPesquisarInternoKit = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jCheckBoxPrato = new javax.swing.JCheckBox();
-        jCheckBoxSandalia = new javax.swing.JCheckBox();
-        jCheckBoxBermuda = new javax.swing.JCheckBox();
-        jCheckBoxCamisa = new javax.swing.JCheckBox();
-        jCheckBoxCueca = new javax.swing.JCheckBox();
-        jCheckBoxColchao = new javax.swing.JCheckBox();
-        jCheckBoxGarfo = new javax.swing.JCheckBox();
-        jCheckBoxCobertor = new javax.swing.JCheckBox();
-        jCheckBoxParMeiao = new javax.swing.JCheckBox();
-        jCheckBoxCamisaJogo = new javax.swing.JCheckBox();
-        jCheckBoxCalcaoJogo = new javax.swing.JCheckBox();
-        jCheckBoxBolaFutsal = new javax.swing.JCheckBox();
-        jCheckBoxVasilha = new javax.swing.JCheckBox();
-        jCheckBoxCopo = new javax.swing.JCheckBox();
-        jCheckBoxLencol = new javax.swing.JCheckBox();
-        jCheckBoxColher = new javax.swing.JCheckBox();
-        jCheckBoxToalha = new javax.swing.JCheckBox();
-        jCheckBoxEscova = new javax.swing.JCheckBox();
-        jCheckBoxDesodorante = new javax.swing.JCheckBox();
-        jCheckBoxAbsorvente = new javax.swing.JCheckBox();
-        jCheckBoxSabonete = new javax.swing.JCheckBox();
-        jCheckBoxPapel = new javax.swing.JCheckBox();
-        jCheckBoxSabaoPo = new javax.swing.JCheckBox();
-        jCheckBoxBarbeador = new javax.swing.JCheckBox();
-        jCheckBoxCreme = new javax.swing.JCheckBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTabelaInternos = new javax.swing.JTable();
         jPanel12 = new javax.swing.JPanel();
@@ -204,22 +175,22 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jBtSalvarInterno = new javax.swing.JButton();
         jBtCancelarInterno = new javax.swing.JButton();
         jBtSairInterno = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTabelaProdutosKitInterno = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jFotoInternoKit = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jCheckBoxKitAnual = new javax.swing.JCheckBox();
-        jCheckBoxDecimal = new javax.swing.JCheckBox();
-        jCheckBoxSemestral = new javax.swing.JCheckBox();
-        jCheckBoxKitQuinzenal = new javax.swing.JCheckBox();
-        jCheckBoxMensal = new javax.swing.JCheckBox();
-        jDataEntrega = new com.toedter.calendar.JDateChooser();
-        jLabel5 = new javax.swing.JLabel();
-        jHorarioPagto = new javax.swing.JFormattedTextField();
-        jLabel6 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jBtBiometria = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jBtFinalizar = new javax.swing.JButton();
+        jBtImpressao = new javax.swing.JButton();
+        jDataEntrega = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jHorarioPagto = new javax.swing.JFormattedTextField();
+        jPanel7 = new javax.swing.JPanel();
+        jBtAuditoria = new javax.swing.JButton();
         jBtAuditoriaItens = new javax.swing.JButton();
-        jCheckBoxMarcaTodos = new javax.swing.JCheckBox();
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -336,7 +307,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         .addComponent(jDataPesqFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtPesqData, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,7 +335,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jTabelaPagamentoKit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jTabelaPagamentoKit.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+
             },
             new String [] {
                 "Código", "Data", "Status", "Observação"
@@ -452,7 +423,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -534,25 +505,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     .addComponent(jComboBoxPavilhao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel8))
-                        .addGap(0, 326, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jHorarioInicial)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jHorarioTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jComboBoxTipoKit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jIdLanc, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -564,7 +516,22 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jDataLanc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jDataLanc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jComboBoxTipoKit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel8)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jHorarioInicial)
+                                    .addComponent(jLabel12))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jHorarioTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13)))
+                            .addComponent(jLabel14))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -588,20 +555,21 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel12)
-                        .addComponent(jLabel13))
-                    .addComponent(jLabel14))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jComboBoxTipoKit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jHorarioTermino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jHorarioInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxPavilhao, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxTipoKit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -721,33 +689,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jObservacao.setEnabled(false);
         jScrollPane1.setViewportView(jObservacao);
 
-        jBtAuditoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/book_open.png"))); // NOI18N
-        jBtAuditoria.setToolTipText("Auditoria");
-        jBtAuditoria.setContentAreaFilled(false);
-        jBtAuditoria.setEnabled(false);
-        jBtAuditoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtAuditoriaActionPerformed(evt);
-            }
-        });
-
-        jBtFinalizar.setForeground(new java.awt.Color(0, 153, 0));
-        jBtFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/accept.png"))); // NOI18N
-        jBtFinalizar.setText("Finalizar");
-        jBtFinalizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtFinalizarActionPerformed(evt);
-            }
-        });
-
-        jBtImpressao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/gtklp-icone-3770-16.png"))); // NOI18N
-        jBtImpressao.setText("Impressão");
-        jBtImpressao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtImpressaoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -755,45 +696,25 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jBtFinalizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtImpressao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtAuditoria, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel10)
-                        .addGap(0, 353, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtFinalizar, jBtImpressao});
-
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBtFinalizar)
-                        .addComponent(jBtImpressao))
-                    .addComponent(jBtAuditoria))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addGap(5, 5, 5)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtFinalizar, jBtImpressao});
 
         jTabbedPane1.addTab("Manutenção", jPanel2);
 
@@ -859,213 +780,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true), "Relação de Materiais de Uso Pessoal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(0, 0, 255))); // NOI18N
-
-        jCheckBoxPrato.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxPrato.setText("Prato ");
-        jCheckBoxPrato.setEnabled(false);
-
-        jCheckBoxSandalia.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxSandalia.setText("Sandália");
-        jCheckBoxSandalia.setEnabled(false);
-
-        jCheckBoxBermuda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxBermuda.setText("Bermuda");
-        jCheckBoxBermuda.setEnabled(false);
-
-        jCheckBoxCamisa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxCamisa.setText("Camisa");
-        jCheckBoxCamisa.setEnabled(false);
-
-        jCheckBoxCueca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxCueca.setText("Cueca");
-        jCheckBoxCueca.setEnabled(false);
-
-        jCheckBoxColchao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxColchao.setText("Colchão");
-        jCheckBoxColchao.setEnabled(false);
-
-        jCheckBoxGarfo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxGarfo.setText("Garfo");
-        jCheckBoxGarfo.setEnabled(false);
-
-        jCheckBoxCobertor.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxCobertor.setText("Cobertor");
-        jCheckBoxCobertor.setEnabled(false);
-
-        jCheckBoxParMeiao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxParMeiao.setText("Par meião");
-        jCheckBoxParMeiao.setEnabled(false);
-
-        jCheckBoxCamisaJogo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxCamisaJogo.setText("Camisa Jg.");
-        jCheckBoxCamisaJogo.setEnabled(false);
-
-        jCheckBoxCalcaoJogo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxCalcaoJogo.setText("Calção Jg.");
-        jCheckBoxCalcaoJogo.setEnabled(false);
-
-        jCheckBoxBolaFutsal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxBolaFutsal.setText("Bola Futsal");
-        jCheckBoxBolaFutsal.setEnabled(false);
-
-        jCheckBoxVasilha.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxVasilha.setForeground(new java.awt.Color(0, 0, 255));
-        jCheckBoxVasilha.setText("Vasilha/Pote");
-        jCheckBoxVasilha.setEnabled(false);
-
-        jCheckBoxCopo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxCopo.setForeground(new java.awt.Color(0, 0, 255));
-        jCheckBoxCopo.setText("Copo/Caneca");
-        jCheckBoxCopo.setEnabled(false);
-
-        jCheckBoxLencol.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxLencol.setForeground(new java.awt.Color(0, 0, 255));
-        jCheckBoxLencol.setText("Lençol");
-        jCheckBoxLencol.setEnabled(false);
-
-        jCheckBoxColher.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxColher.setForeground(new java.awt.Color(0, 0, 255));
-        jCheckBoxColher.setText("Colher ");
-        jCheckBoxColher.setEnabled(false);
-
-        jCheckBoxToalha.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxToalha.setForeground(new java.awt.Color(0, 0, 255));
-        jCheckBoxToalha.setText("Toalha");
-        jCheckBoxToalha.setEnabled(false);
-
-        jCheckBoxEscova.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxEscova.setForeground(new java.awt.Color(0, 0, 255));
-        jCheckBoxEscova.setText("Escova Dente");
-        jCheckBoxEscova.setEnabled(false);
-
-        jCheckBoxDesodorante.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxDesodorante.setForeground(new java.awt.Color(153, 0, 102));
-        jCheckBoxDesodorante.setText("Desodorante");
-        jCheckBoxDesodorante.setEnabled(false);
-
-        jCheckBoxAbsorvente.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxAbsorvente.setForeground(new java.awt.Color(153, 0, 102));
-        jCheckBoxAbsorvente.setText("Absorvente");
-        jCheckBoxAbsorvente.setEnabled(false);
-
-        jCheckBoxSabonete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxSabonete.setForeground(new java.awt.Color(0, 153, 0));
-        jCheckBoxSabonete.setText("Sabonete");
-        jCheckBoxSabonete.setEnabled(false);
-
-        jCheckBoxPapel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxPapel.setForeground(new java.awt.Color(0, 153, 0));
-        jCheckBoxPapel.setText("Papel Higiênico");
-        jCheckBoxPapel.setEnabled(false);
-
-        jCheckBoxSabaoPo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxSabaoPo.setForeground(new java.awt.Color(204, 0, 0));
-        jCheckBoxSabaoPo.setText("Sabão Pó");
-        jCheckBoxSabaoPo.setEnabled(false);
-
-        jCheckBoxBarbeador.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxBarbeador.setForeground(new java.awt.Color(204, 0, 0));
-        jCheckBoxBarbeador.setText("Barbeador");
-        jCheckBoxBarbeador.setEnabled(false);
-
-        jCheckBoxCreme.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxCreme.setForeground(new java.awt.Color(204, 0, 0));
-        jCheckBoxCreme.setText("C. Dental");
-        jCheckBoxCreme.setEnabled(false);
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBoxPrato)
-                    .addComponent(jCheckBoxSandalia, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxBermuda)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxCueca)
-                            .addComponent(jCheckBoxCamisa)
-                            .addComponent(jCheckBoxGarfo)
-                            .addComponent(jCheckBoxColchao))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBoxLencol)
-                    .addComponent(jCheckBoxParMeiao)
-                    .addComponent(jCheckBoxCamisaJogo)
-                    .addComponent(jCheckBoxCalcaoJogo)
-                    .addComponent(jCheckBoxBolaFutsal)
-                    .addComponent(jCheckBoxCobertor)
-                    .addComponent(jCheckBoxToalha))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBoxDesodorante)
-                    .addComponent(jCheckBoxAbsorvente)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxEscova)
-                            .addComponent(jCheckBoxColher)
-                            .addComponent(jCheckBoxVasilha)
-                            .addComponent(jCheckBoxCopo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxCreme)
-                            .addComponent(jCheckBoxBarbeador)
-                            .addComponent(jCheckBoxSabaoPo)
-                            .addComponent(jCheckBoxSabonete)))
-                    .addComponent(jCheckBoxPapel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jCheckBoxSabonete)
-                    .addComponent(jCheckBoxCopo)
-                    .addComponent(jCheckBoxCobertor)
-                    .addComponent(jCheckBoxCueca))
-                .addGap(1, 1, 1)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jCheckBoxPrato)
-                    .addComponent(jCheckBoxBolaFutsal)
-                    .addComponent(jCheckBoxVasilha)
-                    .addComponent(jCheckBoxSabaoPo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jCheckBoxSandalia)
-                    .addComponent(jCheckBoxCalcaoJogo)
-                    .addComponent(jCheckBoxColher)
-                    .addComponent(jCheckBoxBarbeador))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jCheckBoxCamisa)
-                    .addComponent(jCheckBoxCamisaJogo)
-                    .addComponent(jCheckBoxEscova)
-                    .addComponent(jCheckBoxCreme))
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jCheckBoxGarfo)
-                    .addComponent(jCheckBoxParMeiao)
-                    .addComponent(jCheckBoxAbsorvente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jCheckBoxColchao)
-                    .addComponent(jCheckBoxLencol)
-                    .addComponent(jCheckBoxDesodorante))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jCheckBoxBermuda)
-                    .addComponent(jCheckBoxToalha)
-                    .addComponent(jCheckBoxPapel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         jTabelaInternos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jTabelaInternos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+
             },
             new String [] {
                 "Item", "Código", "Nome do Interno"
@@ -1194,6 +912,27 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 .addComponent(jBtSairInterno))
         );
 
+        jTabelaProdutosKitInterno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jTabelaProdutosKitInterno.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Descrição do Produto", "Un.", "Quant."
+            }
+        ));
+        jScrollPane4.setViewportView(jTabelaProdutosKitInterno);
+        if (jTabelaProdutosKitInterno.getColumnModel().getColumnCount() > 0) {
+            jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setMinWidth(70);
+            jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setMaxWidth(70);
+            jTabelaProdutosKitInterno.getColumnModel().getColumn(1).setMinWidth(340);
+            jTabelaProdutosKitInterno.getColumnModel().getColumn(1).setMaxWidth(340);
+            jTabelaProdutosKitInterno.getColumnModel().getColumn(2).setMinWidth(60);
+            jTabelaProdutosKitInterno.getColumnModel().getColumn(2).setMaxWidth(60);
+            jTabelaProdutosKitInterno.getColumnModel().getColumn(3).setMinWidth(60);
+            jTabelaProdutosKitInterno.getColumnModel().getColumn(3).setMaxWidth(60);
+        }
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -1201,20 +940,21 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1234,85 +974,53 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             .addComponent(jFotoInternoKit, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
         );
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true), "Frequência", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
 
-        jCheckBoxKitAnual.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxKitAnual.setText("Kit Anual");
-        jCheckBoxKitAnual.setEnabled(false);
-        jCheckBoxKitAnual.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCheckBoxKitAnualItemStateChanged(evt);
+        jBtBiometria.setForeground(new java.awt.Color(204, 0, 0));
+        jBtBiometria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/Biometria16Vermelho.png"))); // NOI18N
+        jBtBiometria.setText("Biometria");
+        jBtBiometria.setToolTipText("Pesquisar Interno pelo Biometria");
+        jBtBiometria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtBiometriaActionPerformed(evt);
             }
         });
 
-        jCheckBoxDecimal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxDecimal.setForeground(new java.awt.Color(0, 153, 51));
-        jCheckBoxDecimal.setText("Kit Decendial");
-        jCheckBoxDecimal.setEnabled(false);
-        jCheckBoxDecimal.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCheckBoxDecimalItemStateChanged(evt);
-            }
-        });
-
-        jCheckBoxSemestral.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxSemestral.setForeground(new java.awt.Color(0, 0, 255));
-        jCheckBoxSemestral.setText("Kit Semestral");
-        jCheckBoxSemestral.setEnabled(false);
-        jCheckBoxSemestral.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCheckBoxSemestralItemStateChanged(evt);
-            }
-        });
-
-        jCheckBoxKitQuinzenal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxKitQuinzenal.setForeground(new java.awt.Color(204, 0, 0));
-        jCheckBoxKitQuinzenal.setText("Kit Quinzenal");
-        jCheckBoxKitQuinzenal.setEnabled(false);
-        jCheckBoxKitQuinzenal.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCheckBoxKitQuinzenalItemStateChanged(evt);
-            }
-        });
-
-        jCheckBoxMensal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxMensal.setForeground(new java.awt.Color(153, 0, 102));
-        jCheckBoxMensal.setText("Kit Mensal");
-        jCheckBoxMensal.setEnabled(false);
-        jCheckBoxMensal.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCheckBoxMensalItemStateChanged(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBoxMensal)
-                    .addComponent(jCheckBoxSemestral)
-                    .addComponent(jCheckBoxKitQuinzenal)
-                    .addComponent(jCheckBoxDecimal)
-                    .addComponent(jCheckBoxKitAnual))
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jBtBiometria, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jCheckBoxKitAnual)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBoxDecimal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBoxKitQuinzenal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBoxSemestral)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBoxMensal)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtBiometria)
+                .addContainerGap())
         );
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+
+        jBtFinalizar.setForeground(new java.awt.Color(0, 153, 0));
+        jBtFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/accept.png"))); // NOI18N
+        jBtFinalizar.setText("Finalizar");
+        jBtFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtFinalizarActionPerformed(evt);
+            }
+        });
+
+        jBtImpressao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/gtklp-icone-3770-16.png"))); // NOI18N
+        jBtImpressao.setText("Impressão");
+        jBtImpressao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtImpressaoActionPerformed(evt);
+            }
+        });
 
         jDataEntrega.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jDataEntrega.setEnabled(false);
@@ -1320,22 +1028,66 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Data Entrega");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setText("Horário");
+
         jHorarioPagto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jHorarioPagto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jHorarioPagto.setEnabled(false);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel6.setText("Horário");
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBtFinalizar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBtImpressao, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jHorarioPagto, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jDataEntrega, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtFinalizar, jBtImpressao});
 
-        jBtBiometria.setForeground(new java.awt.Color(0, 204, 0));
-        jBtBiometria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/Biometria16Vermelho.png"))); // NOI18N
-        jBtBiometria.setText("Biometria");
-        jBtBiometria.setToolTipText("Pesquisar Interno pelo Biometria");
-        jBtBiometria.addActionListener(new java.awt.event.ActionListener() {
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jBtFinalizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtImpressao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDataEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jHorarioPagto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtFinalizar, jBtImpressao});
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+
+        jBtAuditoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/book_open.png"))); // NOI18N
+        jBtAuditoria.setToolTipText("Auditoria");
+        jBtAuditoria.setContentAreaFilled(false);
+        jBtAuditoria.setEnabled(false);
+        jBtAuditoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtBiometriaActionPerformed(evt);
+                jBtAuditoriaActionPerformed(evt);
             }
         });
 
@@ -1349,90 +1101,61 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             }
         });
 
-        jCheckBoxMarcaTodos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBoxMarcaTodos.setText("Marcar Todos");
-        jCheckBoxMarcaTodos.setEnabled(false);
-        jCheckBoxMarcaTodos.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCheckBoxMarcaTodosItemStateChanged(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtBiometria)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jCheckBoxMarcaTodos)))
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jBtAuditoria, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtAuditoriaItens, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtAuditoriaItens)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jBtBiometria, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBoxMarcaTodos)))
-                .addGap(10, 10, 10))
+
+        jPanel7Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtAuditoria, jBtAuditoriaItens});
+
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtAuditoria)
+                    .addComponent(jBtAuditoriaItens))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel7Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtAuditoria, jBtAuditoriaItens});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jDataEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jHorarioPagto)))
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDataEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jHorarioPagto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jTabbedPane1)
         );
 
-        setBounds(300, 60, 632, 477);
+        setBounds(300, 60, 632, 488);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtPesqDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPesqDataActionPerformed
@@ -1515,7 +1238,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             jBtFinalizar.setEnabled(true);
             jBtBiometria.setEnabled(true);
             //
-            if(!jIdLanc.getText().equals("")){
+            if (!jIdLanc.getText().equals("")) {
                 jBtNovoInterno.setEnabled(true);
             }
             limparCamposManutencao();
@@ -1546,6 +1269,13 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
                     + "WHERE IdPagto='" + jIdLanc.getText() + "'");
+//            preencherTabelaProdutosKitInterno("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS "
+//                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+//                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdItem=ITENS_PAGAMENTO_KIT_INTERNOS.IdItem "
+//                    + "INNER JOIN PRODUTOS_AC ON ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdProd=PRODUTOS_AC.IdProd "
+//                    + "INNER JOIN PAGAMENTO_KIT_INTERNOS "
+//                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdPagto "
+//                    + "WHERE ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdPagto='" + jIdLanc.getText() + "'");
         }
     }//GEN-LAST:event_jTabelaPagamentoKitMouseClicked
 
@@ -1716,6 +1446,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             jBtSalvarInterno.setEnabled(!true);
             jBtCancelarInterno.setEnabled(true);
             jBtAuditoriaItens.setEnabled(true);
+            //
             conecta.abrirConexao();
             try {
                 conecta.executaSQL("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS "
@@ -1724,6 +1455,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         + "WHERE IdItem='" + idItemPagto + "'");
                 conecta.rs.first();
                 idItem = conecta.rs.getInt("IdItem");
+                codItem = conecta.rs.getInt("IdItem");
                 jIdInterno.setText(conecta.rs.getString("IdInternoCrc"));
                 jNomeInterno.setText(conecta.rs.getString("NomeInternoCrc"));
                 // Capturando foto
@@ -1731,209 +1463,21 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminho);
                 jFotoInternoKit.setIcon(i);
                 jFotoInternoKit.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoKit.getWidth(), jFotoInternoKit.getHeight(), Image.SCALE_DEFAULT)));
-                // KIT ANUAL
-                prato = conecta.rs.getInt("Prato");
-                garfo = conecta.rs.getInt("Garfo");
-                bermuda = conecta.rs.getInt("Bermuda");
-                colchao = conecta.rs.getInt("Colchao");
-                camisa = conecta.rs.getInt("Camisa");
-                cueca = conecta.rs.getInt("Cueca");
-                sandalia = conecta.rs.getInt("Sandalia");
-                cobertor = conecta.rs.getInt("Cobertor");
-                bola = cobertor = conecta.rs.getInt("BolaFutSal");
-                calcaoJogo = cobertor = conecta.rs.getInt("CalcaoJg");
-                camisaJogo = cobertor = conecta.rs.getInt("CamisaJg");
-                parMeiao = cobertor = conecta.rs.getInt("ParMeiao");
-                // KIT DECIMAL
-                papelHigienico = conecta.rs.getInt("PapelHigienico");
-                sabonete = conecta.rs.getInt("Sabonete");
-                // KIT QUINZENAL
-                barbeador = conecta.rs.getInt("Barbeador");
-                cremeDental = conecta.rs.getInt("CremeDental");
-                sabaopo = conecta.rs.getInt("SabaoPo");
-                // KIT SEMESTRAL
-                copo = conecta.rs.getInt("Copo");
-                colher = conecta.rs.getInt("Colher");
-                vasilha = conecta.rs.getInt("Vasilha");
-                lencol = conecta.rs.getInt("Colchas");
-                toalha = conecta.rs.getInt("Toalha");
-                escovaDente = conecta.rs.getInt("EscovaDente");
-                // KIT MENSAL
-                absorvente = conecta.rs.getInt("Absorvente");
-                desodorante = conecta.rs.getInt("Desodorante");
-                //
-                marcaTodos = conecta.rs.getInt("MostraTodos");
-                kitAnual = conecta.rs.getInt("KitInicial");
-                kitDecimal = conecta.rs.getInt("KitDecimal");
-                kitQuinzenal = conecta.rs.getInt("KitQuinzenal");
-                kitMensal = conecta.rs.getInt("KitMensal");
-                kitSemetral = conecta.rs.getInt("KitSemestral");
                 //
                 jDataEntrega.setDate(conecta.rs.getDate("DataEntrega"));
                 jHorarioPagto.setText(conecta.rs.getString("Horario"));
-                //KIT ANUAL
-                if (prato == 1) {
-                    jCheckBoxPrato.setSelected(true);
-                } else if (prato == 0) {
-                    jCheckBoxPrato.setSelected(!true);
-                }
-                if (bermuda == 1) {
-                    jCheckBoxBermuda.setSelected(true);
-                } else if (bermuda == 0) {
-                    jCheckBoxBermuda.setSelected(!true);
-                }
-                if (colchao == 1) {
-                    jCheckBoxColchao.setSelected(true);
-                } else if (colchao == 0) {
-                    jCheckBoxColchao.setSelected(!true);
-                }
-                if (camisa == 1) {
-                    jCheckBoxCamisa.setSelected(true);
-                } else if (camisa == 0) {
-                    jCheckBoxCamisa.setSelected(!true);
-                }
-                if (cueca == 1) {
-                    jCheckBoxCueca.setSelected(true);
-                } else if (cueca == 0) {
-                    jCheckBoxCueca.setSelected(!true);
-                }
-                if (sandalia == 1) {
-                    jCheckBoxSandalia.setSelected(true);
-                } else if (sandalia == 0) {
-                    jCheckBoxSandalia.setSelected(!true);
-                }
-                if (cobertor == 1) {
-                    jCheckBoxCobertor.setSelected(true);
-                } else if (cobertor == 0) {
-                    jCheckBoxCobertor.setSelected(!true);
-                }
-                if (bola == 1) {
-                    jCheckBoxBolaFutsal.setSelected(true);
-                } else if (bola == 0) {
-                    jCheckBoxBolaFutsal.setSelected(!true);
-                }
-                if (calcaoJogo == 1) {
-                    jCheckBoxCalcaoJogo.setSelected(true);
-                } else if (calcaoJogo == 0) {
-                    jCheckBoxCalcaoJogo.setSelected(!true);
-                }
-                if (camisaJogo == 1) {
-                    jCheckBoxCamisaJogo.setSelected(true);
-                } else if (camisaJogo == 0) {
-                    jCheckBoxCamisaJogo.setSelected(!true);
-                }
-                if (parMeiao == 1) {
-                    jCheckBoxParMeiao.setSelected(true);
-                } else if (parMeiao == 0) {
-                    jCheckBoxParMeiao.setSelected(!true);
-                }
-                // KIT DECIMAL
-                if (sabonete == 1) {
-                    jCheckBoxSabonete.setSelected(true);
-                } else if (sabonete == 0) {
-                    jCheckBoxSabonete.setSelected(!true);
-                }
-                if (papelHigienico == 1) {
-                    jCheckBoxPapel.setSelected(true);
-                } else if (papelHigienico == 0) {
-                    jCheckBoxPapel.setSelected(!true);
-                }
-                // KIT QUINZENAL
-                if (cremeDental == 1) {
-                    jCheckBoxCreme.setSelected(true);
-                } else if (cremeDental == 0) {
-                    jCheckBoxCreme.setSelected(!true);
-                }
-                if (barbeador == 1) {
-                    jCheckBoxBarbeador.setSelected(true);
-                } else if (barbeador == 0) {
-                    jCheckBoxBarbeador.setSelected(!true);
-                }
-                if (sabaopo == 1) {
-                    jCheckBoxSabaoPo.setSelected(true);
-                } else if (sabaopo == 0) {
-                    jCheckBoxSabaoPo.setSelected(!true);
-                }
-                // KIT MENSAL
-                if (absorvente == 1) {
-                    jCheckBoxAbsorvente.setSelected(true);
-                } else if (absorvente == 0) {
-                    jCheckBoxAbsorvente.setSelected(!true);
-                }
-                if (desodorante == 1) {
-                    jCheckBoxDesodorante.setSelected(true);
-                } else if (desodorante == 0) {
-                    jCheckBoxDesodorante.setSelected(!true);
-                }
-                // KIT SEMESTRAL
-                if (copo == 1) {
-                    jCheckBoxCopo.setSelected(true);
-                } else if (copo == 0) {
-                    jCheckBoxCopo.setSelected(!true);
-                }
-                if (colher == 1) {
-                    jCheckBoxColher.setSelected(true);
-                } else if (colher == 0) {
-                    jCheckBoxColher.setSelected(!true);
-                }
-                if (vasilha == 1) {
-                    jCheckBoxVasilha.setSelected(true);
-                } else if (vasilha == 0) {
-                    jCheckBoxVasilha.setSelected(!true);
-                }
-                if (garfo == 1) {
-                    jCheckBoxGarfo.setSelected(true);
-                } else if (garfo == 0) {
-                    jCheckBoxGarfo.setSelected(!true);
-                }
-                if (lencol == 1) {
-                    jCheckBoxLencol.setSelected(true);
-                } else if (lencol == 0) {
-                    jCheckBoxLencol.setSelected(!true);
-                }
-                if (toalha == 1) {
-                    jCheckBoxToalha.setSelected(true);
-                } else if (toalha == 0) {
-                    jCheckBoxToalha.setSelected(!true);
-                }
-                if (escovaDente == 1) {
-                    jCheckBoxEscova.setSelected(true);
-                } else if (escovaDente == 0) {
-                    jCheckBoxEscova.setSelected(!true);
-                }
-                //
-                if (marcaTodos == 1) {
-                    jCheckBoxMarcaTodos.setSelected(true);
-                } else if (marcaTodos == 0) {
-                    jCheckBoxMarcaTodos.setSelected(!true);
-                }
-                if (kitAnual == 1) {
-                    jCheckBoxKitAnual.setSelected(true);
-                } else if (kitAnual == 0) {
-                    jCheckBoxKitAnual.setSelected(!true);
-                }
-                if (kitDecimal == 1) {
-                    jCheckBoxDecimal.setSelected(true);
-                } else if (kitDecimal == 0) {
-                    jCheckBoxDecimal.setSelected(!true);
-                }
-                if (kitQuinzenal == 1) {
-                    jCheckBoxKitQuinzenal.setSelected(true);
-                } else if (kitQuinzenal == 0) {
-                    jCheckBoxKitQuinzenal.setSelected(!true);
-                }
-                if (kitMensal == 1) {
-                    jCheckBoxMensal.setSelected(true);
-                } else if (kitMensal == 0) {
-                    jCheckBoxMensal.setSelected(!true);
-                }
-                if (kitSemetral == 1) {
-                    jCheckBoxSemestral.setSelected(true);
-                } else if (kitSemetral == 0) {
-                    jCheckBoxSemestral.setSelected(!true);
-                }
+
             } catch (SQLException ex) {
             }
+            preencherTabelaProdutosKitInterno("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS "
+                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdItem=ITENS_PAGAMENTO_KIT_INTERNOS.IdItem "
+                    + "INNER JOIN PRODUTOS_AC "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdProd=PRODUTOS_AC.IdProd "
+                    + "INNER JOIN PAGAMENTO_KIT_INTERNOS "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdPagto "
+                    + "WHERE ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc='" + jIdInterno.getText() + "' "
+                    + "AND ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdPagto='" + jIdLanc.getText() + "'");
         }
     }//GEN-LAST:event_jTabelaInternosMouseClicked
 
@@ -1998,206 +1542,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         } else if (jIdInterno.getText().equals("") || jNomeInterno.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Informe para qual interno será o kit.");
         } else {
-            // KIT ANUAL            
-            if (jCheckBoxPrato.isSelected()) {
-                prato = 1;
-            } else if (!jCheckBoxPrato.isSelected()) {
-                prato = 0;
-            }
-            if (jCheckBoxGarfo.isSelected()) {
-                garfo = 1;
-            } else if (!jCheckBoxGarfo.isSelected()) {
-                garfo = 0;
-            }
-            if (jCheckBoxBermuda.isSelected()) {
-                bermuda = 1;
-            } else if (!jCheckBoxBermuda.isSelected()) {
-                bermuda = 0;
-            }
-            if (jCheckBoxColchao.isSelected()) {
-                colchao = 1;
-            } else if (!jCheckBoxColchao.isSelected()) {
-                colchao = 0;
-            }
-            if (jCheckBoxCamisa.isSelected()) {
-                camisa = 1;
-            } else if (!jCheckBoxCamisa.isSelected()) {
-                camisa = 0;
-            }
-            if (jCheckBoxCueca.isSelected()) {
-                cueca = 1;
-            } else if (!jCheckBoxCueca.isSelected()) {
-                cueca = 0;
-            }
-            if (jCheckBoxSandalia.isSelected()) {
-                sandalia = 1;
-            } else if (!jCheckBoxSandalia.isSelected()) {
-                sandalia = 0;
-            }
-            if (jCheckBoxCobertor.isSelected()) {
-                cobertor = 1;
-            } else if (!jCheckBoxCobertor.isSelected()) {
-                cobertor = 0;
-            }
-            if (jCheckBoxBolaFutsal.isSelected()) {
-                bola = 1;
-            } else if (!jCheckBoxBolaFutsal.isSelected()) {
-                bola = 0;
-            }
-            if (jCheckBoxCalcaoJogo.isSelected()) {
-                calcaoJogo = 1;
-            } else if (!jCheckBoxCalcaoJogo.isSelected()) {
-                calcaoJogo = 0;
-            }
-            if (jCheckBoxCamisaJogo.isSelected()) {
-                camisaJogo = 1;
-            } else if (!jCheckBoxCamisaJogo.isSelected()) {
-                camisaJogo = 0;
-            }
-            if (jCheckBoxParMeiao.isSelected()) {
-                parMeiao = 1;
-            } else if (!jCheckBoxParMeiao.isSelected()) {
-                parMeiao = 0;
-            }
-            // DECIMAL
-            if (jCheckBoxPapel.isSelected()) {
-                papelHigienico = 1;
-            } else if (!jCheckBoxPapel.isSelected()) {
-                papelHigienico = 0;
-            }
-            if (jCheckBoxSabonete.isSelected()) {
-                sabonete = 1;
-            } else if (!jCheckBoxSabonete.isSelected()) {
-                sabonete = 0;
-            }
-            // KIT QUINZENAL
-            if (jCheckBoxSabaoPo.isSelected()) {
-                sabaopo = 1;
-            } else if (!jCheckBoxSabaoPo.isSelected()) {
-                sabaopo = 0;
-            }
-            if (jCheckBoxCreme.isSelected()) {
-                cremeDental = 1;
-            } else if (!jCheckBoxCreme.isSelected()) {
-                cremeDental = 0;
-            }
-            if (jCheckBoxBarbeador.isSelected()) {
-                barbeador = 1;
-            } else if (!jCheckBoxBarbeador.isSelected()) {
-                barbeador = 0;
-            }
-            // SEMESTRAL     
-            if (jCheckBoxCopo.isSelected()) {
-                copo = 1;
-            } else if (!jCheckBoxCopo.isSelected()) {
-                copo = 0;
-            }
-            if (jCheckBoxColher.isSelected()) {
-                colher = 1;
-            } else if (!jCheckBoxColher.isSelected()) {
-                colher = 0;
-            }
-            if (jCheckBoxToalha.isSelected()) {
-                toalha = 1;
-            }
-            if (jCheckBoxLencol.isSelected()) {
-                lencol = 1;
-            } else if (!jCheckBoxLencol.isSelected()) {
-                lencol = 0;
-            }
-            if (jCheckBoxVasilha.isSelected()) {
-                vasilha = 1;
-            } else if (!jCheckBoxVasilha.isSelected()) {
-                vasilha = 0;
-            }
-            if (jCheckBoxEscova.isSelected()) {
-                escovaDente = 1;
-            } else if (!jCheckBoxEscova.isSelected()) {
-                escovaDente = 0;
-            }
-            // MENSAL
-            if (jCheckBoxAbsorvente.isSelected()) {
-                absorvente = 1;
-            }
-            // MENSAL
-            if (jCheckBoxAbsorvente.isSelected()) {
-                absorvente = 1;
-            } else if (!jCheckBoxAbsorvente.isSelected()) {
-                absorvente = 0;
-            }
-            if (jCheckBoxDesodorante.isSelected()) {
-                desodorante = 1;
-            } else if (!jCheckBoxDesodorante.isSelected()) {
-                desodorante = 0;
-            }
-            // TIPOS DE PAGAMENTO KIT
-            if (jCheckBoxMarcaTodos.isSelected()) {
-                marcaTodos = 1;
-            } else if (!jCheckBoxMarcaTodos.isSelected()) {
-                marcaTodos = 0;
-            }
-            if (jCheckBoxKitAnual.isSelected()) {
-                kitAnual = 1;
-            } else if (!jCheckBoxKitAnual.isSelected()) {
-                kitAnual = 0;
-            }
-            if (jCheckBoxKitQuinzenal.isSelected()) {
-                kitQuinzenal = 1;
-            } else if (!jCheckBoxKitQuinzenal.isSelected()) {
-                kitQuinzenal = 0;
-            }
-            if (jCheckBoxDecimal.isSelected()) {
-                kitDecimal = 1;
-            } else if (!jCheckBoxDecimal.isSelected()) {
-                kitDecimal = 0;
-            }
-            if (jCheckBoxSemestral.isSelected()) {
-                kitSemetral = 1;
-            } else if (!jCheckBoxSemestral.isSelected()) {
-                kitSemetral = 0;
-            }
-            if (jCheckBoxMensal.isSelected()) {
-                kitMensal = 1;
-            } else if (!jCheckBoxMensal.isSelected()) {
-                kitMensal = 0;
-            }
-            // KIT ANUAL            
-            objItensPagto.setPrato(prato);
-            objItensPagto.setGarfo(garfo);
-            objItensPagto.setBermuda(bermuda);
-            objItensPagto.setColchao(colchao);
-            objItensPagto.setCobertor(cobertor);
-            objItensPagto.setBolaJogo(bola);
-            objItensPagto.setCalcaoJogo(calcaoJogo);
-            objItensPagto.setCamisaJogo(camisaJogo);
-            objItensPagto.setParMeiao(parMeiao);
-            objItensPagto.setCamisa(camisa);
-            objItensPagto.setCueca(cueca);
-            objItensPagto.setSandalia(sandalia);
-            // KIT DECIMAL
-            objItensPagto.setSabonete(sabonete);
-            objItensPagto.setPapelHigienico(papelHigienico);
-            // KIT QUINZENAL
-            objItensPagto.setCremeDental(cremeDental);
-            objItensPagto.setBarbeador(barbeador);
-            objItensPagto.setSabaoPo(sabaopo);
-            // KIT SEMESTRAL
-            objItensPagto.setLencol(lencol);
-            objItensPagto.setCopo(copo);
-            objItensPagto.setColher(colher);
-            objItensPagto.setVasilha(vasilha);
-            objItensPagto.setToalha(toalha);
-            objItensPagto.setEscovaDente(escovaDente);
-            // KIT MENSAL
-            objItensPagto.setAbsorvente(absorvente);
-            objItensPagto.setDesodorante(desodorante);
-            // TIPOS DE KITS
-            objItensPagto.setMostraTodos(marcaTodos);
-            objItensPagto.setKitInicial(kitAnual);
-            objItensPagto.setKitDecimal(kitDecimal);
-            objItensPagto.setKitQuinzenal(kitQuinzenal);
-            objItensPagto.setKitMensal(kitMensal);
-            //
+
             objItensPagto.setTipoEntrada(tipoEntrada);
             objItensPagto.setDataEntrega(jDataEntrega.getDate());
             objItensPagto.setHoraEntrega(jHorarioPagto.getText());
@@ -2212,6 +1557,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     objItensPagto.setUsuarioInsert(nameUser);
                     objItensPagto.setDataInsert(dataModFinal);
                     objItensPagto.setHorarioInsert(horaMov);
+                    //
+                    buscarCodigoItem();
                     //
                     controle.incluirPagamentoKitInterno(objItensPagto);
                     objLog2();
@@ -2271,233 +1618,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBtBiometriaActionPerformed
 
-    private void jCheckBoxMarcaTodosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBoxMarcaTodosItemStateChanged
-        // TODO add your handling code here:
-        if (evt.getStateChange() == evt.SELECTED) {
-            marcaTodos = 1;
-            jCheckBoxKitAnual.setSelected(!true);
-            jCheckBoxDecimal.setSelected(!true);
-            jCheckBoxKitQuinzenal.setSelected(!true);
-            jCheckBoxSemestral.setSelected(!true);
-            jCheckBoxMensal.setSelected(!true);
-            // KIT ANUAL            
-            jCheckBoxPrato.setSelected(true);
-            jCheckBoxGarfo.setSelected(true);
-            jCheckBoxColchao.setSelected(true);
-            jCheckBoxCamisa.setSelected(true);
-            jCheckBoxBermuda.setSelected(true);
-            jCheckBoxCueca.setSelected(true);
-            jCheckBoxSandalia.setSelected(true);
-            jCheckBoxCobertor.setSelected(true);
-            jCheckBoxBolaFutsal.setSelected(true);
-            jCheckBoxCalcaoJogo.setSelected(true);
-            jCheckBoxCamisaJogo.setSelected(true);
-            jCheckBoxParMeiao.setSelected(true);
-            // DECIMAL
-            jCheckBoxPapel.setSelected(true);
-            jCheckBoxSabonete.setSelected(true);
-            // QUINZENAL
-            jCheckBoxCreme.setSelected(true);
-            jCheckBoxBarbeador.setSelected(true);
-            jCheckBoxSabaoPo.setSelected(true);
-            //SEMESTRAL
-            jCheckBoxLencol.setSelected(true);
-            jCheckBoxCopo.setSelected(true);
-            jCheckBoxVasilha.setSelected(true);
-            jCheckBoxColher.setSelected(true);
-            jCheckBoxToalha.setSelected(true);
-            jCheckBoxEscova.setSelected(true);
-            // MENSAL
-            jCheckBoxAbsorvente.setSelected(true);
-            jCheckBoxDesodorante.setSelected(true);
-        } else {
-            marcaTodos = 0;
-            jCheckBoxDecimal.setSelected(!true);
-            jCheckBoxKitQuinzenal.setSelected(!true);
-            jCheckBoxSemestral.setSelected(!true);
-            jCheckBoxMensal.setSelected(!true);
-            // KIT ANUAL            
-            jCheckBoxPrato.setSelected(!true);
-            jCheckBoxGarfo.setSelected(!true);
-            jCheckBoxColchao.setSelected(!true);
-            jCheckBoxCamisa.setSelected(!true);
-            jCheckBoxBermuda.setSelected(!true);
-            jCheckBoxCueca.setSelected(!true);
-            jCheckBoxSandalia.setSelected(!true);
-            jCheckBoxCobertor.setSelected(!true);
-            jCheckBoxBolaFutsal.setSelected(!true);
-            jCheckBoxCalcaoJogo.setSelected(!true);
-            jCheckBoxCamisaJogo.setSelected(!true);
-            jCheckBoxParMeiao.setSelected(!true);
-            // DECIMAL
-            jCheckBoxPapel.setSelected(!true);
-            jCheckBoxSabonete.setSelected(!true);
-            // QUINZENAL
-            jCheckBoxCreme.setSelected(!true);
-            jCheckBoxBarbeador.setSelected(!true);
-            jCheckBoxSabaoPo.setSelected(!true);
-            //SEMESTRAL
-            jCheckBoxLencol.setSelected(!true);
-            jCheckBoxCopo.setSelected(!true);
-            jCheckBoxVasilha.setSelected(!true);
-            jCheckBoxColher.setSelected(!true);
-            jCheckBoxToalha.setSelected(!true);
-            jCheckBoxEscova.setSelected(!true);
-            // MENSAL
-            jCheckBoxAbsorvente.setSelected(!true);
-            jCheckBoxDesodorante.setSelected(!true);
-        }
-    }//GEN-LAST:event_jCheckBoxMarcaTodosItemStateChanged
-
-    private void jCheckBoxKitAnualItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBoxKitAnualItemStateChanged
-        // TODO add your handling code here:
-        if (evt.getStateChange() == evt.SELECTED) {
-            kitAnual = 1;
-            jCheckBoxMarcaTodos.setSelected(!true);
-            jCheckBoxDecimal.setSelected(!true);
-            jCheckBoxKitQuinzenal.setSelected(!true);
-            jCheckBoxSemestral.setSelected(!true);
-            jCheckBoxMensal.setSelected(!true);
-            // KIT ANUAL            
-            jCheckBoxPrato.setSelected(true);
-            jCheckBoxColchao.setSelected(true);
-            jCheckBoxCamisa.setSelected(true);
-            jCheckBoxGarfo.setSelected(true);
-            jCheckBoxBermuda.setSelected(true);
-            jCheckBoxCueca.setSelected(true);
-            jCheckBoxSandalia.setSelected(true);
-            jCheckBoxCobertor.setSelected(true);
-            jCheckBoxBolaFutsal.setSelected(true);
-            jCheckBoxCalcaoJogo.setSelected(true);
-            jCheckBoxCamisaJogo.setSelected(true);
-            jCheckBoxParMeiao.setSelected(true);
-            // DECIMAL
-            jCheckBoxPapel.setSelected(!true);
-            jCheckBoxSabonete.setSelected(!true);
-            // QUINZENAL
-            jCheckBoxCreme.setSelected(!true);
-            jCheckBoxBarbeador.setSelected(!true);
-            jCheckBoxSabaoPo.setSelected(!true);
-            //SEMESTRAL
-            jCheckBoxLencol.setSelected(!true);
-            jCheckBoxCopo.setSelected(!true);
-            jCheckBoxVasilha.setSelected(!true);
-            jCheckBoxColher.setSelected(!true);
-            jCheckBoxToalha.setSelected(!true);
-            jCheckBoxEscova.setSelected(!true);
-            // MENSAL
-            jCheckBoxAbsorvente.setSelected(!true);
-            jCheckBoxDesodorante.setSelected(!true);
-        } else {
-            kitAnual = 0;
-            jCheckBoxMarcaTodos.setSelected(!true);
-            jCheckBoxDecimal.setSelected(!true);
-            jCheckBoxKitQuinzenal.setSelected(!true);
-            jCheckBoxSemestral.setSelected(!true);
-            jCheckBoxMensal.setSelected(!true);
-            // KIT ANUAL            
-            jCheckBoxPrato.setSelected(!true);
-            jCheckBoxColchao.setSelected(!true);
-            jCheckBoxCamisa.setSelected(!true);
-            jCheckBoxGarfo.setSelected(!true);
-            jCheckBoxBermuda.setSelected(!true);
-            jCheckBoxCueca.setSelected(!true);
-            jCheckBoxSandalia.setSelected(!true);
-            jCheckBoxCobertor.setSelected(!true);
-            jCheckBoxBolaFutsal.setSelected(!true);
-            jCheckBoxCalcaoJogo.setSelected(!true);
-            jCheckBoxCamisaJogo.setSelected(!true);
-            jCheckBoxParMeiao.setSelected(!true);
-            // DECIMAL
-            jCheckBoxPapel.setSelected(!true);
-            jCheckBoxSabonete.setSelected(!true);
-            // QUINZENAL
-            jCheckBoxCreme.setSelected(!true);
-            jCheckBoxBarbeador.setSelected(!true);
-            jCheckBoxSabaoPo.setSelected(!true);
-            //SEMESTRAL
-            jCheckBoxLencol.setSelected(!true);
-            jCheckBoxCopo.setSelected(!true);
-            jCheckBoxVasilha.setSelected(!true);
-            jCheckBoxColher.setSelected(!true);
-            jCheckBoxToalha.setSelected(!true);
-            jCheckBoxEscova.setSelected(!true);
-            // MENSAL
-            jCheckBoxAbsorvente.setSelected(!true);
-            jCheckBoxDesodorante.setSelected(!true);
-        }
-    }//GEN-LAST:event_jCheckBoxKitAnualItemStateChanged
-
-    private void jCheckBoxKitQuinzenalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBoxKitQuinzenalItemStateChanged
-        // TODO add your handling code here:
-        if (evt.getStateChange() == evt.SELECTED) {
-            kitQuinzenal = 1;
-            jCheckBoxMarcaTodos.setSelected(!true);
-            jCheckBoxKitAnual.setSelected(!true);
-            jCheckBoxDecimal.setSelected(!true);
-            jCheckBoxKitQuinzenal.setSelected(true);
-            jCheckBoxSemestral.setSelected(!true);
-            jCheckBoxMensal.setSelected(!true);
-            // KIT QUINZENAL
-            jCheckBoxCreme.setSelected(true);
-            jCheckBoxBarbeador.setSelected(true);
-            jCheckBoxSabaoPo.setSelected(true);
-            // KIT INICIAL
-            jCheckBoxCopo.setSelected(!true);
-            jCheckBoxGarfo.setSelected(!true);
-            jCheckBoxPrato.setSelected(!true);
-            jCheckBoxColher.setSelected(!true);
-            jCheckBoxVasilha.setSelected(!true);
-            jCheckBoxGarfo.setSelected(!true);
-            jCheckBoxAbsorvente.setSelected(!true);
-            jCheckBoxBermuda.setSelected(!true);
-            jCheckBoxLencol.setSelected(!true);
-            jCheckBoxColchao.setSelected(!true);
-            jCheckBoxToalha.setSelected(!true);
-            jCheckBoxCamisa.setSelected(!true);
-            jCheckBoxCueca.setSelected(!true);
-            jCheckBoxSandalia.setSelected(!true);
-        } else {
-            kitQuinzenal = 0;
-            jCheckBoxMarcaTodos.setSelected(!true);
-            jCheckBoxKitAnual.setSelected(!true);
-            jCheckBoxDecimal.setSelected(!true);
-            jCheckBoxKitQuinzenal.setSelected(!true);
-            jCheckBoxSemestral.setSelected(!true);
-            jCheckBoxMensal.setSelected(!true);
-            // KIT ANUAL            
-            jCheckBoxPrato.setSelected(!true);
-            jCheckBoxGarfo.setSelected(!true);
-            jCheckBoxColchao.setSelected(!true);
-            jCheckBoxCamisa.setSelected(!true);
-            jCheckBoxBermuda.setSelected(!true);
-            jCheckBoxCueca.setSelected(!true);
-            jCheckBoxSandalia.setSelected(!true);
-            jCheckBoxCobertor.setSelected(!true);
-            jCheckBoxBolaFutsal.setSelected(!true);
-            jCheckBoxCalcaoJogo.setSelected(!true);
-            jCheckBoxCamisaJogo.setSelected(!true);
-            jCheckBoxParMeiao.setSelected(!true);
-            // DECIMAL
-            jCheckBoxPapel.setSelected(!true);
-            jCheckBoxSabonete.setSelected(!true);
-            // QUINZENAL
-            jCheckBoxCreme.setSelected(!true);
-            jCheckBoxBarbeador.setSelected(!true);
-            jCheckBoxSabaoPo.setSelected(!true);
-            //SEMESTRAL
-            jCheckBoxLencol.setSelected(!true);
-            jCheckBoxCopo.setSelected(!true);
-            jCheckBoxVasilha.setSelected(!true);
-            jCheckBoxColher.setSelected(!true);
-            jCheckBoxToalha.setSelected(!true);
-            jCheckBoxEscova.setSelected(!true);
-            // MENSAL
-            jCheckBoxAbsorvente.setSelected(!true);
-            jCheckBoxDesodorante.setSelected(!true);
-        }
-    }//GEN-LAST:event_jCheckBoxKitQuinzenalItemStateChanged
-
     private void jBtImpressaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtImpressaoActionPerformed
         // TODO add your handling code here:
         // VERIFICAR SE A TABELA TEM PRODUTOS, SE ESTIVER VAZIA NÃO IMPRIMI
@@ -2535,246 +1655,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBtImpressaoActionPerformed
 
-    private void jCheckBoxMensalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBoxMensalItemStateChanged
-        // TODO add your handling code here:
-        if (evt.getStateChange() == evt.SELECTED) {
-            kitMensal = 1;
-            jCheckBoxMarcaTodos.setSelected(!true);
-            jCheckBoxKitAnual.setSelected(!true);
-            jCheckBoxDecimal.setSelected(!true);
-            jCheckBoxKitQuinzenal.setSelected(!true);
-            jCheckBoxSemestral.setSelected(!true);
-            jCheckBoxMensal.setSelected(true);
-            // KIT ANUAL            
-            jCheckBoxPrato.setSelected(!true);
-            jCheckBoxGarfo.setSelected(!true);
-            jCheckBoxColchao.setSelected(!true);
-            jCheckBoxCamisa.setSelected(!true);
-            jCheckBoxBermuda.setSelected(!true);
-            jCheckBoxCueca.setSelected(!true);
-            jCheckBoxSandalia.setSelected(!true);
-            jCheckBoxCobertor.setSelected(!true);
-            jCheckBoxBolaFutsal.setSelected(!true);
-            jCheckBoxCalcaoJogo.setSelected(!true);
-            jCheckBoxCamisaJogo.setSelected(!true);
-            jCheckBoxParMeiao.setSelected(!true);
-            // DECIMAL
-            jCheckBoxPapel.setSelected(!true);
-            jCheckBoxSabonete.setSelected(!true);
-            // QUINZENAL
-            jCheckBoxCreme.setSelected(!true);
-            jCheckBoxBarbeador.setSelected(!true);
-            jCheckBoxSabaoPo.setSelected(!true);
-            //SEMESTRAL
-            jCheckBoxLencol.setSelected(!true);
-            jCheckBoxCopo.setSelected(!true);
-            jCheckBoxVasilha.setSelected(!true);
-            jCheckBoxColher.setSelected(!true);
-            jCheckBoxToalha.setSelected(!true);
-            jCheckBoxEscova.setSelected(!true);
-            // MENSAL
-            jCheckBoxAbsorvente.setSelected(true);
-            jCheckBoxDesodorante.setSelected(true);
-        } else {
-            kitMensal = 0;
-            jCheckBoxMarcaTodos.setSelected(!true);
-            jCheckBoxKitAnual.setSelected(!true);
-            jCheckBoxDecimal.setSelected(!true);
-            jCheckBoxKitQuinzenal.setSelected(!true);
-            jCheckBoxSemestral.setSelected(!true);
-            jCheckBoxMensal.setSelected(!true);
-            // KIT ANUAL            
-            jCheckBoxPrato.setSelected(!true);
-            jCheckBoxGarfo.setSelected(!true);
-            jCheckBoxColchao.setSelected(!true);
-            jCheckBoxCamisa.setSelected(!true);
-            jCheckBoxBermuda.setSelected(!true);
-            jCheckBoxCueca.setSelected(!true);
-            jCheckBoxSandalia.setSelected(!true);
-            jCheckBoxCobertor.setSelected(!true);
-            jCheckBoxBolaFutsal.setSelected(!true);
-            jCheckBoxCalcaoJogo.setSelected(!true);
-            jCheckBoxCamisaJogo.setSelected(!true);
-            jCheckBoxParMeiao.setSelected(!true);
-            // DECIMAL
-            jCheckBoxPapel.setSelected(!true);
-            jCheckBoxSabonete.setSelected(!true);
-            // QUINZENAL
-            jCheckBoxCreme.setSelected(!true);
-            jCheckBoxBarbeador.setSelected(!true);
-            jCheckBoxSabaoPo.setSelected(!true);
-            //SEMESTRAL
-            jCheckBoxLencol.setSelected(!true);
-            jCheckBoxCopo.setSelected(!true);
-            jCheckBoxVasilha.setSelected(!true);
-            jCheckBoxColher.setSelected(!true);
-            jCheckBoxToalha.setSelected(!true);
-            jCheckBoxEscova.setSelected(!true);
-            // MENSAL
-            jCheckBoxAbsorvente.setSelected(!true);
-            jCheckBoxDesodorante.setSelected(!true);
-        }
-    }//GEN-LAST:event_jCheckBoxMensalItemStateChanged
-
-    private void jCheckBoxSemestralItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBoxSemestralItemStateChanged
-        // TODO add your handling code here:
-        if (evt.getStateChange() == evt.SELECTED) {
-            kitSemetral = 1;
-            jCheckBoxMarcaTodos.setSelected(!true);
-            jCheckBoxKitAnual.setSelected(!true);
-            jCheckBoxDecimal.setSelected(!true);
-            jCheckBoxSemestral.setSelected(true);
-            jCheckBoxKitQuinzenal.setSelected(!true);
-            jCheckBoxMensal.setSelected(!true);
-            // KIT ANUAL            
-            jCheckBoxPrato.setSelected(!true);
-            jCheckBoxGarfo.setSelected(!true);
-            jCheckBoxColchao.setSelected(!true);
-            jCheckBoxCamisa.setSelected(!true);
-            jCheckBoxBermuda.setSelected(!true);
-            jCheckBoxCueca.setSelected(!true);
-            jCheckBoxSandalia.setSelected(!true);
-            jCheckBoxCobertor.setSelected(!true);
-            jCheckBoxBolaFutsal.setSelected(!true);
-            jCheckBoxCalcaoJogo.setSelected(!true);
-            jCheckBoxCamisaJogo.setSelected(!true);
-            jCheckBoxParMeiao.setSelected(!true);
-            // DECIMAL
-            jCheckBoxPapel.setSelected(!true);
-            jCheckBoxSabonete.setSelected(!true);
-            // QUINZENAL
-            jCheckBoxCreme.setSelected(!true);
-            jCheckBoxBarbeador.setSelected(!true);
-            jCheckBoxSabaoPo.setSelected(!true);
-            //SEMESTRAL
-            jCheckBoxLencol.setSelected(true);
-            jCheckBoxCopo.setSelected(true);
-            jCheckBoxVasilha.setSelected(true);
-            jCheckBoxColher.setSelected(true);
-            jCheckBoxToalha.setSelected(true);
-            jCheckBoxEscova.setSelected(true);
-            // MENSAL
-            jCheckBoxAbsorvente.setSelected(!true);
-            jCheckBoxDesodorante.setSelected(!true);
-        } else {
-            kitSemetral = 0;
-            jCheckBoxMarcaTodos.setSelected(!true);
-            jCheckBoxKitAnual.setSelected(!true);
-            jCheckBoxDecimal.setSelected(!true);
-            jCheckBoxMensal.setSelected(!true);
-            jCheckBoxKitQuinzenal.setSelected(!true);
-            // KIT ANUAL            
-            jCheckBoxPrato.setSelected(!true);
-            jCheckBoxGarfo.setSelected(!true);
-            jCheckBoxColchao.setSelected(!true);
-            jCheckBoxCamisa.setSelected(!true);
-            jCheckBoxBermuda.setSelected(!true);
-            jCheckBoxCueca.setSelected(!true);
-            jCheckBoxSandalia.setSelected(!true);
-            jCheckBoxCobertor.setSelected(!true);
-            jCheckBoxBolaFutsal.setSelected(!true);
-            jCheckBoxCalcaoJogo.setSelected(!true);
-            jCheckBoxCamisaJogo.setSelected(!true);
-            jCheckBoxParMeiao.setSelected(!true);
-            // DECIMAL
-            jCheckBoxPapel.setSelected(!true);
-            jCheckBoxSabonete.setSelected(!true);
-            // QUINZENAL
-            jCheckBoxCreme.setSelected(!true);
-            jCheckBoxBarbeador.setSelected(!true);
-            jCheckBoxSabaoPo.setSelected(!true);
-            //SEMESTRAL
-            jCheckBoxLencol.setSelected(!true);
-            jCheckBoxCopo.setSelected(!true);
-            jCheckBoxVasilha.setSelected(!true);
-            jCheckBoxColher.setSelected(!true);
-            jCheckBoxToalha.setSelected(!true);
-            jCheckBoxEscova.setSelected(!true);
-            // MENSAL
-            jCheckBoxAbsorvente.setSelected(!true);
-            jCheckBoxDesodorante.setSelected(!true);
-        }
-    }//GEN-LAST:event_jCheckBoxSemestralItemStateChanged
-
-    private void jCheckBoxDecimalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBoxDecimalItemStateChanged
-        // TODO add your handling code here:
-        if (evt.getStateChange() == evt.SELECTED) {
-            kitDecimal = 1;
-            jCheckBoxMarcaTodos.setSelected(!true);
-            jCheckBoxKitAnual.setSelected(!true);
-            jCheckBoxKitQuinzenal.setSelected(!true);
-            jCheckBoxSemestral.setSelected(!true);
-            jCheckBoxMensal.setSelected(!true);
-            jCheckBoxDecimal.setSelected(true);
-            //
-            jCheckBoxPrato.setSelected(!true);
-            jCheckBoxColchao.setSelected(!true);
-            jCheckBoxCamisa.setSelected(!true);
-            jCheckBoxBermuda.setSelected(!true);
-            jCheckBoxCueca.setSelected(!true);
-            jCheckBoxSandalia.setSelected(!true);
-            jCheckBoxCobertor.setSelected(!true);
-            jCheckBoxBolaFutsal.setSelected(!true);
-            jCheckBoxCalcaoJogo.setSelected(!true);
-            jCheckBoxCamisaJogo.setSelected(!true);
-            jCheckBoxParMeiao.setSelected(!true);
-            // DECIMAL
-            jCheckBoxPapel.setSelected(true);
-            jCheckBoxSabonete.setSelected(true);
-            // QUINZENAL
-            jCheckBoxCreme.setSelected(!true);
-            jCheckBoxBarbeador.setSelected(!true);
-            jCheckBoxSabaoPo.setSelected(!true);
-            //SEMESTRAL
-            jCheckBoxLencol.setSelected(!true);
-            jCheckBoxCopo.setSelected(!true);
-            jCheckBoxVasilha.setSelected(!true);
-            jCheckBoxColher.setSelected(!true);
-            jCheckBoxToalha.setSelected(!true);
-            jCheckBoxEscova.setSelected(!true);
-            // MENSAL
-            jCheckBoxAbsorvente.setSelected(!true);
-            jCheckBoxDesodorante.setSelected(!true);
-        } else {
-            kitDecimal = 0;
-            jCheckBoxMarcaTodos.setSelected(!true);
-            jCheckBoxKitAnual.setSelected(!true);
-            jCheckBoxKitQuinzenal.setSelected(!true);
-            jCheckBoxSemestral.setSelected(!true);
-            jCheckBoxMensal.setSelected(!true);
-            // KIT ANUAL            
-            jCheckBoxPrato.setSelected(!true);
-            jCheckBoxGarfo.setSelected(!true);
-            jCheckBoxColchao.setSelected(!true);
-            jCheckBoxCamisa.setSelected(!true);
-            jCheckBoxBermuda.setSelected(!true);
-            jCheckBoxCueca.setSelected(!true);
-            jCheckBoxSandalia.setSelected(!true);
-            jCheckBoxCobertor.setSelected(!true);
-            jCheckBoxBolaFutsal.setSelected(!true);
-            jCheckBoxCalcaoJogo.setSelected(!true);
-            jCheckBoxCamisaJogo.setSelected(!true);
-            jCheckBoxParMeiao.setSelected(!true);
-            // DECIMAL
-            jCheckBoxPapel.setSelected(!true);
-            jCheckBoxSabonete.setSelected(!true);
-            // QUINZENAL
-            jCheckBoxCreme.setSelected(!true);
-            jCheckBoxBarbeador.setSelected(!true);
-            jCheckBoxSabaoPo.setSelected(!true);
-            //SEMESTRAL
-            jCheckBoxLencol.setSelected(!true);
-            jCheckBoxCopo.setSelected(!true);
-            jCheckBoxVasilha.setSelected(!true);
-            jCheckBoxColher.setSelected(!true);
-            jCheckBoxToalha.setSelected(!true);
-            jCheckBoxEscova.setSelected(!true);
-            // MENSAL
-            jCheckBoxAbsorvente.setSelected(!true);
-            jCheckBoxDesodorante.setSelected(!true);
-        }
-    }//GEN-LAST:event_jCheckBoxDecimalItemStateChanged
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtAlterar;
@@ -2799,37 +1679,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBtSalvar;
     private javax.swing.JButton jBtSalvarInterno;
     private javax.swing.JCheckBox jCheckBox19;
-    public static javax.swing.JCheckBox jCheckBoxAbsorvente;
-    public static javax.swing.JCheckBox jCheckBoxBarbeador;
-    public static javax.swing.JCheckBox jCheckBoxBermuda;
-    public static javax.swing.JCheckBox jCheckBoxBolaFutsal;
-    public static javax.swing.JCheckBox jCheckBoxCalcaoJogo;
-    public static javax.swing.JCheckBox jCheckBoxCamisa;
-    public static javax.swing.JCheckBox jCheckBoxCamisaJogo;
-    public static javax.swing.JCheckBox jCheckBoxCobertor;
-    public static javax.swing.JCheckBox jCheckBoxColchao;
-    public static javax.swing.JCheckBox jCheckBoxColher;
-    public static javax.swing.JCheckBox jCheckBoxCopo;
-    public static javax.swing.JCheckBox jCheckBoxCreme;
-    public static javax.swing.JCheckBox jCheckBoxCueca;
-    public static javax.swing.JCheckBox jCheckBoxDecimal;
-    public static javax.swing.JCheckBox jCheckBoxDesodorante;
-    public static javax.swing.JCheckBox jCheckBoxEscova;
-    public static javax.swing.JCheckBox jCheckBoxGarfo;
-    public static javax.swing.JCheckBox jCheckBoxKitAnual;
-    public static javax.swing.JCheckBox jCheckBoxKitQuinzenal;
-    public static javax.swing.JCheckBox jCheckBoxLencol;
-    public static javax.swing.JCheckBox jCheckBoxMarcaTodos;
-    private javax.swing.JCheckBox jCheckBoxMensal;
-    public static javax.swing.JCheckBox jCheckBoxPapel;
-    public static javax.swing.JCheckBox jCheckBoxParMeiao;
-    public static javax.swing.JCheckBox jCheckBoxPrato;
-    public static javax.swing.JCheckBox jCheckBoxSabaoPo;
-    public static javax.swing.JCheckBox jCheckBoxSabonete;
-    public static javax.swing.JCheckBox jCheckBoxSandalia;
-    private javax.swing.JCheckBox jCheckBoxSemestral;
-    public static javax.swing.JCheckBox jCheckBoxToalha;
-    public static javax.swing.JCheckBox jCheckBoxVasilha;
     public static javax.swing.JComboBox jComboBoxPavilhao;
     private javax.swing.JComboBox jComboBoxTipoKit;
     private com.toedter.calendar.JDateChooser jDataEntrega;
@@ -2885,11 +1734,12 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jStatusLanc;
     private javax.swing.JTabbedPane jTabbedPane1;
     public static javax.swing.JTable jTabelaInternos;
     private javax.swing.JTable jTabelaPagamentoKit;
+    public static javax.swing.JTable jTabelaProdutosKitInterno;
     private javax.swing.JLabel jtotalRegistros;
     // End of variables declaration//GEN-END:variables
 
@@ -2918,42 +1768,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     public void limparCampos() {
         jIdInterno.setText("");
         jNomeInterno.setText("");
-        //
-        jCheckBoxMarcaTodos.setSelected(!true);
-        jCheckBoxDecimal.setSelected(!true);
-        jCheckBoxKitQuinzenal.setSelected(!true);
-        jCheckBoxSemestral.setSelected(!true);
-        jCheckBoxMensal.setSelected(!true);
-        // KIT ANUAL            
-        jCheckBoxPrato.setSelected(!true);
-        jCheckBoxColchao.setSelected(!true);
-        jCheckBoxCamisa.setSelected(!true);
-        jCheckBoxBermuda.setSelected(!true);
-        jCheckBoxCueca.setSelected(!true);
-        jCheckBoxSandalia.setSelected(!true);
-        jCheckBoxCobertor.setSelected(!true);
-        jCheckBoxBolaFutsal.setSelected(!true);
-        jCheckBoxCalcaoJogo.setSelected(!true);
-        jCheckBoxCamisaJogo.setSelected(!true);
-        jCheckBoxParMeiao.setSelected(!true);
-        // DECIMAL
-        jCheckBoxPapel.setSelected(!true);
-        jCheckBoxSabonete.setSelected(!true);
-        // QUINZENAL
-        jCheckBoxCreme.setSelected(!true);
-        jCheckBoxBarbeador.setSelected(!true);
-        jCheckBoxSabaoPo.setSelected(!true);
-        //SEMESTRAL
-        jCheckBoxLencol.setSelected(!true);
-        jCheckBoxCopo.setSelected(!true);
-        jCheckBoxVasilha.setSelected(!true);
-        jCheckBoxColher.setSelected(!true);
-        jCheckBoxToalha.setSelected(!true);
-        jCheckBoxEscova.setSelected(!true);
-        // MENSAL
-        jCheckBoxAbsorvente.setSelected(!true);
-        jCheckBoxDesodorante.setSelected(!true);
-        //       
+        //     
         jFotoInternoKit.setIcon(null);
         jDataEntrega.setDate(null);
         jHorarioPagto.setText("");
@@ -2972,44 +1787,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         //
         jIdInterno.setText("");
         jNomeInterno.setText("");
-        //
-        jCheckBoxMarcaTodos.setSelected(!true);
-        jCheckBoxDecimal.setSelected(!true);
-        jCheckBoxKitQuinzenal.setSelected(!true);
-        jCheckBoxSemestral.setSelected(!true);
-        jCheckBoxMensal.setSelected(!true);
-        // KIT ANUAL                    
-        jCheckBoxCobertor.setSelected(!true);
-        jCheckBoxBolaFutsal.setSelected(!true);
-        jCheckBoxPrato.setSelected(!true);
-        jCheckBoxColchao.setSelected(!true);
-        jCheckBoxCamisa.setSelected(!true);
-        jCheckBoxBermuda.setSelected(!true);
-        jCheckBoxCueca.setSelected(!true);
-        jCheckBoxSandalia.setSelected(!true);
-        jCheckBoxCobertor.setSelected(!true);
-        jCheckBoxBolaFutsal.setSelected(!true);
-        jCheckBoxCalcaoJogo.setSelected(!true);
-        jCheckBoxCamisaJogo.setSelected(!true);
-        jCheckBoxParMeiao.setSelected(!true);
-        jCheckBoxGarfo.setSelected(!true);
-        // DECIMAL
-        jCheckBoxPapel.setSelected(!true);
-        jCheckBoxSabonete.setSelected(!true);
-        // QUINZENAL
-        jCheckBoxCreme.setSelected(!true);
-        jCheckBoxBarbeador.setSelected(!true);
-        jCheckBoxSabaoPo.setSelected(!true);
-        //SEMESTRAL
-        jCheckBoxLencol.setSelected(!true);
-        jCheckBoxCopo.setSelected(!true);
-        jCheckBoxVasilha.setSelected(!true);
-        jCheckBoxColher.setSelected(!true);
-        jCheckBoxToalha.setSelected(!true);
-        jCheckBoxEscova.setSelected(!true);
-        // MENSAL
-        jCheckBoxAbsorvente.setSelected(!true);
-        jCheckBoxDesodorante.setSelected(!true);
         //       
         jFotoInternoKit.setIcon(null);
         jDataEntrega.setDate(null);
@@ -3024,44 +1801,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jComboBoxTipoKit.setEnabled(!true);
         jComboBoxPavilhao.setEnabled(!true);
         jObservacao.setEnabled(!true);
-        //
-        jCheckBoxMarcaTodos.setEnabled(!true);
-        jCheckBoxDecimal.setEnabled(!true);
-        jCheckBoxKitQuinzenal.setEnabled(!true);
-        jCheckBoxSemestral.setEnabled(!true);
-        jCheckBoxMensal.setEnabled(!true);
-        // KIT ANUAL         
-        jCheckBoxCobertor.setEnabled(!true);
-        jCheckBoxBolaFutsal.setEnabled(!true);
-        jCheckBoxPrato.setEnabled(!true);
-        jCheckBoxColchao.setEnabled(!true);
-        jCheckBoxCamisa.setEnabled(!true);
-        jCheckBoxBermuda.setEnabled(!true);
-        jCheckBoxCueca.setEnabled(!true);
-        jCheckBoxSandalia.setEnabled(!true);
-        jCheckBoxCobertor.setEnabled(!true);
-        jCheckBoxBolaFutsal.setEnabled(!true);
-        jCheckBoxCalcaoJogo.setEnabled(!true);
-        jCheckBoxCamisaJogo.setEnabled(!true);
-        jCheckBoxParMeiao.setEnabled(!true);
-        jCheckBoxGarfo.setEnabled(!true);
-        // DECIMAL
-        jCheckBoxPapel.setEnabled(!true);
-        jCheckBoxSabonete.setEnabled(!true);
-        // QUINZENAL
-        jCheckBoxCreme.setEnabled(!true);
-        jCheckBoxBarbeador.setEnabled(!true);
-        jCheckBoxSabaoPo.setEnabled(!true);
-        //SEMESTRAL
-        jCheckBoxLencol.setEnabled(!true);
-        jCheckBoxCopo.setEnabled(!true);
-        jCheckBoxVasilha.setEnabled(!true);
-        jCheckBoxColher.setEnabled(!true);
-        jCheckBoxToalha.setEnabled(!true);
-        jCheckBoxEscova.setEnabled(!true);
-        // MENSAL
-        jCheckBoxAbsorvente.setEnabled(!true);
-        jCheckBoxDesodorante.setEnabled(!true);
         //
         jDataEntrega.setEnabled(!true);
         jHorarioPagto.setEnabled(!true);
@@ -3198,44 +1937,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jDataEntrega.setCalendar(Calendar.getInstance());
         jHorarioPagto.setText(jHoraSistema.getText());
         //
-        jCheckBoxMarcaTodos.setEnabled(true);
-        jCheckBoxKitAnual.setEnabled(true);
-        jCheckBoxDecimal.setEnabled(true);
-        jCheckBoxKitQuinzenal.setEnabled(true);
-        jCheckBoxSemestral.setEnabled(true);
-        jCheckBoxMensal.setEnabled(true);
-        // KIT ANUAL            
-        jCheckBoxPrato.setEnabled(true);
-        jCheckBoxGarfo.setEnabled(true);
-        jCheckBoxColher.setEnabled(true);
-        jCheckBoxColchao.setEnabled(true);
-        jCheckBoxCamisa.setEnabled(true);
-        jCheckBoxBermuda.setEnabled(true);
-        jCheckBoxCueca.setEnabled(true);
-        jCheckBoxSandalia.setEnabled(true);
-        jCheckBoxCobertor.setEnabled(true);
-        jCheckBoxBolaFutsal.setEnabled(true);
-        jCheckBoxCalcaoJogo.setEnabled(true);
-        jCheckBoxCamisaJogo.setEnabled(true);
-        jCheckBoxParMeiao.setEnabled(true);
-        // DECIMAL
-        jCheckBoxPapel.setEnabled(true);
-        jCheckBoxSabonete.setEnabled(true);
-        // QUINZENAL
-        jCheckBoxCreme.setEnabled(true);
-        jCheckBoxBarbeador.setEnabled(true);
-        jCheckBoxSabaoPo.setEnabled(true);
-        //SEMESTRAL
-        jCheckBoxLencol.setEnabled(true);
-        jCheckBoxCopo.setEnabled(true);
-        jCheckBoxVasilha.setEnabled(true);
-        jCheckBoxColher.setEnabled(true);
-        jCheckBoxToalha.setEnabled(true);
-        jCheckBoxEscova.setEnabled(true);
-        // MENSAL
-        jCheckBoxAbsorvente.setEnabled(true);
-        jCheckBoxDesodorante.setEnabled(true);
-        //
         jDataEntrega.setEnabled(true);
         jHorarioPagto.setEnabled(true);
         //
@@ -3245,40 +1946,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     }
 
     public void AlterarInterno() {
-        jCheckBoxMarcaTodos.setEnabled(true);
-        jCheckBoxDecimal.setEnabled(true);
-        jCheckBoxKitQuinzenal.setEnabled(true);
-        jCheckBoxSemestral.setEnabled(true);
-        jCheckBoxMensal.setEnabled(true);
-        // KIT ANUAL            
-        jCheckBoxPrato.setEnabled(true);
-        jCheckBoxColchao.setEnabled(true);
-        jCheckBoxCamisa.setEnabled(true);
-        jCheckBoxBermuda.setEnabled(true);
-        jCheckBoxCueca.setEnabled(true);
-        jCheckBoxSandalia.setEnabled(true);
-        jCheckBoxCobertor.setEnabled(true);
-        jCheckBoxBolaFutsal.setEnabled(true);
-        jCheckBoxCalcaoJogo.setEnabled(true);
-        jCheckBoxCamisaJogo.setEnabled(true);
-        jCheckBoxParMeiao.setEnabled(true);
-        // DECIMAL
-        jCheckBoxPapel.setEnabled(true);
-        jCheckBoxSabonete.setEnabled(true);
-        // QUINZENAL
-        jCheckBoxCreme.setEnabled(true);
-        jCheckBoxBarbeador.setEnabled(true);
-        jCheckBoxSabaoPo.setEnabled(true);
-        //SEMESTRAL
-        jCheckBoxLencol.setEnabled(true);
-        jCheckBoxCopo.setEnabled(true);
-        jCheckBoxVasilha.setEnabled(true);
-        jCheckBoxColher.setEnabled(true);
-        jCheckBoxToalha.setEnabled(true);
-        jCheckBoxEscova.setEnabled(true);
-        // MENSAL
-        jCheckBoxAbsorvente.setEnabled(true);
-        jCheckBoxDesodorante.setEnabled(true);
         //
         jBtPesquisarInternoKit.setEnabled(true);
         jBtSalvarInterno.setEnabled(true);
@@ -3293,41 +1960,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jFotoInternoKit.setIcon(null);
         jDataEntrega.setEnabled(!true);
         jHorarioPagto.setEnabled(!true);
-        //
-        jCheckBoxMarcaTodos.setEnabled(!true);
-        jCheckBoxDecimal.setEnabled(!true);
-        jCheckBoxKitQuinzenal.setEnabled(!true);
-        jCheckBoxSemestral.setEnabled(!true);
-        jCheckBoxMensal.setEnabled(!true);
-        // KIT ANUAL            
-        jCheckBoxPrato.setEnabled(!true);
-        jCheckBoxColchao.setEnabled(!true);
-        jCheckBoxCamisa.setEnabled(!true);
-        jCheckBoxBermuda.setEnabled(!true);
-        jCheckBoxCueca.setEnabled(!true);
-        jCheckBoxSandalia.setEnabled(!true);
-        jCheckBoxCobertor.setEnabled(!true);
-        jCheckBoxBolaFutsal.setEnabled(!true);
-        jCheckBoxCalcaoJogo.setEnabled(!true);
-        jCheckBoxCamisaJogo.setEnabled(!true);
-        jCheckBoxParMeiao.setEnabled(!true);
-        // DECIMAL
-        jCheckBoxPapel.setEnabled(!true);
-        jCheckBoxSabonete.setEnabled(!true);
-        // QUINZENAL
-        jCheckBoxCreme.setEnabled(!true);
-        jCheckBoxBarbeador.setEnabled(!true);
-        jCheckBoxSabaoPo.setEnabled(!true);
-        //SEMESTRAL
-        jCheckBoxLencol.setEnabled(!true);
-        jCheckBoxCopo.setEnabled(!true);
-        jCheckBoxVasilha.setEnabled(!true);
-        jCheckBoxColher.setEnabled(!true);
-        jCheckBoxToalha.setEnabled(!true);
-        jCheckBoxEscova.setEnabled(!true);
-        // MENSAL
-        jCheckBoxAbsorvente.setEnabled(!true);
-        jCheckBoxDesodorante.setEnabled(!true);
         //
         jDataEntrega.setEnabled(!true);
         jHorarioPagto.setEnabled(!true);
@@ -3349,77 +1981,12 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     }
 
     public void SalvarInterno() {
-        jCheckBoxCopo.setSelected(!true);
-        jCheckBoxGarfo.setSelected(!true);
-        jCheckBoxPrato.setSelected(!true);
-        jCheckBoxColher.setSelected(!true);
-        jCheckBoxVasilha.setSelected(!true);
-        jCheckBoxGarfo.setSelected(!true);
-        jCheckBoxAbsorvente.setSelected(!true);
-        jCheckBoxBermuda.setSelected(!true);
-        jCheckBoxLencol.setSelected(!true);
-        jCheckBoxColchao.setSelected(!true);
-        jCheckBoxToalha.setSelected(!true);
-        jCheckBoxCamisa.setSelected(!true);
-        jCheckBoxCueca.setSelected(!true);
-        jCheckBoxSandalia.setSelected(!true);
-        jCheckBoxCreme.setSelected(!true);
-        jCheckBoxSabonete.setSelected(!true);
-        jCheckBoxPapel.setSelected(!true);
-        jCheckBoxBarbeador.setSelected(!true);
-        jCheckBoxEscova.setSelected(!true);
-        //
-        jCheckBoxMarcaTodos.setEnabled(!true);
-        jCheckBoxKitAnual.setEnabled(!true);
-        jCheckBoxKitQuinzenal.setEnabled(!true);
-        jCheckBoxDecimal.setEnabled(!true);
-        jCheckBoxSemestral.setEnabled(!true);
-        jCheckBoxMensal.setEnabled(!true);
-        //
-        jCheckBoxSabaoPo.setEnabled(!true);
-        jCheckBoxDesodorante.setEnabled(!true);
         //
         jIdInterno.setText("");
         jNomeInterno.setText("");
         jFotoInternoKit.setIcon(null);
         jDataEntrega.setDate(null);
         jHorarioPagto.setText("00:00");
-        //
-        jCheckBoxMarcaTodos.setEnabled(!true);
-        jCheckBoxDecimal.setEnabled(!true);
-        jCheckBoxKitQuinzenal.setEnabled(!true);
-        jCheckBoxSemestral.setEnabled(!true);
-        jCheckBoxMensal.setEnabled(!true);
-        // KIT ANUAL            
-        jCheckBoxPrato.setEnabled(!true);
-        jCheckBoxColchao.setEnabled(!true);
-        jCheckBoxCamisa.setEnabled(!true);
-        jCheckBoxBermuda.setEnabled(!true);
-        jCheckBoxCueca.setEnabled(!true);
-        jCheckBoxSandalia.setEnabled(!true);
-        jCheckBoxCobertor.setEnabled(!true);
-        jCheckBoxBolaFutsal.setEnabled(!true);
-        jCheckBoxCalcaoJogo.setEnabled(!true);
-        jCheckBoxCamisaJogo.setEnabled(!true);
-        jCheckBoxGarfo.setEnabled(!true);
-        jCheckBoxParMeiao.setEnabled(!true);
-        // DECIMAL
-        jCheckBoxPapel.setEnabled(!true);
-        jCheckBoxSabonete.setEnabled(!true);
-        // QUINZENAL
-        jCheckBoxCreme.setEnabled(!true);
-        jCheckBoxBarbeador.setEnabled(!true);
-        jCheckBoxSabaoPo.setEnabled(!true);
-        //SEMESTRAL
-        jCheckBoxLencol.setEnabled(!true);
-        jCheckBoxCopo.setEnabled(!true);
-        jCheckBoxVasilha.setEnabled(!true);
-        jCheckBoxColher.setEnabled(!true);
-        jCheckBoxToalha.setEnabled(!true);
-        jCheckBoxEscova.setEnabled(!true);
-        // MENSAL
-        jCheckBoxAbsorvente.setEnabled(!true);
-        jCheckBoxDesodorante.setEnabled(!true);
         //       
         jDataEntrega.setEnabled(!true);
         jHorarioPagto.setEnabled(!true);
@@ -3442,13 +2009,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     }
 
     public void CancelarInterno() {
-        //
-        jCheckBoxMarcaTodos.setEnabled(!true);
-        jCheckBoxKitAnual.setEnabled(!true);
-        jCheckBoxKitQuinzenal.setEnabled(!true);
-        jCheckBoxDecimal.setEnabled(!true);
-        jCheckBoxSemestral.setEnabled(!true);
-        jCheckBoxMensal.setEnabled(!true);
         //
         jIdInterno.setText("");
         jNomeInterno.setText("");
@@ -3500,6 +2060,16 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "Não foi possível obter o código do registro.");
         }
         conecta.desconecta();
+    }
+
+    public void buscarCodigoItem() {
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS ");
+            conecta.rs.last();
+            codItem = conecta.rs.getInt("IdItem");
+        } catch (Exception e) {
+        }
     }
 
     public void verificarItens() {
@@ -3651,6 +2221,48 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jTabelaPagamentoKit.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         alinharCamposTabela();
         conecta.desconecta();
+    }
+
+    public void preencherTabelaProdutosKitInterno(String sql) {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{"Código", "Descrição do Produto", "Un.", "Quant."};
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL(sql);
+            conecta.rs.first();
+            do {
+                dados.add(new Object[]{conecta.rs.getString("IdProd"), conecta.rs.getString("DescricaoProd"), conecta.rs.getString("UnidadeProd"), conecta.rs.getString("QuantProd")});
+            } while (conecta.rs.next());
+        } catch (SQLException ex) {
+        }
+        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+        jTabelaProdutosKitInterno.setModel(modelo);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setPreferredWidth(60);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setResizable(false);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(1).setPreferredWidth(340);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(1).setResizable(false);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(2).setPreferredWidth(60);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(2).setResizable(false);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(3).setPreferredWidth(60);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(3).setResizable(false);
+        jTabelaProdutosKitInterno.getTableHeader().setReorderingAllowed(false);
+        jTabelaProdutosKitInterno.setAutoResizeMode(jTabelaProdutosKitInterno.AUTO_RESIZE_OFF);
+        jTabelaProdutosKitInterno.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        alinharCamposTabelaKitInternos();
+        conecta.desconecta();
+    }
+
+    public void alinharCamposTabelaKitInternos() {
+        DefaultTableCellRenderer esquerda = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer direita = new DefaultTableCellRenderer();
+        esquerda.setHorizontalAlignment(SwingConstants.LEFT);
+        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+        direita.setHorizontalAlignment(SwingConstants.RIGHT);
+        //
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(3).setCellRenderer(direita);
     }
 
     public void preencherTabelaItensInterno(String sql) {
