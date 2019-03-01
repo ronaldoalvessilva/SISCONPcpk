@@ -149,6 +149,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jComboBoxPavilhao = new javax.swing.JComboBox();
         jLabel14 = new javax.swing.JLabel();
         jComboBoxTipoKit = new javax.swing.JComboBox();
+        jBtPesquisarKit = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jBtNovo = new javax.swing.JButton();
         jBtAlterar = new javax.swing.JButton();
@@ -494,6 +495,16 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jComboBoxTipoKit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jComboBoxTipoKit.setEnabled(false);
 
+        jBtPesquisarKit.setForeground(new java.awt.Color(0, 204, 255));
+        jBtPesquisarKit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/Lupas_1338_05.gif"))); // NOI18N
+        jBtPesquisarKit.setText("Pesquisar Kit");
+        jBtPesquisarKit.setEnabled(false);
+        jBtPesquisarKit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtPesquisarKitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -518,20 +529,22 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3)
                             .addComponent(jDataLanc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jComboBoxTipoKit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel8)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel8)
+                            .addComponent(jHorarioInicial)
+                            .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jHorarioInicial)
-                                    .addComponent(jLabel12))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jHorarioTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13)))
-                            .addComponent(jLabel14))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jLabel13)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jHorarioTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBtPesquisarKit, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel14))
                 .addContainerGap())
         );
 
@@ -560,6 +573,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jBtPesquisarKit)
                     .addComponent(jHorarioTermino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jHorarioInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -711,7 +725,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addGap(5, 5, 5)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -978,8 +992,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
         jBtBiometria.setForeground(new java.awt.Color(204, 0, 0));
         jBtBiometria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/Biometria16Vermelho.png"))); // NOI18N
-        jBtBiometria.setText("Biometria");
-        jBtBiometria.setToolTipText("Pesquisar Interno pelo Biometria");
+        jBtBiometria.setText("Pagamento");
+        jBtBiometria.setToolTipText("Pesquisar Interno para Pagamento de Kit");
         jBtBiometria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtBiometriaActionPerformed(evt);
@@ -1152,7 +1166,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         setBounds(300, 60, 632, 488);
@@ -1269,13 +1283,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
                     + "WHERE IdPagto='" + jIdLanc.getText() + "'");
-//            preencherTabelaProdutosKitInterno("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS "
-//                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
-//                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdItem=ITENS_PAGAMENTO_KIT_INTERNOS.IdItem "
-//                    + "INNER JOIN PRODUTOS_AC ON ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdProd=PRODUTOS_AC.IdProd "
-//                    + "INNER JOIN PAGAMENTO_KIT_INTERNOS "
-//                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdPagto "
-//                    + "WHERE ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdPagto='" + jIdLanc.getText() + "'");
         }
     }//GEN-LAST:event_jTabelaPagamentoKitMouseClicked
 
@@ -1655,6 +1662,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBtImpressaoActionPerformed
 
+    private void jBtPesquisarKitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPesquisarKitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtPesquisarKitActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtAlterar;
@@ -1674,6 +1685,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBtPesqID;
     private javax.swing.JButton jBtPesqNomeInterno;
     private javax.swing.JButton jBtPesquisarInternoKit;
+    private javax.swing.JButton jBtPesquisarKit;
     private javax.swing.JButton jBtSair;
     private javax.swing.JButton jBtSairInterno;
     private javax.swing.JButton jBtSalvar;
@@ -1815,6 +1827,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jBtFinalizar.setEnabled(!true);
         jBtAuditoria.setEnabled(!true);
         //
+        jBtPesquisarKit.setEnabled(!true);
         jBtPesquisarInternoKit.setEnabled(!true);
         jBtNovoInterno.setEnabled(!true);
         jBtAlterarInterno.setEnabled(!true);
@@ -1841,6 +1854,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jComboBoxPavilhao.setEnabled(true);
         jObservacao.setEnabled(true);
         //
+        jBtPesquisarKit.setEnabled(true);
         jBtSalvar.setEnabled(true);
         jBtCancelar.setEnabled(true);
     }
@@ -1853,6 +1867,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jComboBoxTipoKit.setEnabled(true);
         jObservacao.setEnabled(true);
         //
+        jBtPesquisarKit.setEnabled(true);
         jBtSalvar.setEnabled(true);
         jBtCancelar.setEnabled(true);
     }

@@ -32,6 +32,7 @@ import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.PointerByReference;
 import com.sun.jna.win32.StdCallLibrary;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.sql.SQLException;
@@ -105,6 +106,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         this.setModal(modal);
         setLocationRelativeTo(pagamentoKit);
         initComponents();
+        corCampos();
         pesquisarInternoKitHigiene();
     }
 
@@ -668,8 +670,8 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     .addComponent(jTabbedPane1)
                     .addComponent(jSeparator2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBtVerificarKit, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                        .addComponent(jBtVerificarKit)
+                        .addGap(55, 55, 55)
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxOperacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -729,7 +731,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa por Biometria")) {
                 objItensPagto.setIdInternoCrc(Integer.valueOf(jIdInternoKitBio.getText()));
                 objItensPagto.setNomeInternoCrcKit(jNomeInternoKitBio.getText());
-            //ASSINATURA MANUAL
+                //ASSINATURA MANUAL
             } else if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual")) {
                 objItensPagto.setIdInternoCrc(Integer.valueOf(jIdInternoKitBio1.getText()));
                 objItensPagto.setNomeInternoCrcKit(jNomeInternoKitBio1.getText());
@@ -1271,8 +1273,27 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     };            
  
  //---------------------------------------------------------------------
-     
-     public void Novo() {
+     public void corCampos() {
+        jIdInternoKitBio.setBackground(Color.white);
+        jNomeInternoKitBio.setBackground(Color.white);
+        jRegimeKitBio.setBackground(Color.white);
+        jPavilhaoKitBio.setBackground(Color.white);
+        jCelaKitBio.setBackground(Color.white);
+        //
+        jDataEntrega.setBackground(Color.white);
+        jHorarioPagto.setBackground(Color.white);
+        //
+        jIdInternoKitBio1.setBackground(Color.white);
+        jNomeInternoKitBio1.setBackground(Color.white);
+        jRegimeKitBio1.setBackground(Color.white);
+        jPavilhaoKitBio1.setBackground(Color.white);
+        jCelaKitBio1.setBackground(Color.white);
+        //
+        jDataEntrega1.setBackground(Color.white);
+        jHorarioPagto1.setBackground(Color.white);
+    }
+
+    public void Novo() {
         jIdInternoKitBio.setText("");
         jNomeInternoKitBio.setText("");
         jRegimeKitBio.setText("");
