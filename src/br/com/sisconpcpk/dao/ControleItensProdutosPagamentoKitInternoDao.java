@@ -52,6 +52,21 @@ public class ControleItensProdutosPagamentoKitInternoDao {
         return objItensPagtoProd;
     }
 
+    public ProdutosPagtoKitInterno alterarPagamentoProdutoKitInterno(ProdutosPagtoKitInterno objItensPagtoProd) {
+        buscarProduto(objItensPagtoProd.getDescricaoProduto(), objItensPagtoProd.getIdProd());
+        conecta.abrirConexao();
+        try {
+            PreparedStatement pst = conecta.con.prepareStatement("UPDATE ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO SET QuantProd=? "
+                    + "WHERE IdProd='" + objItensPagtoProd.getIdProd() + "'");
+            pst.setFloat(1, objItensPagtoProd.getQuatProd());
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não Foi possivel ALTERAR os Dados.\n\nERRO:" + ex);
+        }
+        conecta.desconecta();
+        return objItensPagtoProd;
+    }
+
     public void buscarProduto(String desc, int cod) {
         conecta.abrirConexao();
         try {

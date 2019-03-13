@@ -62,6 +62,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     ProdutosPagtoKitInterno objItensPagtoProd = new ProdutosPagtoKitInterno();
     ControleItensProdutosPagamentoKitInternoDao controleProd = new ControleItensProdutosPagamentoKitInternoDao();
     ControlePesquisaKitInternoManual controleMan = new ControlePesquisaKitInternoManual();
+    ProdutoInternosKitLote objProdKit = new ProdutoInternosKitLote();
     //
     ControleLogSistemaDao controlLog = new ControleLogSistemaDao();
     LogSistema objLogSys = new LogSistema();
@@ -95,6 +96,11 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     //
     int estoque = 0;
     String codigoInternoKit;
+    String kitPago = "Sim";
+    int pCodigoInterno = 0;
+    int pCodigoProd = 0;
+    int pQuantidade = 0;
+    int pSaldo = 0;
 
     /**
      * Creates new form TelaBiometriaKitInterno
@@ -719,9 +725,19 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Informe o nome do interno.");
         } else if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual") && jIdInternoKitBio1.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o nome do interno.");
-        } else if (jDataEntrega.getDate() == null) {
+        } else if (jDataEntrega.getDate() == null && jComboBoxOperacao.getSelectedItem().equals("Pesquisa por Biometria")) {
             JOptionPane.showMessageDialog(null, "Informe a data de entrega do kit.");
-        } else if (jHorarioPagto.getText().equals("") || jHorarioPagto.getText().equals("00:00")) {
+        } else if (jHorarioPagto.getText().equals("")
+                && jComboBoxOperacao.getSelectedItem().equals("Pesquisa por Biometria")
+                || jHorarioPagto.getText().equals("00:00")
+                && jComboBoxOperacao.getSelectedItem().equals("Pesquisa por Biometria")) {
+            JOptionPane.showMessageDialog(null, "Informe o horário de entrega do kit.");
+        } else if (jDataEntrega1.getDate() == null && jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual")) {
+            JOptionPane.showMessageDialog(null, "Informe a data de entrega do kit.");
+        } else if (jHorarioPagto1.getText().equals("")
+                && jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual")
+                || jHorarioPagto1.getText().equals("00:00")
+                && jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual")) {
             JOptionPane.showMessageDialog(null, "Informe o horário de entrega do kit.");
         } else {
             objItensPagto.setTipoEntrada(tipoEntrada);
@@ -750,7 +766,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Esse interno já recebeu o kit nesse registro.");
             } else {
                 controle.incluirPagamentoKitInterno(objItensPagto);
-                //               
+                //          
                 objLog();
                 controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
                 //
@@ -1294,35 +1310,68 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     }
 
     public void Novo() {
-        jIdInternoKitBio.setText("");
-        jNomeInternoKitBio.setText("");
-        jRegimeKitBio.setText("");
-        jPavilhaoKitBio.setText("");
-        jCelaKitBio.setText("");
-        //
-        jDataEntrega.setCalendar(Calendar.getInstance());
-        jHorarioPagto.setText(jHoraSistema.getText());
-        //
-        jDataEntrega.setEnabled(true);
-        jHorarioPagto.setEnabled(true);
+
+        if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa por Biometria")) {
+            jIdInternoKitBio.setText("");
+            jNomeInternoKitBio.setText("");
+            jRegimeKitBio.setText("");
+            jPavilhaoKitBio.setText("");
+            jCelaKitBio.setText("");
+            //
+            jIdInternoKitBio1.setText("");
+            jNomeInternoKitBio1.setText("");
+            jRegimeKitBio1.setText("");
+            jPavilhaoKitBio1.setText("");
+            jCelaKitBio1.setText("");
+            //
+            jDataEntrega.setCalendar(Calendar.getInstance());
+            jHorarioPagto.setText(jHoraSistema.getText());
+            //
+            jDataEntrega.setEnabled(true);
+            jHorarioPagto.setEnabled(true);
+        } else if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual")) {
+            jIdInternoKitBio1.setText("");
+            jNomeInternoKitBio1.setText("");
+            jRegimeKitBio1.setText("");
+            jPavilhaoKitBio1.setText("");
+            jCelaKitBio1.setText("");
+            //
+            jIdInternoKitBio.setText("");
+            jNomeInternoKitBio.setText("");
+            jRegimeKitBio.setText("");
+            jPavilhaoKitBio.setText("");
+            jCelaKitBio.setText("");
+            //
+            jDataEntrega1.setCalendar(Calendar.getInstance());
+            jHorarioPagto1.setText(jHoraSistema.getText());
+            //
+            jDataEntrega1.setEnabled(true);
+            jHorarioPagto1.setEnabled(true);
+        }
+        //APAGAR REGISTRO DA TABELA
+        Integer rows = jTabelaProdutosKit.getRowCount();
+        if (rows != 0) {
+            // APAGAR DADOS DA TABELA
+            while (jTabelaProdutosKit.getModel().getRowCount() > 0) {
+                ((DefaultTableModel) jTabelaProdutosKit.getModel()).removeRow(0);
+            }
+        }
     }
 
     public void Salvar() {
-        jIdInternoKitBio.setText("");
-        jNomeInternoKitBio.setText("");
-        jMatriculaPenalKitBio.setText("");
-        jFotoInternoKitBio.setIcon(null);
-        jRegimeKitBio.setText("");
-        jPavilhaoKitBio.setText("");
-        jCelaKitBio.setText("");
-        jDataEntrega.setDate(null);
-        jHorarioPagto.setText("");
-        //
-        jDataEntrega.setEnabled(!true);
-        jHorarioPagto.setEnabled(!true);
-        //
-        jBtSalvar.setEnabled(!true);
-        jBtIniciarLeitor.setEnabled(true);
+        if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa por Biometria")) {
+            jDataEntrega.setEnabled(!true);
+            jHorarioPagto.setEnabled(!true);
+            //
+            jBtSalvar.setEnabled(!true);
+            jBtIniciarLeitor.setEnabled(true);
+        } else if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual")) {
+            jDataEntrega1.setEnabled(!true);
+            jHorarioPagto1.setEnabled(!true);
+            //
+            jBtSalvar.setEnabled(!true);
+            jBtIniciarLeitor.setEnabled(true);
+        }
     }
 
     public void abrirCampos() {
@@ -1336,6 +1385,9 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         //
         jDataEntrega.setEnabled(!true);
         jHorarioPagto.setEnabled(!true);
+        //
+        jDataEntrega1.setEnabled(!true);
+        jHorarioPagto1.setEnabled(!true);
     }
 
     public void pesquisarProdutoKitInternoBiometria() {
@@ -1512,6 +1564,66 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                         objItensPagtoProd.setHorario(jHorarioPagto.getText());
                         objItensPagtoProd.setAssinaturaDigitalInterno(pDigitalCapturada);
                         controleProd.incluirPagamentoProdutoKitInterno(objItensPagtoProd);
+                        //CONFIRMAR O RECEBIMENTO DO KIT
+                        if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa por Biometria")) {
+                            objProdKit.setIdInternoCrc(Integer.valueOf(jIdInternoKitBio.getText()));
+                            objProdKit.setNomeInternoCrc(jNomeInternoKitBio1.getText());
+                            objProdKit.setDataPagto(jDataEntrega.getDate());
+                            objProdKit.setPago(kitPago);
+                            controleMan.alterarKitInicial(objProdKit);
+                            //
+                            conecta.abrirConexao();
+                            try {
+                                conecta.executaSQL("SELECT IdInternoCrc,IdProd,QuantProd FROM ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
+                                        + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                                        + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
+                                        + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
+                                        + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
+                                        + "WHERE IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
+                                        + "AND IdProd='" + objItensPagtoProd.getIdProd() + "'");
+                                conecta.rs.first();
+                                pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
+                                pCodigoProd = conecta.rs.getInt("IdProd");
+                                pQuantidade = conecta.rs.getInt("QuantProd");
+                            } catch (Exception e) {
+                            }
+                            objItensPagtoProd.setIdProd((int) jTabelaProdutosKit.getValueAt(i, 0));
+                            objItensPagtoProd.setDescricaoProduto((String) jTabelaProdutosKit.getValueAt(i, 1));
+                            objItensPagtoProd.setQuatProd((float) jTabelaProdutosKit.getValueAt(i, 3));
+                            pSaldo = (int) (pQuantidade - objItensPagtoProd.getQuatProd());
+                            objItensPagtoProd.setQuatProd(pSaldo);
+                            controleProd.alterarPagamentoProdutoKitInterno(objItensPagtoProd);
+                            // PAGAMENTO QUANDO A BIOMETRIA NÃO FUNCIONAR POR ALGUM MOTIVO
+                        } else if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual")) {
+                            objProdKit.setIdInternoCrc(Integer.valueOf(jIdInternoKitBio1.getText()));
+                            objProdKit.setNomeInternoCrc(jNomeInternoKitBio1.getText());
+                            objProdKit.setDataPagto(jDataEntrega1.getDate());
+                            objProdKit.setPago(kitPago);
+                            controleMan.alterarKitInicial(objProdKit);
+                            //
+                            conecta.abrirConexao();
+                            try {
+                                conecta.executaSQL("SELECT IdInternoCrc,IdProd,QuantProd FROM ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
+                                        + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                                        + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
+                                        + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
+                                        + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
+                                        + "WHERE IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
+                                        + "AND IdProd='" + objItensPagtoProd.getIdProd() + "'");
+                                conecta.rs.first();
+                                pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
+                                pCodigoProd = conecta.rs.getInt("IdProd");
+                                pQuantidade = conecta.rs.getInt("QuantProd");
+                            } catch (Exception e) {
+                            }
+                            //                  
+                            objItensPagtoProd.setIdProd((int) jTabelaProdutosKit.getValueAt(i, 0));
+                            objItensPagtoProd.setDescricaoProduto((String) jTabelaProdutosKit.getValueAt(i, 1));
+                            objItensPagtoProd.setQuatProd((float) jTabelaProdutosKit.getValueAt(i, 3));
+                            pSaldo = (int) (pQuantidade - objItensPagtoProd.getQuatProd());
+                            objItensPagtoProd.setQuatProd(pSaldo);
+                            controleProd.alterarPagamentoProdutoKitInterno(objItensPagtoProd);
+                        }
                     }
                     try {
                         Thread.sleep(10);

@@ -7,11 +7,13 @@ package br.com.sisconpcpk.dao;
 
 import br.com.sisconpcpk.modelo.ProdutoInternosKitLote;
 import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.jIdInternoKitBio1;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +23,93 @@ public class ControlePesquisaKitInternoManual {
 
     ConectaBanco conecta = new ConectaBanco();
     ProdutoInternosKitLote objProdKit = new ProdutoInternosKitLote();
+    int codInt;
+    String utilizado = "Sim";
+
+    public ProdutoInternosKitLote alterarKitInicial(ProdutoInternosKitLote objProdKit) {
+
+        conecta.abrirConexao();
+        try {
+            PreparedStatement pst = conecta.con.prepareStatement("UPDATE KITS_INICIAL_INTERNOS SET KitPago=?,DataPagto=? "
+                    + "WHERE IdInternoCrc='" + objProdKit.getIdInternoCrc() + "' "
+                    + "AND Utilizado='" + utilizado + "'");
+            pst.setString(1, objProdKit.getPago());
+            pst.setTimestamp(2, new java.sql.Timestamp(objProdKit.getDataPagto().getTime()));
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não Foi possivel INSERIR os Dados do INTERNO.\n\nERRO: " + ex);
+        }
+        conecta.desconecta();
+        return objProdKit;
+    }
+
+    public ProdutoInternosKitLote alterarKitDecendial(ProdutoInternosKitLote objProdKit) {
+
+        conecta.abrirConexao();
+        try {
+            PreparedStatement pst = conecta.con.prepareStatement("UPDATE KITS_KITS_DECENDIAL_INTERNOS SET KitPago=?,DataPagto=? "
+                    + "WHERE IdInternoCrc='" + objProdKit.getIdInternoCrc() + "' "
+                    + "AND Utilizado='" + utilizado + "'");
+            pst.setString(1, objProdKit.getPago());
+            pst.setTimestamp(2, new java.sql.Timestamp(objProdKit.getDataPagto().getTime()));
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não Foi possivel INSERIR os Dados do INTERNO.\n\nERRO: " + ex);
+        }
+        conecta.desconecta();
+        return objProdKit;
+    }
+
+    public ProdutoInternosKitLote alterarKitQuinzenal(ProdutoInternosKitLote objProdKit) {
+
+        conecta.abrirConexao();
+        try {
+            PreparedStatement pst = conecta.con.prepareStatement("UPDATE KITS_QUINZENAL_INTERNOS SET KitPago=?,DataPagto=? "
+                    + "WHERE IdInternoCrc='" + objProdKit.getIdInternoCrc() + "' "
+                    + "AND Utilizado='" + utilizado + "'");
+            pst.setString(1, objProdKit.getPago());
+            pst.setTimestamp(2, new java.sql.Timestamp(objProdKit.getDataPagto().getTime()));
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não Foi possivel INSERIR os Dados do INTERNO.\n\nERRO: " + ex);
+        }
+        conecta.desconecta();
+        return objProdKit;
+    }
+
+    public ProdutoInternosKitLote alterarKitSemestral(ProdutoInternosKitLote objProdKit) {
+
+        conecta.abrirConexao();
+        try {
+            PreparedStatement pst = conecta.con.prepareStatement("UPDATE KITS_SEMESTRAL_INTERNOS SET KitPago=?,DataPagto=? "
+                    + "WHERE IdInternoCrc='" + objProdKit.getIdInternoCrc() + "' "
+                    + "AND Utilizado='" + utilizado + "'");
+            pst.setString(1, objProdKit.getPago());
+            pst.setTimestamp(2, new java.sql.Timestamp(objProdKit.getDataPagto().getTime()));
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não Foi possivel INSERIR os Dados do INTERNO.\n\nERRO: " + ex);
+        }
+        conecta.desconecta();
+        return objProdKit;
+    }
+
+    public ProdutoInternosKitLote alterarKitAnual(ProdutoInternosKitLote objProdKit) {
+
+        conecta.abrirConexao();
+        try {
+            PreparedStatement pst = conecta.con.prepareStatement("UPDATE KITS_ANUAL_INTERNOS SET KitPago=?,DataPagto=? "
+                    + "WHERE IdInternoCrc='" + objProdKit.getIdInternoCrc() + "' "
+                    + "AND Utilizado='" + utilizado + "'");
+            pst.setString(1, objProdKit.getPago());
+            pst.setTimestamp(2, new java.sql.Timestamp(objProdKit.getDataPagto().getTime()));
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não Foi possivel INSERIR os Dados do INTERNO.\n\nERRO: " + ex);
+        }
+        conecta.desconecta();
+        return objProdKit;
+    }
 
     public List<ProdutoInternosKitLote> read() throws Exception {
         conecta.abrirConexao();
