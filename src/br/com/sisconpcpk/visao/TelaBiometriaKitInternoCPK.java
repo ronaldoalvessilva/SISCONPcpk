@@ -777,8 +777,8 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                         + "WHERE IdPagto='" + jIdLanc.getText() + "'");
                 Salvar();
                 bloquearCampos();
-            }
-            gravarDadosBanco();
+                gravarDadosBanco();
+            }            
         }
     }//GEN-LAST:event_jBtSalvarActionPerformed
 
