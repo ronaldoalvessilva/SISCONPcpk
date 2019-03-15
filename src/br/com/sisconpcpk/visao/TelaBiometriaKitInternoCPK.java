@@ -23,6 +23,7 @@ import static br.com.sisconpcpk.visao.FormPrincipal.jHoraSistema;
 import static br.com.sisconpcpk.visao.TelaLoginSenhaCPK.nameUser;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.codItem;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jComboBoxPavilhao;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jComboBoxTipoKit;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdLanc;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jTabelaInternos;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jTabelaProdutosKitInterno;
@@ -101,6 +102,8 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     int pCodigoProd = 0;
     int pQuantidade = 0;
     int pSaldo = 0;
+    String statusFinal = "FINALIZADO";
+    String pKitPago = "Não"; // PARA PESQUISAR SOMENTE OS INTERNOS QUE AINDA NÃO FORAM PAGO OS KITS.
 
     /**
      * Creates new form TelaBiometriaKitInterno
@@ -113,7 +116,19 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         setLocationRelativeTo(pagamentoKit);
         initComponents();
         corCampos();
-        pesquisarInternoKitHigiene();
+        if (jComboBoxTipoKit.getSelectedItem().equals("Kit Inicial")) {
+            pesquisarInternoPagamentoKitInicial();
+        } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Decendial")) {
+            pesquisarInternoPagamentoKitDecendial();
+        } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Quinzenal")) {
+            pesquisarInternoPagamentoKitQuinzenal();
+        } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Mensal")) {
+            pesquisarInternoPagamentoKitMensal();
+        } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Semestral")) {
+            pesquisarInternoPagamentoKitAnual();
+        } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Anual")) {
+
+        }
     }
 
     // CÓDIGO DA BIOMETRIA CIS FS-80H
@@ -266,6 +281,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Matricula Penal");
 
+        jMatriculaPenalKitBio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jMatriculaPenalKitBio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jMatriculaPenalKitBio.setEnabled(false);
 
@@ -465,6 +481,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setText("Matricula Penal");
 
+        jMatriculaPenalKitBio1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jMatriculaPenalKitBio1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jMatriculaPenalKitBio1.setEnabled(false);
 
@@ -778,7 +795,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                 Salvar();
                 bloquearCampos();
                 gravarDadosBanco();
-            }            
+            }
         }
     }//GEN-LAST:event_jBtSalvarActionPerformed
 
@@ -898,8 +915,13 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
                     + "INNER JOIN PAVILHAO "
                     + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN INTERNOS_PAVILHAO_KIT_LOTE "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=INTERNOS_PAVILHAO_KIT_LOTE.IdInternoCrc "
+                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                    + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND PRONTUARIOSCRC.NomeInternoCrc='" + jComboBoxPesquisarInterno.getSelectedItem() + "'");
+                    + "AND PRONTUARIOSCRC.NomeInternoCrc='" + jComboBoxPesquisarInterno.getSelectedItem() + "' "
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "'");
             conecta.rs.first();
             jIdInternoKitBio1.setText(String.valueOf(conecta.rs.getInt("IdInternoCrc")));
             jNomeInternoKitBio1.setText(conecta.rs.getString("NomeInternoCrc"));
@@ -914,7 +936,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             jDataEntrega1.setCalendar(Calendar.getInstance());
             jHorarioPagto1.setText(jHoraSistema.getText());
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(rootPane, "ERRO na pesquisa INTERNO.\n" + e);
+            JOptionPane.showMessageDialog(rootPane, "ERRO na pesquisa INTERNO.\nERROR: " + e);
         }
         conecta.desconecta();
     }//GEN-LAST:event_jBtConfirmarActionPerformed
@@ -1291,6 +1313,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
  //---------------------------------------------------------------------
      public void corCampos() {
         jIdInternoKitBio.setBackground(Color.white);
+        jMatriculaPenalKitBio.setBackground(Color.white);
         jNomeInternoKitBio.setBackground(Color.white);
         jRegimeKitBio.setBackground(Color.white);
         jPavilhaoKitBio.setBackground(Color.white);
@@ -1300,6 +1323,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jHorarioPagto.setBackground(Color.white);
         //
         jIdInternoKitBio1.setBackground(Color.white);
+        jMatriculaPenalKitBio1.setBackground(Color.white);
         jNomeInternoKitBio1.setBackground(Color.white);
         jRegimeKitBio1.setBackground(Color.white);
         jPavilhaoKitBio1.setBackground(Color.white);
@@ -1310,7 +1334,8 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     }
 
     public void Novo() {
-
+        jDataEntrega.setCalendar(Calendar.getInstance());
+        jHorarioPagto.setText(jHoraSistema.getText());
         if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa por Biometria")) {
             jIdInternoKitBio.setText("");
             jNomeInternoKitBio.setText("");
@@ -1323,9 +1348,6 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             jRegimeKitBio1.setText("");
             jPavilhaoKitBio1.setText("");
             jCelaKitBio1.setText("");
-            //
-            jDataEntrega.setCalendar(Calendar.getInstance());
-            jHorarioPagto.setText(jHoraSistema.getText());
             //
             jDataEntrega.setEnabled(true);
             jHorarioPagto.setEnabled(true);
@@ -1516,7 +1538,8 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         }
     }
 
-    public void pesquisarInternoKitHigiene() {
+    //KIT INICIAL
+    public void pesquisarInternoPagamentoKitInicial() {
         conecta.abrirConexao();
         try {
             conecta.executaSQL("SELECT * FROM  PRONTUARIOSCRC "
@@ -1530,7 +1553,185 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
                     + "INNER JOIN PAVILHAO "
                     + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN INTERNOS_PAVILHAO_KIT_LOTE "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=INTERNOS_PAVILHAO_KIT_LOTE.IdInternoCrc "
+                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                    + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
+                    + "INNER JOIN KITS_INICIAL_INTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=KITS_INICIAL_INTERNOS.IdInternoCrc "
                     + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
+                    + "AND KITS_INICIAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
+            conecta.rs.first();
+            do {
+                jComboBoxPesquisarInterno.addItem(conecta.rs.getString("NomeInternoCrc"));
+            } while (conecta.rs.next());
+        } catch (SQLException ex) {
+        }
+        conecta.desconecta();
+    }
+
+    //KIT DECENDIAL
+    public void pesquisarInternoPagamentoKitDecendial() {
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL("SELECT * FROM  PRONTUARIOSCRC "
+                    + "INNER JOIN BIOMETRIA_INTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=BIOMETRIA_INTERNOS.IdInternoCrc "
+                    + "INNER JOIN ITENSLOCACAOINTERNO "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
+                    + "INNER JOIN DADOSPENAISINTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=DADOSPENAISINTERNOS.IdInternoCrc "
+                    + "INNER JOIN CELAS "
+                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN INTERNOS_PAVILHAO_KIT_LOTE "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=INTERNOS_PAVILHAO_KIT_LOTE.IdInternoCrc "
+                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                    + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
+                    + "INNER JOIN KITS_DECENDIAL_INTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=KITS_DECENDIAL_INTERNOS.IdInternoCrc "
+                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
+                    + "AND KITS_DECENDIAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
+            conecta.rs.first();
+            do {
+                jComboBoxPesquisarInterno.addItem(conecta.rs.getString("NomeInternoCrc"));
+            } while (conecta.rs.next());
+        } catch (SQLException ex) {
+        }
+        conecta.desconecta();
+    }
+
+    // KIT QUINZENAL
+    public void pesquisarInternoPagamentoKitQuinzenal() {
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL("SELECT * FROM  PRONTUARIOSCRC "
+                    + "INNER JOIN BIOMETRIA_INTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=BIOMETRIA_INTERNOS.IdInternoCrc "
+                    + "INNER JOIN ITENSLOCACAOINTERNO "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
+                    + "INNER JOIN DADOSPENAISINTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=DADOSPENAISINTERNOS.IdInternoCrc "
+                    + "INNER JOIN CELAS "
+                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN INTERNOS_PAVILHAO_KIT_LOTE "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=INTERNOS_PAVILHAO_KIT_LOTE.IdInternoCrc "
+                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                    + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
+                    + "INNER JOIN KITS_QUINZENAL_INTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=KITS_QUINZENAL_INTERNOS.IdInternoCrc "
+                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
+                    + "AND KITS_QUINZENAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
+            conecta.rs.first();
+            do {
+                jComboBoxPesquisarInterno.addItem(conecta.rs.getString("NomeInternoCrc"));
+            } while (conecta.rs.next());
+        } catch (SQLException ex) {
+        }
+        conecta.desconecta();
+    }
+
+    // KIT MENSAL
+    public void pesquisarInternoPagamentoKitMensal() {
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL("SELECT * FROM  PRONTUARIOSCRC "
+                    + "INNER JOIN BIOMETRIA_INTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=BIOMETRIA_INTERNOS.IdInternoCrc "
+                    + "INNER JOIN ITENSLOCACAOINTERNO "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
+                    + "INNER JOIN DADOSPENAISINTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=DADOSPENAISINTERNOS.IdInternoCrc "
+                    + "INNER JOIN CELAS "
+                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN INTERNOS_PAVILHAO_KIT_LOTE "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=INTERNOS_PAVILHAO_KIT_LOTE.IdInternoCrc "
+                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                    + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
+                    + "INNER JOIN KITS_MENSAL_INTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=KITS_MENSAL_INTERNOS.IdInternoCrc "
+                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
+                    + "AND KITS_MENSAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
+            conecta.rs.first();
+            do {
+                jComboBoxPesquisarInterno.addItem(conecta.rs.getString("NomeInternoCrc"));
+            } while (conecta.rs.next());
+        } catch (SQLException ex) {
+        }
+        conecta.desconecta();
+    }
+
+    // KIT SEMESTRAL
+    public void pesquisarInternoPagamentoKitSemestral() {
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL("SELECT * FROM  PRONTUARIOSCRC "
+                    + "INNER JOIN BIOMETRIA_INTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=BIOMETRIA_INTERNOS.IdInternoCrc "
+                    + "INNER JOIN ITENSLOCACAOINTERNO "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
+                    + "INNER JOIN DADOSPENAISINTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=DADOSPENAISINTERNOS.IdInternoCrc "
+                    + "INNER JOIN CELAS "
+                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN INTERNOS_PAVILHAO_KIT_LOTE "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=INTERNOS_PAVILHAO_KIT_LOTE.IdInternoCrc "
+                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                    + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
+                    + "INNER JOIN KITS_SEMESTRAL_INTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=KITS_SEMESTRAL_INTERNOS.IdInternoCrc "
+                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
+                    + "AND KITS_SEMESTRAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
+            conecta.rs.first();
+            do {
+                jComboBoxPesquisarInterno.addItem(conecta.rs.getString("NomeInternoCrc"));
+            } while (conecta.rs.next());
+        } catch (SQLException ex) {
+        }
+        conecta.desconecta();
+    }
+
+    // KIT ANUAL
+    public void pesquisarInternoPagamentoKitAnual() {
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL("SELECT * FROM  PRONTUARIOSCRC "
+                    + "INNER JOIN BIOMETRIA_INTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=BIOMETRIA_INTERNOS.IdInternoCrc "
+                    + "INNER JOIN ITENSLOCACAOINTERNO "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
+                    + "INNER JOIN DADOSPENAISINTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=DADOSPENAISINTERNOS.IdInternoCrc "
+                    + "INNER JOIN CELAS "
+                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN INTERNOS_PAVILHAO_KIT_LOTE "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=INTERNOS_PAVILHAO_KIT_LOTE.IdInternoCrc "
+                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                    + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
+                    + "INNER JOIN KITS_ANUAL_INTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=KITS_ANUAL_INTERNOS.IdInternoCrc "
+                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
+                    + "AND KITS_ANUAL_INTERNOS.KitPago='" + pKitPago + "' "
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {

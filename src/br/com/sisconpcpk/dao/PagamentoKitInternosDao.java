@@ -27,6 +27,7 @@ public class PagamentoKitInternosDao {
     int codInterno;
     String pBio = null;
     public static int qtdInternos = 0;
+    String statusFinal = "FINALIZADO";
 
     public ItensPagamentoKitInterno incluirPagamentoKitInterno(ItensPagamentoKitInterno objItensPagto) {
         buscarInterno(objItensPagto.getNomeInternoCrcKit(), objItensPagto.getIdInternoCrc());
@@ -37,7 +38,7 @@ public class PagamentoKitInternosDao {
                     + "HorarioInsert) VALUES(?,?,?,?,?,?,?,?)");
             pst.setInt(1, objItensPagto.getIdPagto());
             pst.setInt(2, codInterno);
-            
+
             if (objItensPagto.getDataEntrega() != null) {
                 pst.setTimestamp(3, new java.sql.Timestamp(objItensPagto.getDataEntrega().getTime()));
             } else {
@@ -47,7 +48,7 @@ public class PagamentoKitInternosDao {
             pst.setBytes(5, objItensPagto.getAssinaturaDigital());
             pst.setString(6, objItensPagto.getUsuarioInsert());
             pst.setString(7, objItensPagto.getDataInsert());
-            pst.setString(8, objItensPagto.getHorarioInsert());           
+            pst.setString(8, objItensPagto.getHorarioInsert());
             pst.execute();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel INSERIR os Dados.\n\nERRO:" + ex);
@@ -63,7 +64,7 @@ public class PagamentoKitInternosDao {
             PreparedStatement pst = conecta.con.prepareStatement("UPDATE ITENS_PAGAMENTO_KIT_INTERNOS SET IdPagto=?,IdInternoCrc=?,"
                     + "DataEntrega=?,Horario=?,UsuarioUp=?,DataUp=?,HorarioUp=?,AssinaturaDigital=? WHERE IdItem='" + objItensPagto.getIdItem() + "'");
             pst.setInt(1, objItensPagto.getIdPagto());
-            pst.setInt(2, codInterno);            
+            pst.setInt(2, codInterno);
             if (objItensPagto.getDataEntrega() != null) {
                 pst.setTimestamp(3, new java.sql.Timestamp(objItensPagto.getDataEntrega().getTime()));
             } else {
@@ -73,7 +74,7 @@ public class PagamentoKitInternosDao {
             pst.setBytes(5, objItensPagto.getAssinaturaDigital());
             pst.setString(6, objItensPagto.getUsuarioUp());
             pst.setString(7, objItensPagto.getDataUp());
-            pst.setString(8, objItensPagto.getHorarioUp());     
+            pst.setString(8, objItensPagto.getHorarioUp());
             pst.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel ALTERAR os Dados.\n\nERRO: " + ex);
@@ -123,8 +124,13 @@ public class PagamentoKitInternosDao {
                     + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
                     + "INNER JOIN PAVILHAO "
                     + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN INTERNOS_PAVILHAO_KIT_LOTE "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=INTERNOS_PAVILHAO_KIT_LOTE.IdInternoCrc "
+                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                    + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND BiometriaDedo1!='" + pBio + "'");
+                    + "AND BiometriaDedo1!='" + pBio + "' "
+                    + "AND StatusComp='" + statusFinal + "'");
             while (conecta.rs.next()) {
                 DigitalInternos pDigital = new DigitalInternos();
                 pDigital.setIdInternoCrc(conecta.rs.getInt("IdInternoCrc"));

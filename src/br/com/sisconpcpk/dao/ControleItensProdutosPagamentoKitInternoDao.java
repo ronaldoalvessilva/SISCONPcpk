@@ -52,6 +52,22 @@ public class ControleItensProdutosPagamentoKitInternoDao {
         return objItensPagtoProd;
     }
 
+     public ProdutosPagtoKitInterno excluirPagamentoProdutoKitInterno(ProdutosPagtoKitInterno objItensPagtoProd) {
+        
+        conecta.abrirConexao();
+        try {
+            PreparedStatement pst = conecta.con.prepareStatement("DELETE FROM ITENS_PAGAMENTO_KIT_INTERNOS "
+                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdItem=ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdItem "
+                    + "WHERE IdInternoCrc='" + objItensPagtoProd.getIdInternoCrc() + "'AND IdPagto=");           
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não Foi possivel EXCLUIR os Dados.\n\nERRO:" + ex);
+        }
+        conecta.desconecta();
+        return objItensPagtoProd;
+    }
+    
     public ProdutosPagtoKitInterno alterarPagamentoProdutoKitInterno(ProdutosPagtoKitInterno objItensPagtoProd) {
         buscarProduto(objItensPagtoProd.getDescricaoProduto(), objItensPagtoProd.getIdProd());
         conecta.abrirConexao();

@@ -28,11 +28,12 @@ public class ProdutosPagtoKitInterno {
     private String usuarioUp;
     private String dataUp;
     private String horarioUp;
+    private int idInternoCrc; 
 
     public ProdutosPagtoKitInterno() {
     }
 
-    public ProdutosPagtoKitInterno(int idItemProd, int idPagto, int idItem, int idProd, String descricaoProduto, float quatProd, Date dataEntrega, String horario, byte[] assinaturaDigitalInterno, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp) {
+    public ProdutosPagtoKitInterno(int idItemProd, int idPagto, int idItem, int idProd, String descricaoProduto, float quatProd, Date dataEntrega, String horario, byte[] assinaturaDigitalInterno, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp, int idInternoCrc) {
         this.idItemProd = idItemProd;
         this.idPagto = idPagto;
         this.idItem = idItem;
@@ -48,6 +49,7 @@ public class ProdutosPagtoKitInterno {
         this.usuarioUp = usuarioUp;
         this.dataUp = dataUp;
         this.horarioUp = horarioUp;
+        this.idInternoCrc = idInternoCrc;
     }
 
     /**
@@ -258,5 +260,19 @@ public class ProdutosPagtoKitInterno {
      */
     public void setHorarioUp(String horarioUp) {
         this.horarioUp = horarioUp;
+    }
+
+    /**
+     * @return the idInternoCrc
+     */
+    public int getIdInternoCrc() {
+        return idInternoCrc;
+    }
+
+    /**
+     * @param idInternoCrc the idInternoCrc to set
+     */
+    public void setIdInternoCrc(int idInternoCrc) {
+        this.idInternoCrc = idInternoCrc;
     }
 }
