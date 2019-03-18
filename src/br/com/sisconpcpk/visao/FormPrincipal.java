@@ -47,6 +47,66 @@ public class FormPrincipal extends javax.swing.JFrame {
     int idGrupo;
     int idModulo;
     int idGrupoModulo;
+    // TRIAGEM
+    public static String telaEntregaMaterialUsoTRI = "Movimentação:Entrega de Material Uso Pessoal:Manutenção";
+    public static String telaEntregaMaterialUsoInternosTRI = "Movimentação:Entrega de Material Uso Pessoal:Internos";
+    public static String telaEntregaMaterialUsoInternosBioTRI = "Movimentação:Entrega de Material Uso Pessoal:Biometria";
+    public static String telaInicializarLeitorTRI = "Movimentação:Entrega de Material Uso Pessoal:Inicializar leitor";
+    //BASE I
+    public static String telaEntregaMaterialUsoB1 = "Movimentação:Entrega de Material Uso Pessoal:Manutenção-B1";
+    public static String telaEntregaMaterialUsoInternosB1 = "Movimentação:Entrega de Material Uso Pessoal:Internos-B1";
+    public static String telaEntregaMaterialUsoInternosBioB1 = "Movimentação:Entrega de Material Uso Pessoal:Biometria-B1";
+    public static String telaInicializarLeitorB1 = "Movimentação:Entrega de Material Uso Pessoal:Inicializar leitor-B1";
+    //BASE II
+    public static String telaEntregaMaterialUsoB2 = "Movimentação:Entrega de Material Uso Pessoal:Manutenção-B2";
+    public static String telaEntregaMaterialUsoInternosB2 = "Movimentação:Entrega de Material Uso Pessoal:Internos-B2";
+    public static String telaEntregaMaterialUsoInternosBioB2 = "Movimentação:Entrega de Material Uso Pessoal:Biometria-B2";
+    //    
+    public static int codigoUserTRI = 0;
+    public static int codUserAcessoTRI = 0;
+    public static int codigoUserGroupTRI = 0;
+    public static int codAbrirTRI = 0;
+    public static int codIncluirTRI = 0;
+    public static int codAlterarTRI = 0;
+    public static int codExcluirTRI = 0;
+    public static int codGravarTRI = 0;
+    public static int codConcultarTRI = 0;
+    public static int codigoGrupoTRI = 0;
+    public static String nomeGrupoTRI = "";
+    public static String nomeTelaTRI = "";
+    // TELAS DE ACESSOS AO MÓDULO CRC
+    public static String nomeModuloTRIAGEM = "TRIAGEM";
+    //BASE I
+    public static int codigoUserB1 = 0;
+    public static int codUserAcessoB1 = 0;
+    public static int codigoUserGroupB1 = 0;
+    public static int codAbrirB1 = 0;
+    public static int codIncluirB1 = 0;
+    public static int codAlterarB1 = 0;
+    public static int codExcluirB1 = 0;
+    public static int codGravarB1 = 0;
+    public static int codConsultarB1 = 0;
+    public static int codigoGrupoB1 = 0;
+    public static String nomeGrupoB1 = "";
+    public static String nomeTelaB1 = "";
+    // TELAS DE ACESSOS AO MÓDULO ENFERMARIA
+    int pCodModulo = 0; // VARIÁVEL PARA PESQUISAR CÓDIGO DO MÓDULO
+    public static String nomeModuloB1 = "BASE PAVILHAO UM";
+    //BASE II
+    public static int codigoUserB2 = 0;
+    public static int codUserAcessoB2 = 0;
+    public static int codigoUserGroupB2 = 0;
+    public static int codAbrirB2 = 0;
+    public static int codIncluirB2 = 0;
+    public static int codAlterarB2 = 0;
+    public static int codExcluirB2 = 0;
+    public static int codGravarB2 = 0;
+    public static int codConsultarB2 = 0;
+    public static int codigoGrupoB2 = 0;
+    public static String nomeGrupoB2 = "";
+    public static String nomeTelaB2 = "";
+    // TELAS DE ACESSOS AO MÓDULO ENFERMARIA    
+    public static String nomeModuloB2 = "BASE PAVILHAO DOIS";
 
     /**
      * Creates new form FormPrincipal
