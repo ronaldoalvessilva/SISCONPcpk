@@ -13,9 +13,40 @@ import br.com.sisconpcpk.dao.PagamentoKitInternosDao;
 import br.com.sisconpcpk.modelo.ItensPagamentoKitInterno;
 import br.com.sisconpcpk.modelo.LogSistema;
 import br.com.sisconpcpk.modelo.PagamentoKitInterno;
+import static br.com.sisconpcpk.visao.FormPrincipal.codAbrirTRI;
+import static br.com.sisconpcpk.visao.FormPrincipal.codAlterarB1;
+import static br.com.sisconpcpk.visao.FormPrincipal.codAlterarB2;
+import static br.com.sisconpcpk.visao.FormPrincipal.codAlterarTRI;
+import static br.com.sisconpcpk.visao.FormPrincipal.codExcluirB1;
+import static br.com.sisconpcpk.visao.FormPrincipal.codExcluirB2;
+import static br.com.sisconpcpk.visao.FormPrincipal.codExcluirTRI;
+import static br.com.sisconpcpk.visao.FormPrincipal.codGravarB1;
+import static br.com.sisconpcpk.visao.FormPrincipal.codGravarB2;
+import static br.com.sisconpcpk.visao.FormPrincipal.codGravarTRI;
+import static br.com.sisconpcpk.visao.FormPrincipal.codIncluirB1;
+import static br.com.sisconpcpk.visao.FormPrincipal.codIncluirB2;
+import static br.com.sisconpcpk.visao.FormPrincipal.codIncluirTRI;
+import static br.com.sisconpcpk.visao.FormPrincipal.codUserAcessoB1;
+import static br.com.sisconpcpk.visao.FormPrincipal.codUserAcessoB2;
+import static br.com.sisconpcpk.visao.FormPrincipal.codUserAcessoTRI;
+import static br.com.sisconpcpk.visao.FormPrincipal.codigoUserB1;
+import static br.com.sisconpcpk.visao.FormPrincipal.codigoUserB2;
+import static br.com.sisconpcpk.visao.FormPrincipal.codigoUserTRI;
 import static br.com.sisconpcpk.visao.TelaLoginSenhaCPK.nameUser;
 import static br.com.sisconpcpk.visao.FormPrincipal.jDataSistema;
 import static br.com.sisconpcpk.visao.FormPrincipal.jHoraSistema;
+import static br.com.sisconpcpk.visao.FormPrincipal.nomeGrupoB1;
+import static br.com.sisconpcpk.visao.FormPrincipal.nomeGrupoB2;
+import static br.com.sisconpcpk.visao.FormPrincipal.nomeGrupoTRI;
+import static br.com.sisconpcpk.visao.FormPrincipal.nomeTelaB1;
+import static br.com.sisconpcpk.visao.FormPrincipal.nomeTelaB2;
+import static br.com.sisconpcpk.visao.FormPrincipal.nomeTelaTRI;
+import static br.com.sisconpcpk.visao.FormPrincipal.telaEntregaMaterialUsoB1;
+import static br.com.sisconpcpk.visao.FormPrincipal.telaEntregaMaterialUsoB2;
+import static br.com.sisconpcpk.visao.FormPrincipal.telaEntregaMaterialUsoInternosBioB1;
+import static br.com.sisconpcpk.visao.FormPrincipal.telaEntregaMaterialUsoInternosBioB2;
+import static br.com.sisconpcpk.visao.FormPrincipal.telaEntregaMaterialUsoInternosBioTRI;
+import static br.com.sisconpcpk.visao.FormPrincipal.telaEntregaMaterialUsoTRI;
 import static br.com.sisconpcpk.visao.TelaLoginSenhaCPK.descricaoUnidade;
 import java.awt.Color;
 import java.awt.Image;
@@ -1256,108 +1287,311 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     private void jBtNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtNovoActionPerformed
         // TODO add your handling code here:
-        limparCamposManutencao();
-        bloquearCampos();
-        bloquearBotoes();
-        limparTabelaInternos();
-        acao = 1;
-        Novo();
-        corCampos();
-        preencherComboBoxPavilhao();
-        statusMov = "Incluiu";
-        horaMov = jHoraSistema.getText();
-        dataModFinal = jDataSistema.getText();
+        if (codigoUserTRI == codUserAcessoTRI && nomeTelaTRI.equals(telaEntregaMaterialUsoTRI) && codIncluirTRI == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoTRI.equals("ADMINISTRADORES")) {
+            limparCamposManutencao();
+            bloquearCampos();
+            bloquearBotoes();
+            limparTabelaInternos();
+            acao = 1;
+            Novo();
+            corCampos();
+            preencherComboBoxPavilhao();
+            statusMov = "Incluiu";
+            horaMov = jHoraSistema.getText();
+            dataModFinal = jDataSistema.getText();
+        } else if (codigoUserB1 == codUserAcessoB1 && nomeTelaB1.equals(telaEntregaMaterialUsoB1) && codIncluirB1 == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoB1.equals("ADMINISTRADORES")) {
+            limparCamposManutencao();
+            bloquearCampos();
+            bloquearBotoes();
+            limparTabelaInternos();
+            acao = 1;
+            Novo();
+            corCampos();
+            preencherComboBoxPavilhao();
+            statusMov = "Incluiu";
+            horaMov = jHoraSistema.getText();
+            dataModFinal = jDataSistema.getText();
+        } else if (codigoUserB2 == codUserAcessoB2 && nomeTelaB2.equals(telaEntregaMaterialUsoB2) && codIncluirB2 == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoB2.equals("ADMINISTRADORES")) {
+            limparCamposManutencao();
+            bloquearCampos();
+            bloquearBotoes();
+            limparTabelaInternos();
+            acao = 1;
+            Novo();
+            corCampos();
+            preencherComboBoxPavilhao();
+            statusMov = "Incluiu";
+            horaMov = jHoraSistema.getText();
+            dataModFinal = jDataSistema.getText();
+        } else {
+           JOptionPane.showMessageDialog(null, "Acesso não autorizado, solicite liberação ao administrador.");
+        }
     }//GEN-LAST:event_jBtNovoActionPerformed
 
     private void jBtAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAlterarActionPerformed
         // TODO add your handling code here:
-        Integer rows = jTabelaInternos.getModel().getRowCount();
-        objPag.setStatusLanc(jStatusLanc.getText());
-        if (jStatusLanc.getText().equals("FINALIZADO")) {
-            JOptionPane.showMessageDialog(rootPane, "Esse  Lançamento não poderá ser alterado, o mesmo encontra-se FINALIZADO");
-        } else {
-            if (rows != 0) {
-                jComboBoxPavilhao.setEnabled(!true);
-                preencherComboBoxPavilhao();
-                acao = 2;
-                bloquearCampos();
-                bloquearBotoes();
-                Alterar();
-                corCampos();
-                statusMov = "Alterou";
-                horaMov = jHoraSistema.getText();
-                dataModFinal = jDataSistema.getText();
+        if (codigoUserTRI == codUserAcessoTRI && nomeTelaTRI.equals(telaEntregaMaterialUsoTRI) && codAlterarTRI == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoTRI.equals("ADMINISTRADORES")) {
+            Integer rows = jTabelaInternos.getModel().getRowCount();
+            objPag.setStatusLanc(jStatusLanc.getText());
+            if (jStatusLanc.getText().equals("FINALIZADO")) {
+                JOptionPane.showMessageDialog(rootPane, "Esse  Lançamento não poderá ser alterado, o mesmo encontra-se FINALIZADO");
             } else {
-                preencherComboBoxPavilhao();
-                acao = 2;
-                bloquearCampos();
-                bloquearBotoes();
-                Alterar();
-                jComboBoxPavilhao.setEnabled(true);
-                corCampos();
-                statusMov = "Alterou";
-                horaMov = jHoraSistema.getText();
-                dataModFinal = jDataSistema.getText();
+                if (rows != 0) {
+                    jComboBoxPavilhao.setEnabled(!true);
+                    preencherComboBoxPavilhao();
+                    acao = 2;
+                    bloquearCampos();
+                    bloquearBotoes();
+                    Alterar();
+                    corCampos();
+                    statusMov = "Alterou";
+                    horaMov = jHoraSistema.getText();
+                    dataModFinal = jDataSistema.getText();
+                } else {
+                    preencherComboBoxPavilhao();
+                    acao = 2;
+                    bloquearCampos();
+                    bloquearBotoes();
+                    Alterar();
+                    jComboBoxPavilhao.setEnabled(true);
+                    corCampos();
+                    statusMov = "Alterou";
+                    horaMov = jHoraSistema.getText();
+                    dataModFinal = jDataSistema.getText();
+                }
             }
-
+        } else if (codigoUserB1 == codUserAcessoB1 && nomeTelaB1.equals(telaEntregaMaterialUsoB1) && codAlterarB1 == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoB1.equals("ADMINISTRADORES")) {
+            Integer rows = jTabelaInternos.getModel().getRowCount();
+            objPag.setStatusLanc(jStatusLanc.getText());
+            if (jStatusLanc.getText().equals("FINALIZADO")) {
+                JOptionPane.showMessageDialog(rootPane, "Esse  Lançamento não poderá ser alterado, o mesmo encontra-se FINALIZADO");
+            } else {
+                if (rows != 0) {
+                    jComboBoxPavilhao.setEnabled(!true);
+                    preencherComboBoxPavilhao();
+                    acao = 2;
+                    bloquearCampos();
+                    bloquearBotoes();
+                    Alterar();
+                    corCampos();
+                    statusMov = "Alterou";
+                    horaMov = jHoraSistema.getText();
+                    dataModFinal = jDataSistema.getText();
+                } else {
+                    preencherComboBoxPavilhao();
+                    acao = 2;
+                    bloquearCampos();
+                    bloquearBotoes();
+                    Alterar();
+                    jComboBoxPavilhao.setEnabled(true);
+                    corCampos();
+                    statusMov = "Alterou";
+                    horaMov = jHoraSistema.getText();
+                    dataModFinal = jDataSistema.getText();
+                }
+            }
+        } else if (codigoUserB2 == codUserAcessoB2 && nomeTelaB2.equals(telaEntregaMaterialUsoB2) && codAlterarB2 == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoB2.equals("ADMINISTRADORES")) {
+            Integer rows = jTabelaInternos.getModel().getRowCount();
+            objPag.setStatusLanc(jStatusLanc.getText());
+            if (jStatusLanc.getText().equals("FINALIZADO")) {
+                JOptionPane.showMessageDialog(rootPane, "Esse  Lançamento não poderá ser alterado, o mesmo encontra-se FINALIZADO");
+            } else {
+                if (rows != 0) {
+                    jComboBoxPavilhao.setEnabled(!true);
+                    preencherComboBoxPavilhao();
+                    acao = 2;
+                    bloquearCampos();
+                    bloquearBotoes();
+                    Alterar();
+                    corCampos();
+                    statusMov = "Alterou";
+                    horaMov = jHoraSistema.getText();
+                    dataModFinal = jDataSistema.getText();
+                } else {
+                    preencherComboBoxPavilhao();
+                    acao = 2;
+                    bloquearCampos();
+                    bloquearBotoes();
+                    Alterar();
+                    jComboBoxPavilhao.setEnabled(true);
+                    corCampos();
+                    statusMov = "Alterou";
+                    horaMov = jHoraSistema.getText();
+                    dataModFinal = jDataSistema.getText();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Acesso não autorizado, solicite liberação ao administrador.");
         }
     }//GEN-LAST:event_jBtAlterarActionPerformed
 
     private void jBtExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtExcluirActionPerformed
         // TODO add your handling code here:
-        objPag.setStatusLanc(jStatusLanc.getText());
-        if (jStatusLanc.getText().equals("FINALIZADO")) {
-            JOptionPane.showMessageDialog(rootPane, "Esse  Lançamento não poderá ser alterado, o mesmo encontra-se FINALIZADO");
+        if (codigoUserTRI == codUserAcessoTRI && nomeTelaTRI.equals(telaEntregaMaterialUsoTRI) && codExcluirTRI == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoTRI.equals("ADMINISTRADORES")) {
+            objPag.setStatusLanc(jStatusLanc.getText());
+            if (jStatusLanc.getText().equals("FINALIZADO")) {
+                JOptionPane.showMessageDialog(rootPane, "Esse  Lançamento não poderá ser alterado, o mesmo encontra-se FINALIZADO");
+            } else {
+                bloquearCampos();
+                bloquearBotoes();
+                verificarItens();
+            }
+        } else if (codigoUserB1 == codUserAcessoB1 && nomeTelaB1.equals(telaEntregaMaterialUsoB1) && codExcluirB1 == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoB1.equals("ADMINISTRADORES")) {
+            objPag.setStatusLanc(jStatusLanc.getText());
+            if (jStatusLanc.getText().equals("FINALIZADO")) {
+                JOptionPane.showMessageDialog(rootPane, "Esse  Lançamento não poderá ser alterado, o mesmo encontra-se FINALIZADO");
+            } else {
+                bloquearCampos();
+                bloquearBotoes();
+                verificarItens();
+            }
+        } else if (codigoUserB2 == codUserAcessoB2 && nomeTelaB2.equals(telaEntregaMaterialUsoB2) && codExcluirB2 == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoB2.equals("ADMINISTRADORES")) {
+            objPag.setStatusLanc(jStatusLanc.getText());
+            if (jStatusLanc.getText().equals("FINALIZADO")) {
+                JOptionPane.showMessageDialog(rootPane, "Esse  Lançamento não poderá ser alterado, o mesmo encontra-se FINALIZADO");
+            } else {
+                bloquearCampos();
+                bloquearBotoes();
+                verificarItens();
+            }
         } else {
-            bloquearCampos();
-            bloquearBotoes();
-            verificarItens();
+            JOptionPane.showMessageDialog(null, "Acesso não autorizado, solicite liberação ao administrador.");
         }
     }//GEN-LAST:event_jBtExcluirActionPerformed
 
     private void jBtSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtSalvarActionPerformed
         // TODO add your handling code here:
-        if (jDataLanc.getDate() == null) {
-            JOptionPane.showMessageDialog(rootPane, "É necessário informar a data do lançamento.");
-        } else if (jResponsavel.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "É necessário informar o responsável pelo registro.");
-        } else if (jComboBoxTipoKit.getSelectedItem().equals("Selecione...") || jComboBoxTipoKit.getSelectedItem().equals("") || jComboBoxTipoKit.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(rootPane, "É necessário o tipo de kit.");
-        } else if (jComboBoxPavilhao.getSelectedItem().equals("Selecione...") || jComboBoxPavilhao.getSelectedItem().equals("") || jComboBoxPavilhao.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(rootPane, "Informe qual é o pavilhão.");
+        if (codigoUserTRI == codUserAcessoTRI && nomeTelaTRI.equals(telaEntregaMaterialUsoTRI) && codGravarTRI == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoTRI.equals("ADMINISTRADORES")) {
+            if (jDataLanc.getDate() == null) {
+                JOptionPane.showMessageDialog(rootPane, "É necessário informar a data do lançamento.");
+            } else if (jResponsavel.getText().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "É necessário informar o responsável pelo registro.");
+            } else if (jComboBoxTipoKit.getSelectedItem().equals("Selecione...") || jComboBoxTipoKit.getSelectedItem().equals("") || jComboBoxTipoKit.getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(rootPane, "É necessário o tipo de kit.");
+            } else if (jComboBoxPavilhao.getSelectedItem().equals("Selecione...") || jComboBoxPavilhao.getSelectedItem().equals("") || jComboBoxPavilhao.getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(rootPane, "Informe qual é o pavilhão.");
+            } else {
+                objPag.setStatusLanc(jStatusLanc.getText());
+                objPag.setDataLanc(jDataLanc.getDate());
+                objPag.setResponsavel(jResponsavel.getText());
+                objPag.setHoraInicio(jHorarioInicial.getText());
+                objPag.setHoraTermino(jHorarioTermino.getText());
+                objPag.setTipoKit((String) jComboBoxTipoKit.getSelectedItem());
+                objPag.setDescricaoPavilhao((String) jComboBoxPavilhao.getSelectedItem());
+                objPag.setObservacao(jObservacao.getText());
+                if (acao == 1) {
+                    objPag.setUsuarioInsert(nameUser);
+                    objPag.setDataInsert(dataModFinal);
+                    objPag.setHorarioInsert(horaMov);
+                    //
+                    control.incluirPagamentoKit(objPag);
+                    buscarCodigo();
+                    objLog();
+                    controlLog.incluirLogSistema(objLogSys); // Grava o log da operação             
+                    Salvar();
+                    JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                }
+                if (acao == 2) {
+                    objPag.setUsuarioUp(nameUser);
+                    objPag.setDataUp(dataModFinal);
+                    objPag.setHorarioUp(horaMov);
+                    //
+                    objPag.setIdPagto(Integer.valueOf(jIdLanc.getText()));
+                    control.alterarPagamentoKit(objPag);
+                    objLog();
+                    controlLog.incluirLogSistema(objLogSys); // Grava o log da operação     
+                    Salvar();
+                    JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                }
+            }
+        } else if (codigoUserB1 == codUserAcessoB1 && nomeTelaB1.equals(telaEntregaMaterialUsoB1) && codGravarB1 == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoB1.equals("ADMINISTRADORES")) {
+            if (jDataLanc.getDate() == null) {
+                JOptionPane.showMessageDialog(rootPane, "É necessário informar a data do lançamento.");
+            } else if (jResponsavel.getText().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "É necessário informar o responsável pelo registro.");
+            } else if (jComboBoxTipoKit.getSelectedItem().equals("Selecione...") || jComboBoxTipoKit.getSelectedItem().equals("") || jComboBoxTipoKit.getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(rootPane, "É necessário o tipo de kit.");
+            } else if (jComboBoxPavilhao.getSelectedItem().equals("Selecione...") || jComboBoxPavilhao.getSelectedItem().equals("") || jComboBoxPavilhao.getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(rootPane, "Informe qual é o pavilhão.");
+            } else {
+                objPag.setStatusLanc(jStatusLanc.getText());
+                objPag.setDataLanc(jDataLanc.getDate());
+                objPag.setResponsavel(jResponsavel.getText());
+                objPag.setHoraInicio(jHorarioInicial.getText());
+                objPag.setHoraTermino(jHorarioTermino.getText());
+                objPag.setTipoKit((String) jComboBoxTipoKit.getSelectedItem());
+                objPag.setDescricaoPavilhao((String) jComboBoxPavilhao.getSelectedItem());
+                objPag.setObservacao(jObservacao.getText());
+                if (acao == 1) {
+                    objPag.setUsuarioInsert(nameUser);
+                    objPag.setDataInsert(dataModFinal);
+                    objPag.setHorarioInsert(horaMov);
+                    //
+                    control.incluirPagamentoKit(objPag);
+                    buscarCodigo();
+                    objLog();
+                    controlLog.incluirLogSistema(objLogSys); // Grava o log da operação             
+                    Salvar();
+                    JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                }
+                if (acao == 2) {
+                    objPag.setUsuarioUp(nameUser);
+                    objPag.setDataUp(dataModFinal);
+                    objPag.setHorarioUp(horaMov);
+                    //
+                    objPag.setIdPagto(Integer.valueOf(jIdLanc.getText()));
+                    control.alterarPagamentoKit(objPag);
+                    objLog();
+                    controlLog.incluirLogSistema(objLogSys); // Grava o log da operação     
+                    Salvar();
+                    JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                }
+            }
+        } else if (codigoUserB2 == codUserAcessoB2 && nomeTelaB2.equals(telaEntregaMaterialUsoB2) && codGravarB2 == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoB2.equals("ADMINISTRADORES")) {
+            if (jDataLanc.getDate() == null) {
+                JOptionPane.showMessageDialog(rootPane, "É necessário informar a data do lançamento.");
+            } else if (jResponsavel.getText().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "É necessário informar o responsável pelo registro.");
+            } else if (jComboBoxTipoKit.getSelectedItem().equals("Selecione...") || jComboBoxTipoKit.getSelectedItem().equals("") || jComboBoxTipoKit.getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(rootPane, "É necessário o tipo de kit.");
+            } else if (jComboBoxPavilhao.getSelectedItem().equals("Selecione...") || jComboBoxPavilhao.getSelectedItem().equals("") || jComboBoxPavilhao.getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(rootPane, "Informe qual é o pavilhão.");
+            } else {
+                objPag.setStatusLanc(jStatusLanc.getText());
+                objPag.setDataLanc(jDataLanc.getDate());
+                objPag.setResponsavel(jResponsavel.getText());
+                objPag.setHoraInicio(jHorarioInicial.getText());
+                objPag.setHoraTermino(jHorarioTermino.getText());
+                objPag.setTipoKit((String) jComboBoxTipoKit.getSelectedItem());
+                objPag.setDescricaoPavilhao((String) jComboBoxPavilhao.getSelectedItem());
+                objPag.setObservacao(jObservacao.getText());
+                if (acao == 1) {
+                    objPag.setUsuarioInsert(nameUser);
+                    objPag.setDataInsert(dataModFinal);
+                    objPag.setHorarioInsert(horaMov);
+                    //
+                    control.incluirPagamentoKit(objPag);
+                    buscarCodigo();
+                    objLog();
+                    controlLog.incluirLogSistema(objLogSys); // Grava o log da operação             
+                    Salvar();
+                    JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                }
+                if (acao == 2) {
+                    objPag.setUsuarioUp(nameUser);
+                    objPag.setDataUp(dataModFinal);
+                    objPag.setHorarioUp(horaMov);
+                    //
+                    objPag.setIdPagto(Integer.valueOf(jIdLanc.getText()));
+                    control.alterarPagamentoKit(objPag);
+                    objLog();
+                    controlLog.incluirLogSistema(objLogSys); // Grava o log da operação     
+                    Salvar();
+                    JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                }
+            }
         } else {
-            objPag.setStatusLanc(jStatusLanc.getText());
-            objPag.setDataLanc(jDataLanc.getDate());
-            objPag.setResponsavel(jResponsavel.getText());
-            objPag.setHoraInicio(jHorarioInicial.getText());
-            objPag.setHoraTermino(jHorarioTermino.getText());
-            objPag.setTipoKit((String) jComboBoxTipoKit.getSelectedItem());
-            objPag.setDescricaoPavilhao((String) jComboBoxPavilhao.getSelectedItem());
-            objPag.setObservacao(jObservacao.getText());
-            if (acao == 1) {
-                objPag.setUsuarioInsert(nameUser);
-                objPag.setDataInsert(dataModFinal);
-                objPag.setHorarioInsert(horaMov);
-                //
-                control.incluirPagamentoKit(objPag);
-                buscarCodigo();
-                objLog();
-                controlLog.incluirLogSistema(objLogSys); // Grava o log da operação             
-                Salvar();
-                JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
-            }
-            if (acao == 2) {
-                objPag.setUsuarioUp(nameUser);
-                objPag.setDataUp(dataModFinal);
-                objPag.setHorarioUp(horaMov);
-                //
-                objPag.setIdPagto(Integer.valueOf(jIdLanc.getText()));
-                control.alterarPagamentoKit(objPag);
-                objLog();
-                controlLog.incluirLogSistema(objLogSys); // Grava o log da operação     
-                Salvar();
-                JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
-            }
+            JOptionPane.showMessageDialog(null, "Acesso não autorizado, solicite liberação ao administrador.");
         }
     }//GEN-LAST:event_jBtSalvarActionPerformed
 
@@ -1489,7 +1723,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             horaMov = jHoraSistema.getText();
             dataModFinal = jDataSistema.getText();
             objItensPagto.setIdItem(idItem);
-            
+
             controle.excluirPagamentoKitInterno(objItensPagto);
             objLog2();
             controlLog.incluirLogSistema(objLogSys); // Grava o log da operação            
@@ -1580,10 +1814,26 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     private void jBtBiometriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtBiometriaActionPerformed
         // TODO add your handling code here:
-        if (jStatusLanc.getText().equals("FINALIZADO")) {
-            JOptionPane.showMessageDialog(rootPane, "Não é possível utilizar essa função, registro finalizado.");
-        } else if (!jIdLanc.getText().equals("")) {
-            mostrarTelaBiometria();
+        if (nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoTRI.equals("ADMINISTRADORES") || codigoUserTRI == codUserAcessoTRI && nomeTelaTRI.equals(telaEntregaMaterialUsoInternosBioTRI) && codAbrirTRI == 1) {
+            if (jStatusLanc.getText().equals("FINALIZADO")) {
+                JOptionPane.showMessageDialog(rootPane, "Não é possível utilizar essa função, registro finalizado.");
+            } else if (!jIdLanc.getText().equals("")) {
+                mostrarTelaBiometria();
+            }
+        } else if (codigoUserB1 == codUserAcessoB1 && nomeTelaB1.equals(telaEntregaMaterialUsoInternosBioB1) && codIncluirB1 == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoB1.equals("ADMINISTRADORES")) {
+            if (jStatusLanc.getText().equals("FINALIZADO")) {
+                JOptionPane.showMessageDialog(rootPane, "Não é possível utilizar essa função, registro finalizado.");
+            } else if (!jIdLanc.getText().equals("")) {
+                mostrarTelaBiometria();
+            }
+        } else if (codigoUserB2 == codUserAcessoB2 && nomeTelaB2.equals(telaEntregaMaterialUsoInternosBioB2) && codIncluirB2 == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoB1.equals("ADMINISTRADORES")) {
+            if (jStatusLanc.getText().equals("FINALIZADO")) {
+                JOptionPane.showMessageDialog(rootPane, "Não é possível utilizar essa função, registro finalizado.");
+            } else if (!jIdLanc.getText().equals("")) {
+                mostrarTelaBiometria();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Acesso não autorizado, solicite liberação ao administrador.");
         }
     }//GEN-LAST:event_jBtBiometriaActionPerformed
 
@@ -1747,7 +1997,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         }
         conecta.desconecta();
     }
-    
+
     public void limparCampos() {
         jIdInterno.setText("");
         jNomeInterno.setText("");
