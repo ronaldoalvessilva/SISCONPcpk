@@ -125,9 +125,9 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Mensal")) {
             pesquisarInternoPagamentoKitMensal();
         } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Semestral")) {
-            pesquisarInternoPagamentoKitAnual();
+            pesquisarInternoPagamentoKitSemestral();
         } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Anual")) {
-
+            pesquisarInternoPagamentoKitAnual();
         }
     }
 
