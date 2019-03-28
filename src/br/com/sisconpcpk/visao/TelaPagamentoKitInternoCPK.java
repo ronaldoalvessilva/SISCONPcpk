@@ -1324,7 +1324,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             horaMov = jHoraSistema.getText();
             dataModFinal = jDataSistema.getText();
         } else {
-           JOptionPane.showMessageDialog(null, "Acesso não autorizado, solicite liberação ao administrador.");
+            JOptionPane.showMessageDialog(null, "Acesso não autorizado, solicite liberação ao administrador.");
         }
     }//GEN-LAST:event_jBtNovoActionPerformed
 
@@ -1843,9 +1843,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         Integer rows = jTabelaInternos.getModel().getRowCount();
         if (rows == 0) {
             JOptionPane.showMessageDialog(rootPane, "Não é possível imprimir esse registro, pois não existe(m) produto(s) lançado(s).");
-        } else if(jIdInterno.getText().equals("")){
+        } else if (jIdInterno.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Selecione o interno para imprimir o relatório.");
-        }else{
+        } else {
             try {
                 conecta.abrirConexao();
                 String path = "reports/RelatorioPagamentoKitInterno.jasper";
@@ -1856,7 +1856,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
                         + "INNER JOIN PRONTUARIOSCRC "
                         + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                        + "WHERE PAGAMENTO_KIT_INTERNOS.IdPagto='" + jIdLanc.getText() + "'");
+                        + "WHERE PAGAMENTO_KIT_INTERNOS.IdPagto='" + jIdLanc.getText() + "' "
+                        + "AND ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc='" + jIdInterno.getText() + "'");
                 HashMap parametros = new HashMap();
                 parametros.put("pUnidade", descricaoUnidade);
                 parametros.put("pCodigo", jIdLanc.getText());
