@@ -1843,17 +1843,24 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         Integer rows = jTabelaInternos.getModel().getRowCount();
         if (rows == 0) {
             JOptionPane.showMessageDialog(rootPane, "Não é possível imprimir esse registro, pois não existe(m) produto(s) lançado(s).");
-        } else {
+        } else if(jIdInterno.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Selecione o interno para imprimir o relatório.");
+        }else{
             try {
                 conecta.abrirConexao();
                 String path = "reports/RelatorioPagamentoKitInterno.jasper";
                 conecta.executaSQL("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
                         + "INNER JOIN PAVILHAO "
                         + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                        + "WHERE IdPagto='" + jIdLanc.getText() + "'");
+                        + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                        + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                        + "INNER JOIN PRONTUARIOSCRC "
+                        + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                        + "WHERE PAGAMENTO_KIT_INTERNOS.IdPagto='" + jIdLanc.getText() + "'");
                 HashMap parametros = new HashMap();
                 parametros.put("pUnidade", descricaoUnidade);
                 parametros.put("pCodigo", jIdLanc.getText());
+                parametros.put("pCodigoInternoCrc", jIdInterno.getText());
                 parametros.put("pUsuario", nameUser);
                 // Sub Relatório
                 try {
