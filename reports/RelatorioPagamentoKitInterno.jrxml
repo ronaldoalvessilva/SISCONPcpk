@@ -19,8 +19,9 @@
 	<parameter name="pCodigo" class="java.lang.String"/>
 	<parameter name="pUnidade" class="java.lang.String"/>
 	<parameter name="pUsuario" class="java.lang.String"/>
+	<parameter name="pCodigoInternoCrc" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT * FROM PAGAMENTO_KIT_INTERNOS INNER JOIN PAVILHAO ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto INNER JOIN PRONTUARIOSCRC ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc WHERE PAGAMENTO_KIT_INTERNOS.IdPagto=$P{pCodigo}]]>
+		<![CDATA[SELECT * FROM PAGAMENTO_KIT_INTERNOS INNER JOIN PAVILHAO ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto INNER JOIN PRONTUARIOSCRC ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc WHERE PAGAMENTO_KIT_INTERNOS.IdPagto=$P{pCodigo} AND ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=$P{pCodigoInternoCrc}]]>
 	</queryString>
 	<field name="IdPagto" class="java.lang.Integer"/>
 	<field name="StatusLanc" class="java.lang.String"/>
