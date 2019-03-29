@@ -24,6 +24,7 @@ public class ControleProdutosKitLote {
     ConectaBanco conecta = new ConectaBanco();
     ProdutoInternosKitLote objProdKit = new ProdutoInternosKitLote();
     int codProd;
+    float estoque = 0;
 
     public ProdutoInternosKitLote incluirProdutosKitInternos(ProdutoInternosKitLote objProdKit) {
         buscarProduto(objProdKit.getDescricaoProduto(), objProdKit.getIdProd());
@@ -106,7 +107,7 @@ public class ControleProdutosKitLote {
                     + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
                     + "ON PRODUTOS_AC.IdProd=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd "
                     + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
-                    + "AND QuantProd>0'");
+                    + "AND QuantProd>'" + estoque + "'");
             while (conecta.rs.next()) {
                 ProdutoInternosKitLote pDigiProd = new ProdutoInternosKitLote();
                 pDigiProd.setIdProd(conecta.rs.getInt("IdProd"));
