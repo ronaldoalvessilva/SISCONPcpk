@@ -740,6 +740,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         // TODO add your handling code here:
         verificarInternosBiometria();
         verificarInternoManual();
+        Integer rows = jTabelaProdutosKit.getRowCount();
         if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa por Biometria") && jIdInternoKitBio.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe o nome do interno.");
         } else if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual") && jIdInternoKitBio1.getText().equals("")) {
@@ -758,6 +759,8 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                 || jHorarioPagto1.getText().equals("00:00")
                 && jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual")) {
             JOptionPane.showMessageDialog(null, "Informe o horário de entrega do kit.");
+        } else if (rows == 0) {
+            JOptionPane.showMessageDialog(rootPane, "É necessário verificar os itens do kit para o interno.");
         } else {
             objItensPagto.setTipoEntrada(tipoEntrada);
             objItensPagto.setDataEntrega(jDataEntrega.getDate());
@@ -904,45 +907,13 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
 
     private void jBtConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtConfirmarActionPerformed
         // TODO add your handling code here:
-        Novo();
-        abrirCampos();
-        conecta.abrirConexao();
-        try {
-            conecta.executaSQL("SELECT * FROM  PRONTUARIOSCRC "
-                    + "INNER JOIN BIOMETRIA_INTERNOS "
-                    + "ON PRONTUARIOSCRC.IdInternoCrc=BIOMETRIA_INTERNOS.IdInternoCrc "
-                    + "INNER JOIN ITENSLOCACAOINTERNO "
-                    + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
-                    + "INNER JOIN DADOSPENAISINTERNOS "
-                    + "ON PRONTUARIOSCRC.IdInternoCrc=DADOSPENAISINTERNOS.IdInternoCrc "
-                    + "INNER JOIN CELAS "
-                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
-                    + "INNER JOIN PAVILHAO "
-                    + "ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "INNER JOIN INTERNOS_PAVILHAO_KIT_LOTE "
-                    + "ON PRONTUARIOSCRC.IdInternoCrc=INTERNOS_PAVILHAO_KIT_LOTE.IdInternoCrc "
-                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
-                    + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
-                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND PRONTUARIOSCRC.NomeInternoCrc='" + jComboBoxPesquisarInterno.getSelectedItem() + "' "
-                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "'");
-            conecta.rs.first();
-            jIdInternoKitBio1.setText(String.valueOf(conecta.rs.getInt("IdInternoCrc")));
-            jNomeInternoKitBio1.setText(conecta.rs.getString("NomeInternoCrc"));
-            jRegimeKitBio1.setText(conecta.rs.getString("Regime"));
-            jPavilhaoKitBio1.setText(conecta.rs.getString("DescricaoPav"));
-            jCelaKitBio1.setText(conecta.rs.getString("EndCelaPav"));
-            // Capturando foto
-            caminhoFotoInterno = conecta.rs.getString("FotoInternoCrc");
-            javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminhoFotoInterno);
-            jFotoInternoKitBio1.setIcon(i);
-            jFotoInternoKitBio1.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoKitBio1.getWidth(), jFotoInternoKitBio1.getHeight(), Image.SCALE_DEFAULT)));
-            jDataEntrega1.setCalendar(Calendar.getInstance());
-            jHorarioPagto1.setText(jHoraSistema.getText());
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(rootPane, "ERRO na pesquisa INTERNO.\nERROR: " + e);
+        if (jComboBoxPesquisarInterno.getSelectedItem().equals("Selecione...")) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione o interno para pesquisar os produtos.");
+        } else {
+            Novo();
+            abrirCampos();
+            pesquisarInternoKit();
         }
-        conecta.desconecta();
     }//GEN-LAST:event_jBtConfirmarActionPerformed
 
     /**
@@ -1416,6 +1387,46 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jHorarioPagto1.setEnabled(!true);
     }
 
+    public void pesquisarInternoKit() {
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL("SELECT * FROM  PRONTUARIOSCRC "
+                    + "INNER JOIN BIOMETRIA_INTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=BIOMETRIA_INTERNOS.IdInternoCrc "
+                    + "INNER JOIN ITENSLOCACAOINTERNO "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
+                    + "INNER JOIN DADOSPENAISINTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=DADOSPENAISINTERNOS.IdInternoCrc "
+                    + "INNER JOIN CELAS "
+                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN INTERNOS_PAVILHAO_KIT_LOTE "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=INTERNOS_PAVILHAO_KIT_LOTE.IdInternoCrc "
+                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                    + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
+                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND PRONTUARIOSCRC.NomeInternoCrc='" + jComboBoxPesquisarInterno.getSelectedItem() + "' "
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "'");
+            conecta.rs.first();
+            jIdInternoKitBio1.setText(String.valueOf(conecta.rs.getInt("IdInternoCrc")));
+            jNomeInternoKitBio1.setText(conecta.rs.getString("NomeInternoCrc"));
+            jRegimeKitBio1.setText(conecta.rs.getString("Regime"));
+            jPavilhaoKitBio1.setText(conecta.rs.getString("DescricaoPav"));
+            jCelaKitBio1.setText(conecta.rs.getString("EndCelaPav"));
+            // Capturando foto
+            caminhoFotoInterno = conecta.rs.getString("FotoInternoCrc");
+            javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminhoFotoInterno);
+            jFotoInternoKitBio1.setIcon(i);
+            jFotoInternoKitBio1.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoKitBio1.getWidth(), jFotoInternoKitBio1.getHeight(), Image.SCALE_DEFAULT)));
+            jDataEntrega1.setCalendar(Calendar.getInstance());
+            jHorarioPagto1.setText(jHoraSistema.getText());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(rootPane, "ERRO na pesquisa INTERNO.\nERROR: " + e);
+        }
+        conecta.desconecta();
+    }
+
     public void pesquisarProdutoKitInternoBiometria() {
 
         conecta.abrirConexao();
@@ -1866,6 +1877,10 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     }
                     jProgressBar1.setValue(0);
                     JOptionPane.showMessageDialog(rootPane, "Operação Concluída com sucesso...");
+                    while (jTabelaProdutosKit.getModel().getRowCount() > 0) {
+                        ((DefaultTableModel) jTabelaProdutosKit.getModel()).removeRow(0);
+                    }
+                    pesquisarInternoKit();
                     try {
                     } catch (Exception e) {
                     }
