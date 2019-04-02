@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  * @author ronaldo.silva7
  */
 public class PagamentoKitDao {
+
     ConectaBanco conecta = new ConectaBanco();
     PagamentoKitInterno objPag = new PagamentoKitInterno();
 
@@ -24,18 +25,19 @@ public class PagamentoKitDao {
         buscarPavilhao(objPag.getDescricaoPavilhao());
         conecta.abrirConexao();
         try {
-            PreparedStatement pst = conecta.con.prepareStatement("INSERT INTO PAGAMENTO_KIT_INTERNOS (StatusLanc,DataLanc,Responsavel,HoraInicio,HoraTermino,TipoKit,IdPav,Observacao,UsuarioInsert,DataInsert,HorarioInsert) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pst = conecta.con.prepareStatement("INSERT INTO PAGAMENTO_KIT_INTERNOS (StatusLanc,DataLanc,Responsavel,HoraInicio,HoraTermino,IdRegistro,TipoKit,IdPav,Observacao,UsuarioInsert,DataInsert,HorarioInsert) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
             pst.setString(1, objPag.getStatusLanc());
             pst.setTimestamp(2, new java.sql.Timestamp(objPag.getDataLanc().getTime()));
             pst.setString(3, objPag.getResponsavel());
             pst.setString(4, objPag.getHoraInicio());
             pst.setString(5, objPag.getHoraTermino());
-            pst.setString(6, objPag.getTipoKit());
-            pst.setInt(7, codPav);
-            pst.setString(8, objPag.getObservacao());
-            pst.setString(9, objPag.getUsuarioInsert());
-            pst.setString(10, objPag.getDataInsert());
-            pst.setString(11, objPag.getHorarioInsert());
+            pst.setInt(6, objPag.getIdRegistroComp());
+            pst.setString(7, objPag.getTipoKit());
+            pst.setInt(8, codPav);
+            pst.setString(9, objPag.getObservacao());
+            pst.setString(10, objPag.getUsuarioInsert());
+            pst.setString(11, objPag.getDataInsert());
+            pst.setString(12, objPag.getHorarioInsert());
             pst.execute();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel INSERIR os Dados.\n\nERRO:" + ex);
@@ -48,18 +50,19 @@ public class PagamentoKitDao {
         buscarPavilhao(objPag.getDescricaoPavilhao());
         conecta.abrirConexao();
         try {
-            PreparedStatement pst = conecta.con.prepareStatement("UPDATE PAGAMENTO_KIT_INTERNOS SET StatusLanc=?,DataLanc=?,Responsavel=?,HoraInicio=?,HoraTermino=?,TipoKit=?,IdPav=?,Observacao=?,UsuarioUp=?,DataUp=?,HorarioUp=? WHERE IdPagto='" + objPag.getIdPagto() + "'");
+            PreparedStatement pst = conecta.con.prepareStatement("UPDATE PAGAMENTO_KIT_INTERNOS SET StatusLanc=?,DataLanc=?,Responsavel=?,HoraInicio=?,HoraTermino=?,IdRegistro=?,TipoKit=?,IdPav=?,Observacao=?,UsuarioUp=?,DataUp=?,HorarioUp=? WHERE IdPagto='" + objPag.getIdPagto() + "'");
             pst.setString(1, objPag.getStatusLanc());
             pst.setTimestamp(2, new java.sql.Timestamp(objPag.getDataLanc().getTime()));
             pst.setString(3, objPag.getResponsavel());
             pst.setString(4, objPag.getHoraInicio());
             pst.setString(5, objPag.getHoraTermino());
-            pst.setString(6, objPag.getTipoKit());
-            pst.setInt(7, codPav);
-            pst.setString(8, objPag.getObservacao());
-            pst.setString(9, objPag.getUsuarioUp());
-            pst.setString(10, objPag.getDataUp());
-            pst.setString(11, objPag.getHorarioUp());
+            pst.setInt(6, objPag.getIdRegistroComp());
+            pst.setString(7, objPag.getTipoKit());
+            pst.setInt(8, codPav);
+            pst.setString(9, objPag.getObservacao());
+            pst.setString(10, objPag.getUsuarioUp());
+            pst.setString(11, objPag.getDataUp());
+            pst.setString(12, objPag.getHorarioUp());
             pst.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel ALTERAR os Dados.\n\nERRO:" + ex);
