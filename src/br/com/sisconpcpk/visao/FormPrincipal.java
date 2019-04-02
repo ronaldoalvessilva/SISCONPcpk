@@ -107,6 +107,9 @@ public class FormPrincipal extends javax.swing.JFrame {
     public static String nomeTelaB2 = "";
     // TELAS DE ACESSOS AO MÓDULO ENFERMARIA    
     public static String nomeModuloB2 = "BASE PAVILHAO DOIS";
+    //
+    public static String tipoServidor = "";
+    public static String tipoBancoDados = "";
 
     /**
      * Creates new form FormPrincipal
@@ -132,6 +135,8 @@ public class FormPrincipal extends javax.swing.JFrame {
         String date = formatter2.format(data); // Hora da conexão
         jHoraSistema.setText(String.valueOf(hora));    // no lugar do label, por seu JTextField    
         jDataSistema.setText(String.valueOf(date));
+        // VERIFICAR PARAMETRO PARA SABER SE O OS É LINUX(UBUNTU) OU WINDOWS.     
+        verificarParametrosSRV();
         //     
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); //Impedir que a janela seja fechada pelo X    
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -1114,5 +1119,17 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar3;
     private javax.swing.JToolBar jToolBar4;
     // End of variables declaration//GEN-END:variables
-
+ 
+    // PARAMETRO PARA IDENTIFICAR O OS DO SERVIDOR DE BANCO DE DADOS.
+    public void verificarParametrosSRV() {
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL("SELECT * FROM PARAMETROSCRC");
+            conecta.rs.first();
+            tipoServidor = conecta.rs.getString("TipoServidor");
+            tipoBancoDados = conecta.rs.getString("TipoBancoDados");
+        } catch (Exception e) {
+        }
+        conecta.desconecta();
+    }
 }
