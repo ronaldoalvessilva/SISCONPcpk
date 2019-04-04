@@ -386,8 +386,9 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
         flag = 1;
         if (flag == 1) {
             idLanc = "" + TabelaRegistrosMontagemKits.getValueAt(TabelaRegistrosMontagemKits.getSelectedRow(), 0);
-            jCodigoRegistroPesquisa.setText(idLanc);
+//            jCodigoRegistroPesquisa.setText(idLanc);
             idKit = "" + TabelaRegistrosMontagemKits.getValueAt(TabelaRegistrosMontagemKits.getSelectedRow(), 2);
+            jCodigoRegistroPesquisa.setText(idKit);
 //            codigoPesquisaKit = Integer.valueOf(idKit);
             tipoKit = "" + TabelaRegistrosMontagemKits.getValueAt(TabelaRegistrosMontagemKits.getSelectedRow(), 3);
             jComboBoxTipoKit.getSelectedItem().equals(tipoKit);
@@ -536,7 +537,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                         + "INNER JOIN DEPARTAMENTOS ON COLABORADOR.IdDepartamento=DEPARTAMENTOS.IdDepartamento "
                         + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp='" + idLanc + "' ");
                 conecta.rs.first();
-                jIdRegistroComp.setText(String.valueOf(conecta.rs.getInt("IdRegistroComp")));
+                jIdRegistroComp.setText(String.valueOf(conecta.rs.getInt("IdKit")));
                 if (jRBtKitInicialPesquisa.isSelected() == true) {
                     jComboBoxTipoKit.removeAllItems();
                     jComboBoxTipoKit.addItem("Kit Inicial");

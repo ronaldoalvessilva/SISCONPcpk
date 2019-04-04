@@ -7,6 +7,7 @@ package br.com.sisconpcpk.dao;
 
 import br.com.sisconpcpk.modelo.ProdutoInternosKitLote;
 import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.jIdInternoKitBio1;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdRegistroComp;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class ControlePesquisaKitInternoManual {
     ProdutoInternosKitLote objProdKit = new ProdutoInternosKitLote();
     int codInt;
     String utilizado = "Sim";
+    int quant = 0;
 
     public ProdutoInternosKitLote alterarKitInicial(ProdutoInternosKitLote objProdKit) {
 
@@ -47,7 +49,7 @@ public class ControlePesquisaKitInternoManual {
 
         conecta.abrirConexao();
         try {
-            PreparedStatement pst = conecta.con.prepareStatement("UPDATE KITS_KITS_DECENDIAL_INTERNOS SET KitPago=?,DataPagto=? "
+            PreparedStatement pst = conecta.con.prepareStatement("UPDATE KITS_DECENDIAL_INTERNOS SET KitPago=?,DataPagto=? "
                     + "WHERE IdInternoCrc='" + objProdKit.getIdInternoCrc() + "' "
                     + "AND Utilizado='" + utilizado + "'");
             pst.setString(1, objProdKit.getPago());
@@ -65,6 +67,23 @@ public class ControlePesquisaKitInternoManual {
         conecta.abrirConexao();
         try {
             PreparedStatement pst = conecta.con.prepareStatement("UPDATE KITS_QUINZENAL_INTERNOS SET KitPago=?,DataPagto=? "
+                    + "WHERE IdInternoCrc='" + objProdKit.getIdInternoCrc() + "' "
+                    + "AND Utilizado='" + utilizado + "'");
+            pst.setString(1, objProdKit.getPago());
+            pst.setTimestamp(2, new java.sql.Timestamp(objProdKit.getDataPagto().getTime()));
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não Foi possivel INSERIR os Dados do INTERNO.\n\nERRO: " + ex);
+        }
+        conecta.desconecta();
+        return objProdKit;
+    }
+
+    public ProdutoInternosKitLote alterarKitMensal(ProdutoInternosKitLote objProdKit) {
+
+        conecta.abrirConexao();
+        try {
+            PreparedStatement pst = conecta.con.prepareStatement("UPDATE KITS_MENSAL_INTERNOS SET KitPago=?,DataPagto=? "
                     + "WHERE IdInternoCrc='" + objProdKit.getIdInternoCrc() + "' "
                     + "AND Utilizado='" + utilizado + "'");
             pst.setString(1, objProdKit.getPago());
@@ -115,19 +134,20 @@ public class ControlePesquisaKitInternoManual {
         conecta.abrirConexao();
         List<ProdutoInternosKitLote> listaInternosPavilhaoSelecionados = new ArrayList<ProdutoInternosKitLote>();
         try {
-            conecta.executaSQL("SELECT * FROM COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE  "
+           conecta.executaSQL("SELECT DISTINCT ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd,PRODUTOS_AC.DescricaoProd,PRODUTOS_AC.UnidadeProd,PRODUTOS_KITS_HIGIENE_INTERNO.QuantItem,ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd FROM ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
+                    + "INNER JOIN PRODUTOS_AC "
+                    + "ON ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd=PRODUTOS_AC.IdProd "
+                    + "INNER JOIN ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
+                    + "ON ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
+                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                    + "ON ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "INNER JOIN KITS_HIGIENE_INTERNO "
                     + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdKit=KITS_HIGIENE_INTERNO.IdKit "
                     + "INNER JOIN PRODUTOS_KITS_HIGIENE_INTERNO "
-                    + "ON KITS_HIGIENE_INTERNO.IdKit=PRODUTOS_KITS_HIGIENE_INTERNO.IdKit "
-                    + "INNER JOIN ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
-                    + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp=ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
-                    + "INNER JOIN PRODUTOS_AC "
-                    + "ON PRODUTOS_KITS_HIGIENE_INTERNO.IdProd=PRODUTOS_AC.IdProd "
-                    + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
-                    + "ON PRODUTOS_AC.IdProd=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd "
-                    + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
-                    + "AND QuantProd>0");
+                    + "ON PRODUTOS_AC.IdProd=PRODUTOS_KITS_HIGIENE_INTERNO.IdProd "
+                    + "WHERE IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
+                    + "AND KITS_HIGIENE_INTERNO.IdKit='" + jIdRegistroComp.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "'");   
             while (conecta.rs.next()) {
                 ProdutoInternosKitLote pDigiProd = new ProdutoInternosKitLote();
                 pDigiProd.setIdProd(conecta.rs.getInt("IdProd"));
