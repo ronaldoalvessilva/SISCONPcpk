@@ -7,7 +7,6 @@ package br.com.sisconpcpk.dao;
 
 import br.com.sisconpcpk.modelo.ProdutoInternosKitLote;
 import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.jIdInternoKitBio1;
-import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdRegistroComp;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdKit;
 
 /**
  *
@@ -146,7 +146,7 @@ public class ControlePesquisaKitInternoManual {
                     + "INNER JOIN PRODUTOS_KITS_HIGIENE_INTERNO "
                     + "ON PRODUTOS_AC.IdProd=PRODUTOS_KITS_HIGIENE_INTERNO.IdProd "
                     + "WHERE IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
-                    + "AND KITS_HIGIENE_INTERNO.IdKit='" + jIdRegistroComp.getText() + "' "
+                    + "AND KITS_HIGIENE_INTERNO.IdKit='" + jIdKit.getText() + "' "
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "'");   
             while (conecta.rs.next()) {
                 ProdutoInternosKitLote pDigiProd = new ProdutoInternosKitLote();

@@ -25,7 +25,6 @@ import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.codItem;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jComboBoxPavilhao;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jComboBoxTipoKit;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdLanc;
-import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdRegistroComp;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jTabelaInternos;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jTabelaProdutosKitInterno;
 import com.sun.jna.Memory;
@@ -49,6 +48,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdKit;
 
 /**
  *
@@ -108,6 +108,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     int pRegistroComp = 0;
     //
     int ZERO = 0;
+    String utilizado = "Sim";
 
     /**
      * Creates new form TelaBiometriaKitInterno
@@ -1409,8 +1410,8 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON PRONTUARIOSCRC.IdInternoCrc=INTERNOS_PAVILHAO_KIT_LOTE.IdInternoCrc "
                     + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
                     + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
-                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND PRONTUARIOSCRC.NomeInternoCrc='" + jComboBoxPesquisarInterno.getSelectedItem() + "' "
+                    //  + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "WHERE PRONTUARIOSCRC.NomeInternoCrc='" + jComboBoxPesquisarInterno.getSelectedItem() + "' "
                     + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "'");
             conecta.rs.first();
             jIdInternoKitBio1.setText(String.valueOf(conecta.rs.getInt("IdInternoCrc")));
@@ -1447,7 +1448,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "INNER JOIN PRODUTOS_KITS_HIGIENE_INTERNO "
                     + "ON PRODUTOS_AC.IdProd=PRODUTOS_KITS_HIGIENE_INTERNO.IdProd "
                     + "WHERE IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
-                    + "AND KITS_HIGIENE_INTERNO.IdKit='" + jIdRegistroComp.getText() + "' "
+                    + "AND KITS_HIGIENE_INTERNO.IdKit='" + jIdKit.getText() + "' "
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + estoque + "'");
             conecta.rs.first();
             codigoInternoKit = conecta.rs.getString("IdInternoCrc");
@@ -1494,7 +1495,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "INNER JOIN PRODUTOS_KITS_HIGIENE_INTERNO "
                     + "ON PRODUTOS_AC.IdProd=PRODUTOS_KITS_HIGIENE_INTERNO.IdProd "
                     + "WHERE IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
-                    + "AND KITS_HIGIENE_INTERNO.IdKit='" + jIdRegistroComp.getText() + "' "
+                    + "AND KITS_HIGIENE_INTERNO.IdKit='" + jIdKit.getText() + "' "
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + estoque + "'");
             conecta.rs.first();
             codigoInternoKit = conecta.rs.getString("IdInternoCrc");
@@ -1584,9 +1585,10 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "INNER JOIN KITS_INICIAL_INTERNOS "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=KITS_INICIAL_INTERNOS.IdInternoCrc "
-                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
+                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
+                    + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
                     + "AND KITS_INICIAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "AND Utilizado='" + utilizado + "'"
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1608,11 +1610,14 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON KITS_DECENDIAL_INTERNOS.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
-                    + "INNER JOIN CELAS ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
-                    + "INNER JOIN PAVILHAO ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
+                    + "INNER JOIN CELAS "
+                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
+                    + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
                     + "AND KITS_DECENDIAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "AND Utilizado='" + utilizado + "'"
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1634,11 +1639,14 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON KITS_QUINZENAL_INTERNOS.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
-                    + "INNER JOIN CELAS ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
-                    + "INNER JOIN PAVILHAO ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
+                    + "INNER JOIN CELAS "
+                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
                     + "AND KITS_QUINZENAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND Utilizado='" + utilizado + "'"
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1660,11 +1668,14 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON KITS_MENSAL_INTERNOS.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
-                    + "INNER JOIN CELAS ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
-                    + "INNER JOIN PAVILHAO ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
+                    + "INNER JOIN CELAS "
+                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
                     + "AND KITS_MENSAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND Utilizado='" + utilizado + "'"
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1686,11 +1697,14 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON KITS_SEMESTRAL_INTERNOS.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
-                    + "INNER JOIN CELAS ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
-                    + "INNER JOIN PAVILHAO ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
+                    + "INNER JOIN CELAS "
+                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
                     + "AND KITS_SEMESTRAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND Utilizado='" + utilizado + "'"
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1712,11 +1726,14 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON KITS_ANUAL_INTERNOS.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
-                    + "INNER JOIN CELAS ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
-                    + "INNER JOIN PAVILHAO ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
+                    + "INNER JOIN CELAS "
+                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
                     + "AND KITS_ANUAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND Utilizado='" + utilizado + "'"
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1780,7 +1797,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                                         + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
                                         + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
                                         + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
-                                        + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.Idkit='" + jIdRegistroComp.getText() + "' "
+                                        + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.Idkit='" + jIdKit.getText() + "' "
                                         + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd='" + objItensPagtoProd.getIdProd() + "' "
                                         + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + ZERO + "'");
                                 conecta.rs.first();
@@ -1840,7 +1857,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                                         + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
                                         + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
                                         + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
-                                        + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.Idkit='" + jIdRegistroComp.getText() + "' "
+                                        + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.Idkit='" + jIdKit.getText() + "' "
                                         + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd='" + objItensPagtoProd.getIdProd() + "' "
                                         + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + ZERO + "'");
                                 conecta.rs.first();
@@ -1882,14 +1899,14 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                             jTabelaProdutosKit.scrollRectToVisible(rect);
                         } catch (java.lang.ClassCastException e) {
                         }
-                          //RETIRADO POR QUE QUANDO A TABELA SÓ TEM UMA LINHA ESTAVA
-                          //DANDO ERRO. TESTAR COM MAIS DE UMA LINHA.
+                        //RETIRADO POR QUE QUANDO A TABELA SÓ TEM UMA LINHA ESTAVA
+                        //DANDO ERRO. TESTAR COM MAIS DE UMA LINHA.
 //                        jTabelaProdutosKit.setRowSelectionInterval(b, 1);
 //                        jProgressBar1.setValue((b + 1));
-                        if(b == 0){
+                        if (b == 0) {
                             jTabelaProdutosKit.setRowSelectionInterval(b, 0);
                             jProgressBar1.setValue((b + 1));
-                        }else if(b > 0){
+                        } else if (b > 0) {
                             jTabelaProdutosKit.setRowSelectionInterval(b, 1);
                             jProgressBar1.setValue((b + 1));
                         }

@@ -30,11 +30,12 @@ public class PagamentoKitInterno {
     private String dataUp;
     private String horarioUp;
     private int idRegistroComp;   
+    private int idKit;
 
     public PagamentoKitInterno() {
     }
 
-    public PagamentoKitInterno(int idPagto, String statusLanc, Date dataLanc, String responsavel, String horaInicio, String horaTermino, String tipoKit, int idPav, String descricaoPavilhao, String observacao, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp, int idRegistroComp) {
+    public PagamentoKitInterno(int idPagto, String statusLanc, Date dataLanc, String responsavel, String horaInicio, String horaTermino, String tipoKit, int idPav, String descricaoPavilhao, String observacao, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp, int idRegistroComp, int idKit) {
         this.idPagto = idPagto;
         this.statusLanc = statusLanc;
         this.dataLanc = dataLanc;
@@ -52,6 +53,7 @@ public class PagamentoKitInterno {
         this.dataUp = dataUp;
         this.horarioUp = horarioUp;
         this.idRegistroComp = idRegistroComp;
+        this.idKit = idKit;
     }
 
     /**
@@ -290,5 +292,19 @@ public class PagamentoKitInterno {
      */
     public void setIdRegistroComp(int idRegistroComp) {
         this.idRegistroComp = idRegistroComp;
+    }
+
+    /**
+     * @return the idKit
+     */
+    public int getIdKit() {
+        return idKit;
+    }
+
+    /**
+     * @param idKit the idKit to set
+     */
+    public void setIdKit(int idKit) {
+        this.idKit = idKit;
     }
 }

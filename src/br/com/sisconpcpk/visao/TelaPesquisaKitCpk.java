@@ -9,7 +9,6 @@ import br.com.sisconpcpk.controle.ModeloTabela;
 import br.com.sisconpcpk.dao.ConectaBanco;
 import static br.com.sisconpcpk.visao.FormPrincipal.tipoServidor;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jComboBoxTipoKit;
-import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdRegistroComp;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,6 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdKit;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdRegistroComp;
 
 /**
  *
@@ -46,6 +47,8 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
     String idKit;
     String caminhoFoto;
     String tipoKit = "";
+    String pKitPago = "Não";
+    String pStatusComposicao = "FINALIZADO";
 
     /**
      * Creates new form TelaPesquisaKitCpk
@@ -425,7 +428,9 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                     + "INNER JOIN PRODUTOS_KITS_HIGIENE_INTERNO "
                     + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdItem=PRODUTOS_KITS_HIGIENE_INTERNO.IdItem "
                     + "INNER JOIN PRODUTOS_AC "
-                    + "ON PRODUTOS_KITS_HIGIENE_INTERNO.IdProd=PRODUTOS_AC.IdProd");
+                    + "ON PRODUTOS_KITS_HIGIENE_INTERNO.IdProd=PRODUTOS_AC.IdProd "
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + pStatusComposicao + "' "
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + pKitPago + "'");
         } else {
             limparTabela();
             jtotalRegistros.setText("");
@@ -449,7 +454,8 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                     + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdItem=PRODUTOS_KITS_HIGIENE_INTERNO.IdItem "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON PRODUTOS_KITS_HIGIENE_INTERNO.IdProd=PRODUTOS_AC.IdProd "
-                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp='" + jCodigoRegistroPesquisa.getText() + "'");
+                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp='" + jCodigoRegistroPesquisa.getText() + "' "
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + pStatusComposicao + "'");
         }
     }//GEN-LAST:event_jBtPesquisaCodigoActionPerformed
 
@@ -533,11 +539,14 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                 conecta.executaSQL("SELECT * FROM COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
                         + "INNER JOIN COLABORADOR "
                         + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdFunc=COLABORADOR.IdFunc "
-                        + "INNER JOIN KITS_HIGIENE_INTERNO ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdKit=KITS_HIGIENE_INTERNO.IdKit "
-                        + "INNER JOIN DEPARTAMENTOS ON COLABORADOR.IdDepartamento=DEPARTAMENTOS.IdDepartamento "
-                        + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp='" + idLanc + "' ");
+                        + "INNER JOIN KITS_HIGIENE_INTERNO "
+                        + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdKit=KITS_HIGIENE_INTERNO.IdKit "
+                        + "INNER JOIN DEPARTAMENTOS "
+                        + "ON COLABORADOR.IdDepartamento=DEPARTAMENTOS.IdDepartamento "
+                        + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdKit='" + jCodigoRegistroPesquisa.getText() + "' ");
                 conecta.rs.first();
-                jIdRegistroComp.setText(String.valueOf(conecta.rs.getInt("IdKit")));
+                jIdKit.setText(String.valueOf(conecta.rs.getInt("IdKit")));
+                jIdRegistroComp.setText(String.valueOf(conecta.rs.getInt("IdRegistroComp")));
                 if (jRBtKitInicialPesquisa.isSelected() == true) {
                     jComboBoxTipoKit.removeAllItems();
                     jComboBoxTipoKit.addItem("Kit Inicial");
