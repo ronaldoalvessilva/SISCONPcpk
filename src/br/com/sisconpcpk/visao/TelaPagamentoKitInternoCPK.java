@@ -2245,6 +2245,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             }
             objComp.setKitPago(pRespostaKit);
             controlPagoKit.confirmarPagamentoKit(objComp);
+            //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+            objComp.setIdKit(Integer.valueOf(jIdKit.getText()));
+            objComp.setKitPago("Sim");
+            controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
             //
             objLog();
             controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
