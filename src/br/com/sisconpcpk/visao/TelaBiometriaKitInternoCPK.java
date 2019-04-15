@@ -1606,18 +1606,15 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             conecta.executaSQL("SELECT * FROM KITS_DECENDIAL_INTERNOS "
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON KITS_DECENDIAL_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
-                    + "ON KITS_DECENDIAL_INTERNOS.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
                     + "INNER JOIN CELAS "
                     + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
                     + "INNER JOIN PAVILHAO "
                     + "ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
-                    + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
                     + "AND KITS_DECENDIAL_INTERNOS.KitPago='" + pKitPago + "' "
-                    + "AND Utilizado='" + utilizado + "'"
+                    + "AND KITS_DECENDIAL_INTERNOS.Utilizado='" + utilizado + "'"
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1635,18 +1632,15 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             conecta.executaSQL("SELECT * FROM KITS_QUINZENAL_INTERNOS "
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON KITS_QUINZENAL_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
-                    + "ON KITS_QUINZENAL_INTERNOS.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
                     + "INNER JOIN CELAS "
                     + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
                     + "INNER JOIN PAVILHAO "
                     + "ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
-                    + "AND KITS_QUINZENAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "WHERE KITS_QUINZENAL_INTERNOS.KitPago='" + pKitPago + "' "
                     + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND Utilizado='" + utilizado + "'"
+                    + "AND KITS_QUINZENAL_INTERNOS.Utilizado='" + utilizado + "'"
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1664,18 +1658,15 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             conecta.executaSQL("SELECT * FROM KITS_MENSAL_INTERNOS "
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON KITS_MENSAL_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
-                    + "ON KITS_MENSAL_INTERNOS.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
                     + "INNER JOIN CELAS "
                     + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
                     + "INNER JOIN PAVILHAO "
                     + "ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
-                    + "AND KITS_MENSAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "WHERE KITS_MENSAL_INTERNOS.KitPago='" + pKitPago + "' "
                     + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND Utilizado='" + utilizado + "'"
+                    + "AND KITS_MENSAL_INTERNOS.Utilizado='" + utilizado + "'"
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1692,19 +1683,16 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         try {
             conecta.executaSQL("SELECT * FROM KITS_SEMESTRAL_INTERNOS "
                     + "INNER JOIN PRONTUARIOSCRC "
-                    + "ON KITS_MENSAL_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
-                    + "ON KITS_SEMESTRAL_INTERNOS.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
+                    + "ON KITS_MENSAL_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "                    
                     + "INNER JOIN ITENSLOCACAOINTERNO "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
                     + "INNER JOIN CELAS "
                     + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
                     + "INNER JOIN PAVILHAO "
                     + "ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
-                    + "AND KITS_SEMESTRAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "WHERE KITS_SEMESTRAL_INTERNOS.KitPago='" + pKitPago + "' "
                     + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND Utilizado='" + utilizado + "'"
+                    + "AND KITS_SEMESTRAL_INTERNOS.Utilizado='" + utilizado + "'"
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1722,18 +1710,15 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             conecta.executaSQL("SELECT * FROM KITS_ANUAL_INTERNOS "
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON KITS_ANUAL_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
-                    + "ON KITS_ANUAL_INTERNOS.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
                     + "INNER JOIN CELAS "
                     + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
                     + "INNER JOIN PAVILHAO "
                     + "ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
-                    + "AND KITS_ANUAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "WHERE KITS_ANUAL_INTERNOS.KitPago='" + pKitPago + "' "
                     + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND Utilizado='" + utilizado + "'"
+                    + "AND KITS_ANUAL_INTERNOS.Utilizado='" + utilizado + "'"
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
