@@ -49,7 +49,6 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
     String tipoKit = "";
     String pKitPago = "Não";
     String pStatusComposicao = "FINALIZADO";
-    String NULL = null;
 
     /**
      * Creates new form TelaPesquisaKitCpk
@@ -431,7 +430,8 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                     + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdItem=PRODUTOS_KITS_HIGIENE_INTERNO.IdItem "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON PRODUTOS_KITS_HIGIENE_INTERNO.IdProd=PRODUTOS_AC.IdProd "
-                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + pStatusComposicao + "'");                  
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + pStatusComposicao + "' "
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.KitPago='" + pKitPago + "'");
         } else {
             limparTabela();
             jtotalRegistros.setText("");
@@ -456,7 +456,8 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON PRODUTOS_KITS_HIGIENE_INTERNO.IdProd=PRODUTOS_AC.IdProd "
                     + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp='" + jCodigoRegistroPesquisa.getText() + "' "
-                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + pStatusComposicao + "'");
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + pStatusComposicao + "' "
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.KitPago='" + pKitPago + "'");
         }
     }//GEN-LAST:event_jBtPesquisaCodigoActionPerformed
 
@@ -493,7 +494,8 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                                 + "INNER JOIN PRODUTOS_AC "
                                 + "ON PRODUTOS_KITS_HIGIENE_INTERNO.IdProd=PRODUTOS_AC.IdProd "
                                 + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.DataComp BETWEEN'" + dataInicial + "' "
-                                + "AND '" + dataFinal + "'");
+                                + "AND '" + dataFinal + "' "
+                                + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.KitPago='" + pKitPago + "'");
                     }
                 }
             }
@@ -524,7 +526,8 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                                 + "INNER JOIN PRODUTOS_AC "
                                 + "ON PRODUTOS_KITS_HIGIENE_INTERNO.IdProd=PRODUTOS_AC.IdProd "
                                 + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.DataComp BETWEEN'" + dataInicial + "' "
-                                + "AND '" + dataFinal + "'");
+                                + "AND '" + dataFinal + "' "
+                                + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.KitPago='" + pKitPago + "'");
                     }
                 }
             }
