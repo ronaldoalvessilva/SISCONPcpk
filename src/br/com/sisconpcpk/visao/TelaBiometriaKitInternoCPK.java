@@ -1614,7 +1614,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON CELAS.IdPav=PAVILHAO.IdPav "
                     + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
                     + "AND KITS_DECENDIAL_INTERNOS.KitPago='" + pKitPago + "' "
-                    + "AND KITS_DECENDIAL_INTERNOS.Utilizado='" + utilizado + "'"
+                    + "AND KITS_DECENDIAL_INTERNOS.Utilizado='" + utilizado + "' "
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1638,9 +1638,9 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
                     + "INNER JOIN PAVILHAO "
                     + "ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE KITS_QUINZENAL_INTERNOS.KitPago='" + pKitPago + "' "
-                    + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND KITS_QUINZENAL_INTERNOS.Utilizado='" + utilizado + "'"
+                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND KITS_QUINZENAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "AND KITS_QUINZENAL_INTERNOS.Utilizado='" + utilizado + "' "
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1664,9 +1664,9 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
                     + "INNER JOIN PAVILHAO "
                     + "ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE KITS_MENSAL_INTERNOS.KitPago='" + pKitPago + "' "
-                    + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND KITS_MENSAL_INTERNOS.Utilizado='" + utilizado + "'"
+                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND KITS_MENSAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "AND KITS_MENSAL_INTERNOS.Utilizado='" + utilizado + "' "
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1683,16 +1683,16 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         try {
             conecta.executaSQL("SELECT * FROM KITS_SEMESTRAL_INTERNOS "
                     + "INNER JOIN PRONTUARIOSCRC "
-                    + "ON KITS_MENSAL_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                    + "ON KITS_SEMESTRAL_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
                     + "INNER JOIN CELAS "
                     + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
                     + "INNER JOIN PAVILHAO "
                     + "ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE KITS_SEMESTRAL_INTERNOS.KitPago='" + pKitPago + "' "
-                    + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND KITS_SEMESTRAL_INTERNOS.Utilizado='" + utilizado + "'"
+                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND KITS_SEMESTRAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "AND KITS_SEMESTRAL_INTERNOS.Utilizado='" + utilizado + "' "
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1716,9 +1716,9 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
                     + "INNER JOIN PAVILHAO "
                     + "ON CELAS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE KITS_ANUAL_INTERNOS.KitPago='" + pKitPago + "' "
-                    + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND KITS_ANUAL_INTERNOS.Utilizado='" + utilizado + "'"
+                    + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
+                    + "AND KITS_ANUAL_INTERNOS.KitPago='" + pKitPago + "' "
+                    + "AND KITS_ANUAL_INTERNOS.Utilizado='" + utilizado + "' "
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
