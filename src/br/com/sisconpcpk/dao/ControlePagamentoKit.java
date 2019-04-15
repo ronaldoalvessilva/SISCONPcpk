@@ -33,4 +33,20 @@ public class ControlePagamentoKit {
         conecta.desconecta();
         return objComp;
     }
+    
+    public ComposicaoKit confirmarPagamentoKitProgramacao(ComposicaoKit objComp) {
+
+        conecta.abrirConexao();
+        try {
+            PreparedStatement pst = conecta.con.prepareStatement("UPDATE PROGRAMACAO_PAGAMENTO_KITS_INTERNOS SET KitPago=?,DataPagamento=? "
+                    + "WHERE IdKit='" + objComp.getIdKit() + "'");
+            pst.setString(1, objComp.getKitPago());
+            pst.setTimestamp(2, new java.sql.Timestamp(objComp.getDataPagamentoKit().getTime()));
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não Foi possivel FINALIZAR registro.\nERRO: " + ex);
+        }
+        conecta.desconecta();
+        return objComp;
+    }
 }
