@@ -49,6 +49,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
     String tipoKit = "";
     String pKitPago = "Não";
     String pStatusComposicao = "FINALIZADO";
+    String NULL = null;
 
     /**
      * Creates new form TelaPesquisaKitCpk
@@ -414,6 +415,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
 
     private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
         // TODO add your handling code here:
+        String pKitPago = "Não";
         count = 0;
         count1 = 0;
         flag = 1;
@@ -429,7 +431,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                     + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdItem=PRODUTOS_KITS_HIGIENE_INTERNO.IdItem "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON PRODUTOS_KITS_HIGIENE_INTERNO.IdProd=PRODUTOS_AC.IdProd "
-                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + pStatusComposicao + "'");                   
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + pStatusComposicao + "'");                  
         } else {
             limparTabela();
             jtotalRegistros.setText("");
