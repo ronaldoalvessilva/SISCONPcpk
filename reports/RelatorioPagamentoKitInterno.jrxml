@@ -98,7 +98,10 @@
 	<title>
 		<band height="167" splitType="Stretch">
 			<rectangle>
-				<reportElement x="11" y="0" width="541" height="166" uuid="c3ac229d-95e9-4b1f-b5fc-2f350e92c758"/>
+				<reportElement x="11" y="77" width="541" height="90" uuid="c0d6d53b-e1bb-4357-bb05-12e398c2f029"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="11" y="0" width="541" height="77" uuid="c3ac229d-95e9-4b1f-b5fc-2f350e92c758"/>
 			</rectangle>
 			<textField>
 				<reportElement style="SubTitle" x="184" y="30" width="55" height="17" forecolor="#000000" uuid="dea70c58-24d7-4ce7-a08e-b4ec3d530576"/>
@@ -119,7 +122,7 @@
 			<staticText>
 				<reportElement style="Column header" x="87" y="62" width="92" height="15" forecolor="#000000" uuid="32e0bb37-9f7a-4ac5-b8a7-14b6f81b1617"/>
 				<textElement textAlignment="Right"/>
-				<text><![CDATA[Responsável:]]></text>
+				<text><![CDATA[Colaborador:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement style="Detail" x="181" y="62" width="331" height="15" uuid="22b1533f-08e1-4a1c-8607-596ad77b2eec"/>
