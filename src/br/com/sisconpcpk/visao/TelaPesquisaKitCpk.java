@@ -8,6 +8,7 @@ package br.com.sisconpcpk.visao;
 import br.com.sisconpcpk.controle.ModeloTabela;
 import br.com.sisconpcpk.dao.ConectaBanco;
 import static br.com.sisconpcpk.visao.FormPrincipal.tipoServidor;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jComboBoxPavilhao;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jComboBoxTipoKit;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -430,6 +431,10 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                     + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdItem=PRODUTOS_KITS_HIGIENE_INTERNO.IdItem "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON PRODUTOS_KITS_HIGIENE_INTERNO.IdProd=PRODUTOS_AC.IdProd "
+                    + "INNER JOIN INTERNOS_PAVILHAO_KIT_LOTE "
+                    + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp=INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdPav=PAVILHAO.IdPav "
                     + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + pStatusComposicao + "' "
                     + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.KitPago='" + pKitPago + "'");
         } else {
@@ -547,10 +552,17 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                         + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdKit=KITS_HIGIENE_INTERNO.IdKit "
                         + "INNER JOIN DEPARTAMENTOS "
                         + "ON COLABORADOR.IdDepartamento=DEPARTAMENTOS.IdDepartamento "
+                        
+                        + "INNER JOIN INTERNOS_PAVILHAO_KIT_LOTE "
+                        + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp=INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp "
+                        + "INNER JOIN PAVILHAO "
+                        + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdPav=PAVILHAO.IdPav "
+                        
                         + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdKit='" + jCodigoRegistroPesquisa.getText() + "' ");
                 conecta.rs.first();
                 jIdKit.setText(String.valueOf(conecta.rs.getInt("IdKit")));
                 jIdRegistroComp.setText(String.valueOf(conecta.rs.getInt("IdRegistroComp")));
+                jComboBoxPavilhao.setSelectedItem(conecta.rs.getString("DescricaoPav"));
                 if (jRBtKitInicialPesquisa.isSelected() == true) {
                     jComboBoxTipoKit.removeAllItems();
                     jComboBoxTipoKit.addItem("Kit Inicial");
