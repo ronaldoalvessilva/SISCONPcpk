@@ -512,10 +512,10 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void jBtConfereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtConfereActionPerformed
         // TODO add your handling code here:
-        String grupoAlm = "CONFERE";
+        String grupoAlm = "SEGURANCA";
         String grupoAdm = "ADMINISTRADORES";
         String permissaoGrupoAlm = "Sim";
-        String moduloAlm = "CONFERE";
+        String moduloAlm = "SEGURANCA";
         idGrupo = 0;
         nomeGrupo = "";
         idModulo = 0;
@@ -649,10 +649,10 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void jBtPagamentoKitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPagamentoKitActionPerformed
         // TODO add your handling code here:
-        String grupoSeg = "PAGAMENTO KIT TABLET";
+        String grupoSeg = "SEGURANCA";
         String grupoAdm = "ADMINISTRADORES";
         String permissaoGrupoSeg = "Sim";
-        String moduloSeg = "PAGAMENTO KIT TABLET";
+        String moduloSeg = "SEGURANCA";
         idGrupo = 0;
         nomeGrupo = "";
         idModulo = 0;

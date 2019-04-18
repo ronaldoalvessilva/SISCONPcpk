@@ -15,7 +15,11 @@ import br.com.sisconpcpk.modelo.ComposicaoKit;
 import br.com.sisconpcpk.modelo.ItensPagamentoKitInterno;
 import br.com.sisconpcpk.modelo.LogSistema;
 import br.com.sisconpcpk.modelo.PagamentoKitInterno;
+import static br.com.sisconpcpk.visao.FormPrincipal.codigoUserGroupB1;
+import static br.com.sisconpcpk.visao.FormPrincipal.codigoGrupoB1;
 import static br.com.sisconpcpk.visao.FormPrincipal.codAbrirTRI;
+import static br.com.sisconpcpk.visao.FormPrincipal.codAbrirB1;
+import static br.com.sisconpcpk.visao.FormPrincipal.codConsultarB1;
 import static br.com.sisconpcpk.visao.FormPrincipal.codAlterarB1;
 import static br.com.sisconpcpk.visao.FormPrincipal.codAlterarB2;
 import static br.com.sisconpcpk.visao.FormPrincipal.codAlterarTRI;
@@ -70,7 +74,6 @@ import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
-import org.exolab.castor.types.Date;
 
 /**
  *
@@ -1349,6 +1352,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     private void jBtNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtNovoActionPerformed
         // TODO add your handling code here:
+        buscarAcessoUsuario(telaEntregaMaterialUsoTRI);
+        buscarAcessoUsuario(telaEntregaMaterialUsoB1);
+        buscarAcessoUsuario(telaEntregaMaterialUsoB2);
         if (codigoUserTRI == codUserAcessoTRI && nomeTelaTRI.equals(telaEntregaMaterialUsoTRI) && codIncluirTRI == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoTRI.equals("ADMINISTRADORES")) {
             limparCamposManutencao();
             bloquearCampos();
@@ -1392,6 +1398,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     private void jBtAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAlterarActionPerformed
         // TODO add your handling code here:
+        buscarAcessoUsuario(telaEntregaMaterialUsoTRI);
+        buscarAcessoUsuario(telaEntregaMaterialUsoB1);
+        buscarAcessoUsuario(telaEntregaMaterialUsoB2);
         if (codigoUserTRI == codUserAcessoTRI && nomeTelaTRI.equals(telaEntregaMaterialUsoTRI) && codAlterarTRI == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoTRI.equals("ADMINISTRADORES")) {
             Integer rows = jTabelaInternos.getModel().getRowCount();
             objPag.setStatusLanc(jStatusLanc.getText());
@@ -1489,6 +1498,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     private void jBtExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtExcluirActionPerformed
         // TODO add your handling code here:
+        buscarAcessoUsuario(telaEntregaMaterialUsoTRI);
+        buscarAcessoUsuario(telaEntregaMaterialUsoB1);
+        buscarAcessoUsuario(telaEntregaMaterialUsoB2);
         if (codigoUserTRI == codUserAcessoTRI && nomeTelaTRI.equals(telaEntregaMaterialUsoTRI) && codExcluirTRI == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoTRI.equals("ADMINISTRADORES")) {
             objPag.setStatusLanc(jStatusLanc.getText());
             if (jStatusLanc.getText().equals("FINALIZADO")) {
@@ -1523,6 +1535,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     private void jBtSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtSalvarActionPerformed
         // TODO add your handling code here:
+        buscarAcessoUsuario(telaEntregaMaterialUsoTRI);
+        buscarAcessoUsuario(telaEntregaMaterialUsoB1);
+        buscarAcessoUsuario(telaEntregaMaterialUsoB2);
         if (codigoUserTRI == codUserAcessoTRI && nomeTelaTRI.equals(telaEntregaMaterialUsoTRI) && codGravarTRI == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoTRI.equals("ADMINISTRADORES")) {
             if (jDataLanc.getDate() == null) {
                 JOptionPane.showMessageDialog(rootPane, "É necessário informar a data do lançamento.");
@@ -1876,6 +1891,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     private void jBtBiometriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtBiometriaActionPerformed
         // TODO add your handling code here:
+        buscarAcessoUsuario(telaEntregaMaterialUsoTRI);
+        buscarAcessoUsuario(telaEntregaMaterialUsoB1);
+        buscarAcessoUsuario(telaEntregaMaterialUsoB2);
         if (nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoTRI.equals("ADMINISTRADORES") || codigoUserTRI == codUserAcessoTRI && nomeTelaTRI.equals(telaEntregaMaterialUsoInternosBioTRI) && codAbrirTRI == 1) {
             if (jStatusLanc.getText().equals("FINALIZADO")) {
                 JOptionPane.showMessageDialog(rootPane, "Não é possível utilizar essa função, registro finalizado.");
@@ -2676,5 +2694,43 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         objLogSys.setIdLancMov(Integer.valueOf(jIdLanc.getText()));
         objLogSys.setNomeUsuarioLogado(nameUser);
         objLogSys.setStatusMov(statusMov);
+    }
+
+    public void buscarAcessoUsuario(String nomeTelaAcesso) {
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL("SELECT * FROM USUARIOS "
+                    + "WHERE NomeUsuario='" + nameUser + "'");
+            conecta.rs.first();
+            codigoUserB1 = conecta.rs.getInt("IdUsuario");
+        } catch (Exception e) {
+        }
+        try {
+            conecta.executaSQL("SELECT * FROM USUARIOS_GRUPOS "
+                    + "INNER JOIN GRUPOUSUARIOS "
+                    + "ON USUARIOS_GRUPOS.IdGrupo=GRUPOUSUARIOS.IdGrupo "
+                    + "WHERE IdUsuario='" + codigoUserB1 + "'");
+            conecta.rs.first();
+            codigoUserGroupB1 = conecta.rs.getInt("IdUsuario");
+            codigoGrupoB1 = conecta.rs.getInt("IdGrupo");
+            nomeGrupoB1 = conecta.rs.getString("NomeGrupo");
+        } catch (Exception e) {
+        }
+        try {
+            conecta.executaSQL("SELECT * FROM TELAS_ACESSO "
+                    + "WHERE IdUsuario='" + codigoUserB1 + "' "
+                    + "AND NomeTela='" + nomeTelaAcesso + "'");
+            conecta.rs.first();
+            codUserAcessoB1 = conecta.rs.getInt("IdUsuario");
+            codAbrirB1 = conecta.rs.getInt("Abrir");
+            codIncluirB1 = conecta.rs.getInt("Incluir");
+            codAlterarB1 = conecta.rs.getInt("Alterar");
+            codExcluirB1 = conecta.rs.getInt("Excluir");
+            codGravarB1 = conecta.rs.getInt("Gravar");
+            codConsultarB1 = conecta.rs.getInt("Consultar");
+            nomeTelaB1 = conecta.rs.getString("NomeTela");
+        } catch (Exception e) {
+        }
+        conecta.desconecta();
     }
 }
