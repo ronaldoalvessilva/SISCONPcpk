@@ -53,6 +53,7 @@ import static br.com.sisconpcpk.visao.FormPrincipal.telaEntregaMaterialUsoIntern
 import static br.com.sisconpcpk.visao.FormPrincipal.telaEntregaMaterialUsoInternosBioB2;
 import static br.com.sisconpcpk.visao.FormPrincipal.telaEntregaMaterialUsoInternosBioTRI;
 import static br.com.sisconpcpk.visao.FormPrincipal.telaEntregaMaterialUsoTRI;
+import static br.com.sisconpcpk.visao.FormPrincipal.tipoServidor;
 import static br.com.sisconpcpk.visao.TelaLoginSenhaCPK.descricaoUnidade;
 import java.awt.Color;
 import java.awt.Image;
@@ -61,6 +62,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -126,10 +128,12 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     String codigoKit;
     public static int codItem;
     String pRespostaKit = "Sim";
+    java.sql.Date data;
     /**
      * Creates new form TelaPagamentoKitInterno
      */
     public static TelaBiometriaKitInternoCPK telaBiometriaKit;
+    public static TelaAjudaAcesso telaHelp;
 
     public TelaPagamentoKitInternoCPK() {
         initComponents();
@@ -142,6 +146,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         telaBiometriaKit.setVisible(true);
     }
 
+    public void mostrarAjuda(){
+        telaHelp = new TelaAjudaAcesso(this, true);
+        telaHelp.setVisible(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -239,6 +247,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jPanel7 = new javax.swing.JPanel();
         jBtAuditoria = new javax.swing.JButton();
         jBtAuditoriaItens = new javax.swing.JButton();
+        jBtAjudaAcesso = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -1180,16 +1189,27 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             }
         });
 
+        jBtAjudaAcesso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/Ajuda.png"))); // NOI18N
+        jBtAjudaAcesso.setToolTipText("Ajuda");
+        jBtAjudaAcesso.setContentAreaFilled(false);
+        jBtAjudaAcesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtAjudaAcessoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addContainerGap()
                 .addComponent(jBtAuditoria, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtAuditoriaItens, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtAjudaAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         jPanel7Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtAuditoria, jBtAuditoriaItens});
@@ -1198,9 +1218,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtAuditoria)
-                    .addComponent(jBtAuditoriaItens))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtAuditoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtAuditoriaItens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtAjudaAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1255,7 +1276,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     SimpleDateFormat formatoAmerica = new SimpleDateFormat("dd/MM/yyyy");
                     dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
                     dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
-                    preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS WHERE DataLanc BETWEEN'" + dataInicial + "'AND'" + dataFinal + "'");
+                    preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                            + "WHERE DataLanc BETWEEN'" + dataInicial + "'AND'" + dataFinal + "'");
                 }
             }
         }
@@ -1555,8 +1577,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 objPag.setResponsavel(jResponsavel.getText());
                 objPag.setHoraInicio(jHorarioInicial.getText());
                 objPag.setHoraTermino(jHorarioTermino.getText());
+                
                 objPag.setIdRegistroComp(Integer.valueOf(jIdRegistroComp.getText()));
                 objPag.setIdKit(Integer.valueOf(jIdKit.getText()));
+                
                 objPag.setTipoKit((String) jComboBoxTipoKit.getSelectedItem());
                 objPag.setDescricaoPavilhao((String) jComboBoxPavilhao.getSelectedItem());
                 objPag.setObservacao(jObservacao.getText());
@@ -1600,6 +1624,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 objPag.setResponsavel(jResponsavel.getText());
                 objPag.setHoraInicio(jHorarioInicial.getText());
                 objPag.setHoraTermino(jHorarioTermino.getText());
+                objPag.setIdRegistroComp(Integer.valueOf(jIdRegistroComp.getText()));
+                objPag.setIdKit(Integer.valueOf(jIdKit.getText()));
                 objPag.setTipoKit((String) jComboBoxTipoKit.getSelectedItem());
                 objPag.setDescricaoPavilhao((String) jComboBoxPavilhao.getSelectedItem());
                 objPag.setObservacao(jObservacao.getText());
@@ -1643,6 +1669,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 objPag.setResponsavel(jResponsavel.getText());
                 objPag.setHoraInicio(jHorarioInicial.getText());
                 objPag.setHoraTermino(jHorarioTermino.getText());
+                objPag.setIdRegistroComp(Integer.valueOf(jIdRegistroComp.getText()));
+                objPag.setIdKit(Integer.valueOf(jIdKit.getText()));
                 objPag.setTipoKit((String) jComboBoxTipoKit.getSelectedItem());
                 objPag.setDescricaoPavilhao((String) jComboBoxPavilhao.getSelectedItem());
                 objPag.setObservacao(jObservacao.getText());
@@ -1891,9 +1919,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     private void jBtBiometriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtBiometriaActionPerformed
         // TODO add your handling code here:
-        buscarAcessoUsuario(telaEntregaMaterialUsoTRI);
-        buscarAcessoUsuario(telaEntregaMaterialUsoB1);
-        buscarAcessoUsuario(telaEntregaMaterialUsoB2);
+        buscarAcessoUsuario(telaEntregaMaterialUsoInternosBioTRI);
+        buscarAcessoUsuario(telaEntregaMaterialUsoInternosBioB1);
+        buscarAcessoUsuario(telaEntregaMaterialUsoInternosBioB2);
         if (nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoTRI.equals("ADMINISTRADORES") || codigoUserTRI == codUserAcessoTRI && nomeTelaTRI.equals(telaEntregaMaterialUsoInternosBioTRI) && codAbrirTRI == 1) {
             if (jStatusLanc.getText().equals("FINALIZADO")) {
                 JOptionPane.showMessageDialog(rootPane, "Não é possível utilizar essa função, registro finalizado.");
@@ -1969,8 +1997,14 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         objPesqKit.show();
     }//GEN-LAST:event_jBtPesquisarKitActionPerformed
 
+    private void jBtAjudaAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAjudaAcessoActionPerformed
+        // TODO add your handling code here:
+        mostrarAjuda();
+    }//GEN-LAST:event_jBtAjudaAcessoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtAjudaAcesso;
     private javax.swing.JButton jBtAlterar;
     private javax.swing.JButton jBtAlterarInterno;
     private javax.swing.JButton jBtAuditoria;
@@ -2252,41 +2286,84 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             objPag.setIdPagto(Integer.parseInt(jIdLanc.getText()));
             control.finalizarPagamentoKit(objPag);
             jStatusLanc.setText("FINALIZADO");
-            //INFORMAR QUE O KIT FOI PAGO.
-            objComp.setIdRegistroComp(Integer.valueOf(jIdRegistroComp.getText()));
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                java.sql.Date data = new java.sql.Date(format.parse(jDataSistema.getText()).getTime());
-                objComp.setDataPagamentoKit(data);
-            } catch (ParseException ex) {
-                Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
+            if (tipoServidor == null || tipoServidor.equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "É necessário definir o parâmtero para o sistema operacional utilizado no servidor, (UBUNTU-LINUX ou WINDOWS SERVER).");
+            } else if (tipoServidor.equals("Servidor Linux (Ubuntu)/MS-SQL Server")) {
+                SimpleDateFormat formatoAmerica = new SimpleDateFormat("yyyy/MM/dd");
+                String dataConvert = formatoAmerica.format(jDataLanc.getDate().getTime());
+//                JOptionPane.showMessageDialog(rootPane, "Data do sistema Convertida: " + dataConvert);
+                try {
+                    java.sql.Date data = new java.sql.Date(formatoAmerica.parse(dataConvert).getTime());
+                    objComp.setDataPagamentoKit(data);
+//                    JOptionPane.showMessageDialog(rootPane, "Data do sistema Convertida: " + data);
+                } catch (ParseException ex) {
+                    Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //INFORMAR QUE O KIT FOI PAGO.
+                objComp.setIdRegistroComp(Integer.valueOf(jIdRegistroComp.getText()));
+                objComp.setKitPago(pRespostaKit);
+                controlPagoKit.confirmarPagamentoKit(objComp);
+                //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                objComp.setIdKit(Integer.valueOf(jIdKit.getText()));
+                objComp.setKitPago("Sim");
+                controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                //
+                objLog();
+                controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                //
+                bloquearBotoes();
+                bloquearCampos();
+                //
+                jBtNovo.setEnabled(true);
+                jBtAlterar.setEnabled(!true);
+                jBtExcluir.setEnabled(!true);
+                jBtSalvar.setEnabled(!true);
+                jBtCancelar.setEnabled(!true);
+                jBtFinalizar.setEnabled(!true);
+                //
+                jBtNovoInterno.setEnabled(!true);
+                jBtAlterarInterno.setEnabled(!true);
+                jBtExcluirInterno.setEnabled(!true);
+                jBtSalvarInterno.setEnabled(!true);
+                jBtCancelarInterno.setEnabled(!true);
+            } else if (tipoServidor.equals("Servidor Windows/MS-SQL Server")) {
+                //INFORMAR QUE O KIT FOI PAGO.
+                objComp.setIdRegistroComp(Integer.valueOf(jIdRegistroComp.getText()));
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    java.sql.Date data = new java.sql.Date(format.parse(jDataSistema.getText()).getTime());
+                    objComp.setDataPagamentoKit(data);
+                } catch (ParseException ex) {
+                    Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                objComp.setKitPago(pRespostaKit);
+                controlPagoKit.confirmarPagamentoKit(objComp);
+                //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                objComp.setIdKit(Integer.valueOf(jIdKit.getText()));
+                objComp.setKitPago("Sim");
+                controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                //
+                objLog();
+                controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                //
+                bloquearBotoes();
+                bloquearCampos();
+                //
+                jBtNovo.setEnabled(true);
+                jBtAlterar.setEnabled(!true);
+                jBtExcluir.setEnabled(!true);
+                jBtSalvar.setEnabled(!true);
+                jBtCancelar.setEnabled(!true);
+                jBtFinalizar.setEnabled(!true);
+                //
+                jBtNovoInterno.setEnabled(!true);
+                jBtAlterarInterno.setEnabled(!true);
+                jBtExcluirInterno.setEnabled(!true);
+                jBtSalvarInterno.setEnabled(!true);
+                jBtCancelarInterno.setEnabled(!true);
             }
-            objComp.setKitPago(pRespostaKit);
-            controlPagoKit.confirmarPagamentoKit(objComp);
-            //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
-            objComp.setIdKit(Integer.valueOf(jIdKit.getText()));
-            objComp.setKitPago("Sim");
-            controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
-            //
-            objLog();
-            controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
-            JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
-            //
-            bloquearBotoes();
-            bloquearCampos();
-            //
-            jBtNovo.setEnabled(true);
-            jBtAlterar.setEnabled(!true);
-            jBtExcluir.setEnabled(!true);
-            jBtSalvar.setEnabled(!true);
-            jBtCancelar.setEnabled(!true);
-            jBtFinalizar.setEnabled(!true);
-            //
-            jBtNovoInterno.setEnabled(!true);
-            jBtAlterarInterno.setEnabled(!true);
-            jBtExcluirInterno.setEnabled(!true);
-            jBtSalvarInterno.setEnabled(!true);
-            jBtCancelarInterno.setEnabled(!true);
         }
     }
 

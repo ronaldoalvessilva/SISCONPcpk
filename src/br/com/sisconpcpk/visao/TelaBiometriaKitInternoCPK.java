@@ -805,6 +805,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                 Salvar();
                 bloquearCampos();
                 gravarDadosBanco();
+              //  limparCamposBiometria();
             }
         }
     }//GEN-LAST:event_jBtSalvarActionPerformed
@@ -1396,8 +1397,6 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         conecta.abrirConexao();
         try {
             conecta.executaSQL("SELECT * FROM  PRONTUARIOSCRC "
-                    + "INNER JOIN BIOMETRIA_INTERNOS "
-                    + "ON PRONTUARIOSCRC.IdInternoCrc=BIOMETRIA_INTERNOS.IdInternoCrc "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
                     + "INNER JOIN DADOSPENAISINTERNOS "
@@ -1902,6 +1901,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     }
                     jProgressBar1.setValue(0);
                     JOptionPane.showMessageDialog(rootPane, "Operação Concluída com sucesso...");
+                    limparCamposBiometria();
                     while (jTabelaProdutosKit.getModel().getRowCount() > 0) {
                         ((DefaultTableModel) jTabelaProdutosKit.getModel()).removeRow(0);
                     }
@@ -1928,6 +1928,22 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             t1.start();
         } catch (Exception e) {
         }
+    }
+
+    public void limparCamposBiometria() {
+        jIdInternoKitBio1.setText("");
+        jNomeInternoKitBio1.setText("");
+        jRegimeKitBio1.setText("");
+        jPavilhaoKitBio1.setText("");
+        jCelaKitBio1.setText("");
+        //
+        jIdInternoKitBio.setText("");
+        jNomeInternoKitBio.setText("");
+        jRegimeKitBio.setText("");
+        jPavilhaoKitBio.setText("");
+        jCelaKitBio.setText("");
+        jDataEntrega1.setDate(null);
+        jHorarioPagto1.setText("");
     }
 
     public void preencherTabelaItensInterno(String sql) {

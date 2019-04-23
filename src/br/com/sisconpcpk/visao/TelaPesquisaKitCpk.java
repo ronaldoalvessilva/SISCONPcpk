@@ -77,14 +77,16 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
         jRBtKitDecendialPesquisa = new javax.swing.JRadioButton();
         jRBtKitSemestraPesquisa = new javax.swing.JRadioButton();
         jRBtKitAnualPesquisa = new javax.swing.JRadioButton();
-        jLabel1 = new javax.swing.JLabel();
-        jCodigoRegistroPesquisa = new javax.swing.JTextField();
-        jBtPesquisaCodigo = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jDataPesqInicial = new com.toedter.calendar.JDateChooser();
         jDataPesFinal = new com.toedter.calendar.JDateChooser();
         jBtPesquisaData = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        RegistroPesquisa = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jCodigoKit = new javax.swing.JTextField();
+        jBtPesquisaCodigo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaRegistrosMontagemKits = new javax.swing.JTable();
         jPanel38 = new javax.swing.JPanel();
@@ -143,20 +145,6 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
         jRBtKitAnualPesquisa.setText("Anual");
         jRBtKitAnualPesquisa.setEnabled(false);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setText("Código:");
-
-        jCodigoRegistroPesquisa.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jCodigoRegistroPesquisa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-        jBtPesquisaCodigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/Lupas_1338_05.gif"))); // NOI18N
-        jBtPesquisaCodigo.setContentAreaFilled(false);
-        jBtPesquisaCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtPesquisaCodigoActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Data Inicial:");
 
@@ -175,6 +163,26 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setText("Registro:");
+
+        RegistroPesquisa.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        RegistroPesquisa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setText("ID Kit:");
+
+        jCodigoKit.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jCodigoKit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        jBtPesquisaCodigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/Lupas_1338_05.gif"))); // NOI18N
+        jBtPesquisaCodigo.setContentAreaFilled(false);
+        jBtPesquisaCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtPesquisaCodigoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -183,12 +191,16 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRBtKitInicialPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRBtKitInicialPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(4, 4, 4)
+                        .addComponent(RegistroPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jRBtKitDecendialPesquisa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRBtKitQuinzenalPesquisa)
@@ -199,49 +211,51 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jRBtKitAnualPesquisa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCheckBox1)
-                        .addGap(25, 25, 25))
+                        .addComponent(jCheckBox1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCodigoRegistroPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtPesquisaCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCodigoKit, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtPesquisaCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDataPesqInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDataPesFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtPesquisaData, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))))
+                        .addComponent(jBtPesquisaData, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel5)
+                    .addComponent(RegistroPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jCodigoKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtPesquisaCodigo)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jCodigoRegistroPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(jLabel2)
-                        .addComponent(jDataPesqInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)
-                        .addComponent(jDataPesFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBtPesquisaData)))
+                    .addComponent(jLabel2)
+                    .addComponent(jDataPesqInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jDataPesFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtPesquisaData))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jRBtKitAnualPesquisa)
-                    .addComponent(jRBtKitSemestraPesquisa)
-                    .addComponent(jRBtKitMensalPesquisa)
-                    .addComponent(jRBtKitQuinzenalPesquisa)
-                    .addComponent(jRBtKitDecendialPesquisa)
+                    .addComponent(jLabel4)
                     .addComponent(jRBtKitInicialPesquisa)
-                    .addComponent(jLabel4))
+                    .addComponent(jRBtKitDecendialPesquisa)
+                    .addComponent(jRBtKitQuinzenalPesquisa)
+                    .addComponent(jRBtKitMensalPesquisa)
+                    .addComponent(jRBtKitSemestraPesquisa)
+                    .addComponent(jRBtKitAnualPesquisa)
+                    .addComponent(jCheckBox1))
                 .addContainerGap())
         );
 
@@ -344,20 +358,19 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBtConfimar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtSair)))
+                        .addComponent(jBtSair))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -382,7 +395,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setBounds(350, 30, 655, 333);
+        setBounds(350, 30, 678, 333);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TabelaRegistrosMontagemKitsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaRegistrosMontagemKitsMouseClicked
@@ -390,9 +403,10 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
         flag = 1;
         if (flag == 1) {
             idLanc = "" + TabelaRegistrosMontagemKits.getValueAt(TabelaRegistrosMontagemKits.getSelectedRow(), 0);
-//            jCodigoRegistroPesquisa.setText(idLanc);
+            RegistroPesquisa.setText(idLanc);
+            jIdRegistroComp.setText(idLanc);
             idKit = "" + TabelaRegistrosMontagemKits.getValueAt(TabelaRegistrosMontagemKits.getSelectedRow(), 2);
-            jCodigoRegistroPesquisa.setText(idKit);
+            jCodigoKit.setText(idKit);
 //            codigoPesquisaKit = Integer.valueOf(idKit);
             tipoKit = "" + TabelaRegistrosMontagemKits.getValueAt(TabelaRegistrosMontagemKits.getSelectedRow(), 3);
             jComboBoxTipoKit.getSelectedItem().equals(tipoKit);
@@ -420,7 +434,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
         count1 = 0;
         flag = 1;
         if (evt.getStateChange() == evt.SELECTED) {
-            this.preencherTabelaRegistrosMontagemKits("SELECT * FROM COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+            this.preencherTabelaRegistrosMontagemKits("SELECT DISTINCT COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp,COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp,COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.DataComp,COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdKit,COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.KitPago,KITS_HIGIENE_INTERNO.KitInicial,KITS_HIGIENE_INTERNO.KitDecendial,KITS_HIGIENE_INTERNO.KitQuinzenal,KITS_HIGIENE_INTERNO.KitMensal,KITS_HIGIENE_INTERNO.KitSemestral,KITS_HIGIENE_INTERNO.KitAnual,COLABORADOR.IdFunc,COLABORADOR.NomeFunc,PAVILHAO.IdPav,PAVILHAO.DescricaoPav FROM COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
                     + "INNER JOIN COLABORADOR "
                     + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdFunc=COLABORADOR.IdFunc "
                     + "INNER JOIN DEPARTAMENTOS "
@@ -446,7 +460,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
     private void jBtPesquisaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPesquisaCodigoActionPerformed
         // TODO add your handling code here:
         count = 0;
-        if (jCodigoRegistroPesquisa.getText().equals("")) {
+        if (jCodigoKit.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Informe o código do Registro para pesquisa.");
         } else {
             preencherTabelaRegistrosMontagemKits("SELECT * FROM COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
@@ -460,7 +474,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                     + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdItem=PRODUTOS_KITS_HIGIENE_INTERNO.IdItem "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON PRODUTOS_KITS_HIGIENE_INTERNO.IdProd=PRODUTOS_AC.IdProd "
-                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp='" + jCodigoRegistroPesquisa.getText() + "' "
+                    + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp='" + jCodigoKit.getText() + "' "
                     + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + pStatusComposicao + "' "
                     + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.KitPago='" + pKitPago + "'");
         }
@@ -552,13 +566,12 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                         + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdKit=KITS_HIGIENE_INTERNO.IdKit "
                         + "INNER JOIN DEPARTAMENTOS "
                         + "ON COLABORADOR.IdDepartamento=DEPARTAMENTOS.IdDepartamento "
-                        
                         + "INNER JOIN INTERNOS_PAVILHAO_KIT_LOTE "
                         + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp=INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp "
                         + "INNER JOIN PAVILHAO "
                         + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdPav=PAVILHAO.IdPav "
-                        
-                        + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdKit='" + jCodigoRegistroPesquisa.getText() + "' ");
+                        + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdKit='" + jCodigoKit.getText() + "' "
+                        + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp='" + RegistroPesquisa.getText() + "'");
                 conecta.rs.first();
                 jIdKit.setText(String.valueOf(conecta.rs.getInt("IdKit")));
                 jIdRegistroComp.setText(String.valueOf(conecta.rs.getInt("IdRegistroComp")));
@@ -597,6 +610,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField RegistroPesquisa;
     private javax.swing.JTable TabelaRegistrosMontagemKits;
     private javax.swing.ButtonGroup grupoBotoes;
     private javax.swing.JButton jBtConfimar;
@@ -604,13 +618,14 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBtPesquisaData;
     private javax.swing.JButton jBtSair;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JTextField jCodigoRegistroPesquisa;
+    private javax.swing.JTextField jCodigoKit;
     private com.toedter.calendar.JDateChooser jDataPesFinal;
     private com.toedter.calendar.JDateChooser jDataPesqInicial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel36;
