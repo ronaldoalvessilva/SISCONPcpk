@@ -29,6 +29,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
 
     public static TelaTrocaSenha telaTrocaSenhaCPK;
+    public static TelaImportacaoInternosConfere importIntConf;
 
     private TelaConfereInternos objConfere = null;
     private TelaPagamentoKitInternoCPK objPagto = null;
@@ -156,6 +157,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         telaTrocaSenhaCPK.setVisible(true);
     }
 
+    public void mostrarImportacao() {
+        importIntConf = new TelaImportacaoInternosConfere(this, true);
+        importIntConf.setVisible(true);
+    }
+
     public void rodaRelogio() {
         try {
             while (true) {
@@ -205,6 +211,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         jBtPagamentoKit = new javax.swing.JButton();
         jBtLocalizacaoInterno = new javax.swing.JButton();
         jBtCadastroBiometria = new javax.swing.JButton();
+        jBtImportarInternos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -412,6 +419,19 @@ public class FormPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jBtImportarInternos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jBtImportarInternos.setForeground(new java.awt.Color(0, 102, 0));
+        jBtImportarInternos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/030818095625_16.png"))); // NOI18N
+        jBtImportarInternos.setText("Importar Internos - confere");
+        jBtImportarInternos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtImportarInternos.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jBtImportarInternos.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        jBtImportarInternos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtImportarInternosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -422,11 +442,12 @@ public class FormPrincipal extends javax.swing.JFrame {
                     .addComponent(jBtPagamentoKit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBtConfere, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBtLocalizacaoInterno, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(jBtCadastroBiometria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBtCadastroBiometria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtImportarInternos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtCadastroBiometria, jBtConfere, jBtLocalizacaoInterno, jBtPagamentoKit});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtCadastroBiometria, jBtConfere, jBtImportarInternos, jBtLocalizacaoInterno, jBtPagamentoKit});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -439,10 +460,12 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addComponent(jBtPagamentoKit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtLocalizacaoInterno, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addComponent(jBtImportarInternos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtCadastroBiometria, jBtConfere, jBtLocalizacaoInterno, jBtPagamentoKit});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtCadastroBiometria, jBtConfere, jBtImportarInternos, jBtLocalizacaoInterno, jBtPagamentoKit});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1053,8 +1076,12 @@ public class FormPrincipal extends javax.swing.JFrame {
                 }
             }
         }
-//        private TelaCadastroDatiloscopia cadBio = null;
     }//GEN-LAST:event_jBtCadastroBiometriaActionPerformed
+
+    private void jBtImportarInternosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtImportarInternosActionPerformed
+        // TODO add your handling code here:
+        mostrarImportacao();
+    }//GEN-LAST:event_jBtImportarInternosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1094,6 +1121,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtCadastroBiometria;
     private javax.swing.JButton jBtConfere;
+    private javax.swing.JButton jBtImportarInternos;
     private javax.swing.JButton jBtLocalizacaoInterno;
     private javax.swing.JButton jBtLogoff;
     private javax.swing.JButton jBtPagamentoKit;
@@ -1119,7 +1147,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar3;
     private javax.swing.JToolBar jToolBar4;
     // End of variables declaration//GEN-END:variables
- 
+
     // PARAMETRO PARA IDENTIFICAR O OS DO SERVIDOR DE BANCO DE DADOS.
     public void verificarParametrosSRV() {
         conecta.abrirConexao();
