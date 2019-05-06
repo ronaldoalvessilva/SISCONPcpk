@@ -5,7 +5,8 @@
  */
 package br.com.sisconpcpk.dao;
 
-import static br.com.sisconpcpk.dao.PagamentoKitInternosDao.qtdInternos;
+import br.com.sisconpcpk.modelo.ConfereInternos;
+import static br.com.sisconpcpk.visao.TelaImportacaoInternosConfere.qtdInternos;
 import br.com.sisconpcpk.modelo.GravarInternos;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,10 +21,9 @@ import java.util.logging.Logger;
 public class ControleImportacaoInternosDao {
 
     GravarInternos objGravaIntComp = new GravarInternos();
-    ConexaoBancoLocal conecta = new ConexaoBancoLocal();
-//    ConectaBanco conecta = new ConectaBanco();
+    ConfereInternos objConf = new ConfereInternos();
+    ConectaBanco conecta = new ConectaBanco();
     //
-
     String situacaoEnt = "ENTRADA NA UNIDADE";
     String situacaoRet = "RETORNO A UNIDADE";
 
@@ -32,7 +32,13 @@ public class ControleImportacaoInternosDao {
         List<GravarInternos> listaInternosKitComp = new ArrayList<GravarInternos>();
         try {
             conecta.executaSQL("SELECT * FROM PRONTUARIOSCRC "
-                    + "WHERE SituacaoCrc=='" + situacaoEnt + "' "
+                    + "INNER JOIN ITENSLOCACAOINTERNO "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
+                    + "INNER JOIN CELAS "
+                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "WHERE SituacaoCrc='" + situacaoEnt + "' "
                     + "OR SituacaoCrc='" + situacaoRet + "' "
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             while (conecta.rs.next()) {
@@ -40,6 +46,12 @@ public class ControleImportacaoInternosDao {
                 pDigi.setIdInternoCrc(conecta.rs.getInt("IdInternoCrc"));
                 pDigi.setcNcinterno(conecta.rs.getString("Cnc"));
                 pDigi.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
+                pDigi.setImagemFrente(conecta.rs.getBytes("ImagemFrente"));
+                pDigi.setSituacaoCrc(conecta.rs.getString("SituacaoCrc"));
+                pDigi.setIdPav(conecta.rs.getInt("IdPav"));
+                pDigi.setNomePavilhao(conecta.rs.getString("DescricaoPav"));
+                pDigi.setIdCela(conecta.rs.getInt("IdCela"));
+                pDigi.setNomeCela(conecta.rs.getString("EndCelaPav"));
                 listaInternosKitComp.add(pDigi);
                 qtdInternos = qtdInternos + 1;
             }

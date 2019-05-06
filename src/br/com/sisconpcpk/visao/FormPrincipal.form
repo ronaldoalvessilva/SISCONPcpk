@@ -433,6 +433,8 @@
                       <Component id="jBtLocalizacaoInterno" linkSize="1" pref="180" max="32767" attributes="0"/>
                       <Component id="jBtCadastroBiometria" linkSize="1" alignment="0" max="32767" attributes="0"/>
                       <Component id="jBtImportarInternos" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jBtImportarPavilhaoCelas" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButton1" linkSize="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -451,6 +453,10 @@
                   <Component id="jBtLocalizacaoInterno" linkSize="2" min="-2" pref="47" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                   <Component id="jBtImportarInternos" linkSize="2" min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jBtImportarPavilhaoCelas" linkSize="2" min="-2" pref="49" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jButton1" linkSize="2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -525,12 +531,42 @@
               <Image iconType="3" name="/br/com/sisconpcpk/imagens/030818095625_16.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Importar Internos - confere"/>
+            <Property name="toolTipText" type="java.lang.String" value="Importar Cadastro de Internos para Confere"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalAlignment" type="int" value="3"/>
             <Property name="verticalTextPosition" type="int" value="1"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtImportarInternosActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBtImportarPavilhaoCelas">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="99" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/br/com/sisconpcpk/imagens/290718163928_32.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Pavilh&#xe3;o"/>
+            <Property name="toolTipText" type="java.lang.String" value="Importar Pavilh&#xf5;es e Celas"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtImportarPavilhaoCelasActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Celas"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

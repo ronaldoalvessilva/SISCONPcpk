@@ -6,8 +6,10 @@
 package br.com.sisconpcpk.visao;
 
 import br.com.sisconpcpk.dao.ConexaoBancoLocal;
-import br.com.sisconpcpk.dao.ControleGravacaoInternos;
-import br.com.sisconpcpk.dao.ControleImportacaoInternosDao;
+import br.com.sisconpcpk.dao.ControleGravacaoCelas;
+import br.com.sisconpcpk.dao.ControleGravacaoPavilhao;
+import br.com.sisconpcpk.dao.ControleImportacaoCelasDao;
+import br.com.sisconpcpk.dao.ControleImportacaoPavilhaoDao;
 import br.com.sisconpcpk.modelo.ConfereInternos;
 import br.com.sisconpcpk.modelo.GravarInternos;
 import static br.com.sisconpcpk.visao.FormPrincipal.jDataSistema;
@@ -26,17 +28,17 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Socializa TI 02
  */
-public class TelaImportacaoInternosConfere extends javax.swing.JDialog {
+public class TelaImportacaoCelas extends javax.swing.JDialog {
 
     ConexaoBancoLocal conecta = new ConexaoBancoLocal();
     GravarInternos objGravaIntComp = new GravarInternos();
-    ControleImportacaoInternosDao control = new ControleImportacaoInternosDao();
-    ControleGravacaoInternos controle = new ControleGravacaoInternos();
+    ControleImportacaoCelasDao control = new ControleImportacaoCelasDao();
+    ControleGravacaoCelas controle = new ControleGravacaoCelas();
     //
     ConfereInternos objConf = new ConfereInternos();
     //
     public static int qtdInternos;
-    int codigoInterno = 0;
+    int codigoPavilhao = 0;
     int codigoRegistro = 0;
     //
     String statusMov;
@@ -46,12 +48,12 @@ public class TelaImportacaoInternosConfere extends javax.swing.JDialog {
     /**
      * Creates new form TelaImportacaoInternosConfere
      */
-    public static FormPrincipal objFormPrin;
+    public static FormPrincipal objFormPrin1;
 
-    public TelaImportacaoInternosConfere(FormPrincipal parent, boolean modal) {
-        TelaImportacaoInternosConfere.objFormPrin = parent;
+    public TelaImportacaoCelas(FormPrincipal parent, boolean modal) {
+        TelaImportacaoCelas.objFormPrin1 = parent;
         this.setModal(modal);
-        setLocationRelativeTo(objFormPrin);
+        setLocationRelativeTo(objFormPrin1);
         initComponents();
         mostraSelecaoInternos();
     }
@@ -72,7 +74,7 @@ public class TelaImportacaoInternosConfere extends javax.swing.JDialog {
         jBtSair = new javax.swing.JButton();
         jProgressBar1 = new javax.swing.JProgressBar();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTabelaInternos = new javax.swing.JTable();
+        jTabelaCelas = new javax.swing.JTable();
         jPanel42 = new javax.swing.JPanel();
         jLabel71 = new javax.swing.JLabel();
         jPanel43 = new javax.swing.JPanel();
@@ -80,7 +82,7 @@ public class TelaImportacaoInternosConfere extends javax.swing.JDialog {
         jPanel44 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("...::: Importa Cadastro de Internos :::...");
+        setTitle("...::: Importa Cadastro de Celas :::...");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
 
@@ -133,21 +135,33 @@ public class TelaImportacaoInternosConfere extends javax.swing.JDialog {
 
         jProgressBar1.setStringPainted(true);
 
-        jTabelaInternos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jTabelaInternos.setModel(new javax.swing.table.DefaultTableModel(
+        jTabelaCelas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jTabelaCelas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "CNC", "Nome do Interno", "Situação", "ImagemFrente"
+                "Código", "Status", "ID Pav.", "Endereço da Cela", "Motivo", "Nível", "Capacidade", "Nr. Cela"
             }
         ));
-        jScrollPane1.setViewportView(jTabelaInternos);
-        if (jTabelaInternos.getColumnModel().getColumnCount() > 0) {
-            jTabelaInternos.getColumnModel().getColumn(0).setMinWidth(70);
-            jTabelaInternos.getColumnModel().getColumn(1).setMinWidth(100);
-            jTabelaInternos.getColumnModel().getColumn(2).setMinWidth(250);
-            jTabelaInternos.getColumnModel().getColumn(3).setMinWidth(80);
+        jScrollPane1.setViewportView(jTabelaCelas);
+        if (jTabelaCelas.getColumnModel().getColumnCount() > 0) {
+            jTabelaCelas.getColumnModel().getColumn(0).setMinWidth(70);
+            jTabelaCelas.getColumnModel().getColumn(0).setMaxWidth(70);
+            jTabelaCelas.getColumnModel().getColumn(1).setMinWidth(60);
+            jTabelaCelas.getColumnModel().getColumn(1).setMaxWidth(60);
+            jTabelaCelas.getColumnModel().getColumn(2).setMinWidth(60);
+            jTabelaCelas.getColumnModel().getColumn(2).setMaxWidth(60);
+            jTabelaCelas.getColumnModel().getColumn(3).setMinWidth(150);
+            jTabelaCelas.getColumnModel().getColumn(3).setMaxWidth(150);
+            jTabelaCelas.getColumnModel().getColumn(4).setMinWidth(150);
+            jTabelaCelas.getColumnModel().getColumn(4).setMaxWidth(150);
+            jTabelaCelas.getColumnModel().getColumn(5).setMinWidth(60);
+            jTabelaCelas.getColumnModel().getColumn(5).setMaxWidth(60);
+            jTabelaCelas.getColumnModel().getColumn(6).setMinWidth(80);
+            jTabelaCelas.getColumnModel().getColumn(6).setMaxWidth(80);
+            jTabelaCelas.getColumnModel().getColumn(7).setMinWidth(60);
+            jTabelaCelas.getColumnModel().getColumn(7).setMaxWidth(80);
         }
 
         jPanel42.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED)));
@@ -282,20 +296,27 @@ public class TelaImportacaoInternosConfere extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaImportacaoInternosConfere.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaImportacaoCelas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaImportacaoInternosConfere.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaImportacaoCelas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaImportacaoInternosConfere.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaImportacaoCelas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaImportacaoInternosConfere.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaImportacaoCelas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaImportacaoInternosConfere dialog = new TelaImportacaoInternosConfere(objFormPrin, true);
+                TelaImportacaoCelas dialog = new TelaImportacaoCelas(objFormPrin1, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -319,37 +340,40 @@ public class TelaImportacaoInternosConfere extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel44;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTabelaInternos;
+    private javax.swing.JTable jTabelaCelas;
     public static javax.swing.JLabel jtotalInternosSelecionados;
     // End of variables declaration//GEN-END:variables
 
     public void mostrarInternos() {
-        while (jTabelaInternos.getModel().getRowCount() > 0) {
-            ((DefaultTableModel) jTabelaInternos.getModel()).removeRow(0);
+        while (jTabelaCelas.getModel().getRowCount() > 0) {
+            ((DefaultTableModel) jTabelaCelas.getModel()).removeRow(0);
         }
         qtdInternos = 0;
         mostraSelecaoInternos();
     }
 
     public void mostraSelecaoInternos() {
-        DefaultTableModel dadosOrigem = (DefaultTableModel) jTabelaInternos.getModel();
+        DefaultTableModel dadosOrigem = (DefaultTableModel) jTabelaCelas.getModel();
         GravarInternos d = new GravarInternos();
         try {
             for (GravarInternos dd : control.read()) {
                 jtotalInternosSelecionados.setText(Integer.toString(qtdInternos)); // Converter inteiro em string para exibir na tela 
-                dadosOrigem.addRow(new Object[]{dd.getIdInternoCrc(), dd.getcNcinterno(), dd.getNomeInternoCrc(), dd.getSituacaoCrc(), dd.getImagemFrente()});
+                dadosOrigem.addRow(new Object[]{dd.getIdCela(), dd.getStatusCela(), dd.getIdPav(), dd.getNomeCela(),  dd.getMotivo(), dd.getNivelCel(), dd.getCapacidade(), dd.getNrCela()});
                 // BARRA DE ROLAGEM HORIZONTAL
-                jTabelaInternos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                jTabelaCelas.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                 // ALINHAR TEXTO DA TABELA CENTRALIZADO
                 DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
                 centralizado.setHorizontalAlignment(SwingConstants.CENTER);
                 //
-                jTabelaInternos.getColumnModel().getColumn(0).setCellRenderer(centralizado);
-                jTabelaInternos.getColumnModel().getColumn(1).setCellRenderer(centralizado);
-                jTabelaInternos.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+                jTabelaCelas.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+                jTabelaCelas.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+                jTabelaCelas.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+                jTabelaCelas.getColumnModel().getColumn(5).setCellRenderer(centralizado);
+                jTabelaCelas.getColumnModel().getColumn(6).setCellRenderer(centralizado);
+                jTabelaCelas.getColumnModel().getColumn(7).setCellRenderer(centralizado);
             }
         } catch (Exception ex) {
-            Logger.getLogger(TelaImportacaoInternosConfere.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaImportacaoCelas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -362,22 +386,23 @@ public class TelaImportacaoInternosConfere extends javax.swing.JDialog {
                     horaMov = jHoraSistema.getText();
                     dataModFinal = jDataSistema.getText();
                     // GRAVAR NA TABELA ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO                    
-                    for (int i = 0; i < jTabelaInternos.getRowCount(); i++) {//  
+                    for (int i = 0; i < jTabelaCelas.getRowCount(); i++) {//  
                         objConf.setUsuarioInsert(nameUser);
                         objConf.setDataInsert(dataModFinal);
                         objConf.setHorarioInsert(horaMov);
                         //                                                                         
-                        objConf.setIdInternoCrc((int) jTabelaInternos.getValueAt(i, 0));
-                        objConf.setNomeInternoCrc((String) jTabelaInternos.getValueAt(i, 2));
-                        objConf.setSituacao((String) jTabelaInternos.getValueAt(i, 3));
-                        objConf.setImagemFrente((byte[]) jTabelaInternos.getValueAt(i, 4));
+                        objConf.setIdPav((int) jTabelaCelas.getValueAt(i, 0));
+                        objConf.setStatusPav((String) jTabelaCelas.getValueAt(i, 1));
+                        objConf.setNomePavilhao((String) jTabelaCelas.getValueAt(i, 2));
+                        objConf.setMotivo((String) jTabelaCelas.getValueAt(i, 3));
+                        objConf.setNivel((String) jTabelaCelas.getValueAt(i, 4));
                         // VERIFICAR SE O INTERNO JÁ SE ENCONTRA GRAVADO NA TABELA PARA PARA O MESMO REGISTRO
-                        verificarInternoBancoDados(objConf.getIdInternoCrc());
+                        verificarPavilhaoBancoDados(objConf.getIdPav());
                         // SE O REGISTRO FOR IGUAL E O INTERNO DIFERENTE, GRAVA
-                        if (objConf.getIdInternoCrc() != codigoInterno) {
-                            controle.incluirConfereInternos(objConf);
-                        } else if (objConf.getIdInternoCrc() == codigoInterno) {
-                            controle.alterarConfereInternos(objConf);
+                        if (objConf.getIdPav() != codigoPavilhao) {
+                            controle.incluirPavilhao(objConf);
+                        } else if (objConf.getIdPav() == codigoPavilhao) {
+                            controle.alterarPavilhao(objConf);
                         }
                     }
                     try {
@@ -393,19 +418,19 @@ public class TelaImportacaoInternosConfere extends javax.swing.JDialog {
         try {
             Thread t = new Thread() {
                 public void run() {
-                    jProgressBar1.setMaximum(jTabelaInternos.getRowCount());
+                    jProgressBar1.setMaximum(jTabelaCelas.getRowCount());
                     Rectangle rect;
-                    for (int i = 0; i < jTabelaInternos.getRowCount(); i++) {
-                        rect = jTabelaInternos.getCellRect(i, 0, true);
+                    for (int i = 0; i < jTabelaCelas.getRowCount(); i++) {
+                        rect = jTabelaCelas.getCellRect(i, 0, true);
                         try {
-                            jTabelaInternos.scrollRectToVisible(rect);
+                            jTabelaCelas.scrollRectToVisible(rect);
                         } catch (java.lang.ClassCastException e) {
                         }
                         if (i == 0) {
-                            jTabelaInternos.setRowSelectionInterval(i, 0);
+                            jTabelaCelas.setRowSelectionInterval(i, 0);
                             jProgressBar1.setValue((i + 1));
                         } else if (i > 0) {
-                            jTabelaInternos.setRowSelectionInterval(i, 1);
+                            jTabelaCelas.setRowSelectionInterval(i, 1);
                             jProgressBar1.setValue((i + 1));
                         }
                         try {
@@ -427,13 +452,13 @@ public class TelaImportacaoInternosConfere extends javax.swing.JDialog {
     }
     // PARA NÃO SER GRAVADO MAIS DE UMA VEZ NO MESMO KIT
 
-    public void verificarInternoBancoDados(int codInternoCrc) {
+    public void verificarPavilhaoBancoDados(int codInternoCrc) {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM PRONTUARIOSCRC "
-                    + "WHERE IdInternoCrc='" + codInternoCrc + "' ");
+            conecta.executaSQL("SELECT * FROM PAVILHAO "
+                    + "WHERE IdPav='" + codInternoCrc + "' ");
             conecta.rs.last();
-            codigoInterno = conecta.rs.getInt("IdInternoCrc");
+            codigoPavilhao = conecta.rs.getInt("IdPav");
         } catch (Exception ERROR) {
         }
         conecta.desconecta();

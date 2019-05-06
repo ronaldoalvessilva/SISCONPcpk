@@ -14,13 +14,20 @@ import java.util.Date;
 public class ConfereInternos {
 
     private Integer idConfere;
+    private String cNc;
     private Integer idInternoCrc;
     private String nomeInternoCrc;
+    private byte[] imagemFrente;
+    private String regime;
+    private String situacao;
     private Date dataConfere;
     private String horarioConfere;
     private byte[] assinaturaBiometricaInterno;
     private Integer idPav;
+    private String statusPav;
     private String nomePavilhao;
+    private String motivo;
+    private String nivel;
     private Integer idCela;
     private String nomeCela;
     private String usuarioInsert;
@@ -30,16 +37,27 @@ public class ConfereInternos {
     private String horarioInsert;
     private String horarioUp;     
     private String dataRealizacao;   
+    private int qtdLanc;    
 
-    public ConfereInternos(Integer idConfere, Integer idInternoCrc, String nomeInternoCrc, Date dataConfere, String horarioConfere, byte[] assinaturaBiometricaInterno, Integer idPav, String nomePavilhao, Integer idCela, String nomeCela, String usuarioInsert, String usuarioUp, String dataInsert, String dataUp, String horarioInsert, String horarioUp, String dataRealizacao) {
+    public ConfereInternos() {
+    }
+
+    public ConfereInternos(Integer idConfere, String cNc, Integer idInternoCrc, String nomeInternoCrc, byte[] imagemFrente, String regime, String situacao, Date dataConfere, String horarioConfere, byte[] assinaturaBiometricaInterno, Integer idPav, String statusPav, String nomePavilhao, String motivo, String nivel, Integer idCela, String nomeCela, String usuarioInsert, String usuarioUp, String dataInsert, String dataUp, String horarioInsert, String horarioUp, String dataRealizacao, int qtdLanc) {
         this.idConfere = idConfere;
+        this.cNc = cNc;
         this.idInternoCrc = idInternoCrc;
         this.nomeInternoCrc = nomeInternoCrc;
+        this.imagemFrente = imagemFrente;
+        this.regime = regime;
+        this.situacao = situacao;
         this.dataConfere = dataConfere;
         this.horarioConfere = horarioConfere;
         this.assinaturaBiometricaInterno = assinaturaBiometricaInterno;
         this.idPav = idPav;
+        this.statusPav = statusPav;
         this.nomePavilhao = nomePavilhao;
+        this.motivo = motivo;
+        this.nivel = nivel;
         this.idCela = idCela;
         this.nomeCela = nomeCela;
         this.usuarioInsert = usuarioInsert;
@@ -49,9 +67,7 @@ public class ConfereInternos {
         this.horarioInsert = horarioInsert;
         this.horarioUp = horarioUp;
         this.dataRealizacao = dataRealizacao;
-    }
-
-    public ConfereInternos() {
+        this.qtdLanc = qtdLanc;
     }
 
     /**
@@ -66,6 +82,20 @@ public class ConfereInternos {
      */
     public void setIdConfere(Integer idConfere) {
         this.idConfere = idConfere;
+    }
+
+    /**
+     * @return the cNc
+     */
+    public String getcNc() {
+        return cNc;
+    }
+
+    /**
+     * @param cNc the cNc to set
+     */
+    public void setcNc(String cNc) {
+        this.cNc = cNc;
     }
 
     /**
@@ -94,6 +124,48 @@ public class ConfereInternos {
      */
     public void setNomeInternoCrc(String nomeInternoCrc) {
         this.nomeInternoCrc = nomeInternoCrc;
+    }
+
+    /**
+     * @return the imagemFrente
+     */
+    public byte[] getImagemFrente() {
+        return imagemFrente;
+    }
+
+    /**
+     * @param imagemFrente the imagemFrente to set
+     */
+    public void setImagemFrente(byte[] imagemFrente) {
+        this.imagemFrente = imagemFrente;
+    }
+
+    /**
+     * @return the regime
+     */
+    public String getRegime() {
+        return regime;
+    }
+
+    /**
+     * @param regime the regime to set
+     */
+    public void setRegime(String regime) {
+        this.regime = regime;
+    }
+
+    /**
+     * @return the situacao
+     */
+    public String getSituacao() {
+        return situacao;
+    }
+
+    /**
+     * @param situacao the situacao to set
+     */
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
     }
 
     /**
@@ -153,6 +225,20 @@ public class ConfereInternos {
     }
 
     /**
+     * @return the statusPav
+     */
+    public String getStatusPav() {
+        return statusPav;
+    }
+
+    /**
+     * @param statusPav the statusPav to set
+     */
+    public void setStatusPav(String statusPav) {
+        this.statusPav = statusPav;
+    }
+
+    /**
      * @return the nomePavilhao
      */
     public String getNomePavilhao() {
@@ -164,6 +250,34 @@ public class ConfereInternos {
      */
     public void setNomePavilhao(String nomePavilhao) {
         this.nomePavilhao = nomePavilhao;
+    }
+
+    /**
+     * @return the motivo
+     */
+    public String getMotivo() {
+        return motivo;
+    }
+
+    /**
+     * @param motivo the motivo to set
+     */
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
+
+    /**
+     * @return the nivel
+     */
+    public String getNivel() {
+        return nivel;
+    }
+
+    /**
+     * @param nivel the nivel to set
+     */
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
     }
 
     /**
@@ -290,5 +404,19 @@ public class ConfereInternos {
      */
     public void setDataRealizacao(String dataRealizacao) {
         this.dataRealizacao = dataRealizacao;
+    }
+
+    /**
+     * @return the qtdLanc
+     */
+    public int getQtdLanc() {
+        return qtdLanc;
+    }
+
+    /**
+     * @param qtdLanc the qtdLanc to set
+     */
+    public void setQtdLanc(int qtdLanc) {
+        this.qtdLanc = qtdLanc;
     }
 }

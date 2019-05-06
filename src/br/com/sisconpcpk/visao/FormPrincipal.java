@@ -30,6 +30,8 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     public static TelaTrocaSenha telaTrocaSenhaCPK;
     public static TelaImportacaoInternosConfere importIntConf;
+    public static TelaImportacaoPavilhao importPav;
+    public static TelaImportacaoCelas importCelas;
 
     private TelaConfereInternos objConfere = null;
     private TelaPagamentoKitInternoCPK objPagto = null;
@@ -162,6 +164,15 @@ public class FormPrincipal extends javax.swing.JFrame {
         importIntConf.setVisible(true);
     }
 
+    public void mostrarImportacaoPavilhao() {
+        importPav = new TelaImportacaoPavilhao(this, true);
+        importPav.setVisible(true);
+    }
+
+    public void mostrarImportacaoCelas(){
+        importCelas = new TelaImportacaoCelas(this, true);
+        importCelas.setVisible(true);
+    }
     public void rodaRelogio() {
         try {
             while (true) {
@@ -212,6 +223,8 @@ public class FormPrincipal extends javax.swing.JFrame {
         jBtLocalizacaoInterno = new javax.swing.JButton();
         jBtCadastroBiometria = new javax.swing.JButton();
         jBtImportarInternos = new javax.swing.JButton();
+        jBtImportarPavilhaoCelas = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -423,12 +436,32 @@ public class FormPrincipal extends javax.swing.JFrame {
         jBtImportarInternos.setForeground(new java.awt.Color(0, 102, 0));
         jBtImportarInternos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/030818095625_16.png"))); // NOI18N
         jBtImportarInternos.setText("Importar Internos - confere");
+        jBtImportarInternos.setToolTipText("Importar Cadastro de Internos para Confere");
         jBtImportarInternos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtImportarInternos.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jBtImportarInternos.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jBtImportarInternos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtImportarInternosActionPerformed(evt);
+            }
+        });
+
+        jBtImportarPavilhaoCelas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jBtImportarPavilhaoCelas.setForeground(new java.awt.Color(153, 0, 0));
+        jBtImportarPavilhaoCelas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/290718163928_32.png"))); // NOI18N
+        jBtImportarPavilhaoCelas.setText("Pavilhão");
+        jBtImportarPavilhaoCelas.setToolTipText("Importar Pavilhões e Celas");
+        jBtImportarPavilhaoCelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtImportarPavilhaoCelasActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setText("Celas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -443,11 +476,13 @@ public class FormPrincipal extends javax.swing.JFrame {
                     .addComponent(jBtConfere, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBtLocalizacaoInterno, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(jBtCadastroBiometria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBtImportarInternos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBtImportarInternos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtImportarPavilhaoCelas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtCadastroBiometria, jBtConfere, jBtImportarInternos, jBtLocalizacaoInterno, jBtPagamentoKit});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtCadastroBiometria, jBtConfere, jBtImportarInternos, jBtImportarPavilhaoCelas, jBtLocalizacaoInterno, jBtPagamentoKit, jButton1});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,10 +497,14 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addComponent(jBtLocalizacaoInterno, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(77, 77, 77)
                 .addComponent(jBtImportarInternos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtImportarPavilhaoCelas, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtCadastroBiometria, jBtConfere, jBtImportarInternos, jBtLocalizacaoInterno, jBtPagamentoKit});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtCadastroBiometria, jBtConfere, jBtImportarInternos, jBtImportarPavilhaoCelas, jBtLocalizacaoInterno, jBtPagamentoKit, jButton1});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1083,6 +1122,16 @@ public class FormPrincipal extends javax.swing.JFrame {
         mostrarImportacao();
     }//GEN-LAST:event_jBtImportarInternosActionPerformed
 
+    private void jBtImportarPavilhaoCelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtImportarPavilhaoCelasActionPerformed
+        // TODO add your handling code here:
+        mostrarImportacaoPavilhao();
+    }//GEN-LAST:event_jBtImportarPavilhaoCelasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        mostrarImportacaoCelas();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1122,11 +1171,13 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jBtCadastroBiometria;
     private javax.swing.JButton jBtConfere;
     private javax.swing.JButton jBtImportarInternos;
+    private javax.swing.JButton jBtImportarPavilhaoCelas;
     private javax.swing.JButton jBtLocalizacaoInterno;
     private javax.swing.JButton jBtLogoff;
     private javax.swing.JButton jBtPagamentoKit;
     private javax.swing.JButton jBtSairSistema;
     private javax.swing.JButton jBtTrocarSenha;
+    private javax.swing.JButton jButton1;
     public static javax.swing.JTextField jDataSistema;
     public static javax.swing.JTextField jHoraSistema;
     private javax.swing.JLabel jLabel1;
