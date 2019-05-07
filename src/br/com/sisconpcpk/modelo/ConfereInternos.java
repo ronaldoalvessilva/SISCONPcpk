@@ -29,20 +29,30 @@ public class ConfereInternos {
     private String motivo;
     private String nivel;
     private Integer idCela;
+    private String statusCela;
     private String nomeCela;
+    private Integer Capacidade;
+    private Integer nrCela;
+    private String nivelCela;
     private String usuarioInsert;
     private String usuarioUp;
     private String dataInsert;
     private String dataUp;
     private String horarioInsert;
-    private String horarioUp;     
-    private String dataRealizacao;   
-    private int qtdLanc;    
+    private String horarioUp;
+    private String dataRealizacao;
+    private int qtdLanc;
+    private byte[] dedo0;
+    private byte[] dedo1;
+    private byte[] dedo2;
+    private byte[] dedo3;
+    private Integer idItem;
+    private Integer idLoca;
 
     public ConfereInternos() {
     }
 
-    public ConfereInternos(Integer idConfere, String cNc, Integer idInternoCrc, String nomeInternoCrc, byte[] imagemFrente, String regime, String situacao, Date dataConfere, String horarioConfere, byte[] assinaturaBiometricaInterno, Integer idPav, String statusPav, String nomePavilhao, String motivo, String nivel, Integer idCela, String nomeCela, String usuarioInsert, String usuarioUp, String dataInsert, String dataUp, String horarioInsert, String horarioUp, String dataRealizacao, int qtdLanc) {
+    public ConfereInternos(Integer idConfere, String cNc, Integer idInternoCrc, String nomeInternoCrc, byte[] imagemFrente, String regime, String situacao, Date dataConfere, String horarioConfere, byte[] assinaturaBiometricaInterno, Integer idPav, String statusPav, String nomePavilhao, String motivo, String nivel, Integer idCela, String statusCela, String nomeCela, Integer Capacidade, Integer nrCela, String nivelCela, String usuarioInsert, String usuarioUp, String dataInsert, String dataUp, String horarioInsert, String horarioUp, String dataRealizacao, int qtdLanc, byte[] dedo0, byte[] dedo1, byte[] dedo2, byte[] dedo3, Integer idItem, Integer idLoca) {
         this.idConfere = idConfere;
         this.cNc = cNc;
         this.idInternoCrc = idInternoCrc;
@@ -59,7 +69,11 @@ public class ConfereInternos {
         this.motivo = motivo;
         this.nivel = nivel;
         this.idCela = idCela;
+        this.statusCela = statusCela;
         this.nomeCela = nomeCela;
+        this.Capacidade = Capacidade;
+        this.nrCela = nrCela;
+        this.nivelCela = nivelCela;
         this.usuarioInsert = usuarioInsert;
         this.usuarioUp = usuarioUp;
         this.dataInsert = dataInsert;
@@ -68,6 +82,12 @@ public class ConfereInternos {
         this.horarioUp = horarioUp;
         this.dataRealizacao = dataRealizacao;
         this.qtdLanc = qtdLanc;
+        this.dedo0 = dedo0;
+        this.dedo1 = dedo1;
+        this.dedo2 = dedo2;
+        this.dedo3 = dedo3;
+        this.idItem = idItem;
+        this.idLoca = idLoca;
     }
 
     /**
@@ -295,6 +315,20 @@ public class ConfereInternos {
     }
 
     /**
+     * @return the statusCela
+     */
+    public String getStatusCela() {
+        return statusCela;
+    }
+
+    /**
+     * @param statusCela the statusCela to set
+     */
+    public void setStatusCela(String statusCela) {
+        this.statusCela = statusCela;
+    }
+
+    /**
      * @return the nomeCela
      */
     public String getNomeCela() {
@@ -306,6 +340,48 @@ public class ConfereInternos {
      */
     public void setNomeCela(String nomeCela) {
         this.nomeCela = nomeCela;
+    }
+
+    /**
+     * @return the Capacidade
+     */
+    public Integer getCapacidade() {
+        return Capacidade;
+    }
+
+    /**
+     * @param Capacidade the Capacidade to set
+     */
+    public void setCapacidade(Integer Capacidade) {
+        this.Capacidade = Capacidade;
+    }
+
+    /**
+     * @return the nrCela
+     */
+    public Integer getNrCela() {
+        return nrCela;
+    }
+
+    /**
+     * @param nrCela the nrCela to set
+     */
+    public void setNrCela(Integer nrCela) {
+        this.nrCela = nrCela;
+    }
+
+    /**
+     * @return the nivelCela
+     */
+    public String getNivelCela() {
+        return nivelCela;
+    }
+
+    /**
+     * @param nivelCela the nivelCela to set
+     */
+    public void setNivelCela(String nivelCela) {
+        this.nivelCela = nivelCela;
     }
 
     /**
@@ -418,5 +494,89 @@ public class ConfereInternos {
      */
     public void setQtdLanc(int qtdLanc) {
         this.qtdLanc = qtdLanc;
+    }
+
+    /**
+     * @return the dedo0
+     */
+    public byte[] getDedo0() {
+        return dedo0;
+    }
+
+    /**
+     * @param dedo0 the dedo0 to set
+     */
+    public void setDedo0(byte[] dedo0) {
+        this.dedo0 = dedo0;
+    }
+
+    /**
+     * @return the dedo1
+     */
+    public byte[] getDedo1() {
+        return dedo1;
+    }
+
+    /**
+     * @param dedo1 the dedo1 to set
+     */
+    public void setDedo1(byte[] dedo1) {
+        this.dedo1 = dedo1;
+    }
+
+    /**
+     * @return the dedo2
+     */
+    public byte[] getDedo2() {
+        return dedo2;
+    }
+
+    /**
+     * @param dedo2 the dedo2 to set
+     */
+    public void setDedo2(byte[] dedo2) {
+        this.dedo2 = dedo2;
+    }
+
+    /**
+     * @return the dedo3
+     */
+    public byte[] getDedo3() {
+        return dedo3;
+    }
+
+    /**
+     * @param dedo3 the dedo3 to set
+     */
+    public void setDedo3(byte[] dedo3) {
+        this.dedo3 = dedo3;
+    }
+
+    /**
+     * @return the idItem
+     */
+    public Integer getIdItem() {
+        return idItem;
+    }
+
+    /**
+     * @param idItem the idItem to set
+     */
+    public void setIdItem(Integer idItem) {
+        this.idItem = idItem;
+    }
+
+    /**
+     * @return the idLoca
+     */
+    public Integer getIdLoca() {
+        return idLoca;
+    }
+
+    /**
+     * @param idLoca the idLoca to set
+     */
+    public void setIdLoca(Integer idLoca) {
+        this.idLoca = idLoca;
     }
 }

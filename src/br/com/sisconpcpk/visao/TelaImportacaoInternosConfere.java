@@ -139,7 +139,7 @@ public class TelaImportacaoInternosConfere extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "CNC", "Nome do Interno", "Situação", "ImagemFrente"
+                "Código", "CNC", "Nome do Interno", "Situação", "ImagemFrente", "Dedo 1", "Dedo 2", "Dedo 3", "Dedo 4"
             }
         ));
         jScrollPane1.setViewportView(jTabelaInternos);
@@ -337,7 +337,7 @@ public class TelaImportacaoInternosConfere extends javax.swing.JDialog {
         try {
             for (GravarInternos dd : control.read()) {
                 jtotalInternosSelecionados.setText(Integer.toString(qtdInternos)); // Converter inteiro em string para exibir na tela 
-                dadosOrigem.addRow(new Object[]{dd.getIdInternoCrc(), dd.getcNcinterno(), dd.getNomeInternoCrc(), dd.getSituacaoCrc(), dd.getImagemFrente()});
+                dadosOrigem.addRow(new Object[]{dd.getIdInternoCrc(), dd.getcNcinterno(), dd.getNomeInternoCrc(), dd.getSituacaoCrc(), dd.getImagemFrente(), dd.getDedo0(), dd.getDedo1(), dd.getDedo2(), dd.getDedo3()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaInternos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                 // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -368,9 +368,14 @@ public class TelaImportacaoInternosConfere extends javax.swing.JDialog {
                         objConf.setHorarioInsert(horaMov);
                         //                                                                         
                         objConf.setIdInternoCrc((int) jTabelaInternos.getValueAt(i, 0));
+                        objConf.setcNc((String) jTabelaInternos.getValueAt(i, 1));
                         objConf.setNomeInternoCrc((String) jTabelaInternos.getValueAt(i, 2));
                         objConf.setSituacao((String) jTabelaInternos.getValueAt(i, 3));
                         objConf.setImagemFrente((byte[]) jTabelaInternos.getValueAt(i, 4));
+                        objConf.setDedo0((byte[]) jTabelaInternos.getValueAt(i, 5));
+                        objConf.setDedo1((byte[]) jTabelaInternos.getValueAt(i, 6));
+                        objConf.setDedo2((byte[]) jTabelaInternos.getValueAt(i, 7));
+                        objConf.setDedo3((byte[]) jTabelaInternos.getValueAt(i, 8));
                         // VERIFICAR SE O INTERNO JÁ SE ENCONTRA GRAVADO NA TABELA PARA PARA O MESMO REGISTRO
                         verificarInternoBancoDados(objConf.getIdInternoCrc());
                         // SE O REGISTRO FOR IGUAL E O INTERNO DIFERENTE, GRAVA

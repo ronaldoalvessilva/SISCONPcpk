@@ -7,7 +7,9 @@ package br.com.sisconpcpk.visao;
 
 import br.com.sisconpcpk.dao.ConexaoBancoLocal;
 import br.com.sisconpcpk.dao.ControleGravacaoCelas;
+import br.com.sisconpcpk.dao.ControleGravacaoLocacao;
 import br.com.sisconpcpk.dao.ControleImportacaoCelasDao;
+import br.com.sisconpcpk.dao.ControleImportacaoLocalcaoDao;
 import br.com.sisconpcpk.modelo.ConfereInternos;
 import br.com.sisconpcpk.modelo.GravarInternos;
 import static br.com.sisconpcpk.visao.FormPrincipal.jDataSistema;
@@ -26,12 +28,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Socializa TI 02
  */
-public class TelaImportacaoCelas extends javax.swing.JDialog {
+public class TelaImportacaoLocalizacao extends javax.swing.JDialog {
 
     ConexaoBancoLocal conecta = new ConexaoBancoLocal();
     GravarInternos objGravaIntComp = new GravarInternos();
-    ControleImportacaoCelasDao control = new ControleImportacaoCelasDao();
-    ControleGravacaoCelas controle = new ControleGravacaoCelas();
+    ControleImportacaoLocalcaoDao control = new ControleImportacaoLocalcaoDao();
+    ControleGravacaoLocacao controle = new ControleGravacaoLocacao();
     //
     ConfereInternos objConf = new ConfereInternos();
     //
@@ -46,12 +48,12 @@ public class TelaImportacaoCelas extends javax.swing.JDialog {
     /**
      * Creates new form TelaImportacaoInternosConfere
      */
-    public static FormPrincipal objFormPrin1;
+    public static FormPrincipal objFormPrin2;
 
-    public TelaImportacaoCelas(FormPrincipal parent, boolean modal) {
-        TelaImportacaoCelas.objFormPrin1 = parent;
+    public TelaImportacaoLocalizacao(FormPrincipal parent, boolean modal) {
+        TelaImportacaoLocalizacao.objFormPrin2 = parent;
         this.setModal(modal);
-        setLocationRelativeTo(objFormPrin1);
+        setLocationRelativeTo(objFormPrin2);
         initComponents();
         mostraSelecaoInternos();
     }
@@ -139,7 +141,7 @@ public class TelaImportacaoCelas extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Status", "ID Pav.", "Endereço da Cela", "Motivo", "Nível", "Capacidade", "Nr. Cela"
+                "IdItem", "ID Local", "ID Interno", "Nome do Interno", "Cela", "Descrição Cela"
             }
         ));
         jScrollPane1.setViewportView(jTabelaCelas);
@@ -150,16 +152,11 @@ public class TelaImportacaoCelas extends javax.swing.JDialog {
             jTabelaCelas.getColumnModel().getColumn(1).setMaxWidth(60);
             jTabelaCelas.getColumnModel().getColumn(2).setMinWidth(60);
             jTabelaCelas.getColumnModel().getColumn(2).setMaxWidth(60);
-            jTabelaCelas.getColumnModel().getColumn(3).setMinWidth(150);
-            jTabelaCelas.getColumnModel().getColumn(3).setMaxWidth(150);
-            jTabelaCelas.getColumnModel().getColumn(4).setMinWidth(150);
-            jTabelaCelas.getColumnModel().getColumn(4).setMaxWidth(150);
-            jTabelaCelas.getColumnModel().getColumn(5).setMinWidth(60);
-            jTabelaCelas.getColumnModel().getColumn(5).setMaxWidth(60);
-            jTabelaCelas.getColumnModel().getColumn(6).setMinWidth(80);
-            jTabelaCelas.getColumnModel().getColumn(6).setMaxWidth(80);
-            jTabelaCelas.getColumnModel().getColumn(7).setMinWidth(60);
-            jTabelaCelas.getColumnModel().getColumn(7).setMaxWidth(80);
+            jTabelaCelas.getColumnModel().getColumn(3).setMinWidth(250);
+            jTabelaCelas.getColumnModel().getColumn(3).setMaxWidth(250);
+            jTabelaCelas.getColumnModel().getColumn(4).setMinWidth(60);
+            jTabelaCelas.getColumnModel().getColumn(4).setMaxWidth(60);
+            jTabelaCelas.getColumnModel().getColumn(5).setMinWidth(150);
         }
 
         jPanel42.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED)));
@@ -294,14 +291,22 @@ public class TelaImportacaoCelas extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaImportacaoCelas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaImportacaoLocalizacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaImportacaoCelas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaImportacaoLocalizacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaImportacaoCelas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaImportacaoLocalizacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaImportacaoCelas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaImportacaoLocalizacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -314,7 +319,7 @@ public class TelaImportacaoCelas extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaImportacaoCelas dialog = new TelaImportacaoCelas(objFormPrin1, true);
+                TelaImportacaoLocalizacao dialog = new TelaImportacaoLocalizacao(objFormPrin2, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -356,7 +361,7 @@ public class TelaImportacaoCelas extends javax.swing.JDialog {
         try {
             for (GravarInternos dd : control.read()) {
                 jtotalInternosSelecionados.setText(Integer.toString(qtdInternos)); // Converter inteiro em string para exibir na tela 
-                dadosOrigem.addRow(new Object[]{dd.getIdCela(), dd.getStatusCela(), dd.getIdPav(), dd.getNomeCela(), dd.getMotivo(), dd.getNivelCel(), dd.getCapacidade(), dd.getNrCela()});
+                dadosOrigem.addRow(new Object[]{dd.getIdItem(), dd.getIdLoca(), dd.getIdInternoCrc(), dd.getNomeInternoCrc(), dd.getIdCela(), dd.getNomeCela()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaCelas.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                 // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -366,12 +371,10 @@ public class TelaImportacaoCelas extends javax.swing.JDialog {
                 jTabelaCelas.getColumnModel().getColumn(0).setCellRenderer(centralizado);
                 jTabelaCelas.getColumnModel().getColumn(1).setCellRenderer(centralizado);
                 jTabelaCelas.getColumnModel().getColumn(2).setCellRenderer(centralizado);
-                jTabelaCelas.getColumnModel().getColumn(5).setCellRenderer(centralizado);
-                jTabelaCelas.getColumnModel().getColumn(6).setCellRenderer(centralizado);
-                jTabelaCelas.getColumnModel().getColumn(7).setCellRenderer(centralizado);
+                jTabelaCelas.getColumnModel().getColumn(4).setCellRenderer(centralizado);               
             }
         } catch (Exception ex) {
-            Logger.getLogger(TelaImportacaoCelas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaImportacaoLocalizacao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -401,9 +404,9 @@ public class TelaImportacaoCelas extends javax.swing.JDialog {
                         verificarCelasBancoDados(objConf.getIdCela());
                         // SE O REGISTRO FOR IGUAL E O INTERNO DIFERENTE, GRAVA
                         if (objConf.getIdCela() == codigoPavilhao) {
-                            controle.alterarCelas(objConf);
+                            controle.alterarLocacao(objConf);
                         } else if (objConf.getIdCela() != codigoPavilhao) {
-                            controle.incluirCelas(objConf);
+                            controle.incluirLocacao(objConf);
                         }
                     }
                     try {

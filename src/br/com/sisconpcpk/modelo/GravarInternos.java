@@ -28,11 +28,17 @@ public class GravarInternos {
     private String cNcInterno;
     private byte [] imagemFrente;
     private String situacaoCrc;
+    private byte [] dedo0;
+    private byte [] dedo1;
+    private byte [] dedo2;
+    private byte [] dedo3;
+    private Integer idLoca;
+    private Integer idItem;
 
     public GravarInternos() {
     }
 
-    public GravarInternos(int IdInternoCrc, String nomeInternoCrc, String cNcinterno, Integer idPav, String nomePavilhao, String statusPav, String motivo, String nivelPav, Integer idCela, String StatusCela, String nomeCela, String nivelCel, Integer capacidade, Integer nrCela, String cNcInterno, byte[] imagemFrente, String situacaoCrc) {
+    public GravarInternos(int IdInternoCrc, String nomeInternoCrc, String cNcinterno, Integer idPav, String nomePavilhao, String statusPav, String motivo, String nivelPav, Integer idCela, String StatusCela, String nomeCela, String nivelCel, Integer capacidade, Integer nrCela, String cNcInterno, byte[] imagemFrente, String situacaoCrc, byte[] dedo0, byte[] dedo1, byte[] dedo2, byte[] dedo3, Integer idLoca, Integer idItem) {
         this.IdInternoCrc = IdInternoCrc;
         this.nomeInternoCrc = nomeInternoCrc;
         this.cNcinterno = cNcinterno;
@@ -50,6 +56,12 @@ public class GravarInternos {
         this.cNcInterno = cNcInterno;
         this.imagemFrente = imagemFrente;
         this.situacaoCrc = situacaoCrc;
+        this.dedo0 = dedo0;
+        this.dedo1 = dedo1;
+        this.dedo2 = dedo2;
+        this.dedo3 = dedo3;
+        this.idLoca = idLoca;
+        this.idItem = idItem;
     }
 
     /**
@@ -288,5 +300,89 @@ public class GravarInternos {
      */
     public void setSituacaoCrc(String situacaoCrc) {
         this.situacaoCrc = situacaoCrc;
+    }
+
+    /**
+     * @return the dedo0
+     */
+    public byte[] getDedo0() {
+        return dedo0;
+    }
+
+    /**
+     * @param dedo0 the dedo0 to set
+     */
+    public void setDedo0(byte[] dedo0) {
+        this.dedo0 = dedo0;
+    }
+
+    /**
+     * @return the dedo1
+     */
+    public byte[] getDedo1() {
+        return dedo1;
+    }
+
+    /**
+     * @param dedo1 the dedo1 to set
+     */
+    public void setDedo1(byte[] dedo1) {
+        this.dedo1 = dedo1;
+    }
+
+    /**
+     * @return the dedo2
+     */
+    public byte[] getDedo2() {
+        return dedo2;
+    }
+
+    /**
+     * @param dedo2 the dedo2 to set
+     */
+    public void setDedo2(byte[] dedo2) {
+        this.dedo2 = dedo2;
+    }
+
+    /**
+     * @return the dedo3
+     */
+    public byte[] getDedo3() {
+        return dedo3;
+    }
+
+    /**
+     * @param dedo3 the dedo3 to set
+     */
+    public void setDedo3(byte[] dedo3) {
+        this.dedo3 = dedo3;
+    }
+
+    /**
+     * @return the idLoca
+     */
+    public Integer getIdLoca() {
+        return idLoca;
+    }
+
+    /**
+     * @param idLoca the idLoca to set
+     */
+    public void setIdLoca(Integer idLoca) {
+        this.idLoca = idLoca;
+    }
+
+    /**
+     * @return the idItem
+     */
+    public Integer getIdItem() {
+        return idItem;
+    }
+
+    /**
+     * @param idItem the idItem to set
+     */
+    public void setIdItem(Integer idItem) {
+        this.idItem = idItem;
     }
 }

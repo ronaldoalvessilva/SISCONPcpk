@@ -23,16 +23,19 @@ public class ControleGravacaoCelas {
     int codigoPav;
     int codigoCelaDao;
 
-    public ConfereInternos incluirPavilhao(ConfereInternos objConf) {
+    public ConfereInternos incluirCelas(ConfereInternos objConf) {
 
         conectaLocal.abrirConexao();
         try {
-            PreparedStatement pst = conectaLocal.con.prepareStatement("INSERT INTO PAVILHAO (IdPav,StatusPav,DescricaoPav,Motivo,NivelPav) VALUES(?,?,?,?,?)");
-            pst.setInt(1, objConf.getIdPav());
-            pst.setString(2, objConf.getStatusPav());
-            pst.setString(3, objConf.getNomePavilhao());
-            pst.setString(4, objConf.getMotivo());
-            pst.setString(5, objConf.getNivel());
+            PreparedStatement pst = conectaLocal.con.prepareStatement("INSERT INTO CELAS (IdCela,StatusCela,IdPav,EndCelaPav,Motivo,Capacidade,NrCela,NivelCel) VALUES(?,?,?,?,?,?,?,?)");
+            pst.setInt(1, objConf.getIdCela());
+            pst.setString(2, objConf.getStatusCela());
+            pst.setInt(3, objConf.getIdPav());
+            pst.setString(4, objConf.getNomeCela());
+            pst.setString(5, objConf.getMotivo());
+            pst.setInt(6, objConf.getCapacidade());
+            pst.setInt(7, objConf.getNrCela());
+            pst.setString(8, objConf.getNivelCela());
             pst.execute();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel INSERIR os Dados.\n\nERRO:" + ex);
@@ -41,15 +44,18 @@ public class ControleGravacaoCelas {
         return objConf;
     }
 
-    public ConfereInternos alterarPavilhao(ConfereInternos objConf) {
+    public ConfereInternos alterarCelas(ConfereInternos objConf) {
 
         conectaLocal.abrirConexao();
         try {
-            PreparedStatement pst = conectaLocal.con.prepareStatement("UPDATE PAVILHAO SET StatusPav=?,DescricaoPav=?,Motivo=?,NivelPav=? WHERE IdInternoCrc='" + objConf.getIdPav() + "'");
-            pst.setString(1, objConf.getStatusPav());
-            pst.setString(4, objConf.getNomePavilhao());
-            pst.setString(5, objConf.getMotivo());
-            pst.setString(6, objConf.getNivel());
+            PreparedStatement pst = conectaLocal.con.prepareStatement("UPDATE CELAS SET StatusCela=?,IdPav=?,EndCelaPav=?,Motivo=?,Capacidade=?,NrCela=?,NivelCel=? WHERE IdCela='" + objConf.getIdCela()+ "'");
+            pst.setString(1, objConf.getStatusCela());
+            pst.setInt(2, objConf.getIdPav());
+            pst.setString(3, objConf.getNomeCela());
+            pst.setString(4, objConf.getMotivo());
+            pst.setInt(5, objConf.getCapacidade());
+            pst.setInt(6, objConf.getNrCela());
+            pst.setString(7, objConf.getNivelCela());
             pst.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel ATUALIZAR os Dados.\n\nERRO:" + ex);

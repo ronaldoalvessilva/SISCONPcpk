@@ -27,12 +27,16 @@ public class ControleGravacaoInternos {
 
         conectaLocal.abrirConexao();
         try {
-            PreparedStatement pst = conectaLocal.con.prepareStatement("INSERT INTO PRONTUARIOSCRC (IdInternoCrc,Cnc,ImagemFrente,NomeInternoCrc,SituacaoCrc) VALUES(?,?,?,?,?)");
+            PreparedStatement pst = conectaLocal.con.prepareStatement("INSERT INTO PRONTUARIOSCRC (IdInternoCrc,Cnc,ImagemFrente,NomeInternoCrc,SituacaoCrc,BiometriaDedo1,BiometriaDedo2,BiometriaDedo3,BiometriaDedo4) VALUES(?,?,?,?,?,?,?,?,?)");
             pst.setInt(1, objConf.getIdInternoCrc());
             pst.setString(2, objConf.getcNc());
             pst.setBytes(3, objConf.getImagemFrente());
             pst.setString(4, objConf.getNomeInternoCrc());
             pst.setString(5, objConf.getSituacao());
+            pst.setBytes(6, objConf.getDedo0());
+            pst.setBytes(7, objConf.getDedo1());
+            pst.setBytes(8, objConf.getDedo2());
+            pst.setBytes(9, objConf.getDedo3());
             pst.execute();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel INSERIR os Dados.\n\nERRO:" + ex);
@@ -45,11 +49,15 @@ public class ControleGravacaoInternos {
 
         conectaLocal.abrirConexao();
         try {
-            PreparedStatement pst = conectaLocal.con.prepareStatement("UPDATE PRONTUARIOSCRC SET Cnc=?,ImagemFrente=?,NomeInternoCrc=?,SituacaoCrc=? WHERE IdInternoCrc='" + objConf.getIdInternoCrc() + "'");
+            PreparedStatement pst = conectaLocal.con.prepareStatement("UPDATE PRONTUARIOSCRC SET Cnc=?,ImagemFrente=?,NomeInternoCrc=?,SituacaoCrc=?,BiometriaDedo1=?,BiometriaDedo2=?,BiometriaDedo3=?,BiometriaDedo4=? WHERE IdInternoCrc='" + objConf.getIdInternoCrc() + "'");
             pst.setString(1, objConf.getcNc());
             pst.setBytes(2, objConf.getImagemFrente());
             pst.setString(3, objConf.getNomeInternoCrc());
             pst.setString(4, objConf.getSituacao());
+            pst.setBytes(5, objConf.getDedo0());
+            pst.setBytes(6, objConf.getDedo1());
+            pst.setBytes(7, objConf.getDedo2());
+            pst.setBytes(8, objConf.getDedo3());
             pst.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel ATUALIZAR os Dados.\n\nERRO:" + ex);

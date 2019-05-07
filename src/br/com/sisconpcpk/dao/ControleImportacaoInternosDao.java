@@ -32,6 +32,8 @@ public class ControleImportacaoInternosDao {
         List<GravarInternos> listaInternosKitComp = new ArrayList<GravarInternos>();
         try {
             conecta.executaSQL("SELECT * FROM PRONTUARIOSCRC "
+                    + "INNER JOIN BIOMETRIA_INTERNOS "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=BIOMETRIA_INTERNOS.IdInternoCrc "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
                     + "INNER JOIN CELAS "
@@ -52,6 +54,10 @@ public class ControleImportacaoInternosDao {
                 pDigi.setNomePavilhao(conecta.rs.getString("DescricaoPav"));
                 pDigi.setIdCela(conecta.rs.getInt("IdCela"));
                 pDigi.setNomeCela(conecta.rs.getString("EndCelaPav"));
+                pDigi.setDedo0(conecta.rs.getBytes("BiometriaDedo1"));
+                pDigi.setDedo1(conecta.rs.getBytes("BiometriaDedo2"));
+                pDigi.setDedo2(conecta.rs.getBytes("BiometriaDedo3"));
+                pDigi.setDedo3(conecta.rs.getBytes("BiometriaDedo4"));
                 listaInternosKitComp.add(pDigi);
                 qtdInternos = qtdInternos + 1;
             }

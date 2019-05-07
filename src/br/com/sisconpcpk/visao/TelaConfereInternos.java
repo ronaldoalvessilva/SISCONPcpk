@@ -7,6 +7,7 @@ package br.com.sisconpcpk.visao;
 
 import br.com.sisconpcpk.controle.ModeloTabela;
 import br.com.sisconpcpk.dao.ConectaBanco;
+import br.com.sisconpcpk.dao.ConexaoBancoLocal;
 import br.com.sisconpcpk.dao.ConfereDao;
 import br.com.sisconpcpk.dao.ControleLogSistemaDao;
 import static br.com.sisconpcpk.dao.ConfereDao.qtdInternos;
@@ -42,6 +43,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class TelaConfereInternos extends javax.swing.JInternalFrame {
 
     ConectaBanco conecta = new ConectaBanco();
+    ConexaoBancoLocal conectaLocal = new ConexaoBancoLocal();
     ConfereInternos objCI = new ConfereInternos();
     ConfereDao control = new ConfereDao();
     ControleLogSistemaDao controlLog = new ControleLogSistemaDao();
@@ -109,6 +111,7 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupoBotoes = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -198,6 +201,8 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
         jPanel7 = new javax.swing.JPanel();
         jFotoInternoBiometria = new javax.swing.JLabel();
         jBtPesquisaManual = new javax.swing.JButton();
+        jRBtOFFline = new javax.swing.JRadioButton();
+        jRBtONLine = new javax.swing.JRadioButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -732,7 +737,7 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                     .addComponent(jBtCela15)
                     .addComponent(jBtCela10)
                     .addComponent(jBtCela5))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtCela1, jBtCela10, jBtCela11, jBtCela12, jBtCela13, jBtCela14, jBtCela15, jBtCela16, jBtCela17, jBtCela18, jBtCela19, jBtCela2, jBtCela20, jBtCela21, jBtCela22, jBtCela23, jBtCela24, jBtCela25, jBtCela26, jBtCela27, jBtCela28, jBtCela29, jBtCela3, jBtCela30, jBtCela31, jBtCela32, jBtCela33, jBtCela34, jBtCela35, jBtCela36, jBtCela37, jBtCela38, jBtCela39, jBtCela4, jBtCela40, jBtCela41, jBtCela42, jBtCela43, jBtCela44, jBtCela45, jBtCela46, jBtCela47, jBtCela48, jBtCela49, jBtCela5, jBtCela50, jBtCela6, jBtCela7, jBtCela8, jBtCela9});
@@ -853,7 +858,7 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
         jTabelaInternos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jTabelaInternos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+
             },
             new String [] {
                 "Código", "Matricula", "Nome do Interno"
@@ -1176,6 +1181,17 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        grupoBotoes.add(jRBtOFFline);
+        jRBtOFFline.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jRBtOFFline.setForeground(new java.awt.Color(153, 0, 0));
+        jRBtOFFline.setSelected(true);
+        jRBtOFFline.setText("OFF-Line");
+
+        grupoBotoes.add(jRBtONLine);
+        jRBtONLine.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jRBtONLine.setForeground(new java.awt.Color(0, 102, 0));
+        jRBtONLine.setText("ON-Line");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1187,7 +1203,11 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxPavilhao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jComboBoxPavilhao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRBtOFFline)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRBtONLine))
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1198,7 +1218,7 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                         .addComponent(jBtCancelarLeitura, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 1, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1218,10 +1238,12 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                             .addComponent(jBtSalvar))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addGap(4, 4, 4)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBoxPavilhao, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel8)
+                            .addComponent(jRBtOFFline)
+                            .addComponent(jRBtONLine))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1246,34 +1268,50 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
 
     private void jTabelaInternosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelaInternosMouseClicked
         // TODO add your handling code here:
-        if (flag == 1) {
-            String idInternoDir = "" + jTabelaInternos.getValueAt(jTabelaInternos.getSelectedRow(), 0);
-//            jIdInternoCrcDir.setText(idInternoDir);
-//            String matricula = "" + jTabelaInternos.getValueAt(jTabelaInternos.getSelectedRow(), 1);
-//            jMatriculaPenal.setText(matricula);
-//            String nomeInterno = "" + jTabelaInternos.getValueAt(jTabelaInternos.getSelectedRow(), 2);
-//            jDescricaoInternoDir.setText(nomeInterno);
-            conecta.abrirConexao();
-            try {
-                conecta.executaSQL("SELECT * FROM PRONTUARIOSCRC "
-                        + "INNER JOIN ITENSLOCACAOINTERNO "
-                        + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
-                        + "INNER JOIN CELAS "
-                        + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
-                        + "WHERE PRONTUARIOSCRC.IdInternoCrc='" + idInternoDir + "'");
-                conecta.rs.first();
-//                jIdInternoCrcDir.setText(conecta.rs.getString("IdInternoCrc"));
-//                jMatriculaPenal.setText(conecta.rs.getString("MatriculaCrc"));
-//                jDescricaoInternoDir.setText(conecta.rs.getString("NomeInternoCrc"));
-                // Capturando foto
-                caminho = conecta.rs.getString("FotoInternoCrc");
-                javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminho);
-                jFotoInternoBiometria.setIcon(i);
-                jFotoInternoBiometria.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoBiometria.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
-                //
-            } catch (Exception e) {
+        if (jRBtOFFline.isSelected() == true) {
+            if (flag == 1) {
+                String idInternoDir = "" + jTabelaInternos.getValueAt(jTabelaInternos.getSelectedRow(), 0);
+                conectaLocal.abrirConexao();
+                try {
+                    conectaLocal.executaSQL("SELECT * FROM PRONTUARIOSCRC "
+                            + "INNER JOIN ITENSLOCACAOINTERNO "
+                            + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
+                            + "INNER JOIN CELAS "
+                            + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                            + "WHERE PRONTUARIOSCRC.IdInternoCrc='" + idInternoDir + "'");
+                    conectaLocal.rs.first();
+                    // Capturando foto
+                    caminho = conectaLocal.rs.getString("FotoInternoCrc");
+                    javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminho);
+                    jFotoInternoBiometria.setIcon(i);
+                    jFotoInternoBiometria.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoBiometria.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
+                    //
+                } catch (Exception e) {
+                }
+                conectaLocal.desconecta();
             }
-            conecta.desconecta();
+        } else if (jRBtONLine.isSelected() == true) {
+            if (flag == 1) {
+                String idInternoDir = "" + jTabelaInternos.getValueAt(jTabelaInternos.getSelectedRow(), 0);
+                conecta.abrirConexao();
+                try {
+                    conecta.executaSQL("SELECT * FROM PRONTUARIOSCRC "
+                            + "INNER JOIN ITENSLOCACAOINTERNO "
+                            + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
+                            + "INNER JOIN CELAS "
+                            + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                            + "WHERE PRONTUARIOSCRC.IdInternoCrc='" + idInternoDir + "'");
+                    conecta.rs.first();
+                    // Capturando foto
+                    caminho = conecta.rs.getString("FotoInternoCrc");
+                    javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminho);
+                    jFotoInternoBiometria.setIcon(i);
+                    jFotoInternoBiometria.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoBiometria.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
+                    //
+                } catch (Exception e) {
+                }
+                conecta.desconecta();
+            }
         }
     }//GEN-LAST:event_jTabelaInternosMouseClicked
 
@@ -1394,7 +1432,7 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
             objCI.setUsuarioInsert(nameUser);
             objCI.setDataInsert(dataModFinal);
             objCI.setHorarioInsert(horaMov);
-            objCI.setDataRealizacao(dataModFinal);            
+            objCI.setDataRealizacao(dataModFinal);
             if (objCI.getIdInternoCrc() == idInterno && objCI.getIdPav() == idPavilhao && objCI.getIdCela() == idCela && jDataSistema.getText().equals(dataConfere)) {
                 JOptionPane.showMessageDialog(rootPane, "Esse interno já foi conferido nessa cela.");
             } else {
@@ -1417,7 +1455,8 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
                     + "INNER JOIN CELAS "
                     + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
-                    + "INNER JOIN PAVILHAO ON CELAS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON CELAS.IdPav=PAVILHAO.IdPav "
                     + "WHERE CELAS.NrCela='" + codigoCela + "' "
                     + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "'");
         }
@@ -2321,6 +2360,7 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup grupoBotoes;
     private javax.swing.JButton jBtCancelarLeitura;
     private javax.swing.JButton jBtCela1;
     private javax.swing.JButton jBtCela10;
@@ -2405,6 +2445,8 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     public static javax.swing.JTextField jPavilhao;
+    public static javax.swing.JRadioButton jRBtOFFline;
+    public static javax.swing.JRadioButton jRBtONLine;
     public static javax.swing.JTextField jRegime;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -2455,25 +2497,49 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
     }
 
     public void verificarInternoPavCela() {
-        conecta.abrirConexao();
-        try {
-            conecta.executaSQL("SELECT * FROM CONFERE_INTERNOS "
-                    + "WHERE IdInternoCrc='" + jCodigoInterno.getText() + "' "
-                    + "AND IdPav='" + codigoPavilhao + "' "
-                    + "AND IdCela='" + codigoCela + "' AND DataInsert='" + jDataSistema.getText() + "'");
-            conecta.rs.first();
-            idInterno = conecta.rs.getInt("IdInternoCrc");
-            idPavilhao = conecta.rs.getInt("IdPav");
-            idCela = conecta.rs.getInt("IdCela");
-            dataConfere = conecta.rs.getString("DataConfere");
-            //
-            String diae = dataConfere.substring(8, 10);
-            String mese = dataConfere.substring(5, 7);
-            String anoe = dataConfere.substring(0, 4);
-            dataConfere = diae + "/" + mese + "/" + anoe;            
-        } catch (Exception e) {
+        if (jRBtOFFline.isSelected() == true) {
+            conectaLocal.abrirConexao();
+            try {
+                conectaLocal.executaSQL("SELECT * FROM CONFERE_INTERNOS "
+                        + "WHERE IdInternoCrc='" + jCodigoInterno.getText() + "' "
+                        + "AND IdPav='" + codigoPavilhao + "' "
+                        + "AND IdCela='" + codigoCela + "' "
+                        + "AND DataInsert='" + jDataSistema.getText() + "'");
+                conectaLocal.rs.first();
+                idInterno = conectaLocal.rs.getInt("IdInternoCrc");
+                idPavilhao = conectaLocal.rs.getInt("IdPav");
+                idCela = conectaLocal.rs.getInt("IdCela");
+                dataConfere = conectaLocal.rs.getString("DataConfere");
+                //
+                String diae = dataConfere.substring(8, 10);
+                String mese = dataConfere.substring(5, 7);
+                String anoe = dataConfere.substring(0, 4);
+                dataConfere = diae + "/" + mese + "/" + anoe;
+            } catch (Exception e) {
+            }
+            conectaLocal.desconecta();
+        } else if (jRBtONLine.isSelected() == true) {
+            conecta.abrirConexao();
+            try {
+                conecta.executaSQL("SELECT * FROM CONFERE_INTERNOS "
+                        + "WHERE IdInternoCrc='" + jCodigoInterno.getText() + "' "
+                        + "AND IdPav='" + codigoPavilhao + "' "
+                        + "AND IdCela='" + codigoCela + "' "
+                        + "AND DataInsert='" + jDataSistema.getText() + "'");
+                conecta.rs.first();
+                idInterno = conecta.rs.getInt("IdInternoCrc");
+                idPavilhao = conecta.rs.getInt("IdPav");
+                idCela = conecta.rs.getInt("IdCela");
+                dataConfere = conecta.rs.getString("DataConfere");
+                //
+                String diae = dataConfere.substring(8, 10);
+                String mese = dataConfere.substring(5, 7);
+                String anoe = dataConfere.substring(0, 4);
+                dataConfere = diae + "/" + mese + "/" + anoe;
+            } catch (Exception e) {
+            }
+            conecta.desconecta();
         }
-        conecta.desconecta();
     }
 
     private static Runnable LerDigital1 = new Runnable() {
@@ -2764,64 +2830,125 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
     };            
     
  public void preencherComboCela() {
-        conecta.abrirConexao();
-        try {
-            conecta.executaSQL("SELECT * FROM PAVILHAO ORDER BY DescricaoPav");
-            conecta.rs.first();
-            do {
-                jComboBoxPavilhao.addItem(conecta.rs.getString("DescricaoPav"));
-            } while (conecta.rs.next());
-        } catch (SQLException ex) {
+        if (jRBtOFFline.isSelected() == true) {
+            conectaLocal.abrirConexao();
+            try {
+                conectaLocal.executaSQL("SELECT * FROM PAVILHAO ORDER BY DescricaoPav");
+                conectaLocal.rs.first();
+                do {
+                    jComboBoxPavilhao.addItem(conectaLocal.rs.getString("DescricaoPav"));
+                } while (conectaLocal.rs.next());
+            } catch (SQLException ex) {
+            }
+            conectaLocal.desconecta();
+        } else if (jRBtONLine.isSelected() == true) {
+            conecta.abrirConexao();
+            try {
+                conecta.executaSQL("SELECT * FROM PAVILHAO ORDER BY DescricaoPav");
+                conecta.rs.first();
+                do {
+                    jComboBoxPavilhao.addItem(conecta.rs.getString("DescricaoPav"));
+                } while (conecta.rs.next());
+            } catch (SQLException ex) {
+            }
+            conecta.desconecta();
         }
-        conecta.desconecta();
     }
 
     public void preencherTabelaInternos(String sql) {
-        ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Matricula", "Nome Completo do Interno"};
-        conecta.abrirConexao();
-        try {
-            conecta.executaSQL(sql);
-            conecta.rs.first();
-            do {
-                count = count + 1;
-                jtotalRegistros.setText(Integer.toString(count)); // Converter inteiro em string para exibir na tela 
-                dados.add(new Object[]{conecta.rs.getInt("IdInternoCrc"), conecta.rs.getString("MatriculaCrc"), conecta.rs.getString("NomeInternoCrc")});
-            } while (conecta.rs.next());
-        } catch (SQLException ex) {
+        if (jRBtOFFline.isSelected() == true) {
+            ArrayList dados = new ArrayList();
+            String[] Colunas = new String[]{"Código", "Matricula", "Nome Completo do Interno"};
+            conectaLocal.abrirConexao();
+            try {
+                conectaLocal.executaSQL(sql);
+                conectaLocal.rs.first();
+                do {
+                    count = count + 1;
+                    jtotalRegistros.setText(Integer.toString(count)); // Converter inteiro em string para exibir na tela 
+                    dados.add(new Object[]{conectaLocal.rs.getInt("IdInternoCrc"), conectaLocal.rs.getString("MatriculaCrc"), conectaLocal.rs.getString("NomeInternoCrc")});
+                } while (conectaLocal.rs.next());
+            } catch (SQLException ex) {
+            }
+            ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+            jTabelaInternos.setModel(modelo);
+            jTabelaInternos.getColumnModel().getColumn(0).setPreferredWidth(70);
+            jTabelaInternos.getColumnModel().getColumn(0).setResizable(false);
+            jTabelaInternos.getColumnModel().getColumn(1).setPreferredWidth(80);
+            jTabelaInternos.getColumnModel().getColumn(1).setResizable(false);
+            jTabelaInternos.getColumnModel().getColumn(2).setPreferredWidth(340);
+            jTabelaInternos.getColumnModel().getColumn(2).setResizable(false);
+            jTabelaInternos.getTableHeader().setReorderingAllowed(false);
+            jTabelaInternos.setAutoResizeMode(jTabelaInternos.AUTO_RESIZE_OFF);
+            jTabelaInternos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            alinharCamposTabelaInternos();
+            conectaLocal.desconecta();
+        } else if (jRBtONLine.isSelected() == true) {
+            ArrayList dados = new ArrayList();
+            String[] Colunas = new String[]{"Código", "Matricula", "Nome Completo do Interno"};
+            conecta.abrirConexao();
+            try {
+                conecta.executaSQL(sql);
+                conecta.rs.first();
+                do {
+                    count = count + 1;
+                    jtotalRegistros.setText(Integer.toString(count)); // Converter inteiro em string para exibir na tela 
+                    dados.add(new Object[]{conecta.rs.getInt("IdInternoCrc"), conecta.rs.getString("MatriculaCrc"), conecta.rs.getString("NomeInternoCrc")});
+                } while (conecta.rs.next());
+            } catch (SQLException ex) {
+            }
+            ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+            jTabelaInternos.setModel(modelo);
+            jTabelaInternos.getColumnModel().getColumn(0).setPreferredWidth(70);
+            jTabelaInternos.getColumnModel().getColumn(0).setResizable(false);
+            jTabelaInternos.getColumnModel().getColumn(1).setPreferredWidth(80);
+            jTabelaInternos.getColumnModel().getColumn(1).setResizable(false);
+            jTabelaInternos.getColumnModel().getColumn(2).setPreferredWidth(340);
+            jTabelaInternos.getColumnModel().getColumn(2).setResizable(false);
+            jTabelaInternos.getTableHeader().setReorderingAllowed(false);
+            jTabelaInternos.setAutoResizeMode(jTabelaInternos.AUTO_RESIZE_OFF);
+            jTabelaInternos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            alinharCamposTabelaInternos();
+            conecta.desconecta();
         }
-        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
-        jTabelaInternos.setModel(modelo);
-        jTabelaInternos.getColumnModel().getColumn(0).setPreferredWidth(70);
-        jTabelaInternos.getColumnModel().getColumn(0).setResizable(false);
-        jTabelaInternos.getColumnModel().getColumn(1).setPreferredWidth(80);
-        jTabelaInternos.getColumnModel().getColumn(1).setResizable(false);
-        jTabelaInternos.getColumnModel().getColumn(2).setPreferredWidth(340);
-        jTabelaInternos.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaInternos.getTableHeader().setReorderingAllowed(false);
-        jTabelaInternos.setAutoResizeMode(jTabelaInternos.AUTO_RESIZE_OFF);
-        jTabelaInternos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        alinharCamposTabelaInternos();
-        conecta.desconecta();
     }
 
     public void limparTabelaInternos() {
-        ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Matricula", "Nome Completo do Interno"};
-        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
-        jTabelaInternos.setModel(modelo);
-        jTabelaInternos.getColumnModel().getColumn(0).setPreferredWidth(70);
-        jTabelaInternos.getColumnModel().getColumn(0).setResizable(false);
-        jTabelaInternos.getColumnModel().getColumn(1).setPreferredWidth(80);
-        jTabelaInternos.getColumnModel().getColumn(1).setResizable(false);
-        jTabelaInternos.getColumnModel().getColumn(2).setPreferredWidth(340);
-        jTabelaInternos.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaInternos.getTableHeader().setReorderingAllowed(false);
-        jTabelaInternos.setAutoResizeMode(jTabelaInternos.AUTO_RESIZE_OFF);
-        jTabelaInternos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        modelo.getLinhas().clear();
-        //       
-        jFotoInternoBiometria.setIcon(null);
+        if (jRBtOFFline.isSelected() == true) {
+            ArrayList dados = new ArrayList();
+            String[] Colunas = new String[]{"Código", "Matricula", "Nome Completo do Interno"};
+            ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+            jTabelaInternos.setModel(modelo);
+            jTabelaInternos.getColumnModel().getColumn(0).setPreferredWidth(70);
+            jTabelaInternos.getColumnModel().getColumn(0).setResizable(false);
+            jTabelaInternos.getColumnModel().getColumn(1).setPreferredWidth(80);
+            jTabelaInternos.getColumnModel().getColumn(1).setResizable(false);
+            jTabelaInternos.getColumnModel().getColumn(2).setPreferredWidth(340);
+            jTabelaInternos.getColumnModel().getColumn(2).setResizable(false);
+            jTabelaInternos.getTableHeader().setReorderingAllowed(false);
+            jTabelaInternos.setAutoResizeMode(jTabelaInternos.AUTO_RESIZE_OFF);
+            jTabelaInternos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            modelo.getLinhas().clear();
+            //       
+            jFotoInternoBiometria.setIcon(null);
+        } else if (jRBtONLine.isSelected() == true) {
+            ArrayList dados = new ArrayList();
+            String[] Colunas = new String[]{"Código", "Matricula", "Nome Completo do Interno"};
+            ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+            jTabelaInternos.setModel(modelo);
+            jTabelaInternos.getColumnModel().getColumn(0).setPreferredWidth(70);
+            jTabelaInternos.getColumnModel().getColumn(0).setResizable(false);
+            jTabelaInternos.getColumnModel().getColumn(1).setPreferredWidth(80);
+            jTabelaInternos.getColumnModel().getColumn(1).setResizable(false);
+            jTabelaInternos.getColumnModel().getColumn(2).setPreferredWidth(340);
+            jTabelaInternos.getColumnModel().getColumn(2).setResizable(false);
+            jTabelaInternos.getTableHeader().setReorderingAllowed(false);
+            jTabelaInternos.setAutoResizeMode(jTabelaInternos.AUTO_RESIZE_OFF);
+            jTabelaInternos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            modelo.getLinhas().clear();
+            //       
+            jFotoInternoBiometria.setIcon(null);
+        }
     }
 
     public void alinharCamposTabelaInternos() {
@@ -2840,7 +2967,6 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
         objLogSys.setDataMov(dataModFinal);
         objLogSys.setHorarioMov(horaMov);
         objLogSys.setNomeModuloTela(nomeModuloTela2);
-//        objLogSys.setIdLancMov(Integer.valueOf(jIDlanc.getText()));
         objLogSys.setNomeUsuarioLogado(nameUser);
         objLogSys.setStatusMov(statusMov);
     }

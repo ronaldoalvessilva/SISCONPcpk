@@ -430,8 +430,8 @@ public class TelaImportacaoPavilhao extends javax.swing.JDialog {
         } catch (Exception e) {
         }
     }
+    
     // PARA NÃO SER GRAVADO MAIS DE UMA VEZ NO MESMO KIT
-
     public void verificarPavilhaoBancoDados(int codInternoCrc) {
         conecta.abrirConexao();
         try {
