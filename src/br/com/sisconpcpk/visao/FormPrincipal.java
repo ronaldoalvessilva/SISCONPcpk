@@ -33,6 +33,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     public static TelaImportacaoPavilhao importPav;
     public static TelaImportacaoCelas importCelas;
     public static TelaImportacaoLocalizacao importLocacao;
+    public static TelaExportarConfereInternos exportarConf;
 
     private TelaConfereInternos objConfere = null;
     private TelaPagamentoKitInternoCPK objPagto = null;
@@ -180,6 +181,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         importLocacao.setVisible(true);
     }
 
+    public void mostrarExportacaoConfere() {
+        exportarConf = new TelaExportarConfereInternos(this, true);
+        exportarConf.setVisible(true);
+    }
+
     public void rodaRelogio() {
         try {
             while (true) {
@@ -236,6 +242,8 @@ public class FormPrincipal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jBtImportarLocalizacao = new javax.swing.JButton();
+        jBtExportar = new javax.swing.JButton();
+        jBtLimparTabelas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -404,7 +412,7 @@ public class FormPrincipal extends javax.swing.JFrame {
             jPainelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPainelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -497,9 +505,30 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         jBtImportarLocalizacao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jBtImportarLocalizacao.setText("4 - Localização");
+        jBtImportarLocalizacao.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jBtImportarLocalizacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtImportarLocalizacaoActionPerformed(evt);
+            }
+        });
+
+        jBtExportar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jBtExportar.setForeground(new java.awt.Color(102, 0, 102));
+        jBtExportar.setText("Exportar Confere");
+        jBtExportar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jBtExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtExportarActionPerformed(evt);
+            }
+        });
+
+        jBtLimparTabelas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jBtLimparTabelas.setForeground(new java.awt.Color(102, 153, 0));
+        jBtLimparTabelas.setText("Limpar Tabelas");
+        jBtLimparTabelas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jBtLimparTabelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtLimparTabelasActionPerformed(evt);
             }
         });
 
@@ -518,11 +547,13 @@ public class FormPrincipal extends javax.swing.JFrame {
                     .addComponent(jBtImportarInternos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBtImportarPavilhaoCelas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBtImportarCelas, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                    .addComponent(jBtImportarLocalizacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBtImportarLocalizacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtLimparTabelas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtImportarCelas, jBtImportarInternos, jBtImportarLocalizacao, jBtImportarPavilhaoCelas});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtExportar, jBtImportarCelas, jBtImportarInternos, jBtImportarLocalizacao, jBtImportarPavilhaoCelas, jBtLimparTabelas});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -539,7 +570,11 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addComponent(jBtImportarCelas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtImportarLocalizacao)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jBtExportar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtLimparTabelas)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -570,9 +605,9 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addComponent(jBtPagamentoKit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtLocalizacaoInterno, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtCadastroBiometria, jBtConfere, jBtLocalizacaoInterno, jBtPagamentoKit});
@@ -1208,6 +1243,16 @@ public class FormPrincipal extends javax.swing.JFrame {
         mostrarImportacaoLocalizacao();
     }//GEN-LAST:event_jBtImportarLocalizacaoActionPerformed
 
+    private void jBtExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtExportarActionPerformed
+        // TODO add your handling code here:
+        mostrarExportacaoConfere();
+    }//GEN-LAST:event_jBtExportarActionPerformed
+
+    private void jBtLimparTabelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtLimparTabelasActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jBtLimparTabelasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1246,10 +1291,12 @@ public class FormPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtCadastroBiometria;
     private javax.swing.JButton jBtConfere;
+    private javax.swing.JButton jBtExportar;
     private javax.swing.JButton jBtImportarCelas;
     private javax.swing.JButton jBtImportarInternos;
     private javax.swing.JButton jBtImportarLocalizacao;
     private javax.swing.JButton jBtImportarPavilhaoCelas;
+    private javax.swing.JButton jBtLimparTabelas;
     private javax.swing.JButton jBtLocalizacaoInterno;
     private javax.swing.JButton jBtLogoff;
     private javax.swing.JButton jBtPagamentoKit;

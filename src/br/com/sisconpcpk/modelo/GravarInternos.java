@@ -5,6 +5,8 @@
  */
 package br.com.sisconpcpk.modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author Socializa TI 02
@@ -34,11 +36,21 @@ public class GravarInternos {
     private byte [] dedo3;
     private Integer idLoca;
     private Integer idItem;
+    private Date dataConfere;
+    private Date dataRealizacao;
+    private String horarioConfere;
+    private String usuarioInsert;
+    private String dataInsert;
+    private String horaInsert;
+    private String dataUp;
+    private String horaUp;
+    private String usuarioUp;
+    private byte [] assinaturaBiometricaInterno;
 
     public GravarInternos() {
     }
 
-    public GravarInternos(int IdInternoCrc, String nomeInternoCrc, String cNcinterno, Integer idPav, String nomePavilhao, String statusPav, String motivo, String nivelPav, Integer idCela, String StatusCela, String nomeCela, String nivelCel, Integer capacidade, Integer nrCela, String cNcInterno, byte[] imagemFrente, String situacaoCrc, byte[] dedo0, byte[] dedo1, byte[] dedo2, byte[] dedo3, Integer idLoca, Integer idItem) {
+    public GravarInternos(int IdInternoCrc, String nomeInternoCrc, String cNcinterno, Integer idPav, String nomePavilhao, String statusPav, String motivo, String nivelPav, Integer idCela, String StatusCela, String nomeCela, String nivelCel, Integer capacidade, Integer nrCela, String cNcInterno, byte[] imagemFrente, String situacaoCrc, byte[] dedo0, byte[] dedo1, byte[] dedo2, byte[] dedo3, Integer idLoca, Integer idItem, Date dataConfere, Date dataRealizacao, String horarioConfere, String usuarioInsert, String dataInsert, String horaInsert, String dataUp, String horaUp, String usuarioUp, byte[] assinaturaBiometricaInterno) {
         this.IdInternoCrc = IdInternoCrc;
         this.nomeInternoCrc = nomeInternoCrc;
         this.cNcinterno = cNcinterno;
@@ -62,6 +74,16 @@ public class GravarInternos {
         this.dedo3 = dedo3;
         this.idLoca = idLoca;
         this.idItem = idItem;
+        this.dataConfere = dataConfere;
+        this.dataRealizacao = dataRealizacao;
+        this.horarioConfere = horarioConfere;
+        this.usuarioInsert = usuarioInsert;
+        this.dataInsert = dataInsert;
+        this.horaInsert = horaInsert;
+        this.dataUp = dataUp;
+        this.horaUp = horaUp;
+        this.usuarioUp = usuarioUp;
+        this.assinaturaBiometricaInterno = assinaturaBiometricaInterno;
     }
 
     /**
@@ -384,5 +406,145 @@ public class GravarInternos {
      */
     public void setIdItem(Integer idItem) {
         this.idItem = idItem;
+    }
+
+    /**
+     * @return the dataConfere
+     */
+    public Date getDataConfere() {
+        return dataConfere;
+    }
+
+    /**
+     * @param dataConfere the dataConfere to set
+     */
+    public void setDataConfere(Date dataConfere) {
+        this.dataConfere = dataConfere;
+    }
+
+    /**
+     * @return the dataRealizacao
+     */
+    public Date getDataRealizacao() {
+        return dataRealizacao;
+    }
+
+    /**
+     * @param dataRealizacao the dataRealizacao to set
+     */
+    public void setDataRealizacao(Date dataRealizacao) {
+        this.dataRealizacao = dataRealizacao;
+    }
+
+    /**
+     * @return the horarioConfere
+     */
+    public String getHorarioConfere() {
+        return horarioConfere;
+    }
+
+    /**
+     * @param horarioConfere the horarioConfere to set
+     */
+    public void setHorarioConfere(String horarioConfere) {
+        this.horarioConfere = horarioConfere;
+    }
+
+    /**
+     * @return the usuarioInsert
+     */
+    public String getUsuarioInsert() {
+        return usuarioInsert;
+    }
+
+    /**
+     * @param usuarioInsert the usuarioInsert to set
+     */
+    public void setUsuarioInsert(String usuarioInsert) {
+        this.usuarioInsert = usuarioInsert;
+    }
+
+    /**
+     * @return the dataInsert
+     */
+    public String getDataInsert() {
+        return dataInsert;
+    }
+
+    /**
+     * @param dataInsert the dataInsert to set
+     */
+    public void setDataInsert(String dataInsert) {
+        this.dataInsert = dataInsert;
+    }
+
+    /**
+     * @return the horaInsert
+     */
+    public String getHoraInsert() {
+        return horaInsert;
+    }
+
+    /**
+     * @param horaInsert the horaInsert to set
+     */
+    public void setHoraInsert(String horaInsert) {
+        this.horaInsert = horaInsert;
+    }
+
+    /**
+     * @return the dataUp
+     */
+    public String getDataUp() {
+        return dataUp;
+    }
+
+    /**
+     * @param dataUp the dataUp to set
+     */
+    public void setDataUp(String dataUp) {
+        this.dataUp = dataUp;
+    }
+
+    /**
+     * @return the horaUp
+     */
+    public String getHoraUp() {
+        return horaUp;
+    }
+
+    /**
+     * @param horaUp the horaUp to set
+     */
+    public void setHoraUp(String horaUp) {
+        this.horaUp = horaUp;
+    }
+
+    /**
+     * @return the usuarioUp
+     */
+    public String getUsuarioUp() {
+        return usuarioUp;
+    }
+
+    /**
+     * @param usuarioUp the usuarioUp to set
+     */
+    public void setUsuarioUp(String usuarioUp) {
+        this.usuarioUp = usuarioUp;
+    }
+
+    /**
+     * @return the assinaturaBiometricaInterno
+     */
+    public byte[] getAssinaturaBiometricaInterno() {
+        return assinaturaBiometricaInterno;
+    }
+
+    /**
+     * @param assinaturaBiometricaInterno the assinaturaBiometricaInterno to set
+     */
+    public void setAssinaturaBiometricaInterno(byte[] assinaturaBiometricaInterno) {
+        this.assinaturaBiometricaInterno = assinaturaBiometricaInterno;
     }
 }

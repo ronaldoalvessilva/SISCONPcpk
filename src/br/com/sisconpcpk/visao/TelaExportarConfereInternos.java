@@ -6,8 +6,9 @@
 package br.com.sisconpcpk.visao;
 
 import br.com.sisconpcpk.dao.ConexaoBancoLocal;
-import br.com.sisconpcpk.dao.ControleGravacaoLocacao;
-import br.com.sisconpcpk.dao.ControleImportacaoLocalcaoDao;
+import br.com.sisconpcpk.dao.ControleExportacaoConfereInternosDao;
+import br.com.sisconpcpk.dao.ControleGravacaoInternos;
+import br.com.sisconpcpk.dao.ControleGravacaoInternosExportacao;
 import br.com.sisconpcpk.modelo.ConfereInternos;
 import br.com.sisconpcpk.modelo.GravarInternos;
 import static br.com.sisconpcpk.visao.FormPrincipal.jDataSistema;
@@ -26,19 +27,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Socializa TI 02
  */
-public class TelaImportacaoLocalizacao extends javax.swing.JDialog {
+public class TelaExportarConfereInternos extends javax.swing.JDialog {
 
     ConexaoBancoLocal conecta = new ConexaoBancoLocal();
     GravarInternos objGravaIntComp = new GravarInternos();
-    ControleImportacaoLocalcaoDao control = new ControleImportacaoLocalcaoDao();
-    ControleGravacaoLocacao controle = new ControleGravacaoLocacao();
+    ControleExportacaoConfereInternosDao control = new ControleExportacaoConfereInternosDao();
+    ControleGravacaoInternosExportacao controle = new ControleGravacaoInternosExportacao();
     //
     ConfereInternos objConf = new ConfereInternos();
     //
-    public static int qtdInternosLoca = 0;
-    int codigoLoca = 0;
-    int codigoRegistro = 0;
+    public static int qtdInternos;
     int codigoInterno = 0;
+    int codigoRegistro = 0;
     //
     String statusMov;
     String horaMov;
@@ -47,12 +47,12 @@ public class TelaImportacaoLocalizacao extends javax.swing.JDialog {
     /**
      * Creates new form TelaImportacaoInternosConfere
      */
-    public static FormPrincipal objFormPrin2;
+    public static FormPrincipal objFormPrinExp;
 
-    public TelaImportacaoLocalizacao(FormPrincipal parent, boolean modal) {
-        TelaImportacaoLocalizacao.objFormPrin2 = parent;
+    public TelaExportarConfereInternos(FormPrincipal parent, boolean modal) {
+        TelaExportarConfereInternos.objFormPrinExp = parent;
         this.setModal(modal);
-        setLocationRelativeTo(objFormPrin2);
+        setLocationRelativeTo(objFormPrinExp);
         initComponents();
         mostraSelecaoInternos();
     }
@@ -73,7 +73,7 @@ public class TelaImportacaoLocalizacao extends javax.swing.JDialog {
         jBtSair = new javax.swing.JButton();
         jProgressBar1 = new javax.swing.JProgressBar();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTabelaLocalizacao = new javax.swing.JTable();
+        jTabelaExportarConfereInternos = new javax.swing.JTable();
         jPanel42 = new javax.swing.JPanel();
         jLabel71 = new javax.swing.JLabel();
         jPanel43 = new javax.swing.JPanel();
@@ -81,12 +81,14 @@ public class TelaImportacaoLocalizacao extends javax.swing.JDialog {
         jPanel44 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("...::: Importa Cadastro de Localização :::...");
+        setTitle("...::: Exportar Confere de Internos :::...");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/191216082332_64.png"))); // NOI18N
+        jLabel1.setText("...::: Exportar Confere de Internos :::...");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 0, 0));
@@ -134,28 +136,31 @@ public class TelaImportacaoLocalizacao extends javax.swing.JDialog {
 
         jProgressBar1.setStringPainted(true);
 
-        jTabelaLocalizacao.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jTabelaLocalizacao.setModel(new javax.swing.table.DefaultTableModel(
+        jTabelaExportarConfereInternos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jTabelaExportarConfereInternos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "IdItem", "ID Local", "ID Interno", "Nome do Interno", "ID Cela", "Descrição Cela"
+                "Código", "Nome do Interno", "Data Conf.", "Data Real.", "Hora Conf.", "ID Pav", "Descrição Pavilhão", "ID Cela", "Descrição Cela", "Data Insert", "Hora Insert", "Data Up", "Hora Insert", "Assinatrura Biometrica do Interno"
             }
         ));
-        jScrollPane1.setViewportView(jTabelaLocalizacao);
-        if (jTabelaLocalizacao.getColumnModel().getColumnCount() > 0) {
-            jTabelaLocalizacao.getColumnModel().getColumn(0).setMinWidth(70);
-            jTabelaLocalizacao.getColumnModel().getColumn(0).setMaxWidth(70);
-            jTabelaLocalizacao.getColumnModel().getColumn(1).setMinWidth(60);
-            jTabelaLocalizacao.getColumnModel().getColumn(1).setMaxWidth(60);
-            jTabelaLocalizacao.getColumnModel().getColumn(2).setMinWidth(60);
-            jTabelaLocalizacao.getColumnModel().getColumn(2).setMaxWidth(60);
-            jTabelaLocalizacao.getColumnModel().getColumn(3).setMinWidth(250);
-            jTabelaLocalizacao.getColumnModel().getColumn(3).setMaxWidth(250);
-            jTabelaLocalizacao.getColumnModel().getColumn(4).setMinWidth(60);
-            jTabelaLocalizacao.getColumnModel().getColumn(4).setMaxWidth(60);
-            jTabelaLocalizacao.getColumnModel().getColumn(5).setMinWidth(150);
+        jScrollPane1.setViewportView(jTabelaExportarConfereInternos);
+        if (jTabelaExportarConfereInternos.getColumnModel().getColumnCount() > 0) {
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(0).setMinWidth(70);
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(1).setMinWidth(250);
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(2).setMinWidth(80);
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(3).setMinWidth(80);
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(4).setMinWidth(70);
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(5).setMinWidth(70);
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(6).setMinWidth(200);
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(7).setMinWidth(70);
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(8).setMinWidth(200);
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(9).setMinWidth(70);
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(10).setMinWidth(70);
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(11).setMinWidth(70);
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(12).setMinWidth(70);
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(13).setMinWidth(250);
         }
 
         jPanel42.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED)));
@@ -196,7 +201,7 @@ public class TelaImportacaoLocalizacao extends javax.swing.JDialog {
         jPanel44.setLayout(jPanel44Layout);
         jPanel44Layout.setHorizontalGroup(
             jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 230, Short.MAX_VALUE)
+            .addGap(0, 739, Short.MAX_VALUE)
         );
         jPanel44Layout.setVerticalGroup(
             jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,35 +295,21 @@ public class TelaImportacaoLocalizacao extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaImportacaoLocalizacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaExportarConfereInternos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaImportacaoLocalizacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaExportarConfereInternos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaImportacaoLocalizacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaExportarConfereInternos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaImportacaoLocalizacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaExportarConfereInternos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaImportacaoLocalizacao dialog = new TelaImportacaoLocalizacao(objFormPrin2, true);
+                TelaExportarConfereInternos dialog = new TelaExportarConfereInternos(objFormPrinExp, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -342,38 +333,45 @@ public class TelaImportacaoLocalizacao extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel44;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTabelaLocalizacao;
+    private javax.swing.JTable jTabelaExportarConfereInternos;
     public static javax.swing.JLabel jtotalInternosSelecionados;
     // End of variables declaration//GEN-END:variables
 
     public void mostrarInternos() {
-        while (jTabelaLocalizacao.getModel().getRowCount() > 0) {
-            ((DefaultTableModel) jTabelaLocalizacao.getModel()).removeRow(0);
+        while (jTabelaExportarConfereInternos.getModel().getRowCount() > 0) {
+            ((DefaultTableModel) jTabelaExportarConfereInternos.getModel()).removeRow(0);
         }
-        qtdInternosLoca = 0;
+        qtdInternos = 0;
         mostraSelecaoInternos();
     }
 
     public void mostraSelecaoInternos() {
-        DefaultTableModel dadosOrigem = (DefaultTableModel) jTabelaLocalizacao.getModel();
+        DefaultTableModel dadosOrigem = (DefaultTableModel) jTabelaExportarConfereInternos.getModel();
         GravarInternos d = new GravarInternos();
         try {
             for (GravarInternos dd : control.read()) {
-                jtotalInternosSelecionados.setText(Integer.toString(qtdInternosLoca)); // Converter inteiro em string para exibir na tela 
-                dadosOrigem.addRow(new Object[]{dd.getIdItem(), dd.getIdLoca(), dd.getIdInternoCrc(), dd.getNomeInternoCrc(), dd.getIdCela(), dd.getNomeCela()});
+                jtotalInternosSelecionados.setText(Integer.toString(qtdInternos)); // Converter inteiro em string para exibir na tela 
+                dadosOrigem.addRow(new Object[]{dd.getIdInternoCrc(), dd.getNomeInternoCrc(), dd.getDataConfere(), dd.getDataRealizacao(), dd.getHorarioConfere(), dd.getIdPav(), dd.getNomePavilhao(), dd.getIdCela(), dd.getNomeCela(), dd.getUsuarioInsert(), dd.getDataInsert(), dd.getHoraInsert(), dd.getUsuarioUp(), dd.getDataUp(),dd.getHoraUp(), dd.getAssinaturaBiometricaInterno()});
                 // BARRA DE ROLAGEM HORIZONTAL
-                jTabelaLocalizacao.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                jTabelaExportarConfereInternos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                 // ALINHAR TEXTO DA TABELA CENTRALIZADO
                 DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
                 centralizado.setHorizontalAlignment(SwingConstants.CENTER);
                 //
-                jTabelaLocalizacao.getColumnModel().getColumn(0).setCellRenderer(centralizado);
-                jTabelaLocalizacao.getColumnModel().getColumn(1).setCellRenderer(centralizado);
-                jTabelaLocalizacao.getColumnModel().getColumn(2).setCellRenderer(centralizado);
-                jTabelaLocalizacao.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+                jTabelaExportarConfereInternos.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+                jTabelaExportarConfereInternos.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+                jTabelaExportarConfereInternos.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+                jTabelaExportarConfereInternos.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+                jTabelaExportarConfereInternos.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+                jTabelaExportarConfereInternos.getColumnModel().getColumn(5).setCellRenderer(centralizado);
+                jTabelaExportarConfereInternos.getColumnModel().getColumn(7).setCellRenderer(centralizado);
+                jTabelaExportarConfereInternos.getColumnModel().getColumn(8).setCellRenderer(centralizado);
+                jTabelaExportarConfereInternos.getColumnModel().getColumn(9).setCellRenderer(centralizado);
+                jTabelaExportarConfereInternos.getColumnModel().getColumn(11).setCellRenderer(centralizado);
+                jTabelaExportarConfereInternos.getColumnModel().getColumn(12).setCellRenderer(centralizado);
             }
         } catch (Exception ex) {
-            Logger.getLogger(TelaImportacaoLocalizacao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaExportarConfereInternos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -386,25 +384,27 @@ public class TelaImportacaoLocalizacao extends javax.swing.JDialog {
                     horaMov = jHoraSistema.getText();
                     dataModFinal = jDataSistema.getText();
                     // GRAVAR NA TABELA ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO                    
-                    for (int i = 0; i < jTabelaLocalizacao.getRowCount(); i++) {//  
+                    for (int i = 0; i < jTabelaExportarConfereInternos.getRowCount(); i++) {//  
                         objConf.setUsuarioInsert(nameUser);
                         objConf.setDataInsert(dataModFinal);
                         objConf.setHorarioInsert(horaMov);
                         //                                                                         
-                        objConf.setIdItem((int) jTabelaLocalizacao.getValueAt(i, 0));
-                        objConf.setIdLoca((int) jTabelaLocalizacao.getValueAt(i, 1));
-                        objConf.setIdInternoCrc((int) jTabelaLocalizacao.getValueAt(i, 2));
-                        objConf.setNomeInternoCrc((String) jTabelaLocalizacao.getValueAt(i, 3));
-                        objConf.setIdCela((int) jTabelaLocalizacao.getValueAt(i, 4));
-                        objConf.setNomeCela((String) jTabelaLocalizacao.getValueAt(i, 5));
-                        objConf.setQtdLanc(1);
+                        objConf.setIdInternoCrc((int) jTabelaExportarConfereInternos.getValueAt(i, 0));
+                        objConf.setcNc((String) jTabelaExportarConfereInternos.getValueAt(i, 1));
+                        objConf.setNomeInternoCrc((String) jTabelaExportarConfereInternos.getValueAt(i, 2));
+                        objConf.setSituacao((String) jTabelaExportarConfereInternos.getValueAt(i, 3));
+                        objConf.setImagemFrente((byte[]) jTabelaExportarConfereInternos.getValueAt(i, 4));
+                        objConf.setDedo0((byte[]) jTabelaExportarConfereInternos.getValueAt(i, 5));
+                        objConf.setDedo1((byte[]) jTabelaExportarConfereInternos.getValueAt(i, 6));
+                        objConf.setDedo2((byte[]) jTabelaExportarConfereInternos.getValueAt(i, 7));
+                        objConf.setDedo3((byte[]) jTabelaExportarConfereInternos.getValueAt(i, 8));
                         // VERIFICAR SE O INTERNO JÁ SE ENCONTRA GRAVADO NA TABELA PARA PARA O MESMO REGISTRO
-                        verificarItensLocacao(objConf.getIdInternoCrc());
+                        verificarInternoBancoDados(objConf.getIdInternoCrc());
                         // SE O REGISTRO FOR IGUAL E O INTERNO DIFERENTE, GRAVA
-                        if (objConf.getIdInternoCrc() == codigoInterno) {
-                            controle.alterarLocacao(objConf);
-                        } else if (objConf.getIdInternoCrc() != codigoInterno) {
-                            controle.incluirLocacao(objConf);
+                        if (objConf.getIdInternoCrc() != codigoInterno) {
+                            controle.incluirConfereInternos(objConf);
+                        } else if (objConf.getIdInternoCrc() == codigoInterno) {
+                            controle.alterarConfereInternos(objConf);
                         }
                     }
                     try {
@@ -420,19 +420,19 @@ public class TelaImportacaoLocalizacao extends javax.swing.JDialog {
         try {
             Thread t = new Thread() {
                 public void run() {
-                    jProgressBar1.setMaximum(jTabelaLocalizacao.getRowCount());
+                    jProgressBar1.setMaximum(jTabelaExportarConfereInternos.getRowCount());
                     Rectangle rect;
-                    for (int i = 0; i < jTabelaLocalizacao.getRowCount(); i++) {
-                        rect = jTabelaLocalizacao.getCellRect(i, 0, true);
+                    for (int i = 0; i < jTabelaExportarConfereInternos.getRowCount(); i++) {
+                        rect = jTabelaExportarConfereInternos.getCellRect(i, 0, true);
                         try {
-                            jTabelaLocalizacao.scrollRectToVisible(rect);
+                            jTabelaExportarConfereInternos.scrollRectToVisible(rect);
                         } catch (java.lang.ClassCastException e) {
                         }
                         if (i == 0) {
-                            jTabelaLocalizacao.setRowSelectionInterval(i, 0);
+                            jTabelaExportarConfereInternos.setRowSelectionInterval(i, 0);
                             jProgressBar1.setValue((i + 1));
                         } else if (i > 0) {
-                            jTabelaLocalizacao.setRowSelectionInterval(i, 1);
+                            jTabelaExportarConfereInternos.setRowSelectionInterval(i, 1);
                             jProgressBar1.setValue((i + 1));
                         }
                         try {
@@ -454,13 +454,12 @@ public class TelaImportacaoLocalizacao extends javax.swing.JDialog {
     }
     // PARA NÃO SER GRAVADO MAIS DE UMA VEZ NO MESMO KIT
 
-    public void verificarItensLocacao(int codCela) {
+    public void verificarInternoBancoDados(int codInternoCrc) {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM ITENSLOCACAOINTERNO "
-                    + "WHERE IdInternoCrc='" + codCela + "' ");
-            conecta.rs.first();
-            codigoLoca = conecta.rs.getInt("IdLoca");
+            conecta.executaSQL("SELECT * FROM PRONTUARIOSCRC "
+                    + "WHERE IdInternoCrc='" + codInternoCrc + "' ");
+            conecta.rs.last();
             codigoInterno = conecta.rs.getInt("IdInternoCrc");
         } catch (Exception ERROR) {
         }

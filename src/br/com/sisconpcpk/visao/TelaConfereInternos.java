@@ -2856,7 +2856,7 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
     }
 
     public void preencherTabelaInternos(String sql) {
-        if (jRBtOFFline.isSelected() == true) {
+        if (jRBtOFFline.isSelected() == true) {            
             ArrayList dados = new ArrayList();
             String[] Colunas = new String[]{"Código", "Matricula", "Nome Completo do Interno"};
             conectaLocal.abrirConexao();
@@ -2883,7 +2883,7 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
             jTabelaInternos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             alinharCamposTabelaInternos();
             conectaLocal.desconecta();
-        } else if (jRBtONLine.isSelected() == true) {
+        } else if (jRBtONLine.isSelected() == true) {            
             ArrayList dados = new ArrayList();
             String[] Colunas = new String[]{"Código", "Matricula", "Nome Completo do Interno"};
             conecta.abrirConexao();

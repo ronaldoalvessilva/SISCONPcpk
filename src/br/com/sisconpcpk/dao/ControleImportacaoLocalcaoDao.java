@@ -6,7 +6,7 @@
 package br.com.sisconpcpk.dao;
 
 import br.com.sisconpcpk.modelo.ConfereInternos;
-import static br.com.sisconpcpk.visao.TelaImportacaoLocalizacao.qtdInternos;
+import static br.com.sisconpcpk.visao.TelaImportacaoLocalizacao.qtdInternosLoca;
 import br.com.sisconpcpk.modelo.GravarInternos;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -25,6 +25,7 @@ public class ControleImportacaoLocalcaoDao {
     ConectaBanco conecta = new ConectaBanco();
 
     public List<GravarInternos> read() throws Exception {
+        qtdInternosLoca = 0;
         conecta.abrirConexao();
         List<GravarInternos> listaInternosKitComp = new ArrayList<GravarInternos>();
         try {
@@ -32,17 +33,18 @@ public class ControleImportacaoLocalcaoDao {
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON ITENSLOCACAOINTERNO.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
                     + "INNER JOIN CELAS "
-                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela ");
+                    + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                    + "INNER JOIN BIOMETRIA_INTERNOS ON PRONTUARIOSCRC.IdInternoCrc=BIOMETRIA_INTERNOS.IdInternoCrc");
             while (conecta.rs.next()) {
                 GravarInternos pDigi = new GravarInternos();
                 pDigi.setIdItem(conecta.rs.getInt("IdItem"));
                 pDigi.setIdLoca(conecta.rs.getInt("IdLoca"));
                 pDigi.setIdInternoCrc(conecta.rs.getInt("IdInternoCrc"));
                 pDigi.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
-                pDigi.setIdCela(conecta.rs.getInt("IdCela"));    
+                pDigi.setIdCela(conecta.rs.getInt("IdCela"));
                 pDigi.setNomeCela(conecta.rs.getString("EndCelaPav"));
                 listaInternosKitComp.add(pDigi);
-                qtdInternos = qtdInternos + 1;
+                qtdInternosLoca = qtdInternosLoca + 1;
             }
             return listaInternosKitComp;
         } catch (SQLException ex) {
