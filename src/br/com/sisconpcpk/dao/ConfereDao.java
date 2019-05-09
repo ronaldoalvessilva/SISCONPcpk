@@ -91,7 +91,7 @@ public class ConfereDao {
 
     public void buscarInterno(String desc, int cod) {
         if (jRBtOFFline.isSelected() == true) {
-            conecta.abrirConexao();
+            conectaLocal.abrirConexao();
             try {
                 conectaLocal.executaSQL("SELECT * FROM PRONTUARIOSCRC "
                         + "WHERE NomeInternoCrc='" + desc + "' "

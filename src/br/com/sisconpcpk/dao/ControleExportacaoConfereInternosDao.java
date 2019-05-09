@@ -33,7 +33,7 @@ public class ControleExportacaoConfereInternosDao {
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON CONFERE_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
-                    + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO "
+                    + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
                     + "INNER JOIN CELAS "
                     + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
                     + "INNER JOIN PAVILHAO "
@@ -44,18 +44,18 @@ public class ControleExportacaoConfereInternosDao {
                 pDigi.setIdInternoCrc(conectaLocal.rs.getInt("IdInternoCrc"));
                 pDigi.setNomeInternoCrc(conectaLocal.rs.getString("NomeInternoCrc"));
                 pDigi.setDataConfere(conectaLocal.rs.getDate("DataConfere"));
-                pDigi.setDataRealizacao(conectaLocal.rs.getDate("Datarealizacao"));
+                pDigi.setDataRealizacao(conectaLocal.rs.getString("DataRealizacao"));
                 pDigi.setHorarioConfere(conectaLocal.rs.getString("HorarioConfere"));
                 pDigi.setIdPav(conectaLocal.rs.getInt("IdPav"));
                 pDigi.setNomePavilhao(conectaLocal.rs.getString("DescricaoPav"));
                 pDigi.setIdCela(conectaLocal.rs.getInt("IdCela"));
                 pDigi.setNomeCela(conectaLocal.rs.getString("EndCelaPav"));
-                pDigi.setUsuarioInsert(conectaLocal.rs.getString("UsarioInsert"));
+                pDigi.setUsuarioInsert(conectaLocal.rs.getString("UsuarioInsert"));
                 pDigi.setDataInsert(conectaLocal.rs.getString("DataInsert"));
                 pDigi.setHoraInsert(conectaLocal.rs.getString("HorarioInsert"));
-                pDigi.setHoraInsert(conectaLocal.rs.getString("HorarioUp"));
-                pDigi.setHoraInsert(conectaLocal.rs.getString("DataUp"));
-                pDigi.setHoraInsert(conectaLocal.rs.getString("HorarioUp"));
+                pDigi.setUsuarioUp(conectaLocal.rs.getString("UsuarioUp"));                
+                pDigi.setDataUp(conectaLocal.rs.getString("DataUp"));                
+                pDigi.setHoraUp(conectaLocal.rs.getString("HorarioUp"));
                 pDigi.setAssinaturaBiometricaInterno(conectaLocal.rs.getBytes("AssinaturaBiometricaInterno"));
                 listaInternosKitComp.add(pDigi);
                 qtdInternos = qtdInternos + 1;

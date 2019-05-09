@@ -37,7 +37,7 @@ public class GravarInternos {
     private Integer idLoca;
     private Integer idItem;
     private Date dataConfere;
-    private Date dataRealizacao;
+    private String dataRealizacao;
     private String horarioConfere;
     private String usuarioInsert;
     private String dataInsert;
@@ -50,7 +50,7 @@ public class GravarInternos {
     public GravarInternos() {
     }
 
-    public GravarInternos(int IdInternoCrc, String nomeInternoCrc, String cNcinterno, Integer idPav, String nomePavilhao, String statusPav, String motivo, String nivelPav, Integer idCela, String StatusCela, String nomeCela, String nivelCel, Integer capacidade, Integer nrCela, String cNcInterno, byte[] imagemFrente, String situacaoCrc, byte[] dedo0, byte[] dedo1, byte[] dedo2, byte[] dedo3, Integer idLoca, Integer idItem, Date dataConfere, Date dataRealizacao, String horarioConfere, String usuarioInsert, String dataInsert, String horaInsert, String dataUp, String horaUp, String usuarioUp, byte[] assinaturaBiometricaInterno) {
+    public GravarInternos(int IdInternoCrc, String nomeInternoCrc, String cNcinterno, Integer idPav, String nomePavilhao, String statusPav, String motivo, String nivelPav, Integer idCela, String StatusCela, String nomeCela, String nivelCel, Integer capacidade, Integer nrCela, String cNcInterno, byte[] imagemFrente, String situacaoCrc, byte[] dedo0, byte[] dedo1, byte[] dedo2, byte[] dedo3, Integer idLoca, Integer idItem, Date dataConfere, String dataRealizacao, String horarioConfere, String usuarioInsert, String dataInsert, String horaInsert, String dataUp, String horaUp, String usuarioUp, byte[] assinaturaBiometricaInterno) {
         this.IdInternoCrc = IdInternoCrc;
         this.nomeInternoCrc = nomeInternoCrc;
         this.cNcinterno = cNcinterno;
@@ -425,14 +425,14 @@ public class GravarInternos {
     /**
      * @return the dataRealizacao
      */
-    public Date getDataRealizacao() {
+    public String getDataRealizacao() {
         return dataRealizacao;
     }
 
     /**
      * @param dataRealizacao the dataRealizacao to set
      */
-    public void setDataRealizacao(Date dataRealizacao) {
+    public void setDataRealizacao(String dataRealizacao) {
         this.dataRealizacao = dataRealizacao;
     }
 
