@@ -6,7 +6,7 @@
 package br.com.sisconpcpk.dao;
 
 import br.com.sisconpcpk.modelo.ConfereInternos;
-import static br.com.sisconpcpk.visao.TelaImportacaoInternosConfere.qtdInternos;
+import static br.com.sisconpcpk.visao.TelaExportarConfereInternos.qtdInternos;
 import br.com.sisconpcpk.modelo.GravarInternos;
 import java.sql.SQLException;
 import java.util.ArrayList;

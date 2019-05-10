@@ -690,7 +690,8 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="99" red="66" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Limpar Tabelas"/>
+                <Property name="text" type="java.lang.String" value="Limpar Tabela"/>
+                <Property name="toolTipText" type="java.lang.String" value="Limpar tabela de confere de internos."/>
                 <Property name="horizontalAlignment" type="int" value="2"/>
               </Properties>
               <Events>

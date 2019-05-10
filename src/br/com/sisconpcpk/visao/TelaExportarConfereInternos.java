@@ -94,15 +94,16 @@ public class TelaExportarConfereInternos extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("...::: Exportar Confere de Internos :::...");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Aguarde....");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel2.setText("OBS.: Só é permitido realizar a exportação somente uma única vez, pois, o sistema se basea pela data do confere.");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Data Confere:");
 
         jDataConfere.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jDataConfere.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,29 +112,26 @@ public class TelaExportarConfereInternos extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 902, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDataConfere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel3)
-                            .addComponent(jDataConfere, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel2)))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel3)
+                    .addComponent(jDataConfere, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -163,7 +161,7 @@ public class TelaExportarConfereInternos extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Nome do Interno", "Data Conf.", "Data Real.", "Hora Conf.", "ID Pav", "Descrição Pavilhão", "ID Cela", "Descrição Cela", "Usuário Insert", "Data Insert", "Hora Insert", "Usuário Up", "Data Up", "Hora Up", "Assinatrura Biometrica do Interno"
+                "Código", "Nome do Interno", "Data Confere", "Data Real.", "Hora Confere", "ID Pav", "Descrição Pavilhão", "ID Cela", "Descrição Cela", "Usuário Insert", "Data Insert", "Hora Insert", "Usuário Up", "Data Up", "Hora Up", "Assinatrura Biometrica do Interno"
             }
         ));
         jScrollPane1.setViewportView(jTabelaExportarConfereInternos);
@@ -172,7 +170,7 @@ public class TelaExportarConfereInternos extends javax.swing.JDialog {
             jTabelaExportarConfereInternos.getColumnModel().getColumn(1).setMinWidth(250);
             jTabelaExportarConfereInternos.getColumnModel().getColumn(2).setMinWidth(80);
             jTabelaExportarConfereInternos.getColumnModel().getColumn(3).setMinWidth(80);
-            jTabelaExportarConfereInternos.getColumnModel().getColumn(4).setMinWidth(70);
+            jTabelaExportarConfereInternos.getColumnModel().getColumn(4).setMinWidth(80);
             jTabelaExportarConfereInternos.getColumnModel().getColumn(5).setMinWidth(70);
             jTabelaExportarConfereInternos.getColumnModel().getColumn(6).setMinWidth(200);
             jTabelaExportarConfereInternos.getColumnModel().getColumn(7).setMinWidth(70);
@@ -264,7 +262,7 @@ public class TelaExportarConfereInternos extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
@@ -273,13 +271,13 @@ public class TelaExportarConfereInternos extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jPanel42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel43, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel44, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(5, 5, 5))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtConfirmar, jBtSair});
@@ -378,7 +376,10 @@ public class TelaExportarConfereInternos extends javax.swing.JDialog {
         try {
             for (GravarInternos dd : control.read()) {
                 jtotalInternosSelecionados.setText(Integer.toString(qtdInternos)); // Converter inteiro em string para exibir na tela 
-                dadosOrigem.addRow(new Object[]{dd.getIdInternoCrc(), dd.getNomeInternoCrc(), dd.getDataConfere(), dd.getDataRealizacao(), dd.getHorarioConfere(), dd.getIdPav(), dd.getNomePavilhao(), dd.getIdCela(), dd.getNomeCela(), dd.getUsuarioInsert(), dd.getDataInsert(), dd.getHoraInsert(), dd.getUsuarioUp(), dd.getDataUp(), dd.getHoraUp(), dd.getAssinaturaBiometricaInterno()});
+                SimpleDateFormat formatoAmerica = new SimpleDateFormat("dd/MM/yyyy");
+                String dataInicial = formatoAmerica.format(dd.getDataConfere());
+                dadosOrigem.addRow(new Object[]{dd.getIdInternoCrc(), dd.getNomeInternoCrc(), dataInicial, dd.getDataRealizacao(), dd.getHorarioConfere(), dd.getIdPav(), dd.getNomePavilhao(), dd.getIdCela(), dd.getNomeCela(), dd.getUsuarioInsert(), dd.getDataInsert(), dd.getHoraInsert(), dd.getUsuarioUp(), dd.getDataUp(), dd.getHoraUp(), dd.getAssinaturaBiometricaInterno()});
+                jDataConfere.setDate(dd.getDataConfere());
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaExportarConfereInternos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                 // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -397,6 +398,7 @@ public class TelaExportarConfereInternos extends javax.swing.JDialog {
                 jTabelaExportarConfereInternos.getColumnModel().getColumn(13).setCellRenderer(centralizado);
                 jTabelaExportarConfereInternos.getColumnModel().getColumn(14).setCellRenderer(centralizado);
             }
+
         } catch (Exception ex) {
             Logger.getLogger(TelaExportarConfereInternos.class.getName()).log(Level.SEVERE, null, ex);
         }

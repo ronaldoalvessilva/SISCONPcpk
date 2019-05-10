@@ -34,6 +34,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     public static TelaImportacaoCelas importCelas;
     public static TelaImportacaoLocalizacao importLocacao;
     public static TelaExportarConfereInternos exportarConf;
+    public static TelaLimpezaTabela limpaTabela;
 
     private TelaConfereInternos objConfere = null;
     private TelaPagamentoKitInternoCPK objPagto = null;
@@ -184,6 +185,11 @@ public class FormPrincipal extends javax.swing.JFrame {
     public void mostrarExportacaoConfere() {
         exportarConf = new TelaExportarConfereInternos(this, true);
         exportarConf.setVisible(true);
+    }
+
+    public void mostrarLimpezaTabela() {
+        limpaTabela = new TelaLimpezaTabela(this, true);
+        limpaTabela.setVisible(true);
     }
 
     public void rodaRelogio() {
@@ -524,7 +530,8 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         jBtLimparTabelas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jBtLimparTabelas.setForeground(new java.awt.Color(102, 153, 0));
-        jBtLimparTabelas.setText("Limpar Tabelas");
+        jBtLimparTabelas.setText("Limpar Tabela");
+        jBtLimparTabelas.setToolTipText("Limpar tabela de confere de internos.");
         jBtLimparTabelas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jBtLimparTabelas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1250,7 +1257,7 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void jBtLimparTabelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtLimparTabelasActionPerformed
         // TODO add your handling code here:
-
+        mostrarLimpezaTabela();
     }//GEN-LAST:event_jBtLimparTabelasActionPerformed
 
     /**
