@@ -422,7 +422,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
             } else if (tipoKit.equals("Kit Semestral")) {
                 jRBtKitSemestraPesquisa.setSelected(true);
             } else if (tipoKit.equals("Kit Anual")) {
-                jRBtKitAnualPesquisa.setSelected(!true);
+                jRBtKitAnualPesquisa.setSelected(true);
             }
         }
     }//GEN-LAST:event_TabelaRegistrosMontagemKitsMouseClicked
