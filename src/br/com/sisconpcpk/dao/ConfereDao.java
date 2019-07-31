@@ -178,7 +178,7 @@ public class ConfereDao {
             try {
                 conectaLocal.executaSQL("SELECT * FROM  PRONTUARIOSCRC "
                         + "INNER JOIN ITENSLOCACAOINTERNO "
-                        + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "                       
+                        + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
                         + "INNER JOIN CELAS "
                         + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
                         + "INNER JOIN PAVILHAO "
@@ -189,8 +189,9 @@ public class ConfereDao {
                     DigitalInternos pDigital = new DigitalInternos();
                     pDigital.setIdInternoCrc(conectaLocal.rs.getInt("IdInternoCrc"));
                     pDigital.setNomeInternoCrc(conectaLocal.rs.getString("NomeInternoCrc"));
-                    pDigital.setCaminhoFotoInterno(conectaLocal.rs.getString("ImagemFrente"));
-                    pDigital.setRegime(conectaLocal.rs.getString("Regime"));                    
+                    pDigital.setFotoByte(conectaLocal.rs.getBytes("ImagemFrente"));
+                    pDigital.setCaminhoFotoInterno(conectaLocal.rs.getString("FotoInternoCrc"));
+                    pDigital.setRegime(conectaLocal.rs.getString("Regime"));
                     pDigital.setCnc(conectaLocal.rs.getString("Cnc"));
                     pDigital.setIdPav(conectaLocal.rs.getInt("IdPav"));
                     pDigital.setPavilhao(conectaLocal.rs.getString("DescricaoPav"));

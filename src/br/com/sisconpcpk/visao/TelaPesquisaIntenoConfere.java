@@ -17,6 +17,7 @@ import static br.com.sisconpcpk.visao.TelaConfereInternos.jHorarioConfere;
 import static br.com.sisconpcpk.visao.TelaConfereInternos.jMatriculaInterno;
 import static br.com.sisconpcpk.visao.TelaConfereInternos.jNomeInternoBiometria;
 import static br.com.sisconpcpk.visao.TelaConfereInternos.codigoPavilhao;
+import static br.com.sisconpcpk.visao.TelaConfereInternos.jFotoComparacao;
 import static br.com.sisconpcpk.visao.TelaConfereInternos.jPavilhao;
 import static br.com.sisconpcpk.visao.TelaConfereInternos.jRegime;
 import java.awt.Image;
@@ -166,7 +167,7 @@ public class TelaPesquisaIntenoConfere extends javax.swing.JInternalFrame {
         jTabelaInternos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jTabelaInternos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+
             },
             new String [] {
                 "Código", "Matrcula Penal", "Nome Completo do Interno"
@@ -241,7 +242,7 @@ public class TelaPesquisaIntenoConfere extends javax.swing.JInternalFrame {
                     + "INNER JOIN PAVILHAO "
                     + "ON CELAS.IdPav=PAVILHAO.IdPav "
                     + "WHERE PRONTUARIOSCRC.IdInternoCrc='" + jIdInterno.getText() + "' "
-                    + "AND CELAS.NrCela='" + codigoCela + "'");            
+                    + "AND CELAS.NrCela='" + codigoCela + "'");
         }
     }//GEN-LAST:event_jBtCodPesquisarActionPerformed
 
@@ -308,9 +309,20 @@ public class TelaPesquisaIntenoConfere extends javax.swing.JInternalFrame {
                 jCela.setText(conecta.rs.getString("EndCelaPav"));
                 // Capturando foto
                 caminho = conecta.rs.getString("FotoInternoCrc");
-                javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminho);
-                jFotoInternoBiometria.setIcon(i);
-                jFotoInternoBiometria.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoBiometria.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
+                if (caminho != null) {
+                    javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminho);
+                    jFotoComparacao.setIcon(i);
+                    jFotoComparacao.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoComparacao.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
+                }
+                // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+                byte[] imgBytes = ((byte[]) conecta.rs.getBytes("ImagemFrente"));
+                if (imgBytes != null) {
+                    ImageIcon pic = null;
+                    pic = new ImageIcon(imgBytes);
+                    Image scaled = pic.getImage().getScaledInstance(jFotoComparacao.getWidth(), jFotoComparacao.getHeight(), Image.SCALE_DEFAULT);
+                    ImageIcon icon = new ImageIcon(scaled);
+                    jFotoComparacao.setIcon(icon);
+                }
                 jDataConfere.setCalendar(Calendar.getInstance());
                 jHorarioConfere.setText(FormPrincipal.jHoraSistema.getText());
                 conecta.desconecta();

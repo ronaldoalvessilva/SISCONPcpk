@@ -27,8 +27,12 @@ public class DigitalInternos {
     private String idItemSaida;
     private int idItemCrcPort;
     private String cnc;    
+    private byte[] fotoByte;
 
-    public DigitalInternos(int idInternoCrc, String nomeInternoCrc, String caminhoFotoInterno, String matriculaPenal, String Regime, int idPav, String pavilhao, int idCela, String cela, byte[] biometriaDedo1, byte[] biometriaDedo2, byte[] biometriaDedo3, byte[] biometriaDedo4, String idItemSaida, int idItemCrcPort, String cnc) {
+    public DigitalInternos() {
+    }
+
+    public DigitalInternos(int idInternoCrc, String nomeInternoCrc, String caminhoFotoInterno, String matriculaPenal, String Regime, int idPav, String pavilhao, int idCela, String cela, byte[] biometriaDedo1, byte[] biometriaDedo2, byte[] biometriaDedo3, byte[] biometriaDedo4, String idItemSaida, int idItemCrcPort, String cnc, byte[] fotoByte) {
         this.idInternoCrc = idInternoCrc;
         this.nomeInternoCrc = nomeInternoCrc;
         this.caminhoFotoInterno = caminhoFotoInterno;
@@ -45,9 +49,7 @@ public class DigitalInternos {
         this.idItemSaida = idItemSaida;
         this.idItemCrcPort = idItemCrcPort;
         this.cnc = cnc;
-    }
-
-    public DigitalInternos() {
+        this.fotoByte = fotoByte;
     }
 
     /**
@@ -272,5 +274,19 @@ public class DigitalInternos {
      */
     public void setCnc(String cnc) {
         this.cnc = cnc;
+    }
+
+    /**
+     * @return the fotoByte
+     */
+    public byte[] getFotoByte() {
+        return fotoByte;
+    }
+
+    /**
+     * @param fotoByte the fotoByte to set
+     */
+    public void setFotoByte(byte[] fotoByte) {
+        this.fotoByte = fotoByte;
     }
 }

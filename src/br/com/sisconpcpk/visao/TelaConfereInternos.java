@@ -93,6 +93,8 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
         public Pointer CIS_SDK_Versao();
     }
 
+    public static TelaFotoCrc telafotocrc;
+
     /**
      * Creates new form telaconf
      */
@@ -100,6 +102,11 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
         initComponents();
         corCampos();
         preencherComboCela();
+    }
+
+    public void mostraTelaFotoCrc() {
+        telafotocrc = new TelaFotoCrc(this, true);
+        telafotocrc.setVisible(true);
     }
 
     /**
@@ -194,15 +201,18 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
         jLabel27 = new javax.swing.JLabel();
         jPavilhao = new javax.swing.JTextField();
         jCela = new javax.swing.JTextField();
+        jBtZoon = new javax.swing.JButton();
         jBtIniciarBiometria = new javax.swing.JButton();
         jBtCancelarLeitura = new javax.swing.JButton();
         jBtSalvar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jFotoInternoBiometria = new javax.swing.JLabel();
-        jBtPesquisaManual = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jFotoComparacao = new javax.swing.JLabel();
         jRBtOFFline = new javax.swing.JRadioButton();
         jRBtONLine = new javax.swing.JRadioButton();
+        jBtPesquisaManual = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -737,7 +747,7 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                     .addComponent(jBtCela15)
                     .addComponent(jBtCela10)
                     .addComponent(jBtCela5))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtCela1, jBtCela10, jBtCela11, jBtCela12, jBtCela13, jBtCela14, jBtCela15, jBtCela16, jBtCela17, jBtCela18, jBtCela19, jBtCela2, jBtCela20, jBtCela21, jBtCela22, jBtCela23, jBtCela24, jBtCela25, jBtCela26, jBtCela27, jBtCela28, jBtCela29, jBtCela3, jBtCela30, jBtCela31, jBtCela32, jBtCela33, jBtCela34, jBtCela35, jBtCela36, jBtCela37, jBtCela38, jBtCela39, jBtCela4, jBtCela40, jBtCela41, jBtCela42, jBtCela43, jBtCela44, jBtCela45, jBtCela46, jBtCela47, jBtCela48, jBtCela49, jBtCela5, jBtCela50, jBtCela6, jBtCela7, jBtCela8, jBtCela9});
@@ -946,13 +956,13 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jPanel37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(6, 6, 6))
         );
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true), "Biometria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(51, 0, 51))); // NOI18N
@@ -1015,6 +1025,14 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
         jCela.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jCela.setEnabled(false);
 
+        jBtZoon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/11985_16x16.png"))); // NOI18N
+        jBtZoon.setText("Zoon");
+        jBtZoon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtZoonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -1054,10 +1072,13 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel24)
-                                    .addComponent(jHorarioConfere, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel27))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(19, 19, 19))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jHorarioConfere, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBtZoon, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1097,25 +1118,26 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                     .addComponent(jLabel24))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jBtZoon)
                     .addComponent(jHorarioConfere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDataConfere, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jBtIniciarBiometria.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jBtIniciarBiometria.setForeground(new java.awt.Color(51, 153, 0));
         jBtIniciarBiometria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/Biometria16Vermelho.png"))); // NOI18N
-        jBtIniciarBiometria.setText("Iniciar Biometria");
+        jBtIniciarBiometria.setText("Iniciar");
+        jBtIniciarBiometria.setToolTipText("Iniciar Biometria");
         jBtIniciarBiometria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtIniciarBiometriaActionPerformed(evt);
             }
         });
 
-        jBtCancelarLeitura.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jBtCancelarLeitura.setForeground(new java.awt.Color(204, 0, 0));
         jBtCancelarLeitura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/Button_Close_Icon_16.png"))); // NOI18N
-        jBtCancelarLeitura.setText("Cancelar Biometria");
+        jBtCancelarLeitura.setText("Cancelar");
+        jBtCancelarLeitura.setToolTipText("Cancelar Biometria");
         jBtCancelarLeitura.setEnabled(false);
         jBtCancelarLeitura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1142,22 +1164,27 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jFotoInternoBiometria, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+            .addComponent(jFotoInternoBiometria, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jFotoInternoBiometria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jFotoInternoBiometria, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
         );
 
-        jBtPesquisaManual.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jBtPesquisaManual.setForeground(new java.awt.Color(0, 0, 255));
-        jBtPesquisaManual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/Lupas_1338_05.gif"))); // NOI18N
-        jBtPesquisaManual.setText("Pesquisar Manual");
-        jBtPesquisaManual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtPesquisaManualActionPerformed(evt);
-            }
-        });
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true), "Foto Comparação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+
+        jFotoComparacao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jFotoComparacao, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jFotoComparacao, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1166,20 +1193,23 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtPesquisaManual)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel3, jPanel7});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtPesquisaManual)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPanel3, jPanel7});
 
         grupoBotoes.add(jRBtOFFline);
         jRBtOFFline.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -1191,6 +1221,16 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
         jRBtONLine.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jRBtONLine.setForeground(new java.awt.Color(0, 102, 0));
         jRBtONLine.setText("ON-Line");
+
+        jBtPesquisaManual.setForeground(new java.awt.Color(0, 0, 255));
+        jBtPesquisaManual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/Lupas_1338_05.gif"))); // NOI18N
+        jBtPesquisaManual.setText("Pesquisar");
+        jBtPesquisaManual.setToolTipText("Pesquisar Manual");
+        jBtPesquisaManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtPesquisaManualActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1213,32 +1253,25 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jBtIniciarBiometria, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtIniciarBiometria)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtCancelarLeitura, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtCancelarLeitura)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 1, Short.MAX_VALUE))
+                        .addComponent(jBtPesquisaManual)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtSalvar))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtCancelarLeitura, jBtIniciarBiometria, jBtPesquisaManual, jBtSalvar});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBtIniciarBiometria)
-                            .addComponent(jBtCancelarLeitura)
-                            .addComponent(jBtSalvar))
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBoxPavilhao, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
@@ -1247,7 +1280,19 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBtIniciarBiometria)
+                            .addComponent(jBtCancelarLeitura)
+                            .addComponent(jBtSalvar)
+                            .addComponent(jBtPesquisaManual))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Confere de Internos", jPanel2);
@@ -1263,28 +1308,56 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        setBounds(100, 10, 1014, 590);
+        setBounds(50, 10, 1028, 579);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTabelaInternosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelaInternosMouseClicked
         // TODO add your handling code here:
+        flag = 1;
         if (jRBtOFFline.isSelected() == true) {
             if (flag == 1) {
                 String idInternoDir = "" + jTabelaInternos.getValueAt(jTabelaInternos.getSelectedRow(), 0);
                 conectaLocal.abrirConexao();
                 try {
-                    conectaLocal.executaSQL("SELECT * FROM PRONTUARIOSCRC "
-                            + "INNER JOIN ITENSLOCACAOINTERNO "
-                            + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
+                    conecta.executaSQL("SELECT * FROM ITENSLOCACAOINTERNO "
+                            + "INNER JOIN PRONTUARIOSCRC "
+                            + "ON ITENSLOCACAOINTERNO.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                            + "INNER JOIN DADOSPENAISINTERNOS "
+                            + "ON PRONTUARIOSCRC.IdInternoCrc=DADOSPENAISINTERNOS.IdInternoCrc "
                             + "INNER JOIN CELAS "
                             + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                            + "INNER JOIN PAVILHAO "
+                            + "ON CELAS.IdPav=PAVILHAO.IdPav  "
                             + "WHERE PRONTUARIOSCRC.IdInternoCrc='" + idInternoDir + "'");
                     conectaLocal.rs.first();
                     // Capturando foto
-                    caminho = conectaLocal.rs.getString("FotoInternoCrc");
-                    javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminho);
-                    jFotoInternoBiometria.setIcon(i);
-                    jFotoInternoBiometria.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoBiometria.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
+                    jCodigoInterno.setText(String.valueOf(conecta.rs.getInt("IdInternoCrc")));
+                    jMatriculaInterno.setText(conecta.rs.getString("MatriculaCrc"));
+                    jCnc.setText(conecta.rs.getString("Cnc"));
+                    jRegime.setText(conecta.rs.getString("Regime"));
+                    jNomeInternoBiometria.setText(conecta.rs.getString("NomeInternoCrc"));
+                    codigoPavilhao = conecta.rs.getInt("IdPav");
+                    jPavilhao.setText(conecta.rs.getString("DescricaoPav"));
+                    codigoCela = conecta.rs.getInt("IdCela");
+                    jCela.setText(conecta.rs.getString("EndCelaPav"));
+                    // Capturando foto
+                    caminho = conecta.rs.getString("FotoInternoCrc");
+                    if (caminho != null) {
+                        javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminho);
+                        jFotoInternoBiometria.setIcon(i);
+                        jFotoInternoBiometria.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoBiometria.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
+                    }
+                    jDataConfere.setCalendar(Calendar.getInstance());
+                    jHorarioConfere.setText(FormPrincipal.jHoraSistema.getText());
+                    // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+                    byte[] imgBytes = ((byte[]) conecta.rs.getBytes("ImagemFrente"));
+                    if (imgBytes != null) {
+                        ImageIcon pic = null;
+                        pic = new ImageIcon(imgBytes);
+                        Image scaled = pic.getImage().getScaledInstance(jFotoInternoBiometria.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT);
+                        ImageIcon icon = new ImageIcon(scaled);
+                        jFotoInternoBiometria.setIcon(icon);
+                    }
                     //
                 } catch (Exception e) {
                 }
@@ -1295,19 +1368,45 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                 String idInternoDir = "" + jTabelaInternos.getValueAt(jTabelaInternos.getSelectedRow(), 0);
                 conecta.abrirConexao();
                 try {
-                    conecta.executaSQL("SELECT * FROM PRONTUARIOSCRC "
-                            + "INNER JOIN ITENSLOCACAOINTERNO "
-                            + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
+                    conecta.executaSQL("SELECT * FROM ITENSLOCACAOINTERNO "
+                            + "INNER JOIN PRONTUARIOSCRC "
+                            + "ON ITENSLOCACAOINTERNO.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                            + "INNER JOIN DADOSPENAISINTERNOS "
+                            + "ON PRONTUARIOSCRC.IdInternoCrc=DADOSPENAISINTERNOS.IdInternoCrc "
                             + "INNER JOIN CELAS "
                             + "ON ITENSLOCACAOINTERNO.IdCela=CELAS.IdCela "
+                            + "INNER JOIN PAVILHAO "
+                            + "ON CELAS.IdPav=PAVILHAO.IdPav  "
                             + "WHERE PRONTUARIOSCRC.IdInternoCrc='" + idInternoDir + "'");
                     conecta.rs.first();
                     // Capturando foto
+                    jCodigoInterno.setText(String.valueOf(conecta.rs.getInt("IdInternoCrc")));
+                    jMatriculaInterno.setText(conecta.rs.getString("MatriculaCrc"));
+                    jCnc.setText(conecta.rs.getString("Cnc"));
+                    jRegime.setText(conecta.rs.getString("Regime"));
+                    jNomeInternoBiometria.setText(conecta.rs.getString("NomeInternoCrc"));
+                    codigoPavilhao = conecta.rs.getInt("IdPav");
+                    jPavilhao.setText(conecta.rs.getString("DescricaoPav"));
+                    codigoCela = conecta.rs.getInt("IdCela");
+                    jCela.setText(conecta.rs.getString("EndCelaPav"));
+                    // Capturando foto
                     caminho = conecta.rs.getString("FotoInternoCrc");
-                    javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminho);
-                    jFotoInternoBiometria.setIcon(i);
-                    jFotoInternoBiometria.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoBiometria.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
-                    //
+                    if (caminho != null) {
+                        javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminho);
+                        jFotoInternoBiometria.setIcon(i);
+                        jFotoInternoBiometria.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoBiometria.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
+                    }
+                    jDataConfere.setCalendar(Calendar.getInstance());
+                    jHorarioConfere.setText(FormPrincipal.jHoraSistema.getText());
+                    // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+                    byte[] imgBytes = ((byte[]) conecta.rs.getBytes("ImagemFrente"));
+                    if (imgBytes != null) {
+                        ImageIcon pic = null;
+                        pic = new ImageIcon(imgBytes);
+                        Image scaled = pic.getImage().getScaledInstance(jFotoInternoBiometria.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT);
+                        ImageIcon icon = new ImageIcon(scaled);
+                        jFotoInternoBiometria.setIcon(icon);
+                    }
                 } catch (Exception e) {
                 }
                 conecta.desconecta();
@@ -2358,6 +2457,11 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBtCela50ActionPerformed
 
+    private void jBtZoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtZoonActionPerformed
+        // TODO add your handling code here:
+        mostraTelaFotoCrc();
+    }//GEN-LAST:event_jBtZoonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup grupoBotoes;
@@ -2415,11 +2519,13 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBtIniciarBiometria;
     private javax.swing.JButton jBtPesquisaManual;
     private javax.swing.JButton jBtSalvar;
+    private javax.swing.JButton jBtZoon;
     public static javax.swing.JTextField jCela;
     public static javax.swing.JTextField jCnc;
     public static javax.swing.JTextField jCodigoInterno;
     public static javax.swing.JComboBox jComboBoxPavilhao;
     public static com.toedter.calendar.JDateChooser jDataConfere;
+    public static javax.swing.JLabel jFotoComparacao;
     public static javax.swing.JLabel jFotoInternoBiometria;
     public static javax.swing.JFormattedTextField jHorarioConfere;
     private javax.swing.JLabel jLabel19;
@@ -2439,6 +2545,7 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel38;
@@ -2683,10 +2790,20 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                         codigoCela = dd.getIdCela();
                         jCela.setText(dd.getCela());
                         caminhoFotoInterno = dd.getCaminhoFotoInterno();
-                        javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
-                        jFotoInternoBiometria.setIcon(a);
-                        jFotoInternoBiometria.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoInternoBiometria.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
-                        //                      
+                        if (caminhoFotoInterno != null) {
+                            javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
+                            jFotoComparacao.setIcon(a);
+                            jFotoComparacao.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoComparacao.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
+                        }
+                        // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+                        byte[] imgBytes = ((byte[]) dd.getFotoByte());
+                        if (imgBytes != null) {
+                            ImageIcon pic = null;
+                            pic = new ImageIcon(imgBytes);
+                            Image scaled = pic.getImage().getScaledInstance(jFotoComparacao.getWidth(), jFotoComparacao.getHeight(), Image.SCALE_DEFAULT);
+                            ImageIcon icon = new ImageIcon(scaled);
+                            jFotoComparacao.setIcon(icon);
+                        }
                         JOptionPane.showMessageDialog(null, "Digital capturada com sucesso !!!");
                         int idRetorno = dll.CIS_SDK_Biometrico_Finalizar();
                         return;
@@ -2702,10 +2819,20 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                         codigoCela = dd.getIdCela();
                         jCela.setText(dd.getCela());
                         caminhoFotoInterno = dd.getCaminhoFotoInterno();
-                        javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
-                        jFotoInternoBiometria.setIcon(a);
-                        jFotoInternoBiometria.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoInternoBiometria.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
-                        //                       
+                        if (caminhoFotoInterno != null) {
+                            javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
+                            jFotoComparacao.setIcon(a);
+                            jFotoComparacao.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoComparacao.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
+                        }
+                        // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+                        byte[] imgBytes = ((byte[]) dd.getFotoByte());
+                        if (imgBytes != null) {
+                            ImageIcon pic = null;
+                            pic = new ImageIcon(imgBytes);
+                            Image scaled = pic.getImage().getScaledInstance(jFotoComparacao.getWidth(), jFotoComparacao.getHeight(), Image.SCALE_DEFAULT);
+                            ImageIcon icon = new ImageIcon(scaled);
+                            jFotoComparacao.setIcon(icon);
+                        }
                         JOptionPane.showMessageDialog(null, "Digital capturada com sucesso !!!");
                         int idRetorno = dll.CIS_SDK_Biometrico_Finalizar();
                         return;
@@ -2721,10 +2848,20 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                         codigoCela = dd.getIdCela();
                         jCela.setText(dd.getCela());
                         caminhoFotoInterno = dd.getCaminhoFotoInterno();
-                        javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
-                        jFotoInternoBiometria.setIcon(a);
-                        jFotoInternoBiometria.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoInternoBiometria.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
-                        //                       
+                        if (caminhoFotoInterno != null) {
+                            javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
+                            jFotoComparacao.setIcon(a);
+                            jFotoComparacao.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoComparacao.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
+                        }
+                        // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+                        byte[] imgBytes = ((byte[]) dd.getFotoByte());
+                        if (imgBytes != null) {
+                            ImageIcon pic = null;
+                            pic = new ImageIcon(imgBytes);
+                            Image scaled = pic.getImage().getScaledInstance(jFotoComparacao.getWidth(), jFotoComparacao.getHeight(), Image.SCALE_DEFAULT);
+                            ImageIcon icon = new ImageIcon(scaled);
+                            jFotoComparacao.setIcon(icon);
+                        }
                         JOptionPane.showMessageDialog(null, "Digital capturada com sucesso !!!");
                         int idRetorno = dll.CIS_SDK_Biometrico_Finalizar();
                         return;
@@ -2740,10 +2877,20 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
                         codigoCela = dd.getIdCela();
                         jCela.setText(dd.getCela());
                         caminhoFotoInterno = dd.getCaminhoFotoInterno();
-                        javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
-                        jFotoInternoBiometria.setIcon(a);
-                        jFotoInternoBiometria.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoInternoBiometria.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
-                        //                      
+                        if (caminhoFotoInterno != null) {
+                            javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
+                            jFotoComparacao.setIcon(a);
+                            jFotoComparacao.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoComparacao.getWidth(), jFotoInternoBiometria.getHeight(), Image.SCALE_DEFAULT)));
+                        }
+                        // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+                        byte[] imgBytes = ((byte[]) dd.getFotoByte());
+                        if (imgBytes != null) {
+                            ImageIcon pic = null;
+                            pic = new ImageIcon(imgBytes);
+                            Image scaled = pic.getImage().getScaledInstance(jFotoComparacao.getWidth(), jFotoComparacao.getHeight(), Image.SCALE_DEFAULT);
+                            ImageIcon icon = new ImageIcon(scaled);
+                            jFotoComparacao.setIcon(icon);
+                        }
                         JOptionPane.showMessageDialog(null, "Digital capturada com sucesso !!!");
                         int idRetorno = dll.CIS_SDK_Biometrico_Finalizar();
                         return;
@@ -2856,7 +3003,7 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
     }
 
     public void preencherTabelaInternos(String sql) {
-        if (jRBtOFFline.isSelected() == true) {            
+        if (jRBtOFFline.isSelected() == true) {
             ArrayList dados = new ArrayList();
             String[] Colunas = new String[]{"Código", "Matricula", "Nome Completo do Interno"};
             conectaLocal.abrirConexao();
@@ -2883,7 +3030,7 @@ public class TelaConfereInternos extends javax.swing.JInternalFrame {
             jTabelaInternos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             alinharCamposTabelaInternos();
             conectaLocal.desconecta();
-        } else if (jRBtONLine.isSelected() == true) {            
+        } else if (jRBtONLine.isSelected() == true) {
             ArrayList dados = new ArrayList();
             String[] Colunas = new String[]{"Código", "Matricula", "Nome Completo do Interno"};
             conecta.abrirConexao();
