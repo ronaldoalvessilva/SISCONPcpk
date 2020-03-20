@@ -100,7 +100,9 @@ public class PagamentoKitInternosDao {
     public void buscarInterno(String desc, int cod) {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM PRONTUARIOSCRC WHERE NomeInternoCrc='" + desc + "' "
+            conecta.executaSQL("SELECT PRONTUARIOSCRC.IdInternoCrc, "
+                    + "PRONTUARIOSCRC.NomeInternoCrc "
+                    + "FROM PRONTUARIOSCRC WHERE NomeInternoCrc='" + desc + "' "
                     + "AND IdInternoCrc='" + cod + "'");
             conecta.rs.first();
             codInterno = conecta.rs.getInt("IdInternoCrc");
