@@ -14,6 +14,7 @@ public class DigitalInternos {
     private int idInternoCrc;
     private String nomeInternoCrc;
     private String caminhoFotoInterno;
+    private byte [] imagemFrente;
     private String matriculaPenal;
     private String Regime;
     private int idPav;
@@ -27,15 +28,16 @@ public class DigitalInternos {
     private String idItemSaida;
     private int idItemCrcPort;
     private String cnc;    
-    private byte[] fotoByte;
+    private byte[] fotoByte;  
 
     public DigitalInternos() {
     }
 
-    public DigitalInternos(int idInternoCrc, String nomeInternoCrc, String caminhoFotoInterno, String matriculaPenal, String Regime, int idPav, String pavilhao, int idCela, String cela, byte[] biometriaDedo1, byte[] biometriaDedo2, byte[] biometriaDedo3, byte[] biometriaDedo4, String idItemSaida, int idItemCrcPort, String cnc, byte[] fotoByte) {
+    public DigitalInternos(int idInternoCrc, String nomeInternoCrc, String caminhoFotoInterno, byte[] imagemFrente, String matriculaPenal, String Regime, int idPav, String pavilhao, int idCela, String cela, byte[] biometriaDedo1, byte[] biometriaDedo2, byte[] biometriaDedo3, byte[] biometriaDedo4, String idItemSaida, int idItemCrcPort, String cnc, byte[] fotoByte) {
         this.idInternoCrc = idInternoCrc;
         this.nomeInternoCrc = nomeInternoCrc;
         this.caminhoFotoInterno = caminhoFotoInterno;
+        this.imagemFrente = imagemFrente;
         this.matriculaPenal = matriculaPenal;
         this.Regime = Regime;
         this.idPav = idPav;
@@ -92,6 +94,20 @@ public class DigitalInternos {
      */
     public void setCaminhoFotoInterno(String caminhoFotoInterno) {
         this.caminhoFotoInterno = caminhoFotoInterno;
+    }
+
+    /**
+     * @return the imagemFrente
+     */
+    public byte[] getImagemFrente() {
+        return imagemFrente;
+    }
+
+    /**
+     * @param imagemFrente the imagemFrente to set
+     */
+    public void setImagemFrente(byte[] imagemFrente) {
+        this.imagemFrente = imagemFrente;
     }
 
     /**

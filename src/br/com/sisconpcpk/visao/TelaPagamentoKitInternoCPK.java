@@ -146,10 +146,11 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         telaBiometriaKit.setVisible(true);
     }
 
-    public void mostrarAjuda(){
+    public void mostrarAjuda() {
         telaHelp = new TelaAjudaAcesso(this, true);
         telaHelp.setVisible(true);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -395,7 +396,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Código", "Data", "Status", "Observação"
+                "Código", "Data", "Status", "Pavilhão", "Observação"
             }
         ));
         jTabelaPagamentoKit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -411,8 +412,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             jTabelaPagamentoKit.getColumnModel().getColumn(1).setMaxWidth(80);
             jTabelaPagamentoKit.getColumnModel().getColumn(2).setMinWidth(80);
             jTabelaPagamentoKit.getColumnModel().getColumn(2).setMaxWidth(80);
-            jTabelaPagamentoKit.getColumnModel().getColumn(3).setMinWidth(350);
-            jTabelaPagamentoKit.getColumnModel().getColumn(3).setMaxWidth(350);
+            jTabelaPagamentoKit.getColumnModel().getColumn(3).setMinWidth(200);
+            jTabelaPagamentoKit.getColumnModel().getColumn(3).setMaxWidth(200);
+            jTabelaPagamentoKit.getColumnModel().getColumn(4).setMinWidth(350);
+            jTabelaPagamentoKit.getColumnModel().getColumn(4).setMaxWidth(350);
         }
 
         jPanel31.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED)));
@@ -1255,7 +1258,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
-        setBounds(300, 60, 648, 488);
+        setBounds(250, 30, 648, 488);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtPesqDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPesqDataActionPerformed
@@ -1277,7 +1280,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
                     dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
                     preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
-                            + "WHERE DataLanc BETWEEN'" + dataInicial + "'AND'" + dataFinal + "'");
+                            + "INNER JOIN PAVILHAO "
+                            + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                            + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
+                            + "AND'" + dataFinal + "'");
                 }
             }
         }
@@ -1291,6 +1297,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "Informe um ID para pesquisa.");
         } else {
             preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
                     + "WHERE IdPagto='" + jIDPesqLanc.getText() + "'");
         }
     }//GEN-LAST:event_jBtPesqIDActionPerformed
@@ -1300,7 +1308,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         count = 0;
         flag = 1;
         if (evt.getStateChange() == evt.SELECTED) {
-            this.preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS");
+            this.preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav");
         } else {
             jtotalRegistros.setText("");
             limparTabela();
@@ -1319,6 +1329,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
                     + "WHERE NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%'");
         }
     }//GEN-LAST:event_jBtPesqNomeInternoActionPerformed
@@ -1578,10 +1590,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 objPag.setResponsavel(jResponsavel.getText());
                 objPag.setHoraInicio(jHorarioInicial.getText());
                 objPag.setHoraTermino(jHorarioTermino.getText());
-                
+
                 objPag.setIdRegistroComp(Integer.valueOf(jIdRegistroComp.getText()));
                 objPag.setIdKit(Integer.valueOf(jIdKit.getText()));
-                
+
                 objPag.setTipoKit((String) jComboBoxTipoKit.getSelectedItem());
                 objPag.setDescricaoPavilhao((String) jComboBoxPavilhao.getSelectedItem());
                 objPag.setObservacao(jObservacao.getText());
@@ -2552,7 +2564,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     public void preencherTabelaPagotKit(String sql) {
         ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Data", "Status", "Observação"};
+        String[] Colunas = new String[]{"Código", "Data", "Status", "Pavilhão", "Observação"};
         conecta.abrirConexao();
         try {
             conecta.executaSQL(sql);
@@ -2566,7 +2578,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
                 jtotalRegistros.setText(Integer.toString(count)); // Converter inteiro em string para exibir na tela
-                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("Observacao")});
+                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("DescricaoPav"), conecta.rs.getString("Observacao")});
             } while (conecta.rs.next());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Não existem dados a serem EXIBIDOS !!!");
@@ -2579,8 +2591,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jTabelaPagamentoKit.getColumnModel().getColumn(1).setResizable(false);
         jTabelaPagamentoKit.getColumnModel().getColumn(2).setPreferredWidth(80);
         jTabelaPagamentoKit.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(350);
+        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(200);
         jTabelaPagamentoKit.getColumnModel().getColumn(3).setResizable(false);
+        jTabelaPagamentoKit.getColumnModel().getColumn(4).setPreferredWidth(350);
+        jTabelaPagamentoKit.getColumnModel().getColumn(4).setResizable(false);
         jTabelaPagamentoKit.getTableHeader().setReorderingAllowed(false);
         jTabelaPagamentoKit.setAutoResizeMode(jTabelaPagamentoKit.AUTO_RESIZE_OFF);
         jTabelaPagamentoKit.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -2590,7 +2604,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     public void limparTabela() {
         ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Data", "Status", "Observação"};
+        String[] Colunas = new String[]{"Código", "Data", "Status", "Pavilhão", "Observação"};
         ModeloTabela modelo = new ModeloTabela(dados, Colunas);
         jTabelaPagamentoKit.setModel(modelo);
         jTabelaPagamentoKit.getColumnModel().getColumn(0).setPreferredWidth(70);
@@ -2599,8 +2613,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jTabelaPagamentoKit.getColumnModel().getColumn(1).setResizable(false);
         jTabelaPagamentoKit.getColumnModel().getColumn(2).setPreferredWidth(80);
         jTabelaPagamentoKit.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(350);
+        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(200);
         jTabelaPagamentoKit.getColumnModel().getColumn(3).setResizable(false);
+        jTabelaPagamentoKit.getColumnModel().getColumn(4).setPreferredWidth(350);
+        jTabelaPagamentoKit.getColumnModel().getColumn(4).setResizable(false);
         jTabelaPagamentoKit.getTableHeader().setReorderingAllowed(false);
         jTabelaPagamentoKit.setAutoResizeMode(jTabelaPagamentoKit.AUTO_RESIZE_OFF);
         jTabelaPagamentoKit.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -2622,7 +2638,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     public void preencherTabelaPagotKitInterno(String sql) {
         ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Data", "Status", "Nome do Interno"};
+        String[] Colunas = new String[]{"Código", "Data", "Status", "Pavilhão", "Nome do Interno"};
         conecta.abrirConexao();
         try {
             conecta.executaSQL(sql);
@@ -2636,7 +2652,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
                 jtotalRegistros.setText(Integer.toString(count)); // Converter inteiro em string para exibir na tela
-                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("NomeInternoCrc")});
+                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("DescricaoPav"), conecta.rs.getString("NomeInternoCrc")});
             } while (conecta.rs.next());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Não existem dados a serem EXIBIDOS !!!");
@@ -2649,8 +2665,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jTabelaPagamentoKit.getColumnModel().getColumn(1).setResizable(false);
         jTabelaPagamentoKit.getColumnModel().getColumn(2).setPreferredWidth(80);
         jTabelaPagamentoKit.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(350);
+        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(200);
         jTabelaPagamentoKit.getColumnModel().getColumn(3).setResizable(false);
+        jTabelaPagamentoKit.getColumnModel().getColumn(4).setPreferredWidth(350);
+        jTabelaPagamentoKit.getColumnModel().getColumn(4).setResizable(false);
         jTabelaPagamentoKit.getTableHeader().setReorderingAllowed(false);
         jTabelaPagamentoKit.setAutoResizeMode(jTabelaPagamentoKit.AUTO_RESIZE_OFF);
         jTabelaPagamentoKit.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

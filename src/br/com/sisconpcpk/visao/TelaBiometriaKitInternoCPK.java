@@ -805,7 +805,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                 Salvar();
                 bloquearCampos();
                 gravarDadosBanco();
-              //  limparCamposBiometria();
+                //  limparCamposBiometria();
             }
         }
     }//GEN-LAST:event_jBtSalvarActionPerformed
@@ -1161,9 +1161,11 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                         jPavilhaoKitBio.setText(dd.getPavilhao());
                         jCelaKitBio.setText(dd.getCela());
                         caminhoFotoInterno = dd.getCaminhoFotoInterno();
-                        javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
-                        jFotoInternoKitBio.setIcon(a);
-                        jFotoInternoKitBio.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoInternoKitBio.getWidth(), jFotoInternoKitBio.getHeight(), Image.SCALE_DEFAULT)));
+                        if (caminhoFotoInterno != null) {
+                            javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
+                            jFotoInternoKitBio.setIcon(a);
+                            jFotoInternoKitBio.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoInternoKitBio.getWidth(), jFotoInternoKitBio.getHeight(), Image.SCALE_DEFAULT)));
+                        }
                         JOptionPane.showMessageDialog(null, "Digital capturada com sucesso !!!");
                         int idRetorno = dll.CIS_SDK_Biometrico_Finalizar();
                         return;
@@ -1175,9 +1177,11 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                         jPavilhaoKitBio.setText(dd.getPavilhao());
                         jCelaKitBio.setText(dd.getCela());
                         caminhoFotoInterno = dd.getCaminhoFotoInterno();
-                        javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
-                        jFotoInternoKitBio.setIcon(a);
-                        jFotoInternoKitBio.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoInternoKitBio.getWidth(), jFotoInternoKitBio.getHeight(), Image.SCALE_DEFAULT)));
+                        if (caminhoFotoInterno != null) {
+                            javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
+                            jFotoInternoKitBio.setIcon(a);
+                            jFotoInternoKitBio.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoInternoKitBio.getWidth(), jFotoInternoKitBio.getHeight(), Image.SCALE_DEFAULT)));
+                        }
                         JOptionPane.showMessageDialog(null, "Digital capturada com sucesso !!!");
                         int idRetorno = dll.CIS_SDK_Biometrico_Finalizar();
                         return;
@@ -1189,9 +1193,11 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                         jPavilhaoKitBio.setText(dd.getPavilhao());
                         jCelaKitBio.setText(dd.getCela());
                         caminhoFotoInterno = dd.getCaminhoFotoInterno();
-                        javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
-                        jFotoInternoKitBio.setIcon(a);
-                        jFotoInternoKitBio.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoInternoKitBio.getWidth(), jFotoInternoKitBio.getHeight(), Image.SCALE_DEFAULT)));
+                        if (caminhoFotoInterno != null) {
+                            javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
+                            jFotoInternoKitBio.setIcon(a);
+                            jFotoInternoKitBio.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoInternoKitBio.getWidth(), jFotoInternoKitBio.getHeight(), Image.SCALE_DEFAULT)));
+                        }
                         JOptionPane.showMessageDialog(null, "Digital capturada com sucesso !!!");
                         int idRetorno = dll.CIS_SDK_Biometrico_Finalizar();
                         return;

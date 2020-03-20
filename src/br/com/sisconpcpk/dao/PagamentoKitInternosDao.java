@@ -28,6 +28,7 @@ public class PagamentoKitInternosDao {
     String pBio = null;
     public static int qtdInternos = 0;
     String statusFinal = "FINALIZADO";
+    String pKIT_PAGO = "Não";
 
     public ItensPagamentoKitInterno incluirPagamentoKitInterno(ItensPagamentoKitInterno objItensPagto) {
         buscarInterno(objItensPagto.getNomeInternoCrcKit(), objItensPagto.getIdInternoCrc());
@@ -113,7 +114,13 @@ public class PagamentoKitInternosDao {
         conecta.abrirConexao();
         java.util.List<DigitalInternos> listaInternos = new ArrayList<DigitalInternos>();
         try {
-            conecta.executaSQL("SELECT * FROM  PRONTUARIOSCRC "
+            conecta.executaSQL("SELECT PRONTUARIOSCRC.IdInternoCrc, "
+                    + "PRONTUARIOSCRC.MatriculaCrc,PRONTUARIOSCRC.NomeInternoCrc, "
+                    + "PRONTUARIOSCRC.FotoInternoCrc,PRONTUARIOSCRC.ImagemFrente,DADOSPENAISINTERNOS.Regime, "
+                    + "PAVILHAO.DescricaoPav,CELAS.EndCelaPav, "
+                    + "BIOMETRIA_INTERNOS.BiometriaDedo1,BIOMETRIA_INTERNOS.BiometriaDedo2, "
+                    + "BIOMETRIA_INTERNOS.BiometriaDedo3,BIOMETRIA_INTERNOS.BiometriaDedo4 "
+                    + "FROM  PRONTUARIOSCRC "
                     + "INNER JOIN BIOMETRIA_INTERNOS "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=BIOMETRIA_INTERNOS.IdInternoCrc "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
@@ -130,13 +137,15 @@ public class PagamentoKitInternosDao {
                     + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
                     + "AND BiometriaDedo1!='" + pBio + "' "
-                    + "AND StatusComp='" + statusFinal + "'");
+                    + "AND StatusComp='" + statusFinal + "'"
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.KitPago='" + pKIT_PAGO + "'");
             while (conecta.rs.next()) {
                 DigitalInternos pDigital = new DigitalInternos();
                 pDigital.setIdInternoCrc(conecta.rs.getInt("IdInternoCrc"));
                 pDigital.setMatriculaPenal(conecta.rs.getString("MatriculaCrc"));
                 pDigital.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
                 pDigital.setCaminhoFotoInterno(conecta.rs.getString("FotoInternoCrc"));
+                pDigital.setImagemFrente(conecta.rs.getBytes("ImagemFrente"));
                 pDigital.setRegime(conecta.rs.getString("Regime"));
                 pDigital.setPavilhao(conecta.rs.getString("DescricaoPav"));
                 pDigital.setCela(conecta.rs.getString("EndCelaPav"));
