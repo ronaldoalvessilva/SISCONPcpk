@@ -136,8 +136,8 @@ public class PagamentoKitInternosDao {
                     + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
                     + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdRegistroComp=COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp "
                     + "WHERE PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
-                    + "AND BiometriaDedo1!='" + pBio + "' "
-                    + "AND StatusComp='" + statusFinal + "'"
+                    + "AND BIOMETRIA_INTERNOS.BiometriaDedo1!='" + pBio + "' "
+                    + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "'"
                     + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.KitPago='" + pKIT_PAGO + "'");
             while (conecta.rs.next()) {
                 DigitalInternos pDigital = new DigitalInternos();

@@ -1166,6 +1166,15 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                             jFotoInternoKitBio.setIcon(a);
                             jFotoInternoKitBio.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoInternoKitBio.getWidth(), jFotoInternoKitBio.getHeight(), Image.SCALE_DEFAULT)));
                         }
+                        // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+                        byte[] imgBytes = dd.getImagemFrente();
+                        if (imgBytes != null) {
+                            ImageIcon pic = null;
+                            pic = new ImageIcon(imgBytes);
+                            Image scaled = pic.getImage().getScaledInstance(jFotoInternoKitBio.getWidth(), jFotoInternoKitBio.getHeight(), Image.SCALE_SMOOTH);
+                            ImageIcon icon = new ImageIcon(scaled);
+                            jFotoInternoKitBio.setIcon(icon);
+                        }
                         JOptionPane.showMessageDialog(null, "Digital capturada com sucesso !!!");
                         int idRetorno = dll.CIS_SDK_Biometrico_Finalizar();
                         return;
@@ -1181,6 +1190,15 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                             javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
                             jFotoInternoKitBio.setIcon(a);
                             jFotoInternoKitBio.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoInternoKitBio.getWidth(), jFotoInternoKitBio.getHeight(), Image.SCALE_DEFAULT)));
+                        }
+                        // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+                        byte[] imgBytes = dd.getImagemFrente();
+                        if (imgBytes != null) {
+                            ImageIcon pic = null;
+                            pic = new ImageIcon(imgBytes);
+                            Image scaled = pic.getImage().getScaledInstance(jFotoInternoKitBio.getWidth(), jFotoInternoKitBio.getHeight(), Image.SCALE_SMOOTH);
+                            ImageIcon icon = new ImageIcon(scaled);
+                            jFotoInternoKitBio.setIcon(icon);
                         }
                         JOptionPane.showMessageDialog(null, "Digital capturada com sucesso !!!");
                         int idRetorno = dll.CIS_SDK_Biometrico_Finalizar();
@@ -1198,6 +1216,15 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                             jFotoInternoKitBio.setIcon(a);
                             jFotoInternoKitBio.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoInternoKitBio.getWidth(), jFotoInternoKitBio.getHeight(), Image.SCALE_DEFAULT)));
                         }
+                        // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+                        byte[] imgBytes = dd.getImagemFrente();
+                        if (imgBytes != null) {
+                            ImageIcon pic = null;
+                            pic = new ImageIcon(imgBytes);
+                            Image scaled = pic.getImage().getScaledInstance(jFotoInternoKitBio.getWidth(), jFotoInternoKitBio.getHeight(), Image.SCALE_SMOOTH);
+                            ImageIcon icon = new ImageIcon(scaled);
+                            jFotoInternoKitBio.setIcon(icon);
+                        }
                         JOptionPane.showMessageDialog(null, "Digital capturada com sucesso !!!");
                         int idRetorno = dll.CIS_SDK_Biometrico_Finalizar();
                         return;
@@ -1212,6 +1239,15 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                         javax.swing.ImageIcon a = new javax.swing.ImageIcon(caminhoFotoInterno);
                         jFotoInternoKitBio.setIcon(a);
                         jFotoInternoKitBio.setIcon(new ImageIcon(a.getImage().getScaledInstance(jFotoInternoKitBio.getWidth(), jFotoInternoKitBio.getHeight(), Image.SCALE_DEFAULT)));
+                        // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+                        byte[] imgBytes = dd.getImagemFrente();
+                        if (imgBytes != null) {
+                            ImageIcon pic = null;
+                            pic = new ImageIcon(imgBytes);
+                            Image scaled = pic.getImage().getScaledInstance(jFotoInternoKitBio.getWidth(), jFotoInternoKitBio.getHeight(), Image.SCALE_SMOOTH);
+                            ImageIcon icon = new ImageIcon(scaled);
+                            jFotoInternoKitBio.setIcon(icon);
+                        }
                         JOptionPane.showMessageDialog(null, "Digital capturada com sucesso !!!");
                         int idRetorno = dll.CIS_SDK_Biometrico_Finalizar();
                         return;
@@ -1402,7 +1438,10 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     public void pesquisarInternoKit() {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM  PRONTUARIOSCRC "
+            conecta.executaSQL("SELECT DISTINCT PRONTUARIOSCRC.IdInternoCrc, "
+                    + "PRONTUARIOSCRC.NomeInternoCrc,PRONTUARIOSCRC.FotoInternoCrc, "
+                    + "PRONTUARIOSCRC.ImagemFrente,DADOSPENAISINTERNOS.Regime, "
+                    + "PAVILHAO.DescricaoPav,CELAS.EndCelaPav FROM PRONTUARIOSCRC "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=ITENSLOCACAOINTERNO.IdInternoCrc "
                     + "INNER JOIN DADOSPENAISINTERNOS "
@@ -1426,9 +1465,20 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             jCelaKitBio1.setText(conecta.rs.getString("EndCelaPav"));
             // Capturando foto
             caminhoFotoInterno = conecta.rs.getString("FotoInternoCrc");
-            javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminhoFotoInterno);
-            jFotoInternoKitBio1.setIcon(i);
-            jFotoInternoKitBio1.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoKitBio1.getWidth(), jFotoInternoKitBio1.getHeight(), Image.SCALE_DEFAULT)));
+            if (caminhoFotoInterno != null) {
+                javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminhoFotoInterno);
+                jFotoInternoKitBio1.setIcon(i);
+                jFotoInternoKitBio1.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoKitBio1.getWidth(), jFotoInternoKitBio1.getHeight(), Image.SCALE_SMOOTH)));
+            }
+            // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+            byte[] imgBytes = ((byte[]) conecta.rs.getBytes("ImagemFrente"));
+            if (imgBytes != null) {
+                ImageIcon pic = null;
+                pic = new ImageIcon(imgBytes);
+                Image scaled = pic.getImage().getScaledInstance(jFotoInternoKitBio1.getWidth(), jFotoInternoKitBio1.getHeight(), Image.SCALE_SMOOTH);
+                ImageIcon icon = new ImageIcon(scaled);
+                jFotoInternoKitBio1.setIcon(icon);
+            }
             jDataEntrega1.setCalendar(Calendar.getInstance());
             jHorarioPagto1.setText(jHoraSistema.getText());
         } catch (SQLException e) {
@@ -1441,7 +1491,10 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
 
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
+            conecta.executaSQL("SELECT DISTINCT ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc, "
+                    + "KITS_HIGIENE_INTERNO.IdKit, "
+                    + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd "
+                    + "FROM ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd=PRODUTOS_AC.IdProd "
                     + "INNER JOIN ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
@@ -1452,7 +1505,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdKit=KITS_HIGIENE_INTERNO.IdKit "
                     + "INNER JOIN PRODUTOS_KITS_HIGIENE_INTERNO "
                     + "ON PRODUTOS_AC.IdProd=PRODUTOS_KITS_HIGIENE_INTERNO.IdProd "
-                    + "WHERE IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
+                    + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
                     + "AND KITS_HIGIENE_INTERNO.IdKit='" + jIdKit.getText() + "' "
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + estoque + "'");
             conecta.rs.first();
@@ -1488,7 +1541,9 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
 
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
+            conecta.executaSQL("SELECT DISTINCT ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc,"
+                    + "KITS_HIGIENE_INTERNO.IdKit, "
+                    + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd FROM ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd=PRODUTOS_AC.IdProd "
                     + "INNER JOIN ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
@@ -1499,7 +1554,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdKit=KITS_HIGIENE_INTERNO.IdKit "
                     + "INNER JOIN PRODUTOS_KITS_HIGIENE_INTERNO "
                     + "ON PRODUTOS_AC.IdProd=PRODUTOS_KITS_HIGIENE_INTERNO.IdProd "
-                    + "WHERE IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
+                    + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
                     + "AND KITS_HIGIENE_INTERNO.IdKit='" + jIdKit.getText() + "' "
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + estoque + "'");
             conecta.rs.first();
@@ -1573,7 +1628,11 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     public void pesquisarInternoPagamentoKitInicial() {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM  PRONTUARIOSCRC "
+            conecta.executaSQL("SELECT DISTINCT PRONTUARIOSCRC.IdInternoCrc, "
+                    + "PRONTUARIOSCRC.NomeInternoCrc, "
+                    + "COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp, "
+                    + "PAVILHAO.DescricaoPav,KITS_INICIAL_INTERNOS.KitPago,KITS_INICIAL_INTERNOS.Utilizado "
+                    + "FROM  PRONTUARIOSCRC "
                     + "INNER JOIN BIOMETRIA_INTERNOS "
                     + "ON PRONTUARIOSCRC.IdInternoCrc=BIOMETRIA_INTERNOS.IdInternoCrc "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
@@ -1593,7 +1652,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp='" + statusFinal + "' "
                     + "AND PAVILHAO.DescricaoPav='" + jComboBoxPavilhao.getSelectedItem() + "' "
                     + "AND KITS_INICIAL_INTERNOS.KitPago='" + pKitPago + "' "
-                    + "AND Utilizado='" + utilizado + "'"
+                    + "AND KITS_INICIAL_INTERNOS.Utilizado='" + utilizado + "'"
                     + "ORDER BY PRONTUARIOSCRC.NomeInternoCrc");
             conecta.rs.first();
             do {
@@ -1634,7 +1693,11 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     public void pesquisarInternoPagamentoKitQuinzenal() {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM KITS_QUINZENAL_INTERNOS "
+            conecta.executaSQL("SELECT DISTINCT PRONTUARIOSCRC.IdInternoCrc, "
+                    + "PRONTUARIOSCRC.NomeInternoCrc,PAVILHAO.DescricaoPav, "
+                    + "KITS_QUINZENAL_INTERNOS.KitPago, "
+                    + "KITS_QUINZENAL_INTERNOS.Utilizado "
+                    + "FROM KITS_QUINZENAL_INTERNOS "
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON KITS_QUINZENAL_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
@@ -1660,7 +1723,10 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     public void pesquisarInternoPagamentoKitMensal() {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM KITS_MENSAL_INTERNOS "
+            conecta.executaSQL("SELECT DISTINCT PRONTUARIOSCRC.IdInternoCrc, "
+                    + "PRONTUARIOSCRC.NomeInternoCrc,PAVILHAO.DescricaoPav, "
+                    + "KITS_MENSAL_INTERNOS.KitPago,KITS_MENSAL_INTERNOS.Utilizado "
+                    + "FROM KITS_MENSAL_INTERNOS "
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON KITS_MENSAL_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
@@ -1686,7 +1752,10 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     public void pesquisarInternoPagamentoKitSemestral() {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM KITS_SEMESTRAL_INTERNOS "
+            conecta.executaSQL("SELECT DISTINCT PRONTUARIOSCRC.IdInternoCrc, "
+                    + "PRONTUARIOSCRC.NomeInternoCrc,PAVILHAO.DescricaoPav, "
+                    + "KITS_SEMESTRAL_INTERNOS.KitPago,KITS_SEMESTRAL_INTERNOS.Utilizado "
+                    + "FROM KITS_SEMESTRAL_INTERNOS "
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON KITS_SEMESTRAL_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
@@ -1712,7 +1781,10 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     public void pesquisarInternoPagamentoKitAnual() {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM KITS_ANUAL_INTERNOS "
+            conecta.executaSQL("SELECT DISTINCT PRONTUARIOSCRC.IdInternoCrc, "
+                    + "PRONTUARIOSCRC.NomeInternoCrc,PAVILHAO.DescricaoPav, "
+                    + "KITS_ANUAL_INTERNOS.KitPago,KITS_ANUAL_INTERNOS.Utilizado "
+                    + "FROM KITS_ANUAL_INTERNOS "
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON KITS_ANUAL_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
                     + "INNER JOIN ITENSLOCACAOINTERNO "
