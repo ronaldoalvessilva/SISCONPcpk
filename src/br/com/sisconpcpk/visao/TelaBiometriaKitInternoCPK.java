@@ -805,7 +805,8 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                 preencherTabelaItensInterno("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS "
                         + "INNER JOIN PRONTUARIOSCRC "
                         + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                        + "WHERE IdPagto='" + jIdLanc.getText() + "'");
+                        + "WHERE IdPagto='" + jIdLanc.getText() + "' "
+                        + "ORDER BY IdItem");
                 Salvar();
                 bloquearCampos();
                 gravarDadosBanco();
