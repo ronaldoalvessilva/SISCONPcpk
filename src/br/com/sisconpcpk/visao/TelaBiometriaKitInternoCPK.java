@@ -1678,7 +1678,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             conecta.executaSQL("SELECT DISTINCT PRONTUARIOSCRC.IdInternoCrc, "
                     + "PRONTUARIOSCRC.NomeInternoCrc,PAVILHAO.DescricaoPav, "
                     + "KITS_DECENDIAL_INTERNOS.KitPago, "
-                    + "AND KITS_DECENDIAL_INTERNOS.Utilizado "
+                    + "KITS_DECENDIAL_INTERNOS.Utilizado "
                     + "FROM KITS_DECENDIAL_INTERNOS "
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON KITS_DECENDIAL_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
