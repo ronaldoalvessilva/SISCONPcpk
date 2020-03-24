@@ -1376,6 +1376,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             jBtBiometria.setEnabled(true);
             //
             limparCamposManutencao();
+            limparTabelaInternos();
+            limparTabelaProdutosInternos();
             //
             bloquearCampos();
             jComboBoxPavilhao.removeAllItems();
@@ -1827,7 +1829,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
             } catch (SQLException ex) {
             }
-            preencherTabelaProdutosKitInterno("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS "
+            preencherTabelaProdutosKitInterno("SELECT DISTINCT PRODUTOS_AC.IdProd, "
+                    + "PRODUTOS_AC.DescricaoProd,PRODUTOS_AC.UnidadeProd, "
+                    + "ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.QuantProd "
+                    + "FROM ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdProd=PRODUTOS_AC.IdProd "
                     + "WHERE ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdPagto='" + jIdLanc.getText() + "' "
@@ -2756,6 +2761,25 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setCellRenderer(centralizado);
         jTabelaProdutosKitInterno.getColumnModel().getColumn(2).setCellRenderer(centralizado);
         jTabelaProdutosKitInterno.getColumnModel().getColumn(3).setCellRenderer(direita);
+    }
+
+    public void limparTabelaProdutosInternos() {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{"Código", "Descrição do Produto", "Un.", "Quant."};
+        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+        jTabelaProdutosKitInterno.setModel(modelo);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setPreferredWidth(60);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setResizable(false);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(1).setPreferredWidth(340);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(1).setResizable(false);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(2).setPreferredWidth(60);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(2).setResizable(false);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(3).setPreferredWidth(60);
+        jTabelaProdutosKitInterno.getColumnModel().getColumn(3).setResizable(false);
+        jTabelaProdutosKitInterno.getTableHeader().setReorderingAllowed(false);
+        jTabelaProdutosKitInterno.setAutoResizeMode(jTabelaProdutosKitInterno.AUTO_RESIZE_OFF);
+        jTabelaProdutosKitInterno.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        modelo.getLinhas().clear();
     }
 
     public void preencherTabelaItensInterno(String sql) {

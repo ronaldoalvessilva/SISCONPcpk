@@ -15,6 +15,7 @@ import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jHorarioPagto;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdInterno;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdLanc;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jNomeInterno;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jTabelaInternos;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jTabelaProdutosKitInterno;
 import java.awt.Image;
 import java.sql.SQLException;
@@ -134,10 +135,11 @@ public class TelaPesquisaInternoKitPago extends javax.swing.JDialog {
                         .addComponent(jMatriculaPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jBtPesquisaMatricula))
                 .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jNomeInternoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtPesquisaNome)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtPesquisaNome)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jNomeInternoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         jTabelaPesquisaInternos.setAutoCreateRowSorter(true);
@@ -304,10 +306,12 @@ public class TelaPesquisaInternoKitPago extends javax.swing.JDialog {
                 }
                 jDataEntrega.setDate(conecta.rs.getDate("DataEntrega"));
                 jHorarioPagto.setText(conecta.rs.getString("Horario"));
-
             } catch (SQLException ex) {
             }
-            preencherTabelaProdutosKitInterno("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS "
+            preencherTabelaProdutosKitInterno("SELECT DISTINCT PRODUTOS_AC.IdProd, "
+                    + "PRODUTOS_AC.DescricaoProd,PRODUTOS_AC.UnidadeProd, "
+                    + "ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.QuantProd "
+                    + "FROM ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdProd=PRODUTOS_AC.IdProd "
                     + "WHERE ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdPagto='" + jIdLanc.getText() + "' "

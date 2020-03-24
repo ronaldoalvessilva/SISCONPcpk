@@ -5,7 +5,6 @@
  */
 package br.com.sisconpcpk.visao;
 
-
 import br.com.sisconpcpk.controle.LimiteDigitos;
 import br.com.sisconpcpk.controle.ModeloTabela;
 import br.com.sisconpcpk.dao.ConectaBanco;
@@ -261,7 +260,7 @@ public class TelaConsultaLocalInternoSegurancaCPK extends javax.swing.JInternalF
         jTabelaLocacao.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jTabelaLocacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nome do Interno", "Pavilhão", "Cela"
@@ -467,15 +466,26 @@ public class TelaConsultaLocalInternoSegurancaCPK extends javax.swing.JInternalF
                         + "INNER JOIN PAVILHAO "
                         + "ON CELAS.IdPav=PAVILHAO.IdPav "
                         + "WHERE PRONTUARIOSCRC.NomeInternoCrc='" + jPesqNomeInterno.getText() + "' "
-                        + "AND PRONTUARIOSCRC.IdInternoCrc='" + codigoIntero  + "'");
+                        + "AND PRONTUARIOSCRC.IdInternoCrc='" + codigoIntero + "'");
                 conecta.rs.first();
                 jIdInterno.setText(String.valueOf(conecta.rs.getInt("IdInternoCrc")));
                 jNomeInterno.setText(conecta.rs.getString("NomeInternoCrc"));
                 // Capturando foto
                 caminho = conecta.rs.getString("FotoInternoCrc");
-                javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminho);
-                jFotoInterno.setIcon(i);
-                jFotoInterno.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInterno.getWidth(), jFotoInterno.getHeight(), Image.SCALE_DEFAULT)));
+                if (caminho != null) {
+                    javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminho);
+                    jFotoInterno.setIcon(i);
+                    jFotoInterno.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInterno.getWidth(), jFotoInterno.getHeight(), Image.SCALE_SMOOTH)));
+                }
+                // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+                byte[] imgBytes = ((byte[]) conecta.rs.getBytes("ImagemFrente"));
+                if (imgBytes != null) {
+                    ImageIcon pic = null;
+                    pic = new ImageIcon(imgBytes);
+                    Image scaled = pic.getImage().getScaledInstance(jFotoInterno.getWidth(), jFotoInterno.getHeight(), Image.SCALE_SMOOTH);
+                    ImageIcon icon = new ImageIcon(scaled);
+                    jFotoInterno.setIcon(icon);
+                }
                 jDataNascimento.setDate(conecta.rs.getDate("DataNasciCrc"));
                 jSituacaoCrc.setText(conecta.rs.getString("SituacaoCrc"));
                 jIdCela.setText(conecta.rs.getString("IdCela"));

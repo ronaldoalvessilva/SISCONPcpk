@@ -159,7 +159,7 @@
               <Color blue="0" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Divis&#xe3;o de Seguran&#xe7;a - Controle de Pagamento de Kit e Confere de Internos - Vers&#xe3;o 5.9"/>
+            <Property name="text" type="java.lang.String" value="Divis&#xe3;o de Seguran&#xe7;a - Controle de Pagamento de Kit e Confere de Internos - Vers&#xe3;o 6.0"/>
           </Properties>
         </Component>
       </SubComponents>

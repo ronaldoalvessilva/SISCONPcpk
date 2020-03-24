@@ -160,7 +160,7 @@ public class TelaCadastroDatiloscopia extends javax.swing.JInternalFrame {
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
 
         jPesqNome.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
@@ -350,10 +350,11 @@ public class TelaCadastroDatiloscopia extends javax.swing.JInternalFrame {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
+        jTabelaInterno.setAutoCreateRowSorter(true);
         jTabelaInterno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jTabelaInterno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nome do Interno", "Matricula Penal", "Data Entrada", "Data Cadastro"
@@ -458,7 +459,7 @@ public class TelaCadastroDatiloscopia extends javax.swing.JInternalFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
 
-        jPanel24.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mínimo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 0, 255)));
+        jPanel24.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mínimo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
@@ -471,7 +472,7 @@ public class TelaCadastroDatiloscopia extends javax.swing.JInternalFrame {
             .addComponent(jFotoMininoDireito, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
         );
 
-        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Polegar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 0, 255)));
+        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Polegar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -484,7 +485,7 @@ public class TelaCadastroDatiloscopia extends javax.swing.JInternalFrame {
             .addComponent(jFotoPolegarDireito, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
         );
 
-        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Indicador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 0, 255)));
+        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Indicador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -497,7 +498,7 @@ public class TelaCadastroDatiloscopia extends javax.swing.JInternalFrame {
             .addComponent(jFotoIndicadorDireito, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
         );
 
-        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Anular", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 0, 255)));
+        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Anular", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
@@ -510,7 +511,7 @@ public class TelaCadastroDatiloscopia extends javax.swing.JInternalFrame {
             .addComponent(jFotoAnularDireito, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
         );
 
-        jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Médio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 0, 255)));
+        jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Médio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -526,7 +527,7 @@ public class TelaCadastroDatiloscopia extends javax.swing.JInternalFrame {
         jLabel160.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel160.setText("Mão Direita");
 
-        jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Polegar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 0, 255)));
+        jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Polegar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
 
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
@@ -542,7 +543,7 @@ public class TelaCadastroDatiloscopia extends javax.swing.JInternalFrame {
         jLabel161.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel161.setText("Mão Esquerda");
 
-        jPanel27.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Médio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 0, 255)));
+        jPanel27.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Médio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
 
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
         jPanel27.setLayout(jPanel27Layout);
@@ -555,7 +556,7 @@ public class TelaCadastroDatiloscopia extends javax.swing.JInternalFrame {
             .addComponent(jFotoMedioEsquerdo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Indicador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 0, 255)));
+        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Indicador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -568,7 +569,7 @@ public class TelaCadastroDatiloscopia extends javax.swing.JInternalFrame {
             .addComponent(jFotoIndicadorEsquerdo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel28.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Anular", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 0, 255)));
+        jPanel28.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Anular", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
 
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
@@ -581,7 +582,7 @@ public class TelaCadastroDatiloscopia extends javax.swing.JInternalFrame {
             .addComponent(jFotoAnularEsquerdo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mínimo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 0, 255)));
+        jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mínimo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 0, 255))); // NOI18N
 
         javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
         jPanel29.setLayout(jPanel29Layout);
@@ -1118,10 +1119,20 @@ public class TelaCadastroDatiloscopia extends javax.swing.JInternalFrame {
                 jMaeInterno.setText(conecta.rs.getString("MaeInternoCrc"));
                 // Capturando foto
                 caminhoFotoInternoTRIAGEMCkp = conecta.rs.getString("FotoInternoCrc");
-                javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminhoFotoInternoTRIAGEMCkp);
-                jLabelFotoInterno.setIcon(i);
-                jLabelFotoInterno.setIcon(new ImageIcon(i.getImage().getScaledInstance(jLabelFotoInterno.getWidth(), jLabelFotoInterno.getHeight(), Image.SCALE_DEFAULT)));
-
+                if (caminhoFotoInternoTRIAGEMCkp != null) {
+                    javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminhoFotoInternoTRIAGEMCkp);
+                    jLabelFotoInterno.setIcon(i);
+                    jLabelFotoInterno.setIcon(new ImageIcon(i.getImage().getScaledInstance(jLabelFotoInterno.getWidth(), jLabelFotoInterno.getHeight(), Image.SCALE_SMOOTH)));
+                }
+                // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+                byte[] imgBytes = ((byte[]) conecta.rs.getBytes("ImagemFrente"));
+                if (imgBytes != null) {
+                    ImageIcon pic = null;
+                    pic = new ImageIcon(imgBytes);
+                    Image scaled = pic.getImage().getScaledInstance(jLabelFotoInterno.getWidth(), jLabelFotoInterno.getHeight(), Image.SCALE_SMOOTH);
+                    ImageIcon icon = new ImageIcon(scaled);
+                    jLabelFotoInterno.setIcon(icon);
+                }
                 jCNC.setText(conecta.rs.getString("Cnc"));
                 jCela.setText(conecta.rs.getString("EndCelaPav"));
                 lerDigitaisCadastradas();

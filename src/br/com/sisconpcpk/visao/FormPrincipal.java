@@ -264,7 +264,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 153, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Divisão de Segurança - Controle de Pagamento de Kit e Confere de Internos - Versão 5.9");
+        jLabel6.setText("Divisão de Segurança - Controle de Pagamento de Kit e Confere de Internos - Versão 6.0");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);

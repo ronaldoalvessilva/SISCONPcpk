@@ -212,7 +212,7 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
 
         jNumeroVersao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jNumeroVersao.setForeground(new java.awt.Color(255, 0, 0));
-        jNumeroVersao.setText("5.9");
+        jNumeroVersao.setText("6.0");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 153, 0));
