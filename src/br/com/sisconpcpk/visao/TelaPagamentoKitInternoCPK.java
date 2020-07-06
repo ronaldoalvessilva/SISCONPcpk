@@ -282,7 +282,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("...::: Relação de Materiais de Uso Pessoal de Internos (Kit) {FO.SGP.07} :::...");
-        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/Shopping_cart_Icon_32.png"))); // NOI18N
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -301,11 +301,13 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jLabel15.setText("Data Inicial:");
 
         jDataPesqInicial.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jDataPesqInicial.setDateFormatString("dd/MM/yyyy");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setText("Data Final:");
 
         jDataPesqFinal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jDataPesqFinal.setDateFormatString("dd/ MM/yyyy");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel17.setText("Código:");
@@ -372,7 +374,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         .addComponent(jDataPesqFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtPesqData, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -524,6 +526,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jStatusLanc.setEnabled(false);
 
         jDataLanc.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jDataLanc.setDateFormatString("dd/MM/yyyy");
         jDataLanc.setEnabled(false);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -1123,6 +1126,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         });
 
         jDataEntrega.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jDataEntrega.setDateFormatString("dd/MM/yyyy");
         jDataEntrega.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N

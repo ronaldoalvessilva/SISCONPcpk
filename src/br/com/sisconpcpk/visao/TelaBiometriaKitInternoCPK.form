@@ -492,6 +492,7 @@
                         <BevelBorder bevelType="1"/>
                       </Border>
                     </Property>
+                    <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
@@ -904,6 +905,7 @@
                         <BevelBorder bevelType="1"/>
                       </Border>
                     </Property>
+                    <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>

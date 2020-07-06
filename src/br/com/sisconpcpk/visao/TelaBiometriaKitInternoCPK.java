@@ -315,6 +315,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jHorarioPagto.setEnabled(false);
 
         jDataEntrega.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jDataEntrega.setDateFormatString("dd/MM/yyyy");
         jDataEntrega.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -517,6 +518,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jHorarioPagto1.setEnabled(false);
 
         jDataEntrega1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jDataEntrega1.setDateFormatString("dd/MM/yyyy");
         jDataEntrega1.setEnabled(false);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);

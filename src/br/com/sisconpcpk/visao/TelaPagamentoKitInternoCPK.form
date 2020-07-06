@@ -38,7 +38,7 @@
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value="...::: Rela&#xe7;&#xe3;o de Materiais de Uso Pessoal de Internos (Kit) {FO.SGP.07} :::..."/>
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-      <Color id="Cursor em Forma de M&#xe3;o"/>
+      <Color id="Default Cursor"/>
     </Property>
     <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
       <Image iconType="3" name="/br/com/sisconpcpk/imagens/Shopping_cart_Icon_32.png"/>
@@ -197,7 +197,7 @@
                                   <Component id="jBtPesqData" min="-2" pref="27" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="41" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -256,6 +256,7 @@
                         <BevelBorder bevelType="1"/>
                       </Border>
                     </Property>
+                    <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel16">
@@ -273,6 +274,7 @@
                         <BevelBorder bevelType="1"/>
                       </Border>
                     </Property>
+                    <Property name="dateFormatString" type="java.lang.String" value="dd/ MM/yyyy"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel17">
@@ -735,6 +737,7 @@
                         <BevelBorder bevelType="1"/>
                       </Border>
                     </Property>
+                    <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
@@ -1707,6 +1710,7 @@
                 <BevelBorder bevelType="1"/>
               </Border>
             </Property>
+            <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
