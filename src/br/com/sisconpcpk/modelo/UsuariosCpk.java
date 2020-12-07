@@ -33,8 +33,12 @@ public class UsuariosCpk {
     private int idMod;
     private String nomeModulo;
     private String permissaoModulo;
+    private String AcessoTodasUnidades;
 
-    public UsuariosCpk(int IdUsuario, Boolean Status, Date dataCadastro, String NomeUsuario, String Login, String Senha1, String Senha2, int idUserGroup, int IdGrupo, String NomeGrupo, int idDepartamento, String NomeDepartamento, int idCargo, String nomeCargo, int idEmpresa, String descricaoEmpresa, int idModulo, int idMod, String nomeModulo, String permissaoModulo) {
+    public UsuariosCpk() {
+    }
+
+    public UsuariosCpk(int IdUsuario, Boolean Status, Date dataCadastro, String NomeUsuario, String Login, String Senha1, String Senha2, int idUserGroup, int IdGrupo, String NomeGrupo, int idDepartamento, String NomeDepartamento, int idCargo, String nomeCargo, int idEmpresa, String descricaoEmpresa, int idModulo, int idMod, String nomeModulo, String permissaoModulo, String AcessoTodasUnidades) {
         this.IdUsuario = IdUsuario;
         this.Status = Status;
         this.dataCadastro = dataCadastro;
@@ -55,9 +59,7 @@ public class UsuariosCpk {
         this.idMod = idMod;
         this.nomeModulo = nomeModulo;
         this.permissaoModulo = permissaoModulo;
-    }
-
-    public UsuariosCpk() {
+        this.AcessoTodasUnidades = AcessoTodasUnidades;
     }
 
     /**
@@ -338,5 +340,19 @@ public class UsuariosCpk {
      */
     public void setPermissaoModulo(String permissaoModulo) {
         this.permissaoModulo = permissaoModulo;
+    }
+
+    /**
+     * @return the AcessoTodasUnidades
+     */
+    public String getAcessoTodasUnidades() {
+        return AcessoTodasUnidades;
+    }
+
+    /**
+     * @param AcessoTodasUnidades the AcessoTodasUnidades to set
+     */
+    public void setAcessoTodasUnidades(String AcessoTodasUnidades) {
+        this.AcessoTodasUnidades = AcessoTodasUnidades;
     }
 }

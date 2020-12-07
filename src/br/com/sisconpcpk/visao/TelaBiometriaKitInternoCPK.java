@@ -10,6 +10,7 @@ import br.com.sisconpcpk.dao.ConectaBanco;
 import br.com.sisconpcpk.dao.ControleItensProdutosPagamentoKitInternoDao;
 import br.com.sisconpcpk.dao.ControleLogSistemaDao;
 import br.com.sisconpcpk.dao.ControlePesquisaKitInternoManual;
+import br.com.sisconpcpk.dao.ControlePesquisaKitInternoManualBio_PER;
 import br.com.sisconpcpk.dao.ControleProdutosKitLote;
 import br.com.sisconpcpk.dao.PagamentoKitInternosDao;
 import static br.com.sisconpcpk.dao.PagamentoKitInternosDao.qtdInternos;
@@ -64,6 +65,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     ProdutosPagtoKitInterno objItensPagtoProd = new ProdutosPagtoKitInterno();
     ControleItensProdutosPagamentoKitInternoDao controleProd = new ControleItensProdutosPagamentoKitInternoDao();
     ControlePesquisaKitInternoManual controleMan = new ControlePesquisaKitInternoManual();
+    ControlePesquisaKitInternoManualBio_PER CONTROLE_personalizado = new ControlePesquisaKitInternoManualBio_PER();
     ProdutoInternosKitLote objProdKit = new ProdutoInternosKitLote();
     //
     ControleLogSistemaDao controlLog = new ControleLogSistemaDao();
@@ -132,6 +134,13 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Semestral")) {
             pesquisarInternoPagamentoKitSemestral();
         } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Anual")) {
+            pesquisarInternoPagamentoKitAnual();
+        }else if(jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")){
+            pesquisarInternoPagamentoKitInicial();
+            pesquisarInternoPagamentoKitDecendial();
+            pesquisarInternoPagamentoKitQuinzenal();
+            pesquisarInternoPagamentoKitMensal();
+            pesquisarInternoPagamentoKitSemestral();
             pesquisarInternoPagamentoKitAnual();
         }
     }
@@ -926,7 +935,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                 pPESQUISAR_TODOS_PRODUTOS_KIT_INTERNOS_Biometria();
             } else if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual")) {
                 limparTabelaProdutosKit();
-                pesquisarProdutoKitInternoManual();
+                pPESQUISAR_TODOS_PRODUTOS_KIT_InternoManual();
             }
         } else {
             if (jComboBoxOperacao.getSelectedItem().equals("Selecione...")) {
@@ -936,7 +945,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                 pesquisarProdutoKitInternoBiometria();
             } else if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual")) {
                 limparTabelaProdutosKit();
-                pPESQUISAR_TODOS_PRODUTOS_KIT_InternoManual();
+                pesquisarProdutoKitInternoManual();                
             }
         }
     }//GEN-LAST:event_jBtVerificarKitActionPerformed
@@ -1689,7 +1698,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             DefaultTableModel produtosSelecionados = (DefaultTableModel) jTabelaProdutosKit.getModel();
             ProdutoInternosKitLote p = new ProdutoInternosKitLote();
             try {
-                for (ProdutoInternosKitLote pp : control.read()) {
+                for (ProdutoInternosKitLote pp : CONTROLE_personalizado.read()) {
                     produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd(), pp.getQtdEstoque()});
                     // BARRA DE ROLAGEM HORIZONTAL
                     jTabelaProdutosKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -1739,7 +1748,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             DefaultTableModel produtosSelecionados = (DefaultTableModel) jTabelaProdutosKit.getModel();
             ProdutoInternosKitLote p = new ProdutoInternosKitLote();
             try {
-                for (ProdutoInternosKitLote pp : controleMan.read()) {
+                for (ProdutoInternosKitLote pp : CONTROLE_personalizado.read()) {
                     produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd(), pp.getQtdEstoque()});
                     // BARRA DE ROLAGEM HORIZONTAL
                     jTabelaProdutosKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -2211,10 +2220,6 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                             jTabelaProdutosKit.scrollRectToVisible(rect);
                         } catch (java.lang.ClassCastException e) {
                         }
-                        //RETIRADO POR QUE QUANDO A TABELA SÓ TEM UMA LINHA ESTAVA
-                        //DANDO ERRO. TESTAR COM MAIS DE UMA LINHA.
-//                        jTabelaProdutosKit.setRowSelectionInterval(b, 1);
-//                        jProgressBar1.setValue((b + 1));
                         if (b == 0) {
                             jTabelaProdutosKit.setRowSelectionInterval(b, 0);
                             jProgressBar1.setValue((b + 1));
@@ -2246,6 +2251,13 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Semestral")) {
                         pesquisarInternoPagamentoKitSemestral();
                     } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Anual")) {
+                        pesquisarInternoPagamentoKitAnual();
+                    }else if(jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")){
+                        pesquisarInternoPagamentoKitInicial();
+                        pesquisarInternoPagamentoKitDecendial();
+                        pesquisarInternoPagamentoKitQuinzenal();
+                        pesquisarInternoPagamentoKitMensal();
+                        pesquisarInternoPagamentoKitSemestral();
                         pesquisarInternoPagamentoKitAnual();
                     }
                     try {

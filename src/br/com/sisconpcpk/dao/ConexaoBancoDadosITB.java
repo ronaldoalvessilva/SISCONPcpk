@@ -1,10 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package br.com.sisconpcpk.dao;
 
+//import config.Computer;
+//import config.Ler;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,9 +21,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ronaldo.silva7
+ * @author Ronaldo Alves da Silva
  */
-public class ConectaBanco {
+public class ConexaoBancoDadosITB {
 
     public Statement stmt; // Responsavael para preparar e realizar pesquisas no banco de dados
     public ResultSet rs; // Responsavel por armazenar o resultado de uma pesquisa passado para o Statement         
@@ -33,8 +34,6 @@ public class ConectaBanco {
     private final String user = "sa"; // usuario do banco de dados     
     private final String password = "W@e3R4#14"; // Senha do banco de dados
     public Connection con; // Responsavel por conectar no banco de dados
-    public static String Computer = ""; //SISTEMA OPERACIONAL DO COMPUTADOR
-    public static String caminhoConecta = "";
 
     public void abrirConexao() { // Metodo resposavel por realizar conexão com o banco de dados
 
@@ -51,7 +50,8 @@ public class ConectaBanco {
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(SQL);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro na execução do executaSQL.\n\n\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro na execução do executaSQL\n\n\n" + ex.getMessage());
+            Logger.getLogger(ConexaoBancoDadosITB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -59,36 +59,48 @@ public class ConectaBanco {
 
         try {
             con.close();
+            //     JOptionPane.showMessageDialog(null, "Desconectado com Sucesso");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao Desconectar conexão com o Banco de Dados." + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao Desconectar conexão com o Banco de Dados" + e.getMessage());
         }
     }
 
     public static Properties getProp() {
+        //EXEMPLO DE USO
+        //Properties prop = getProp();
+        //String login = prop.getProperty("prop.server.login");
 
         FileInputStream file = null;
         Properties props = null;
         try {
-            Computer = System.getProperty("os.name");
+            String Computer = System.getProperty("os.name");
+            System.out.println(Computer);
             props = new Properties();
             if (Computer.equals("Linux")) {
                 file = new FileInputStream("/home/configuracoes.properties");//ALTERE AQUI DE ACORDO COM SUA NECESSIDADE
             } else {
                 //Se Windows
-                file = new FileInputStream(caminhoConecta);////ALTERE AQUI DE ACORDO COM SUA NECESSIDADE
+                file = new FileInputStream("C:\\SISCONPcpk\\ConectaITB.properties");////ALTERE AQUI DE ACORDO COM SUA NECESSIDADE
             }
             props.load(file);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(ConectaBanco.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexaoBancoDadosITB.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ConectaBanco.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexaoBancoDadosITB.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 file.close();
             } catch (IOException ex) {
-                Logger.getLogger(ConectaBanco.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConexaoBancoDadosITB.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return props;
     }
+
+    // Conexão com o banco de dados MySQL
+//     private String url = "jdbc:mysql://localhost:3306/db_socializa"; // Responsavel pelo caminho do banco de dados
+//     private String driver = "com.mysql.jdbc.Driver"; // Responsavel por identificar o banco de dados
+//     private final String user = "root"; // usuario do banco de dados
+//     private final String password = "w2e3r4"; // Senha do banco de dados
+//     public Connection con; // Responsavel por conectar no banco de dados
 }

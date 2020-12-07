@@ -6,6 +6,7 @@
 package br.com.sisconpcpk.visao;
 
 import br.com.sisconpcpk.dao.ConectaBanco;
+import br.com.sisconpcpk.dao.ControleUsuarios;
 import br.com.sisconpcpk.dao.UsuariosDao;
 import br.com.sisconpcpk.modelo.UsuariosCpk;
 import static br.com.sisconpcpk.visao.TelaLoginSenhaCPK.nameUser;
@@ -19,19 +20,27 @@ public class TelaTrocaSenha extends javax.swing.JDialog {
 
     ConectaBanco conecta = new ConectaBanco();
     UsuariosCpk objUserCPK = new UsuariosCpk();    
+    ControleUsuarios control = new ControleUsuarios();
     //
     int codigoUsuario;
     String senhaAnterior;
+    String pACESSO_TODAS_UNIDADES = null;
     /**
      * Creates new form TelaTrocaSenha
      */
     public static FormPrincipal trocaSenha;
+    public static TelaAvisoMensagemTrocaSenha pTROCA_SENHA;
 
     public TelaTrocaSenha(FormPrincipal parent, boolean modal) {
         TelaTrocaSenha.trocaSenha = parent;
         this.setModal(modal);
         setLocationRelativeTo(trocaSenha);
         initComponents();
+    }
+    
+    public void mostrarAviso() {
+        pTROCA_SENHA = new TelaAvisoMensagemTrocaSenha(this, true);
+        pTROCA_SENHA.setVisible(true);
     }
 
     /**
@@ -226,8 +235,15 @@ public class TelaTrocaSenha extends javax.swing.JDialog {
             } else if (jConfirmaSenhaCPK.getText() == null ? jNovaSenhaCPK.getText() == null : jConfirmaSenhaCPK.getText().equals(jNovaSenhaCPK.getText())) {
                 objUserCPK.setIdUsuario(codigoUsuario);
                 userDao.trocarSenhaUsuarioCpk(objUserCPK);
-                JOptionPane.showMessageDialog(null, "A senha foi trocada com sucesso.");
-                limparCampos();
+                control.trocarSenhaUsuario(objUserCPK);
+                if (pACESSO_TODAS_UNIDADES.equals("Sim")) {
+                    mostrarAviso();
+                } else {
+                    objUserCPK.setIdUsuario(codigoUsuario);
+                    control.trocarSenhaUsuario(objUserCPK);
+                    JOptionPane.showMessageDialog(rootPane, "A senha foi trocada com sucesso.");
+                    limparCampos();
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Senhas não conferem !!!");
             }
@@ -293,14 +309,14 @@ public class TelaTrocaSenha extends javax.swing.JDialog {
     private javax.swing.JButton jBtCancelar;
     private javax.swing.JButton jBtSair;
     private javax.swing.JButton jBtSalvar;
-    private javax.swing.JPasswordField jConfirmaSenhaCPK;
+    public static javax.swing.JPasswordField jConfirmaSenhaCPK;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPasswordField jNovaSenhaCPK;
+    public static javax.swing.JPasswordField jNovaSenhaCPK;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jSenhaAtualCPK;
     // End of variables declaration//GEN-END:variables

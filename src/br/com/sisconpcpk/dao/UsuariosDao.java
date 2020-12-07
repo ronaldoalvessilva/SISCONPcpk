@@ -6,6 +6,7 @@
 package br.com.sisconpcpk.dao;
 
 import br.com.sisconpcpk.modelo.UsuariosCpk;
+import br.com.sisconpcpk.util.Criptografia;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -35,8 +36,8 @@ public class UsuariosDao {
             pst.setString(4, objUserCPK.getNomeDepartamento());
             pst.setString(5, objUserCPK.getNomeCargo());
             pst.setString(6, objUserCPK.getLogin());
-            pst.setString(7, objUserCPK.getSenha1());
-            pst.setString(8, objUserCPK.getSenha2());
+            pst.setString(7, Criptografia.criptografar(objUserCPK.getSenha1()));
+            pst.setString(8, Criptografia.criptografar(objUserCPK.getSenha2()));
             pst.execute(); // Executa a inserção
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possível INSERIR os Dados\nERRO: " + ex);
@@ -60,8 +61,8 @@ public class UsuariosDao {
             pst.setString(4, objUserCPK.getNomeDepartamento());
             pst.setString(5, objUserCPK.getNomeCargo());
             pst.setString(6, objUserCPK.getLogin());
-            pst.setString(7, objUserCPK.getSenha1());
-            pst.setString(8, objUserCPK.getSenha2());
+            pst.setString(7, Criptografia.criptografar(objUserCPK.getSenha1()));
+            pst.setString(8, Criptografia.criptografar(objUserCPK.getSenha2()));
             pst.executeUpdate(); // Executa a inserção
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel ALTERAR os Dados\n\nERRO" + ex);
@@ -88,8 +89,8 @@ public class UsuariosDao {
         conecta.abrirConexao();
         try {
             PreparedStatement pst = conecta.con.prepareStatement("UPDATE USUARIOS SET SenhaUsuario=?,ConfirmaSenhaUsuario=? WHERE IdUsuario='" + objUserCPK.getIdUsuario() + "'");
-            pst.setString(1, objUserCPK.getSenha1());
-            pst.setString(2, objUserCPK.getSenha2());
+            pst.setString(1, Criptografia.criptografar(objUserCPK.getSenha1()));
+            pst.setString(2, Criptografia.criptografar(objUserCPK.getSenha2()));
             pst.executeUpdate(); // Executa a inserção
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel ALTERAR os Dados.\nERRO:" + ex);

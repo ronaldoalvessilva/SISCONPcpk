@@ -98,8 +98,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jHoraSistema" min="-2" pref="56" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel6" min="-2" pref="578" max="-2" attributes="0"/>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <Component id="jLabel6" pref="598" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jNomeUnidade" min="-2" pref="448" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
@@ -159,7 +159,7 @@
               <Color blue="0" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Divis&#xe3;o de Seguran&#xe7;a - Controle de Pagamento de Kit e Confere de Internos - Vers&#xe3;o 6.0"/>
+            <Property name="text" type="java.lang.String" value="Divis&#xe3;o de Seguran&#xe7;a - Controle de Pagamento de Kit e Confere de Internos - Vers&#xe3;o 6.12.2020"/>
           </Properties>
         </Component>
       </SubComponents>

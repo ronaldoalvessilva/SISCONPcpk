@@ -24,10 +24,10 @@ import javax.swing.JOptionPane;
 public class FormPrincipal extends javax.swing.JFrame {
 
     ConectaBanco conecta = new ConectaBanco();
-
+    //
     SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss"); // HORAIO DE 24 HORAS, PARA O DE 12 HORAS UTILIZAR hh:mm:ss
     SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
-
+    //
     public static TelaTrocaSenha telaTrocaSenhaCPK;
     public static TelaImportacaoInternosConfere importIntConf;
     public static TelaImportacaoPavilhao importPav;
@@ -35,7 +35,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     public static TelaImportacaoLocalizacao importLocacao;
     public static TelaExportarConfereInternos exportarConf;
     public static TelaLimpezaTabela limpaTabela;
-
+    //
     private TelaConfereInternos objConfere = null;
     private TelaPagamentoKitInternoCPK objPagto = null;
     private TelaConsultaLocalInternoSegurancaCPK objLocal = null;
@@ -264,7 +264,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 153, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Divisão de Segurança - Controle de Pagamento de Kit e Confere de Internos - Versão 6.0");
+        jLabel6.setText("Divisão de Segurança - Controle de Pagamento de Kit e Confere de Internos - Versão 6.12.2020");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -276,8 +276,8 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jHoraSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jNomeUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -662,7 +662,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         } catch (Exception e) {
         }
         conecta.desconecta();
-        // SE O FOR O ADMINISTRADOR DO SISTEMA
+        //SE O FOR O ADMINISTRADOR DO SISTEMA
         if (loginUsusario.equals(nameUser)) {
             if (objConfere == null || objConfere.isClosed()) {
                 objConfere = new TelaConfereInternos();
@@ -716,7 +716,6 @@ public class FormPrincipal extends javax.swing.JFrame {
                     objConfere.setSelected(true);
                 } catch (java.beans.PropertyVetoException e) {
                 }
-
             } else {
                 conecta.abrirConexao();
                 try {

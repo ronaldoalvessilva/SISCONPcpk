@@ -5,14 +5,24 @@
  */
 package br.com.sisconpcpk.visao;
 
+import br.com.sisconpcpk.controle.ControlePesquisarEmpresaLogon;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import br.com.sisconpcpk.controle.LimiteDigitosMinCpk;
 import br.com.sisconpcpk.dao.ConectaBanco;
+import br.com.sisconpcpk.dao.ControleVerificacaoAcessos;
+import br.com.sisconpcpk.modelo.ControleVersao;
+import br.com.sisconpcpk.modelo.EmpresaUnidade;
+import br.com.sisconpcpk.modelo.ParametrosCrc;
+import br.com.sisconpcpk.modelo.UsuariosCpk;
+import br.com.sisconpcpk.util.Criptografia;
+import static br.com.sisconpcpk.dao.ConectaBanco.caminhoConecta;
 import java.awt.AWTKeyStroke;
 import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -27,7 +37,10 @@ import java.util.logging.Logger;
 // Inicio do desenvolvimento 31/07/2017 - AS 15:17:54
 public class TelaLoginSenhaCPK extends javax.swing.JDialog {
 
-    ConectaBanco conecta = new ConectaBanco();
+    UsuariosCpk objUsuarios = new UsuariosCpk();
+    ControleVersao versao = new ControleVersao();
+    EmpresaUnidade objEmpresa = new EmpresaUnidade();
+    ParametrosCrc objParametros = new ParametrosCrc();
 
     public static int Codstatus;
     public static String idUserAcesso; // CÓDIGO DO USUÁRIO PERMISSÕES DE ACESSO (24/04/2016)
@@ -39,7 +52,24 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
     // NOME DA EMPRESA E UNIDADE PENAL PARA SER UTILIZADO NA TELA PRINCIPAL E NOS RELATÓRIOS
     public static String razaoSocial;
     public static String descricaoUnidade;
-    public static String versaoAtualSistema;
+    public static Double versaoAtualSistema;
+    public static String enderecoUnidadePrisional;
+    String bairroUnidade;
+    String cidadeUnidade;
+    String estadoUnidade;
+    //
+    String caminhoExecutavel = "";
+    String caminhoExecutavelAntigo = "";
+    String dataVersao;
+    String pSISTEMA_MANUTENCAO = "";
+    //
+    public static int pID_usuario = 0;
+    String pLOGIN_usuario = "";
+    String pNOME_usuario = "";
+    String pSENHA_usuario = "";
+    Date pDATA_cadastro;
+    String pSENHA1_CRIPTOGRAFA;
+    public static int codigoEmpresa = 0;
 
     /**
      * Creates new form TelaLoginSenha
@@ -80,6 +110,8 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
         jBtCancelar = new javax.swing.JButton();
         jBtAcessar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jComboBoxUnidadePrisional = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -148,6 +180,20 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sisconpcpk/imagens/User_login_Icon_64.png"))); // NOI18N
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel9.setText("Unidade:");
+
+        jComboBoxUnidadePrisional.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jComboBoxUnidadePrisional.setForeground(new java.awt.Color(204, 0, 0));
+        jComboBoxUnidadePrisional.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "localhost", "Conjunto Penal de lauro de Freitas - CPLF", "Conjunto Penal Masculino de Salvador - CPMS", "Conjunto Penal de Itabuna - CPIT", "Conjunto Penal de Vitória da Conquista - CPVC", "Conjunto Penal de Barreiras - CPBA" }));
+        jComboBoxUnidadePrisional.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jComboBoxUnidadePrisional.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxUnidadePrisionalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -155,22 +201,23 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPassword)
-                            .addComponent(jLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
                         .addComponent(jBtAcessar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtCancelar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jBtCancelar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                            .addComponent(jPassword))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxUnidadePrisional, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtAcessar, jBtCancelar});
@@ -189,6 +236,10 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
                             .addComponent(jLabel2)
                             .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jComboBoxUnidadePrisional, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtAcessar)
@@ -212,7 +263,7 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
 
         jNumeroVersao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jNumeroVersao.setForeground(new java.awt.Color(255, 0, 0));
-        jNumeroVersao.setText("6.0");
+        jNumeroVersao.setText("6.12.2020");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 153, 0));
@@ -228,14 +279,14 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jNumeroVersao)
-                        .addGap(22, 22, 22))))
+                        .addComponent(jNumeroVersao, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,17 +312,17 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true)));
@@ -300,24 +351,21 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(5, 5, 5)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addContainerGap())
         );
-
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel4, jPanel5});
-
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -327,9 +375,9 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -341,8 +389,8 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -392,6 +440,10 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtAcessarKeyPressed
 
+    private void jComboBoxUnidadePrisionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUnidadePrisionalActionPerformed
+        jBtAcessar.requestFocus();
+    }//GEN-LAST:event_jComboBoxUnidadePrisionalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -438,6 +490,7 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton jBtAcessar;
     public static javax.swing.JButton jBtCancelar;
+    public static javax.swing.JComboBox<String> jComboBoxUnidadePrisional;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -446,6 +499,7 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     public static javax.swing.JTextField jLogin;
     private javax.swing.JLabel jNumeroVersao;
     private javax.swing.JPanel jPanel1;
@@ -457,37 +511,200 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void acessarSistema() throws SQLException {
-
-        conecta.abrirConexao();
-        try {
-
-            conecta.executaSQL("SELECT IdUsuario,LoginUsuario,SenhaUsuario,StatusUsuario,NomeUsuario FROM USUARIOS "
-                    + "WHERE LoginUsuario='" + jLogin.getText() + "' ");
-            conecta.rs.first();
-            Codstatus = conecta.rs.getInt("StatusUsuario");
-            idUserAcesso = conecta.rs.getString("IdUsuario");
-            login = conecta.rs.getString("LoginUsuario");
-            senha = conecta.rs.getString("SenhaUsuario");
-            nameUser = conecta.rs.getString("NomeUsuario");
-        } catch (SQLException e) {
-
-        }
-        if (jLogin.getText().equals(login) && (jPassword.getText()).equals(senha) && Codstatus == 0) {
-            JOptionPane.showMessageDialog(null, "Usuário INATIVO !!!");
-        } else if (jLogin.getText().equals(login) && !jPassword.getText().equals(senha) && Codstatus == 1) {
-            JOptionPane.showMessageDialog(null, "Senha Inválida");
-        } else if (!jLogin.getText().equals(login) && jPassword.getText().equals(senha) && Codstatus == 1) {
-            JOptionPane.showMessageDialog(null, "Login Inválida");
-        } else if (jLogin.getText().equals(login) && (jPassword.getText()).equals(senha) && (Codstatus == 1)) {
-            buscarEmpresa();
-            FormPrincipal tlp = new FormPrincipal();
-            tlp.setVisible(true);
-            conecta.desconecta();
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Usuario ou senha Inváldo, tente novamente !!!");
-            jLogin.setText("");
-            jPassword.setText("");
+        if (jComboBoxUnidadePrisional.getSelectedItem().equals("Selecione...")) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma unidade prisional para acessar.");
+        } else if (jComboBoxUnidadePrisional.getSelectedItem().equals("localhost")) {
+            caminhoConecta = "C:\\SISCONPcpk\\Conecta.properties";
+            BUSCAR_usuarios();
+            BUSCAR_data();
+            pSENHA1_CRIPTOGRAFA = Criptografia.criptografar(jPassword.getText());
+            if (jLogin.getText().equals(pLOGIN_usuario)
+                    && (pSENHA_usuario).equals(pSENHA1_CRIPTOGRAFA)
+                    && Codstatus == 0) {
+                JOptionPane.showMessageDialog(null, "Usuário INATIVO !!!");
+            } else {
+                if (jLogin.getText().equals(pLOGIN_usuario)
+                        && (pSENHA_usuario).equals(pSENHA1_CRIPTOGRAFA)
+                        && (Codstatus == 1)) {
+                    buscarEmpresa();
+                    // COMPARAR O ARQUIVO EXECUTAVEL PARA REALIZAR ATUALIZAÇÃO
+                    if (caminhoExecutavelAntigo == null) {
+                        JOptionPane.showMessageDialog(rootPane, "O caminho do arquivo executável antigo não existe, solicite ajuda ao Administrador do Sistema.");
+                    } else if (pSISTEMA_MANUTENCAO.equals("Sim") && !jLogin.getText().equals("admin")) {
+                        JOptionPane.showMessageDialog(rootPane, "Acesso não autorizado, o sistema está temporariamente em manutenção, favor aguardar...");
+                    } else {
+                        idUserAcesso = String.valueOf(pID_usuario);
+                        nameUser = pNOME_usuario;
+                        FormPrincipal tlp = new FormPrincipal();
+                        tlp.setVisible(true);
+                        this.dispose();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Usuario ou senha Inváldo, tente novamente !!!");
+                    jLogin.setText("");
+                    jPassword.setText("");
+                }
+            }
+        } else if (jComboBoxUnidadePrisional.getSelectedItem().equals("Conjunto Penal de lauro de Freitas - CPLF")) {
+            caminhoConecta = "C:\\SISCONPcpk\\ConectaLF.properties";
+            BUSCAR_usuarios();
+            BUSCAR_data();
+            pSENHA1_CRIPTOGRAFA = Criptografia.criptografar(jPassword.getText());
+            if (jLogin.getText().equals(pLOGIN_usuario)
+                    && (pSENHA_usuario).equals(pSENHA1_CRIPTOGRAFA)
+                    && Codstatus == 0) {
+                JOptionPane.showMessageDialog(null, "Usuário INATIVO !!!");
+            } else {
+                if (jLogin.getText().equals(pLOGIN_usuario)
+                        && (pSENHA_usuario).equals(pSENHA1_CRIPTOGRAFA)
+                        && (Codstatus == 1)) {
+                    buscarEmpresa();
+                    // COMPARAR O ARQUIVO EXECUTAVEL PARA REALIZAR ATUALIZAÇÃO
+                    if (caminhoExecutavelAntigo == null) {
+                        JOptionPane.showMessageDialog(rootPane, "O caminho do arquivo executável antigo não existe, solicite ajuda ao Administrador do Sistema.");
+                    } else if (pSISTEMA_MANUTENCAO.equals("Sim") && !jLogin.getText().equals("admin")) {
+                        JOptionPane.showMessageDialog(rootPane, "Acesso não autorizado, o sistema está temporariamente em manutenção, favor aguardar...");
+                    } else {
+                        idUserAcesso = String.valueOf(pID_usuario);
+                        nameUser = pNOME_usuario;
+                        FormPrincipal tlp = new FormPrincipal();
+                        tlp.setVisible(true);
+                        this.dispose();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Usuario ou senha Inváldo, tente novamente !!!");
+                    jLogin.setText("");
+                    jPassword.setText("");
+                }
+            }
+        } else if (jComboBoxUnidadePrisional.getSelectedItem().equals("Conjunto Penal Masculino de Salvador - CPMS")) {
+            caminhoConecta = "C:\\SISCONPcpk\\ConectaSSA.properties";
+            BUSCAR_usuarios();
+            BUSCAR_data();
+            pSENHA1_CRIPTOGRAFA = Criptografia.criptografar(jPassword.getText());
+            if (jLogin.getText().equals(pLOGIN_usuario)
+                    && (pSENHA_usuario).equals(pSENHA1_CRIPTOGRAFA)
+                    && Codstatus == 0) {
+                JOptionPane.showMessageDialog(null, "Usuário INATIVO !!!");
+            } else {
+                if (jLogin.getText().equals(pLOGIN_usuario)
+                        && (pSENHA_usuario).equals(pSENHA1_CRIPTOGRAFA)
+                        && (Codstatus == 1)) {
+                    buscarEmpresa();
+                    // COMPARAR O ARQUIVO EXECUTAVEL PARA REALIZAR ATUALIZAÇÃO
+                    if (caminhoExecutavelAntigo == null) {
+                        JOptionPane.showMessageDialog(rootPane, "O caminho do arquivo executável antigo não existe, solicite ajuda ao Administrador do Sistema.");
+                    } else if (pSISTEMA_MANUTENCAO.equals("Sim") && !jLogin.getText().equals("admin")) {
+                        JOptionPane.showMessageDialog(rootPane, "Acesso não autorizado, o sistema está temporariamente em manutenção, favor aguardar...");
+                    } else {
+                        idUserAcesso = String.valueOf(pID_usuario);
+                        nameUser = pNOME_usuario;
+                        FormPrincipal tlp = new FormPrincipal();
+                        tlp.setVisible(true);
+                        this.dispose();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Usuario ou senha Inváldo, tente novamente !!!");
+                    jLogin.setText("");
+                    jPassword.setText("");
+                }
+            }
+        } else if (jComboBoxUnidadePrisional.getSelectedItem().equals("Conjunto Penal de Itabuna - CPIT")) {
+            caminhoConecta = "C:\\SISCONPcpk\\ConectaITB.properties";
+            BUSCAR_usuarios();
+            BUSCAR_data();
+            pSENHA1_CRIPTOGRAFA = Criptografia.criptografar(jPassword.getText());
+            if (jLogin.getText().equals(pLOGIN_usuario)
+                    && (pSENHA_usuario).equals(pSENHA1_CRIPTOGRAFA)
+                    && Codstatus == 0) {
+                JOptionPane.showMessageDialog(null, "Usuário INATIVO !!!");
+            } else {
+                if (jLogin.getText().equals(pLOGIN_usuario)
+                        && (pSENHA_usuario).equals(pSENHA1_CRIPTOGRAFA)
+                        && (Codstatus == 1)) {
+                    buscarEmpresa();
+                    // COMPARAR O ARQUIVO EXECUTAVEL PARA REALIZAR ATUALIZAÇÃO
+                    if (caminhoExecutavelAntigo == null) {
+                        JOptionPane.showMessageDialog(rootPane, "O caminho do arquivo executável antigo não existe, solicite ajuda ao Administrador do Sistema.");
+                    } else if (pSISTEMA_MANUTENCAO.equals("Sim") && !jLogin.getText().equals("admin")) {
+                        JOptionPane.showMessageDialog(rootPane, "Acesso não autorizado, o sistema está temporariamente em manutenção, favor aguardar...");
+                    } else {
+                        idUserAcesso = String.valueOf(pID_usuario);
+                        nameUser = pNOME_usuario;
+                        FormPrincipal tlp = new FormPrincipal();
+                        tlp.setVisible(true);
+                        this.dispose();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Usuario ou senha Inváldo, tente novamente !!!");
+                    jLogin.setText("");
+                    jPassword.setText("");
+                }
+            }
+        } else if (jComboBoxUnidadePrisional.getSelectedItem().equals("Conjunto Penal de Vitória da Conquista - CPVC")) {
+            caminhoConecta = "C:\\SISCONPcpk\\ConectaVC.properties";
+            BUSCAR_usuarios();
+            BUSCAR_data();
+            pSENHA1_CRIPTOGRAFA = Criptografia.criptografar(jPassword.getText());
+            if (jLogin.getText().equals(pLOGIN_usuario)
+                    && (pSENHA_usuario).equals(pSENHA1_CRIPTOGRAFA)
+                    && Codstatus == 0) {
+                JOptionPane.showMessageDialog(null, "Usuário INATIVO !!!");
+            } else {
+                if (jLogin.getText().equals(pLOGIN_usuario)
+                        && (pSENHA_usuario).equals(pSENHA1_CRIPTOGRAFA)
+                        && (Codstatus == 1)) {
+                    buscarEmpresa();
+                    // COMPARAR O ARQUIVO EXECUTAVEL PARA REALIZAR ATUALIZAÇÃO
+                    if (caminhoExecutavelAntigo == null) {
+                        JOptionPane.showMessageDialog(rootPane, "O caminho do arquivo executável antigo não existe, solicite ajuda ao Administrador do Sistema.");
+                    } else if (pSISTEMA_MANUTENCAO.equals("Sim") && !jLogin.getText().equals("admin")) {
+                        JOptionPane.showMessageDialog(rootPane, "Acesso não autorizado, o sistema está temporariamente em manutenção, favor aguardar...");
+                    } else {
+                        idUserAcesso = String.valueOf(pID_usuario);
+                        nameUser = pNOME_usuario;
+                        FormPrincipal tlp = new FormPrincipal();
+                        tlp.setVisible(true);
+                        this.dispose();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Usuario ou senha Inváldo, tente novamente !!!");
+                    jLogin.setText("");
+                    jPassword.setText("");
+                }
+            }
+        } else if (jComboBoxUnidadePrisional.getSelectedItem().equals("Conjunto Penal de Barreiras - CPBA")) {
+            caminhoConecta = "C:\\SISCONPcpk\\ConectaBAR.properties";
+            BUSCAR_usuarios();
+            BUSCAR_data();
+            pSENHA1_CRIPTOGRAFA = Criptografia.criptografar(jPassword.getText());
+            if (jLogin.getText().equals(pLOGIN_usuario)
+                    && (pSENHA_usuario).equals(pSENHA1_CRIPTOGRAFA)
+                    && Codstatus == 0) {
+                JOptionPane.showMessageDialog(null, "Usuário INATIVO !!!");
+            } else {
+                if (jLogin.getText().equals(pLOGIN_usuario)
+                        && (pSENHA_usuario).equals(pSENHA1_CRIPTOGRAFA)
+                        && (Codstatus == 1)) {
+                    buscarEmpresa();
+                    // COMPARAR O ARQUIVO EXECUTAVEL PARA REALIZAR ATUALIZAÇÃO
+                    if (caminhoExecutavelAntigo == null) {
+                        JOptionPane.showMessageDialog(rootPane, "O caminho do arquivo executável antigo não existe, solicite ajuda ao Administrador do Sistema.");
+                    } else if (pSISTEMA_MANUTENCAO.equals("Sim") && !jLogin.getText().equals("admin")) {
+                        JOptionPane.showMessageDialog(rootPane, "Acesso não autorizado, o sistema está temporariamente em manutenção, favor aguardar...");
+                    } else {
+                        idUserAcesso = String.valueOf(pID_usuario);
+                        nameUser = pNOME_usuario;
+                        FormPrincipal tlp = new FormPrincipal();
+                        tlp.setVisible(true);
+                        this.dispose();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Usuario ou senha Inváldo, tente novamente !!!");
+                    jLogin.setText("");
+                    jPassword.setText("");
+                }
+            }
         }
     }
 
@@ -497,18 +714,46 @@ public class TelaLoginSenhaCPK extends javax.swing.JDialog {
     }
 
     public void buscarEmpresa() {
-        conecta.abrirConexao();
-        try {
-            conecta.executaSQL("SELECT * FROM EMPRESA "
-                    + "INNER JOIN UNIDADE_PENAL_EMPRESA "
-                    + "ON EMPRESA.IdEmpresa=UNIDADE_PENAL_EMPRESA.IdEmpresa");
-            conecta.rs.first();
-            razaoSocial = conecta.rs.getString("RazaoSocial");
-            descricaoUnidade = conecta.rs.getString("DescricaoUnidade");
-            versaoAtualSistema = conecta.rs.getString("VersaoAtual");
-        } catch (Exception e) {
-        }
-        conecta.desconecta();
+        SimpleDateFormat formatoAmerica = new SimpleDateFormat("dd/MM/yyyy");
+        //PESQUISAR DADOS DA EMPRESA
+        ControlePesquisarEmpresaLogon pPESQUISAS_empresa = new ControlePesquisarEmpresaLogon();
+        pPESQUISAS_empresa.PESQUISAR_empresa(objEmpresa);
+        codigoEmpresa = objEmpresa.getIdEmpresa();
+        razaoSocial = objEmpresa.getDescricaoEmpresa();
+        descricaoUnidade = objEmpresa.getDescricaoUnidade();
+        versaoAtualSistema = objEmpresa.getVersaoAtual();
+        //ENDEREÇO PARA O RELATÓRIO DE CUMPRIMENTO E NÃO CUMPRIMENTO DE ALVARÁ. (02/03/2018) - BARREIRAS.
+        pPESQUISAS_empresa.PESQUISAR_unidade(objEmpresa);
+        enderecoUnidadePrisional = objEmpresa.getEndereco();
+        bairroUnidade = objEmpresa.getBairro();
+        cidadeUnidade = objEmpresa.getCidade();
+        estadoUnidade = objEmpresa.getEstado();
+        enderecoUnidadePrisional = enderecoUnidadePrisional + " " + cidadeUnidade + " " + estadoUnidade;
+        //PESQUISAR DADOS DO PARAMÊTRO
+        pPESQUISAS_empresa.PESQUISAR_parametros(objParametros);
+        caminhoExecutavel = objParametros.getCaminhoAtualizaSis();
+        caminhoExecutavelAntigo = objParametros.getCaminhoExecAntigo();
+        dataVersao = formatoAmerica.format(objParametros.getDataVersao().getTime());
+        pSISTEMA_MANUTENCAO = objParametros.getSistemaManutencao();
     }
 
+    public void BUSCAR_usuarios() {
+        ControleVerificacaoAcessos VERIFICAR_usuario = new ControleVerificacaoAcessos();
+        try {
+            for (UsuariosCpk dd : VERIFICAR_usuario.read()) {
+                pID_usuario = dd.getIdUsuario();
+                pLOGIN_usuario = dd.getLogin();
+                pNOME_usuario = dd.getNomeUsuario();
+                pSENHA_usuario = dd.getSenha1();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaLoginSenhaCPK.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void BUSCAR_data() {
+        ControlePesquisarEmpresaLogon p = new ControlePesquisarEmpresaLogon();
+        p.PESQUISAR_data(objUsuarios);
+        pDATA_cadastro = objUsuarios.getDataCadastro();
+    }
 }
