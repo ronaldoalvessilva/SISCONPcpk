@@ -301,7 +301,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jLabel15.setText("Data Inicial:");
 
         jDataPesqInicial.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jDataPesqInicial.setDateFormatString("dd/MM/yyyy");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setText("Data Final:");
@@ -526,7 +525,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jStatusLanc.setEnabled(false);
 
         jDataLanc.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jDataLanc.setDateFormatString("dd/MM/yyyy");
         jDataLanc.setEnabled(false);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -561,7 +559,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jLabel14.setText("Tipo de Kit");
 
         jComboBoxTipoKit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBoxTipoKit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Kit Inicial", "Kit Decendial", "Kit Quinzenal", "Kit Mensal", "Kit Semestral", "Kit Anual" }));
+        jComboBoxTipoKit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Kit Inicial", "Kit Decendial", "Kit Quinzenal", "Kit Mensal", "Kit Semestral", "Kit Anual", "Kit Personalizado" }));
         jComboBoxTipoKit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jComboBoxTipoKit.setEnabled(false);
 
@@ -1126,7 +1124,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         });
 
         jDataEntrega.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jDataEntrega.setDateFormatString("dd/MM/yyyy");
         jDataEntrega.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -1612,7 +1609,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "É necessário o tipo de kit.");
             } else if (jComboBoxPavilhao.getSelectedItem().equals("Selecione...") || jComboBoxPavilhao.getSelectedItem().equals("") || jComboBoxPavilhao.getSelectedItem() == null) {
                 JOptionPane.showMessageDialog(rootPane, "Informe qual é o pavilhão.");
-            } else if (jIdKit.getText().equals("")) {
+            } else if (jIdKit.getText().equals("") && !jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")) {
                 JOptionPane.showMessageDialog(rootPane, "É necessário informar o código da composição do kit de higiêne do interno.");
             } else {
                 objPag.setStatusLanc(jStatusLanc.getText());
