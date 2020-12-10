@@ -7,7 +7,6 @@ package br.com.sisconpcpk.dao;
 
 import br.com.sisconpcpk.modelo.ProdutoInternosKitLote;
 import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.jIdInternoKitBio1;
-import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdKit;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

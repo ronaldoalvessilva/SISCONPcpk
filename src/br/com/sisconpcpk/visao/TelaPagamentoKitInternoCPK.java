@@ -1690,6 +1690,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "É necessário o tipo de kit.");
             } else if (jComboBoxPavilhao.getSelectedItem().equals("Selecione...") || jComboBoxPavilhao.getSelectedItem().equals("") || jComboBoxPavilhao.getSelectedItem() == null) {
                 JOptionPane.showMessageDialog(rootPane, "Informe qual é o pavilhão.");
+            } else if (jIdKit.getText().equals("") && !jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")) {
+                JOptionPane.showMessageDialog(rootPane, "É necessário informar o código da composição do kit de higiêne do interno.");
+            } else if (jComboBoxKitPersonalizado.getSelectedItem().equals("Selecione...")) {
+                JOptionPane.showMessageDialog(rootPane, "É necessário informar se o kit é ou não personalizado.");
             } else {
                 objPag.setStatusLanc(jStatusLanc.getText());
                 objPag.setDataLanc(jDataLanc.getDate());
@@ -1700,6 +1704,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 objPag.setIdKit(Integer.valueOf(jIdKit.getText()));
                 objPag.setTipoKit((String) jComboBoxTipoKit.getSelectedItem());
                 objPag.setDescricaoPavilhao((String) jComboBoxPavilhao.getSelectedItem());
+                objPag.setKitPersonalizado((String) jComboBoxKitPersonalizado.getSelectedItem());
                 objPag.setObservacao(jObservacao.getText());
                 if (acao == 1) {
                     objPag.setUsuarioInsert(nameUser);
@@ -1735,6 +1740,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "É necessário o tipo de kit.");
             } else if (jComboBoxPavilhao.getSelectedItem().equals("Selecione...") || jComboBoxPavilhao.getSelectedItem().equals("") || jComboBoxPavilhao.getSelectedItem() == null) {
                 JOptionPane.showMessageDialog(rootPane, "Informe qual é o pavilhão.");
+            } else if (jIdKit.getText().equals("") && !jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")) {
+                JOptionPane.showMessageDialog(rootPane, "É necessário informar o código da composição do kit de higiêne do interno.");
+            } else if (jComboBoxKitPersonalizado.getSelectedItem().equals("Selecione...")) {
+                JOptionPane.showMessageDialog(rootPane, "É necessário informar se o kit é ou não personalizado.");
             } else {
                 objPag.setStatusLanc(jStatusLanc.getText());
                 objPag.setDataLanc(jDataLanc.getDate());
@@ -1745,6 +1754,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 objPag.setIdKit(Integer.valueOf(jIdKit.getText()));
                 objPag.setTipoKit((String) jComboBoxTipoKit.getSelectedItem());
                 objPag.setDescricaoPavilhao((String) jComboBoxPavilhao.getSelectedItem());
+                objPag.setKitPersonalizado((String) jComboBoxKitPersonalizado.getSelectedItem());
                 objPag.setObservacao(jObservacao.getText());
                 if (acao == 1) {
                     objPag.setUsuarioInsert(nameUser);

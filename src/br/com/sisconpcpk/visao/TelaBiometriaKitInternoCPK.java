@@ -135,7 +135,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             pesquisarInternoPagamentoKitSemestral();
         } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Anual")) {
             pesquisarInternoPagamentoKitAnual();
-        }else if(jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")){
+        } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")) {
             pesquisarInternoPagamentoKitInicial();
             pesquisarInternoPagamentoKitDecendial();
             pesquisarInternoPagamentoKitQuinzenal();
@@ -702,7 +702,8 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel19.setText("OBS.: MUDANÇAS NA FORMA DE PAGAR <KIT PERSONALISADO> - NÃO TESTADO");
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("OBS.: MUDANÇAS NA FORMA DE PAGAR <KIT PERSONALISADO>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -945,7 +946,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                 pesquisarProdutoKitInternoBiometria();
             } else if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual")) {
                 limparTabelaProdutosKit();
-                pesquisarProdutoKitInternoManual();                
+                pesquisarProdutoKitInternoManual();
             }
         }
     }//GEN-LAST:event_jBtVerificarKitActionPerformed
@@ -2004,7 +2005,6 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                                             + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
                                             + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
                                             + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
-                                            //+ "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.Idkit='" + jIdKit.getText() + "' "
                                             + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd='" + objItensPagtoProd.getIdProd() + "' "
                                             + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
                                     conecta.rs.first();
@@ -2118,7 +2118,6 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                                             + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
                                             + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
                                             + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
-                                            // + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.Idkit='" + jIdKit.getText() + "' "
                                             + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd='" + objItensPagtoProd.getIdProd() + "' "
                                             + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
                                     conecta.rs.first();
@@ -2252,7 +2251,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                         pesquisarInternoPagamentoKitSemestral();
                     } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Anual")) {
                         pesquisarInternoPagamentoKitAnual();
-                    }else if(jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")){
+                    } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")) {
                         pesquisarInternoPagamentoKitInicial();
                         pesquisarInternoPagamentoKitDecendial();
                         pesquisarInternoPagamentoKitQuinzenal();
@@ -2268,7 +2267,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             t1.start();
         } catch (Exception e) {
         }
-    }
+    } //FIM DO MÉTODO
 
     public void limparCamposBiometria() {
         jIdInternoKitBio1.setText("");
