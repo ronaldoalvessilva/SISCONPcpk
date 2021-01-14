@@ -175,7 +175,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jLabel15 = new javax.swing.JLabel();
         jDataPesqInicial = new com.toedter.calendar.JDateChooser();
         jLabel16 = new javax.swing.JLabel();
-        jDataPesqFinal = new com.toedter.calendar.JDateChooser();
         jLabel17 = new javax.swing.JLabel();
         jIDPesqLanc = new javax.swing.JTextField();
         jBtPesqID = new javax.swing.JButton();
@@ -185,6 +184,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jBtPesqNomeInterno = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         jComboBoxPesquisarTipoKit = new javax.swing.JComboBox<>();
+        jDataPesqFinal = new com.toedter.calendar.JDateChooser();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTabelaPagamentoKit = new javax.swing.JTable();
         jPanel31 = new javax.swing.JPanel();
@@ -309,9 +309,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setText("Data Final:");
 
-        jDataPesqFinal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jDataPesqFinal.setDateFormatString("dd/ MM/yyyy");
-
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel17.setText("Código:");
 
@@ -354,6 +351,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jComboBoxPesquisarTipoKit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Kit Inicial", "Kit Decendial", "Kit Quinzenal", "Kit Mensal", "Kit Semestral", "Kit Anual" }));
         jComboBoxPesquisarTipoKit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
+        jDataPesqFinal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -367,7 +366,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel13Layout.createSequentialGroup()
                             .addComponent(jPesqNomeInternoVisitado, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -376,18 +375,18 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                             .addComponent(jIDPesqLanc, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jBtPesqID, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(159, 159, 159)
                             .addComponent(jCheckBox19))
                         .addGroup(jPanel13Layout.createSequentialGroup()
                             .addComponent(jDataPesqInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jLabel16)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGap(3, 3, 3)
                             .addComponent(jDataPesqFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jBtPesqData, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jComboBoxPesquisarTipoKit, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,10 +398,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     .addComponent(jCheckBox19))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel15)
-                    .addComponent(jDataPesqInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)
                     .addComponent(jDataPesqFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
+                    .addComponent(jDataPesqInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
                     .addComponent(jBtPesqData))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
@@ -423,7 +422,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Observação"
+                "Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Nome do Interno"
             }
         ));
         jTabelaPagamentoKit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1356,15 +1355,31 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
                         dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
                         if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-                            preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                            preencherTabelaPagotKit("SELECT "
+                                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                                    + "StatusLanc,TipoKit,DescricaoPav, "
+                                    + "NomeInternoCrc "
+                                    + "FROM PAGAMENTO_KIT_INTERNOS "
                                     + "INNER JOIN PAVILHAO "
                                     + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                                    + "INNER JOIN PRONTUARIOSCRC "
+                                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc  "
                                     + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
                                     + "AND'" + dataFinal + "'");
                         } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-                            preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                            preencherTabelaPagotKit("SELECT "
+                                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                                    + "StatusLanc,TipoKit,DescricaoPav, "
+                                    + "NomeInternoCrc "
+                                    + "FROM PAGAMENTO_KIT_INTERNOS "
                                     + "INNER JOIN PAVILHAO "
                                     + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                                    + "INNER JOIN PRONTUARIOSCRC "
+                                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
                                     + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
                                     + "AND'" + dataFinal + "' "
                                     + "AND TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
@@ -1388,15 +1403,31 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
                         dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
                         if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-                            preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                            preencherTabelaPagotKit("SELECT "
+                                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                                    + "StatusLanc,TipoKit,DescricaoPav, "
+                                    + "NomeInternoCrc "
+                                    + "FROM PAGAMENTO_KIT_INTERNOS "
                                     + "INNER JOIN PAVILHAO "
                                     + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                                    + "INNER JOIN PRONTUARIOSCRC "
+                                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc  "
                                     + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
                                     + "AND'" + dataFinal + "'");
                         } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-                            preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                            preencherTabelaPagotKit("SELECT "
+                                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                                    + "StatusLanc,TipoKit,DescricaoPav, "
+                                    + "NomeInternoCrc "
+                                    + "FROM PAGAMENTO_KIT_INTERNOS "
                                     + "INNER JOIN PAVILHAO "
                                     + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                                    + "INNER JOIN PRONTUARIOSCRC "
+                                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc  "
                                     + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
                                     + "AND'" + dataFinal + "' "
                                     + "AND TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
@@ -1415,16 +1446,32 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "Informe um ID para pesquisa.");
         } else {
             if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-                preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                preencherTabelaPagotKit("SELECT "
+                        + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                        + "StatusLanc,TipoKit,DescricaoPav, "
+                        + "NomeInternoCrc "
+                        + "FROM PAGAMENTO_KIT_INTERNOS "
                         + "INNER JOIN PAVILHAO "
                         + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                        + "WHERE IdPagto='" + jIDPesqLanc.getText() + "'");
+                        + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                        + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                        + "INNER JOIN PRONTUARIOSCRC "
+                        + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                        + "WHERE PAGAMENTO_KIT_INTERNOS.IdPagto='" + jIDPesqLanc.getText() + "'");
             } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-                preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                preencherTabelaPagotKit("SELECT "
+                        + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                        + "StatusLanc,TipoKit,DescricaoPav, "
+                        + "NomeInternoCrc "
+                        + "FROM PAGAMENTO_KIT_INTERNOS "
                         + "INNER JOIN PAVILHAO "
                         + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                        + "WHERE IdPagto='" + jIDPesqLanc.getText() + "' "
-                        + "AND TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+                        + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                        + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                        + "INNER JOIN PRONTUARIOSCRC "
+                        + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                        + "WHERE PAGAMENTO_KIT_INTERNOS.IdPagto='" + jIDPesqLanc.getText() + "' "
+                        + "AND PAGAMENTO_KIT_INTERNOS.TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
             }
         }
     }//GEN-LAST:event_jBtPesqIDActionPerformed
@@ -1434,9 +1481,18 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         count = 0;
         flag = 1;
         if (evt.getStateChange() == evt.SELECTED) {
-            this.preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+            this.preencherTabelaPagotKit("SELECT "
+                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                    + "StatusLanc,TipoKit,DescricaoPav, "
+                    + "NomeInternoCrc "
+                    + "FROM PAGAMENTO_KIT_INTERNOS "
                     + "INNER JOIN PAVILHAO "
-                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav");
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                    + "INNER JOIN PRONTUARIOSCRC "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                    + "ORDER BY DataLanc");
         } else {
             jtotalRegistros.setText("");
             limparTabela();
@@ -1450,25 +1506,83 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         if (jPesqNomeInternoVisitado.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Informe um nome ou parte do nome para pesquisa.");
         } else {
-            if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-                preencherTabelaPagotKitInterno("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+            if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")  && jDataPesqInicial.getDate() == null && jDataPesqFinal.getDate() == null) {
+                preencherTabelaPagotKitInterno("SELECT "
+                        + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                        + "StatusLanc,TipoKit,DescricaoPav, "
+                        + "NomeInternoCrc "
+                        + "FROM PAGAMENTO_KIT_INTERNOS "
+                        + "INNER JOIN PAVILHAO "
+                        + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
                         + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
                         + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
                         + "INNER JOIN PRONTUARIOSCRC "
                         + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                        + "INNER JOIN PAVILHAO "
-                        + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
                         + "WHERE NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%'");
-            } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-                preencherTabelaPagotKitInterno("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+            } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")  && jDataPesqInicial.getDate() == null && jDataPesqFinal.getDate() == null) {
+                preencherTabelaPagotKitInterno("SELECT "
+                        + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                        + "StatusLanc,TipoKit,DescricaoPav, "
+                        + "NomeInternoCrc "
+                        + "FROM PAGAMENTO_KIT_INTERNOS "
+                        + "INNER JOIN PAVILHAO "
+                        + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
                         + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
                         + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
                         + "INNER JOIN PRONTUARIOSCRC "
                         + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                        + "INNER JOIN PAVILHAO "
-                        + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
                         + "WHERE NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%' "
                         + "AND TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+            } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...") && jDataPesqInicial.getDate() != null && jDataPesqFinal.getDate() != null) {
+                if (tipoServidor == null || tipoServidor.equals("")) {
+                    JOptionPane.showMessageDialog(rootPane, "É necessário definir o parâmtero para o sistema operacional utilizado no servidor, (UBUNTU-LINUX ou WINDOWS SERVER).");
+                } else if (tipoServidor.equals("Servidor Linux (Ubuntu)/MS-SQL Server")) {
+                    if (jDataPesqInicial.getDate().after(jDataPesqFinal.getDate())) {
+                        JOptionPane.showMessageDialog(rootPane, "Data Inicial não pode ser maior que data final");
+                    } else {
+                        SimpleDateFormat formatoAmerica = new SimpleDateFormat("yyyy/MM/dd");
+                        dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
+                        dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
+                        preencherTabelaPagotKitInterno("SELECT "
+                                + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                                + "StatusLanc,TipoKit,DescricaoPav, "
+                                + "NomeInternoCrc "
+                                + "FROM PAGAMENTO_KIT_INTERNOS "
+                                + "INNER JOIN PAVILHAO "
+                                + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                                + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                                + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                                + "INNER JOIN PRONTUARIOSCRC "
+                                + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                                + "WHERE PAGAMENTO_KIT_INTERNOS.DataLanc BETWEEN'" + dataInicial + "' "
+                                + "AND'" + dataFinal + "' "
+                                + "AND NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%' "
+                                + "AND PAGAMENTO_KIT_INTERNOS.TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+                    }
+                } else if (tipoServidor.equals("Servidor Windows/MS-SQL Server")) {
+                    if (jDataPesqInicial.getDate().after(jDataPesqFinal.getDate())) {
+                        JOptionPane.showMessageDialog(rootPane, "Data Inicial não pode ser maior que data final");
+                    } else {
+                        SimpleDateFormat formatoAmerica = new SimpleDateFormat("dd/MM/yyyy");
+                        dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
+                        dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
+                        preencherTabelaPagotKitInterno("SELECT "
+                                + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                                + "StatusLanc,TipoKit,DescricaoPav, "
+                                + "NomeInternoCrc "
+                                + "FROM PAGAMENTO_KIT_INTERNOS "
+                                + "INNER JOIN PAVILHAO "
+                                + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                                + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                                + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                                + "INNER JOIN PRONTUARIOSCRC "
+                                + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                                + "WHERE PAGAMENTO_KIT_INTERNOS.DataLanc BETWEEN'" + dataInicial + "' "
+                                + "AND'" + dataFinal + "' "
+                                + "AND NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%' "
+                                + "AND PAGAMENTO_KIT_INTERNOS.TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+                    }
+                }
             }
         }
     }//GEN-LAST:event_jBtPesqNomeInternoActionPerformed
@@ -2766,7 +2880,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     public void preencherTabelaPagotKit(String sql) {
         ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Observação"};
+        String[] Colunas = new String[]{"Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Nome do Interno"};
         conecta.abrirConexao();
         try {
             conecta.executaSQL(sql);
@@ -2780,7 +2894,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
                 jtotalRegistros.setText(Integer.toString(count)); // Converter inteiro em string para exibir na tela
-                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("TipoKit"), conecta.rs.getString("DescricaoPav"), conecta.rs.getString("Observacao")});
+                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("TipoKit"), conecta.rs.getString("DescricaoPav"), conecta.rs.getString("NomeInternoCrc")});
             } while (conecta.rs.next());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Não existem dados a serem EXIBIDOS !!!");
@@ -2808,7 +2922,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     public void limparTabela() {
         ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Data", "Status", "Pavilhão", "Observação"};
+        String[] Colunas = new String[]{"Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Nome do Interno"};
         ModeloTabela modelo = new ModeloTabela(dados, Colunas);
         jTabelaPagamentoKit.setModel(modelo);
         jTabelaPagamentoKit.getColumnModel().getColumn(0).setPreferredWidth(70);
@@ -2844,7 +2958,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     public void preencherTabelaPagotKitInterno(String sql) {
         ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Observação"};
+        String[] Colunas = new String[]{"Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Nome do Interno"};
         conecta.abrirConexao();
         try {
             conecta.executaSQL(sql);
@@ -2858,7 +2972,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
                 jtotalRegistros.setText(Integer.toString(count)); // Converter inteiro em string para exibir na tela
-                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("TipoKit"), conecta.rs.getString("DescricaoPav"), conecta.rs.getString("Observacao")});
+                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("TipoKit"), conecta.rs.getString("DescricaoPav"), conecta.rs.getString("NomeInternoCrc")});
             } while (conecta.rs.next());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Não existem dados a serem EXIBIDOS !!!");
