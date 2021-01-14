@@ -183,6 +183,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jLabel18 = new javax.swing.JLabel();
         jPesqNomeInternoVisitado = new javax.swing.JTextField();
         jBtPesqNomeInterno = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        jComboBoxPesquisarTipoKit = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTabelaPagamentoKit = new javax.swing.JTable();
         jPanel31 = new javax.swing.JPanel();
@@ -345,37 +347,47 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel21.setText("Tipo de Kit:");
+
+        jComboBoxPesquisarTipoKit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jComboBoxPesquisarTipoKit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Kit Inicial", "Kit Decendial", "Kit Quinzenal", "Kit Mensal", "Kit Semestral", "Kit Anual" }));
+        jComboBoxPesquisarTipoKit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(jPesqNomeInternoVisitado, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtPesqNomeInterno, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                        .addComponent(jIDPesqLanc, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtPesqID, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCheckBox19))
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(jDataPesqInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDataPesqFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtPesqData, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel13Layout.createSequentialGroup()
+                            .addComponent(jPesqNomeInternoVisitado, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jBtPesqNomeInterno, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                            .addComponent(jIDPesqLanc, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jBtPesqID, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCheckBox19))
+                        .addGroup(jPanel13Layout.createSequentialGroup()
+                            .addComponent(jDataPesqInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel16)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jDataPesqFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jBtPesqData, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jComboBoxPesquisarTipoKit, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,7 +409,11 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     .addComponent(jLabel18)
                     .addComponent(jPesqNomeInternoVisitado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtPesqNomeInterno))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(jComboBoxPesquisarTipoKit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5))
         );
 
         jTabelaPagamentoKit.setAutoCreateRowSorter(true);
@@ -407,7 +423,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Código", "Data", "Status", "Pavilhão", "Observação"
+                "Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Observação"
             }
         ));
         jTabelaPagamentoKit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -423,10 +439,12 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             jTabelaPagamentoKit.getColumnModel().getColumn(1).setMaxWidth(80);
             jTabelaPagamentoKit.getColumnModel().getColumn(2).setMinWidth(80);
             jTabelaPagamentoKit.getColumnModel().getColumn(2).setMaxWidth(80);
-            jTabelaPagamentoKit.getColumnModel().getColumn(3).setMinWidth(200);
-            jTabelaPagamentoKit.getColumnModel().getColumn(3).setMaxWidth(200);
-            jTabelaPagamentoKit.getColumnModel().getColumn(4).setMinWidth(350);
-            jTabelaPagamentoKit.getColumnModel().getColumn(4).setMaxWidth(350);
+            jTabelaPagamentoKit.getColumnModel().getColumn(3).setMinWidth(100);
+            jTabelaPagamentoKit.getColumnModel().getColumn(3).setMaxWidth(100);
+            jTabelaPagamentoKit.getColumnModel().getColumn(4).setMinWidth(200);
+            jTabelaPagamentoKit.getColumnModel().getColumn(4).setMaxWidth(200);
+            jTabelaPagamentoKit.getColumnModel().getColumn(5).setMinWidth(350);
+            jTabelaPagamentoKit.getColumnModel().getColumn(5).setMaxWidth(350);
         }
 
         jPanel31.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED)));
@@ -494,7 +512,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1043,6 +1061,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 .addComponent(jBtSairInterno))
         );
 
+        jTabelaProdutosKitInterno.setAutoCreateRowSorter(true);
         jTabelaProdutosKitInterno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jTabelaProdutosKitInterno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1319,25 +1338,70 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         count = 0;
         flag = 1;
-        if (jDataPesqInicial.getDate() == null) {
-            JOptionPane.showMessageDialog(rootPane, "Informe a data inicial para pesquisa.");
-            jDataPesqInicial.requestFocus();
-        } else {
-            if (jDataPesqFinal.getDate() == null) {
-                JOptionPane.showMessageDialog(rootPane, "Informe a data final para pesquisa.");
-                jDataPesqFinal.requestFocus();
+        if (tipoServidor == null || tipoServidor.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "É necessário definir o parâmtero para o sistema operacional utilizado no servidor, (UBUNTU-LINUX ou WINDOWS SERVER).");
+        } else if (tipoServidor.equals("Servidor Linux (Ubuntu)/MS-SQL Server")) {
+            if (jDataPesqInicial.getDate() == null) {
+                JOptionPane.showMessageDialog(rootPane, "Informe a data inicial para pesquisa.");
+                jDataPesqInicial.requestFocus();
             } else {
-                if (jDataPesqInicial.getDate().after(jDataPesqFinal.getDate())) {
-                    JOptionPane.showMessageDialog(rootPane, "Data Inicial não pode ser maior que data final");
+                if (jDataPesqFinal.getDate() == null) {
+                    JOptionPane.showMessageDialog(rootPane, "Informe a data final para pesquisa.");
+                    jDataPesqFinal.requestFocus();
                 } else {
-                    SimpleDateFormat formatoAmerica = new SimpleDateFormat("dd/MM/yyyy");
-                    dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
-                    dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
-                    preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
-                            + "INNER JOIN PAVILHAO "
-                            + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                            + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
-                            + "AND'" + dataFinal + "'");
+                    if (jDataPesqInicial.getDate().after(jDataPesqFinal.getDate())) {
+                        JOptionPane.showMessageDialog(rootPane, "Data Inicial não pode ser maior que data final");
+                    } else {
+                        SimpleDateFormat formatoAmerica = new SimpleDateFormat("yyyy/MM/dd");
+                        dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
+                        dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
+                        if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+                            preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                                    + "INNER JOIN PAVILHAO "
+                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                                    + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
+                                    + "AND'" + dataFinal + "'");
+                        } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+                            preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                                    + "INNER JOIN PAVILHAO "
+                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                                    + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
+                                    + "AND'" + dataFinal + "' "
+                                    + "AND TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+                        }
+                    }
+                }
+            }
+        } else if (tipoServidor.equals("Servidor Windows/MS-SQL Server")) {
+            if (jDataPesqInicial.getDate() == null) {
+                JOptionPane.showMessageDialog(rootPane, "Informe a data inicial para pesquisa.");
+                jDataPesqInicial.requestFocus();
+            } else {
+                if (jDataPesqFinal.getDate() == null) {
+                    JOptionPane.showMessageDialog(rootPane, "Informe a data final para pesquisa.");
+                    jDataPesqFinal.requestFocus();
+                } else {
+                    if (jDataPesqInicial.getDate().after(jDataPesqFinal.getDate())) {
+                        JOptionPane.showMessageDialog(rootPane, "Data Inicial não pode ser maior que data final");
+                    } else {
+                        SimpleDateFormat formatoAmerica = new SimpleDateFormat("dd/MM/yyyy");
+                        dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
+                        dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
+                        if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+                            preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                                    + "INNER JOIN PAVILHAO "
+                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                                    + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
+                                    + "AND'" + dataFinal + "'");
+                        } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+                            preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                                    + "INNER JOIN PAVILHAO "
+                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                                    + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
+                                    + "AND'" + dataFinal + "' "
+                                    + "AND TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+                        }
+                    }
                 }
             }
         }
@@ -1350,10 +1414,18 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         if (jIDPesqLanc.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Informe um ID para pesquisa.");
         } else {
-            preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
-                    + "INNER JOIN PAVILHAO "
-                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE IdPagto='" + jIDPesqLanc.getText() + "'");
+            if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+                preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                        + "INNER JOIN PAVILHAO "
+                        + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                        + "WHERE IdPagto='" + jIDPesqLanc.getText() + "'");
+            } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+                preencherTabelaPagotKit("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                        + "INNER JOIN PAVILHAO "
+                        + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                        + "WHERE IdPagto='" + jIDPesqLanc.getText() + "' "
+                        + "AND TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+            }
         }
     }//GEN-LAST:event_jBtPesqIDActionPerformed
 
@@ -1378,14 +1450,26 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         if (jPesqNomeInternoVisitado.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Informe um nome ou parte do nome para pesquisa.");
         } else {
-            preencherTabelaPagotKitInterno("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
-                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
-                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
-                    + "INNER JOIN PRONTUARIOSCRC "
-                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                    + "INNER JOIN PAVILHAO "
-                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                    + "WHERE NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%'");
+            if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+                preencherTabelaPagotKitInterno("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                        + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                        + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                        + "INNER JOIN PRONTUARIOSCRC "
+                        + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                        + "INNER JOIN PAVILHAO "
+                        + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                        + "WHERE NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%'");
+            } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+                preencherTabelaPagotKitInterno("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                        + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                        + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                        + "INNER JOIN PRONTUARIOSCRC "
+                        + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                        + "INNER JOIN PAVILHAO "
+                        + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                        + "WHERE NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%' "
+                        + "AND TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+            }
         }
     }//GEN-LAST:event_jBtPesqNomeInternoActionPerformed
 
@@ -1412,6 +1496,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             //
             bloquearCampos();
             jComboBoxPavilhao.removeAllItems();
+            jComboBoxTipoKit.removeAllItems();
             //
             conecta.abrirConexao();
             try {
@@ -1428,7 +1513,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 jHorarioTermino.setText(conecta.rs.getString("HoraTermino"));
                 jIdKit.setText(conecta.rs.getString("IdKit"));
                 jIdRegistroComp.setText(conecta.rs.getString("IdRegistro"));
-                jComboBoxTipoKit.setSelectedItem(conecta.rs.getString("TipoKit"));
+                jComboBoxTipoKit.addItem(conecta.rs.getString("TipoKit"));
                 jComboBoxPavilhao.addItem(conecta.rs.getString("DescricaoPav"));
                 jComboBoxKitPersonalizado.setSelectedItem(conecta.rs.getString("KitPersonalizado"));
                 jObservacao.setText(conecta.rs.getString("Observacao"));
@@ -2108,9 +2193,15 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             if (jComboBoxKitPersonalizado.getSelectedItem().equals("Selecione...")) {
                 jComboBoxTipoKit.setSelectedItem("Selecione...");
             } else if (jComboBoxKitPersonalizado.getSelectedItem().equals("Sim")) {
-                jComboBoxTipoKit.setSelectedItem("Kit Personalizado");
+                jComboBoxTipoKit.removeAllItems();
+                jComboBoxTipoKit.addItem("Kit Personalizado");
+                jIdKit.setText("0");
+                jIdRegistroComp.setText("0");
             } else if (jComboBoxKitPersonalizado.getSelectedItem().equals("Não")) {
-                jComboBoxTipoKit.setSelectedItem("Selecione...");
+                jComboBoxTipoKit.removeAllItems();
+                jComboBoxTipoKit.addItem("Selecione...");
+                jIdKit.setText("0");
+                jIdRegistroComp.setText("0");
             }
         }
     }//GEN-LAST:event_jComboBoxKitPersonalizadoItemStateChanged
@@ -2143,6 +2234,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox jCheckBox19;
     private javax.swing.JComboBox<String> jComboBoxKitPersonalizado;
     public static javax.swing.JComboBox jComboBoxPavilhao;
+    private javax.swing.JComboBox<String> jComboBoxPesquisarTipoKit;
     public static javax.swing.JComboBox jComboBoxTipoKit;
     public static com.toedter.calendar.JDateChooser jDataEntrega;
     private com.toedter.calendar.JDateChooser jDataLanc;
@@ -2170,6 +2262,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2673,7 +2766,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     public void preencherTabelaPagotKit(String sql) {
         ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Data", "Status", "Pavilhão", "Observação"};
+        String[] Colunas = new String[]{"Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Observação"};
         conecta.abrirConexao();
         try {
             conecta.executaSQL(sql);
@@ -2687,7 +2780,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
                 jtotalRegistros.setText(Integer.toString(count)); // Converter inteiro em string para exibir na tela
-                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("DescricaoPav"), conecta.rs.getString("Observacao")});
+                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("TipoKit"), conecta.rs.getString("DescricaoPav"), conecta.rs.getString("Observacao")});
             } while (conecta.rs.next());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Não existem dados a serem EXIBIDOS !!!");
@@ -2700,10 +2793,12 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jTabelaPagamentoKit.getColumnModel().getColumn(1).setResizable(false);
         jTabelaPagamentoKit.getColumnModel().getColumn(2).setPreferredWidth(80);
         jTabelaPagamentoKit.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(200);
+        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(100);
         jTabelaPagamentoKit.getColumnModel().getColumn(3).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(4).setPreferredWidth(350);
+        jTabelaPagamentoKit.getColumnModel().getColumn(4).setPreferredWidth(200);
         jTabelaPagamentoKit.getColumnModel().getColumn(4).setResizable(false);
+        jTabelaPagamentoKit.getColumnModel().getColumn(5).setPreferredWidth(350);
+        jTabelaPagamentoKit.getColumnModel().getColumn(5).setResizable(false);
         jTabelaPagamentoKit.getTableHeader().setReorderingAllowed(false);
         jTabelaPagamentoKit.setAutoResizeMode(jTabelaPagamentoKit.AUTO_RESIZE_OFF);
         jTabelaPagamentoKit.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -2722,10 +2817,12 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jTabelaPagamentoKit.getColumnModel().getColumn(1).setResizable(false);
         jTabelaPagamentoKit.getColumnModel().getColumn(2).setPreferredWidth(80);
         jTabelaPagamentoKit.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(200);
+        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(100);
         jTabelaPagamentoKit.getColumnModel().getColumn(3).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(4).setPreferredWidth(350);
+        jTabelaPagamentoKit.getColumnModel().getColumn(4).setPreferredWidth(200);
         jTabelaPagamentoKit.getColumnModel().getColumn(4).setResizable(false);
+        jTabelaPagamentoKit.getColumnModel().getColumn(5).setPreferredWidth(350);
+        jTabelaPagamentoKit.getColumnModel().getColumn(5).setResizable(false);
         jTabelaPagamentoKit.getTableHeader().setReorderingAllowed(false);
         jTabelaPagamentoKit.setAutoResizeMode(jTabelaPagamentoKit.AUTO_RESIZE_OFF);
         jTabelaPagamentoKit.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -2747,7 +2844,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     public void preencherTabelaPagotKitInterno(String sql) {
         ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Data", "Status", "Pavilhão", "Nome do Interno"};
+        String[] Colunas = new String[]{"Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Observação"};
         conecta.abrirConexao();
         try {
             conecta.executaSQL(sql);
@@ -2761,7 +2858,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
                 jtotalRegistros.setText(Integer.toString(count)); // Converter inteiro em string para exibir na tela
-                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("DescricaoPav"), conecta.rs.getString("NomeInternoCrc")});
+                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("TipoKit"), conecta.rs.getString("DescricaoPav"), conecta.rs.getString("Observacao")});
             } while (conecta.rs.next());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Não existem dados a serem EXIBIDOS !!!");
@@ -2774,10 +2871,12 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jTabelaPagamentoKit.getColumnModel().getColumn(1).setResizable(false);
         jTabelaPagamentoKit.getColumnModel().getColumn(2).setPreferredWidth(80);
         jTabelaPagamentoKit.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(200);
+        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(100);
         jTabelaPagamentoKit.getColumnModel().getColumn(3).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(4).setPreferredWidth(350);
+        jTabelaPagamentoKit.getColumnModel().getColumn(4).setPreferredWidth(200);
         jTabelaPagamentoKit.getColumnModel().getColumn(4).setResizable(false);
+        jTabelaPagamentoKit.getColumnModel().getColumn(5).setPreferredWidth(350);
+        jTabelaPagamentoKit.getColumnModel().getColumn(5).setResizable(false);
         jTabelaPagamentoKit.getTableHeader().setReorderingAllowed(false);
         jTabelaPagamentoKit.setAutoResizeMode(jTabelaPagamentoKit.AUTO_RESIZE_OFF);
         jTabelaPagamentoKit.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

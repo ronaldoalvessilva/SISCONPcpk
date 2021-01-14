@@ -281,9 +281,11 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Nome Completo do Interno");
+        jLabel2.setEnabled(false);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Pavilhão");
+        jLabel3.setEnabled(false);
 
         jIdInternoKitBio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jIdInternoKitBio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -310,15 +312,18 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Cela");
+        jLabel6.setEnabled(false);
 
         jCelaKitBio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jCelaKitBio.setEnabled(false);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Data Entrega");
+        jLabel7.setEnabled(false);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setText("Horário");
+        jLabel8.setEnabled(false);
 
         jHorarioPagto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jHorarioPagto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -1699,7 +1704,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             DefaultTableModel produtosSelecionados = (DefaultTableModel) jTabelaProdutosKit.getModel();
             ProdutoInternosKitLote p = new ProdutoInternosKitLote();
             try {
-                for (ProdutoInternosKitLote pp : CONTROLE_personalizado.read()) {
+                for (ProdutoInternosKitLote pp : CONTROLE_personalizado.PRODUTOS_BIO_read()) {
                     produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd(), pp.getQtdEstoque()});
                     // BARRA DE ROLAGEM HORIZONTAL
                     jTabelaProdutosKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -2380,7 +2385,6 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         ProdutoInternosKitLote p = new ProdutoInternosKitLote();
         try {
             for (ProdutoInternosKitLote pp : control.read()) {
-//                jtotaProdutosListados.setText(Integer.toString(qtdProd)); // Converter inteiro em string para exibir na tela 
                 produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaProdutosKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
