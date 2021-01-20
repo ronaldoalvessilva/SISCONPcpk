@@ -107,7 +107,7 @@
                       <Component id="jRBtKitInicialPesquisa" min="-2" pref="65" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                          <Component id="RegistroPesquisa" min="-2" pref="55" max="-2" attributes="0"/>
+                          <Component id="jRegistroPesquisa" min="-2" pref="55" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -154,7 +154,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="jLabel5" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="RegistroPesquisa" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jRegistroPesquisa" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jCodigoKit" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jBtPesquisaCodigo" alignment="2" min="-2" max="-2" attributes="0"/>
@@ -344,7 +344,7 @@
             <Property name="text" type="java.lang.String" value="Registro:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="RegistroPesquisa">
+        <Component class="javax.swing.JTextField" name="jRegistroPesquisa">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

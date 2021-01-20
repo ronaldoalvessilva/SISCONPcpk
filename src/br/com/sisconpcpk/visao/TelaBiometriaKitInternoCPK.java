@@ -2002,23 +2002,8 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                                 controleMan.alterarKitMensal(objProdKit);
                                 controleMan.alterarKitSemestral(objProdKit);
                                 controleMan.alterarKitAnual(objProdKit);
-                                conecta.abrirConexao();
-                                try {
-                                    conecta.executaSQL("SELECT DISTINCT ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp,ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc,ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd,ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd FROM ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
-                                            + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
-                                            + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
-                                            + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
-                                            + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
-                                            + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
-                                            + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd='" + objItensPagtoProd.getIdProd() + "' "
-                                            + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
-                                    conecta.rs.first();
-                                    pRegistroComp = conecta.rs.getInt("IdRegistroComp");
-                                    pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
-                                    pCodigoProd = conecta.rs.getInt("IdProd");
-                                    pQuantidade = conecta.rs.getInt("QuantProd");
-                                } catch (Exception e) {
-                                }
+                                //PESQUISAR O PRODUTO DO INTERNO PARA DA BAIXA.
+                                pPESQUISAR_INTERNO_biometria();
                                 objItensPagtoProd.setIdPagto(pRegistroComp);
                                 objItensPagtoProd.setIdProd((int) jTabelaProdutosKit.getValueAt(i, 0));
                                 objItensPagtoProd.setDescricaoProduto((String) jTabelaProdutosKit.getValueAt(i, 1));
@@ -2059,24 +2044,8 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                                 } else if (jComboBoxTipoKit.getSelectedItem().equals("Kit Anual")) {
                                     controleMan.alterarKitAnual(objProdKit);
                                 }
-                                conecta.abrirConexao();
-                                try {
-                                    conecta.executaSQL("SELECT DISTINCT ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp,ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc,ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd,ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd FROM ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
-                                            + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
-                                            + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
-                                            + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
-                                            + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
-                                            + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
-                                            + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.Idkit='" + jIdKit.getText() + "' "
-                                            + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd='" + objItensPagtoProd.getIdProd() + "' "
-                                            + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
-                                    conecta.rs.first();
-                                    pRegistroComp = conecta.rs.getInt("IdRegistroComp");
-                                    pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
-                                    pCodigoProd = conecta.rs.getInt("IdProd");
-                                    pQuantidade = conecta.rs.getInt("QuantProd");
-                                } catch (Exception e) {
-                                }
+                                //PESQUISAR O PRODUTO DO INTERNO PARA DA BAIXA.
+                                pPESQUISAR_INTERNO_biometria();
                                 objItensPagtoProd.setIdPagto(pRegistroComp);
                                 objItensPagtoProd.setIdProd((int) jTabelaProdutosKit.getValueAt(i, 0));
                                 objItensPagtoProd.setDescricaoProduto((String) jTabelaProdutosKit.getValueAt(i, 1));
@@ -2115,23 +2084,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                                 controleMan.alterarKitSemestral(objProdKit);
                                 controleMan.alterarKitAnual(objProdKit);
                                 //PESQUISAR O PRODUTO DO INTERNO PARA DA BAIXA.
-                                conecta.abrirConexao();
-                                try {
-                                    conecta.executaSQL("SELECT DISTINCT ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp,ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc,ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd,ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd FROM ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
-                                            + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
-                                            + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
-                                            + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
-                                            + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
-                                            + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
-                                            + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd='" + objItensPagtoProd.getIdProd() + "' "
-                                            + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
-                                    conecta.rs.first();
-                                    pRegistroComp = conecta.rs.getInt("IdRegistroComp");
-                                    pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
-                                    pCodigoProd = conecta.rs.getInt("IdProd");
-                                    pQuantidade = conecta.rs.getInt("QuantProd");
-                                } catch (Exception e) {
-                                }
+                                pPESQUISAR_INTERNO_manual();
                                 objItensPagtoProd.setIdPagto(pRegistroComp);
                                 objItensPagtoProd.setIdProd((int) jTabelaProdutosKit.getValueAt(i, 0));
                                 objItensPagtoProd.setDescricaoProduto((String) jTabelaProdutosKit.getValueAt(i, 1));
@@ -2173,24 +2126,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                                     controleMan.alterarKitAnual(objProdKit);
                                 }
                                 //PESQUISAR O PRODUTO DO INTERNO PARA DA BAIXA.
-                                conecta.abrirConexao();
-                                try {
-                                    conecta.executaSQL("SELECT DISTINCT ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp,ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc,ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd,ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd FROM ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
-                                            + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
-                                            + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
-                                            + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
-                                            + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
-                                            + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
-                                            + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.Idkit='" + jIdKit.getText() + "' "
-                                            + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd='" + objItensPagtoProd.getIdProd() + "' "
-                                            + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
-                                    conecta.rs.first();
-                                    pRegistroComp = conecta.rs.getInt("IdRegistroComp");
-                                    pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
-                                    pCodigoProd = conecta.rs.getInt("IdProd");
-                                    pQuantidade = conecta.rs.getInt("QuantProd");
-                                } catch (Exception e) {
-                                }
+                                pPESQUISAR_INTERNO_manual();
                                 objItensPagtoProd.setIdPagto(pRegistroComp);
                                 objItensPagtoProd.setIdProd((int) jTabelaProdutosKit.getValueAt(i, 0));
                                 objItensPagtoProd.setDescricaoProduto((String) jTabelaProdutosKit.getValueAt(i, 1));
@@ -2406,5 +2342,48 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         while (jTabelaProdutosKit.getModel().getRowCount() > 0) {
             ((DefaultTableModel) jTabelaProdutosKit.getModel()).removeRow(0);
         }
+    }
+
+    public void pPESQUISAR_INTERNO_biometria() {
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL("SELECT DISTINCT ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp,ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc,ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd,ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd FROM ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
+                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                    + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
+                    + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
+                    + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
+                    + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.Idkit='" + jIdKit.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd='" + objItensPagtoProd.getIdProd() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
+            conecta.rs.first();
+            pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
+            pCodigoProd = conecta.rs.getInt("IdProd");
+            pQuantidade = conecta.rs.getInt("QuantProd");
+        } catch (Exception e) {
+        }
+        conecta.desconecta();
+    }
+
+    public void pPESQUISAR_INTERNO_manual() {
+        try {
+            conecta.executaSQL("SELECT DISTINCT ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp,ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc,ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd,ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd FROM ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
+                    + "INNER JOIN COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                    + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
+                    + "INNER JOIN ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
+                    + "ON ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp=ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp "
+                    + "WHERE ITENS_INTERNOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.Idkit='" + jIdKit.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd='" + objItensPagtoProd.getIdProd() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
+            conecta.rs.first();
+            pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
+            pCodigoProd = conecta.rs.getInt("IdProd");
+            pQuantidade = conecta.rs.getInt("QuantProd");
+        } catch (Exception e) {
+        }
+        conecta.desconecta();
     }
 }

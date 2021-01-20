@@ -19,6 +19,18 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdKit;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdRegistroComp;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitAnual;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitDecendial;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitInicial;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitMensal;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitQuinzenal;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitSemestral;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_inicial;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_mensal;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_decendial;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_quinzenal;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_semestral;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_anual;
 
 /**
  *
@@ -83,7 +95,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
         jDataPesFinal = new com.toedter.calendar.JDateChooser();
         jBtPesquisaData = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        RegistroPesquisa = new javax.swing.JTextField();
+        jRegistroPesquisa = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jCodigoKit = new javax.swing.JTextField();
         jBtPesquisaCodigo = new javax.swing.JButton();
@@ -166,8 +178,8 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Registro:");
 
-        RegistroPesquisa.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        RegistroPesquisa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jRegistroPesquisa.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jRegistroPesquisa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("ID Kit:");
@@ -197,7 +209,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                     .addComponent(jRBtKitInicialPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(RegistroPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jRegistroPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -237,7 +249,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel5)
-                    .addComponent(RegistroPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRegistroPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jCodigoKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtPesquisaCodigo)
@@ -403,26 +415,39 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
         flag = 1;
         if (flag == 1) {
             idLanc = "" + TabelaRegistrosMontagemKits.getValueAt(TabelaRegistrosMontagemKits.getSelectedRow(), 0);
-            RegistroPesquisa.setText(idLanc);
-            jIdRegistroComp.setText(idLanc);
+            jRegistroPesquisa.setText(idLanc);
+            if(!jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")){
+                jIdRegistroComp.setText(idLanc);
+            }            
             idKit = "" + TabelaRegistrosMontagemKits.getValueAt(TabelaRegistrosMontagemKits.getSelectedRow(), 2);
             jCodigoKit.setText(idKit);
-//            codigoPesquisaKit = Integer.valueOf(idKit);
             tipoKit = "" + TabelaRegistrosMontagemKits.getValueAt(TabelaRegistrosMontagemKits.getSelectedRow(), 3);
             jComboBoxTipoKit.getSelectedItem().equals(tipoKit);
             //
             if (tipoKit.equals("Kit Inicial")) {
                 jRBtKitInicialPesquisa.setSelected(true);
+                jID_REG_inicial.setText(jRegistroPesquisa.getText());
+                jRBtKitInicial.setSelected(true);
             } else if (tipoKit.equals("Kit Decendial")) {
                 jRBtKitDecendialPesquisa.setSelected(true);
+                jID_REG_decendial.setText(jRegistroPesquisa.getText());
+                jRBtKitDecendial.setSelected(true);
             } else if (tipoKit.equals("Kit Quinzenal")) {
                 jRBtKitQuinzenalPesquisa.setSelected(true);
+                jID_REG_quinzenal.setText(jRegistroPesquisa.getText());
+                jRBtKitQuinzenal.setSelected(true);
             } else if (tipoKit.equals("Kit Mensal")) {
                 jRBtKitMensalPesquisa.setSelected(true);
+                jID_REG_mensal.setText(jRegistroPesquisa.getText());
+                jRBtKitMensal.setSelected(true);
             } else if (tipoKit.equals("Kit Semestral")) {
                 jRBtKitSemestraPesquisa.setSelected(true);
+                jID_REG_semestral.setText(jRegistroPesquisa.getText());
+                jRBtKitSemestral.setSelected(true);
             } else if (tipoKit.equals("Kit Anual")) {
                 jRBtKitAnualPesquisa.setSelected(true);
+                jID_REG_anual.setText(jRegistroPesquisa.getText());
+                jRBtKitAnual.setSelected(true);
             }
         }
     }//GEN-LAST:event_TabelaRegistrosMontagemKitsMouseClicked
@@ -578,29 +603,76 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                         + "INNER JOIN PAVILHAO "
                         + "ON INTERNOS_PAVILHAO_KIT_LOTE.IdPav=PAVILHAO.IdPav "
                         + "WHERE COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdKit='" + jCodigoKit.getText() + "' "
-                        + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp='" + RegistroPesquisa.getText() + "'");
+                        + "AND COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp='" + jRegistroPesquisa.getText() + "'");
                 conecta.rs.first();
-                jIdKit.setText(String.valueOf(conecta.rs.getInt("IdKit")));
-                jIdRegistroComp.setText(String.valueOf(conecta.rs.getInt("IdRegistroComp")));
-                jComboBoxPavilhao.setSelectedItem(conecta.rs.getString("DescricaoPav"));
-                if (jRBtKitInicialPesquisa.isSelected() == true) {
-                    jComboBoxTipoKit.removeAllItems();
-                    jComboBoxTipoKit.addItem("Kit Inicial");
-                } else if (jRBtKitDecendialPesquisa.isSelected() == true) {
-                    jComboBoxTipoKit.removeAllItems();
-                    jComboBoxTipoKit.addItem("Kit Decendial");
-                } else if (jRBtKitQuinzenalPesquisa.isSelected() == true) {
-                    jComboBoxTipoKit.removeAllItems();
-                    jComboBoxTipoKit.addItem("Kit Quinzenal");
-                } else if (jRBtKitMensalPesquisa.isSelected() == true) {
-                    jComboBoxTipoKit.removeAllItems();
-                    jComboBoxTipoKit.addItem("Kit Mensal");
-                } else if (jRBtKitSemestraPesquisa.isSelected() == true) {
-                    jComboBoxTipoKit.removeAllItems();
-                    jComboBoxTipoKit.addItem("Kit Semestral");
-                } else if (jRBtKitAnualPesquisa.isSelected() == true) {
-                    jComboBoxTipoKit.removeAllItems();
-                    jComboBoxTipoKit.addItem("Kit Anual");
+                if (!jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")) {
+                    jIdKit.setText(String.valueOf(conecta.rs.getInt("IdKit")));
+                    jIdRegistroComp.setText(String.valueOf(conecta.rs.getInt("IdRegistroComp")));
+                    jComboBoxPavilhao.setSelectedItem(conecta.rs.getString("DescricaoPav"));
+                    if (jRBtKitInicialPesquisa.isSelected() == true) {
+                        jComboBoxTipoKit.removeAllItems();
+                        jComboBoxTipoKit.addItem("Kit Inicial");
+                        jID_REG_inicial.setText(jRegistroPesquisa.getText());
+                        jRBtKitInicial.setSelected(true);
+                    } else if (jRBtKitDecendialPesquisa.isSelected() == true) {
+                        jComboBoxTipoKit.removeAllItems();
+                        jComboBoxTipoKit.addItem("Kit Decendial");
+                        jID_REG_decendial.setText(jRegistroPesquisa.getText());
+                        jRBtKitDecendial.setSelected(true);
+                    } else if (jRBtKitQuinzenalPesquisa.isSelected() == true) {
+                        jComboBoxTipoKit.removeAllItems();
+                        jComboBoxTipoKit.addItem("Kit Quinzenal");
+                        jID_REG_quinzenal.setText(jRegistroPesquisa.getText());
+                        jRBtKitQuinzenal.setSelected(true);
+                    } else if (jRBtKitMensalPesquisa.isSelected() == true) {
+                        jComboBoxTipoKit.removeAllItems();
+                        jComboBoxTipoKit.addItem("Kit Mensal");
+                        jID_REG_mensal.setText(jRegistroPesquisa.getText());
+                        jRBtKitMensal.setSelected(true);
+                    } else if (jRBtKitSemestraPesquisa.isSelected() == true) {
+                        jComboBoxTipoKit.removeAllItems();
+                        jComboBoxTipoKit.addItem("Kit Semestral");
+                        jID_REG_semestral.setText(jRegistroPesquisa.getText());
+                        jRBtKitSemestral.setSelected(true);
+                    } else if (jRBtKitAnualPesquisa.isSelected() == true) {
+                        jComboBoxTipoKit.removeAllItems();
+                        jComboBoxTipoKit.addItem("Kit Anual");
+                        jID_REG_anual.setText(jRegistroPesquisa.getText());
+                        jRBtKitAnual.setSelected(true);
+                    }
+                } else {                    
+                    jComboBoxPavilhao.setSelectedItem(conecta.rs.getString("DescricaoPav"));
+                    if (jRBtKitInicialPesquisa.isSelected() == true) {
+                        jComboBoxTipoKit.removeAllItems();
+                        jComboBoxTipoKit.addItem("Kit Personalizado");
+                        jID_REG_inicial.setText(jRegistroPesquisa.getText());
+                        jRBtKitInicial.setSelected(true);
+                    } else if (jRBtKitDecendialPesquisa.isSelected() == true) {
+                        jComboBoxTipoKit.removeAllItems();
+                        jComboBoxTipoKit.addItem("Kit Personalizado");
+                        jID_REG_decendial.setText(jRegistroPesquisa.getText());
+                        jRBtKitDecendial.setSelected(true);
+                    } else if (jRBtKitQuinzenalPesquisa.isSelected() == true) {
+                        jComboBoxTipoKit.removeAllItems();
+                        jComboBoxTipoKit.addItem("Kit Personalizado");
+                        jID_REG_quinzenal.setText(jRegistroPesquisa.getText());
+                        jRBtKitQuinzenal.setSelected(true);
+                    } else if (jRBtKitMensalPesquisa.isSelected() == true) {
+                        jComboBoxTipoKit.removeAllItems();
+                        jComboBoxTipoKit.addItem("Kit Personalizado");
+                        jID_REG_mensal.setText(jRegistroPesquisa.getText());
+                        jRBtKitMensal.setSelected(true);
+                    } else if (jRBtKitSemestraPesquisa.isSelected() == true) {
+                        jComboBoxTipoKit.removeAllItems();
+                        jComboBoxTipoKit.addItem("Kit Personalizado");
+                        jID_REG_semestral.setText(jRegistroPesquisa.getText());
+                        jRBtKitSemestral.setSelected(true);
+                    } else if (jRBtKitAnualPesquisa.isSelected() == true) {
+                        jComboBoxTipoKit.removeAllItems();
+                        jComboBoxTipoKit.addItem("Kit Personalizado");
+                        jID_REG_anual.setText(jRegistroPesquisa.getText());
+                        jRBtKitAnual.setSelected(true);
+                    }
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(rootPane, "ERRO na pesquisa..." + e);
@@ -617,7 +689,6 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField RegistroPesquisa;
     private javax.swing.JTable TabelaRegistrosMontagemKits;
     private javax.swing.ButtonGroup grupoBotoes;
     private javax.swing.JButton jBtConfimar;
@@ -644,6 +715,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
     public static javax.swing.JRadioButton jRBtKitMensalPesquisa;
     public static javax.swing.JRadioButton jRBtKitQuinzenalPesquisa;
     public static javax.swing.JRadioButton jRBtKitSemestraPesquisa;
+    private javax.swing.JTextField jRegistroPesquisa;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JLabel jtotalRegistros;
     // End of variables declaration//GEN-END:variables

@@ -25,7 +25,7 @@ public class PagamentoKitDao {
         buscarPavilhao(objPag.getDescricaoPavilhao());
         conecta.abrirConexao();
         try {
-            PreparedStatement pst = conecta.con.prepareStatement("INSERT INTO PAGAMENTO_KIT_INTERNOS (StatusLanc,DataLanc,Responsavel,HoraInicio,HoraTermino,IdKit,TipoKit,IdRegistro,IdPav,Observacao,UsuarioInsert,DataInsert,HorarioInsert,KitPersonalizado) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pst = conecta.con.prepareStatement("INSERT INTO PAGAMENTO_KIT_INTERNOS (StatusLanc,DataLanc,Responsavel,HoraInicio,HoraTermino,IdKit,TipoKit,IdRegistro,IdPav,Observacao,UsuarioInsert,DataInsert,HorarioInsert,KitPersonalizado,Id_REG_inicial,Id_REG_decendial,Id_REG_quinzenal,Id_REG_mensal,Id_REG_semestral,Id_REG_anual,ID_KIT_inicial,ID_KIT_decendial,ID_KIT_quinzenal,ID_KIT_mensal,ID_KIT_semestral,ID_KIT_anual) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pst.setString(1, objPag.getStatusLanc());
             pst.setTimestamp(2, new java.sql.Timestamp(objPag.getDataLanc().getTime()));
             pst.setString(3, objPag.getResponsavel());
@@ -40,6 +40,18 @@ public class PagamentoKitDao {
             pst.setString(12, objPag.getDataInsert());
             pst.setString(13, objPag.getHorarioInsert());
             pst.setString(14, objPag.getKitPersonalizado());
+            pst.setInt(15, objPag.getiD_REG_inicial());
+            pst.setInt(16, objPag.getiD_REG_decendial());
+            pst.setInt(17, objPag.getiD_REG_quinzenal());
+            pst.setInt(18, objPag.getiD_REG_mensal());
+            pst.setInt(19, objPag.getiD_REG_semestral());
+            pst.setInt(20, objPag.getiD_REG_anual());
+            pst.setInt(21, objPag.getiD_KIT_inicial());
+            pst.setInt(22, objPag.getiD_KIT_decendial());
+            pst.setInt(23, objPag.getiD_KIT_quinzenal());
+            pst.setInt(24, objPag.getiD_KIT_mensal());
+            pst.setInt(25, objPag.getiD_KIT_semestral());
+            pst.setInt(26, objPag.getiD_KIT_anual());
             pst.execute();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel INSERIR os Dados.\n\nERRO:" + ex);
@@ -52,7 +64,7 @@ public class PagamentoKitDao {
         buscarPavilhao(objPag.getDescricaoPavilhao());
         conecta.abrirConexao();
         try {
-            PreparedStatement pst = conecta.con.prepareStatement("UPDATE PAGAMENTO_KIT_INTERNOS SET StatusLanc=?,DataLanc=?,Responsavel=?,HoraInicio=?,HoraTermino=?,IdKit=?,TipoKit=?,IdRegistro=?,IdPav=?,Observacao=?,UsuarioUp=?,DataUp=?,HorarioUp=?,KitPersonalizado=? WHERE IdPagto='" + objPag.getIdPagto() + "'");
+            PreparedStatement pst = conecta.con.prepareStatement("UPDATE PAGAMENTO_KIT_INTERNOS SET StatusLanc=?,DataLanc=?,Responsavel=?,HoraInicio=?,HoraTermino=?,IdKit=?,TipoKit=?,IdRegistro=?,IdPav=?,Observacao=?,UsuarioUp=?,DataUp=?,HorarioUp=?,KitPersonalizado=?,Id_REG_inicial=?,Id_REG_decendial=?,Id_REG_quinzenal=?,Id_REG_mensal=?,Id_REG_semestral=?,Id_REG_anual=?,ID_KIT_inicial=?,ID_KIT_decendial=?,ID_KIT_quinzenal=?,ID_KIT_mensal=?,ID_KIT_semestral=?,ID_KIT_anual=? WHERE IdPagto='" + objPag.getIdPagto() + "'");
             pst.setString(1, objPag.getStatusLanc());
             pst.setTimestamp(2, new java.sql.Timestamp(objPag.getDataLanc().getTime()));
             pst.setString(3, objPag.getResponsavel());
@@ -67,6 +79,18 @@ public class PagamentoKitDao {
             pst.setString(12, objPag.getDataUp());
             pst.setString(13, objPag.getHorarioUp());
             pst.setString(14, objPag.getKitPersonalizado());
+            pst.setInt(15, objPag.getiD_REG_inicial());
+            pst.setInt(16, objPag.getiD_REG_decendial());
+            pst.setInt(17, objPag.getiD_REG_quinzenal());
+            pst.setInt(18, objPag.getiD_REG_mensal());
+            pst.setInt(19, objPag.getiD_REG_semestral());
+            pst.setInt(20, objPag.getiD_REG_anual());
+            pst.setInt(21, objPag.getiD_KIT_inicial());
+            pst.setInt(22, objPag.getiD_KIT_decendial());
+            pst.setInt(23, objPag.getiD_KIT_quinzenal());
+            pst.setInt(24, objPag.getiD_KIT_mensal());
+            pst.setInt(25, objPag.getiD_KIT_semestral());
+            pst.setInt(26, objPag.getiD_KIT_anual());
             pst.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel ALTERAR os Dados.\n\nERRO:" + ex);

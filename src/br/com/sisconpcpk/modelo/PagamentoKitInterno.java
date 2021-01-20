@@ -29,14 +29,26 @@ public class PagamentoKitInterno {
     private String usuarioUp;
     private String dataUp;
     private String horarioUp;
-    private int idRegistroComp;   
+    private int idRegistroComp;
     private int idKit;
     private String kitPersonalizado;
+    private int iD_KIT_inicial;
+    private int iD_KIT_decendial;
+    private int iD_KIT_quinzenal;
+    private int iD_KIT_mensal;
+    private int iD_KIT_semestral;
+    private int iD_KIT_anual;
+    private Integer iD_REG_inicial;
+    private Integer iD_REG_decendial;
+    private Integer iD_REG_quinzenal;
+    private Integer iD_REG_mensal;
+    private Integer iD_REG_semestral;
+    private Integer iD_REG_anual;
 
     public PagamentoKitInterno() {
     }
 
-    public PagamentoKitInterno(int idPagto, String statusLanc, Date dataLanc, String responsavel, String horaInicio, String horaTermino, String tipoKit, int idPav, String descricaoPavilhao, String observacao, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp, int idRegistroComp, int idKit, String kitPersonalizado) {
+    public PagamentoKitInterno(int idPagto, String statusLanc, Date dataLanc, String responsavel, String horaInicio, String horaTermino, String tipoKit, int idPav, String descricaoPavilhao, String observacao, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp, int idRegistroComp, int idKit, String kitPersonalizado, int iD_KIT_inicial, int iD_KIT_decendial, int iD_KIT_quinzenal, int iD_KIT_mensal, int iD_KIT_semestral, int iD_KIT_anual, Integer iD_REG_inicial, Integer iD_REG_decendial, Integer iD_REG_quinzenal, Integer iD_REG_mensal, Integer iD_REG_semestral, Integer iD_REG_anual) {
         this.idPagto = idPagto;
         this.statusLanc = statusLanc;
         this.dataLanc = dataLanc;
@@ -56,6 +68,18 @@ public class PagamentoKitInterno {
         this.idRegistroComp = idRegistroComp;
         this.idKit = idKit;
         this.kitPersonalizado = kitPersonalizado;
+        this.iD_KIT_inicial = iD_KIT_inicial;
+        this.iD_KIT_decendial = iD_KIT_decendial;
+        this.iD_KIT_quinzenal = iD_KIT_quinzenal;
+        this.iD_KIT_mensal = iD_KIT_mensal;
+        this.iD_KIT_semestral = iD_KIT_semestral;
+        this.iD_KIT_anual = iD_KIT_anual;
+        this.iD_REG_inicial = iD_REG_inicial;
+        this.iD_REG_decendial = iD_REG_decendial;
+        this.iD_REG_quinzenal = iD_REG_quinzenal;
+        this.iD_REG_mensal = iD_REG_mensal;
+        this.iD_REG_semestral = iD_REG_semestral;
+        this.iD_REG_anual = iD_REG_anual;
     }
 
     /**
@@ -322,5 +346,173 @@ public class PagamentoKitInterno {
      */
     public void setKitPersonalizado(String kitPersonalizado) {
         this.kitPersonalizado = kitPersonalizado;
+    }
+
+    /**
+     * @return the iD_KIT_inicial
+     */
+    public int getiD_KIT_inicial() {
+        return iD_KIT_inicial;
+    }
+
+    /**
+     * @param iD_KIT_inicial the iD_KIT_inicial to set
+     */
+    public void setiD_KIT_inicial(int iD_KIT_inicial) {
+        this.iD_KIT_inicial = iD_KIT_inicial;
+    }
+
+    /**
+     * @return the iD_KIT_decendial
+     */
+    public int getiD_KIT_decendial() {
+        return iD_KIT_decendial;
+    }
+
+    /**
+     * @param iD_KIT_decendial the iD_KIT_decendial to set
+     */
+    public void setiD_KIT_decendial(int iD_KIT_decendial) {
+        this.iD_KIT_decendial = iD_KIT_decendial;
+    }
+
+    /**
+     * @return the iD_KIT_quinzenal
+     */
+    public int getiD_KIT_quinzenal() {
+        return iD_KIT_quinzenal;
+    }
+
+    /**
+     * @param iD_KIT_quinzenal the iD_KIT_quinzenal to set
+     */
+    public void setiD_KIT_quinzenal(int iD_KIT_quinzenal) {
+        this.iD_KIT_quinzenal = iD_KIT_quinzenal;
+    }
+
+    /**
+     * @return the iD_KIT_mensal
+     */
+    public int getiD_KIT_mensal() {
+        return iD_KIT_mensal;
+    }
+
+    /**
+     * @param iD_KIT_mensal the iD_KIT_mensal to set
+     */
+    public void setiD_KIT_mensal(int iD_KIT_mensal) {
+        this.iD_KIT_mensal = iD_KIT_mensal;
+    }
+
+    /**
+     * @return the iD_KIT_semestral
+     */
+    public int getiD_KIT_semestral() {
+        return iD_KIT_semestral;
+    }
+
+    /**
+     * @param iD_KIT_semestral the iD_KIT_semestral to set
+     */
+    public void setiD_KIT_semestral(int iD_KIT_semestral) {
+        this.iD_KIT_semestral = iD_KIT_semestral;
+    }
+
+    /**
+     * @return the iD_KIT_anual
+     */
+    public int getiD_KIT_anual() {
+        return iD_KIT_anual;
+    }
+
+    /**
+     * @param iD_KIT_anual the iD_KIT_anual to set
+     */
+    public void setiD_KIT_anual(int iD_KIT_anual) {
+        this.iD_KIT_anual = iD_KIT_anual;
+    }
+
+    /**
+     * @return the iD_REG_inicial
+     */
+    public Integer getiD_REG_inicial() {
+        return iD_REG_inicial;
+    }
+
+    /**
+     * @param iD_REG_inicial the iD_REG_inicial to set
+     */
+    public void setiD_REG_inicial(Integer iD_REG_inicial) {
+        this.iD_REG_inicial = iD_REG_inicial;
+    }
+
+    /**
+     * @return the iD_REG_decendial
+     */
+    public Integer getiD_REG_decendial() {
+        return iD_REG_decendial;
+    }
+
+    /**
+     * @param iD_REG_decendial the iD_REG_decendial to set
+     */
+    public void setiD_REG_decendial(Integer iD_REG_decendial) {
+        this.iD_REG_decendial = iD_REG_decendial;
+    }
+
+    /**
+     * @return the iD_REG_quinzenal
+     */
+    public Integer getiD_REG_quinzenal() {
+        return iD_REG_quinzenal;
+    }
+
+    /**
+     * @param iD_REG_quinzenal the iD_REG_quinzenal to set
+     */
+    public void setiD_REG_quinzenal(Integer iD_REG_quinzenal) {
+        this.iD_REG_quinzenal = iD_REG_quinzenal;
+    }
+
+    /**
+     * @return the iD_REG_mensal
+     */
+    public Integer getiD_REG_mensal() {
+        return iD_REG_mensal;
+    }
+
+    /**
+     * @param iD_REG_mensal the iD_REG_mensal to set
+     */
+    public void setiD_REG_mensal(Integer iD_REG_mensal) {
+        this.iD_REG_mensal = iD_REG_mensal;
+    }
+
+    /**
+     * @return the iD_REG_semestral
+     */
+    public Integer getiD_REG_semestral() {
+        return iD_REG_semestral;
+    }
+
+    /**
+     * @param iD_REG_semestral the iD_REG_semestral to set
+     */
+    public void setiD_REG_semestral(Integer iD_REG_semestral) {
+        this.iD_REG_semestral = iD_REG_semestral;
+    }
+
+    /**
+     * @return the iD_REG_anual
+     */
+    public Integer getiD_REG_anual() {
+        return iD_REG_anual;
+    }
+
+    /**
+     * @param iD_REG_anual the iD_REG_anual to set
+     */
+    public void setiD_REG_anual(Integer iD_REG_anual) {
+        this.iD_REG_anual = iD_REG_anual;
     }
 }
