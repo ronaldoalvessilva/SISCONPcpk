@@ -9,12 +9,15 @@ import br.com.sisconpcpk.controle.ModeloTabela;
 import br.com.sisconpcpk.dao.ConectaBanco;
 import br.com.sisconpcpk.dao.ControleLogSistemaDao;
 import br.com.sisconpcpk.dao.ControlePagamentoKit;
+import br.com.sisconpcpk.dao.ControlePesquisaKitInternoManual;
 import br.com.sisconpcpk.dao.PagamentoKitDao;
 import br.com.sisconpcpk.dao.PagamentoKitInternosDao;
 import br.com.sisconpcpk.modelo.ComposicaoKit;
 import br.com.sisconpcpk.modelo.ItensPagamentoKitInterno;
 import br.com.sisconpcpk.modelo.LogSistema;
 import br.com.sisconpcpk.modelo.PagamentoKitInterno;
+import br.com.sisconpcpk.modelo.ProdutoInternosKitLote;
+import br.com.sisconpcpk.modelo.ProdutosPagtoKitInterno;
 import static br.com.sisconpcpk.visao.FormPrincipal.codigoUserGroupB1;
 import static br.com.sisconpcpk.visao.FormPrincipal.codigoGrupoB1;
 import static br.com.sisconpcpk.visao.FormPrincipal.codAbrirTRI;
@@ -68,9 +71,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -85,13 +90,15 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
     ConectaBanco conecta = new ConectaBanco();
     PagamentoKitInterno objPag = new PagamentoKitInterno();
-    PagamentoKitDao control = new PagamentoKitDao();
+    PagamentoKitDao CONTROLE_KIT_manutencao = new PagamentoKitDao();
     //   
     ItensPagamentoKitInterno objItensPagto = new ItensPagamentoKitInterno();
     PagamentoKitInternosDao controle = new PagamentoKitInternosDao();
     //
     ControlePagamentoKit controlPagoKit = new ControlePagamentoKit();
     ComposicaoKit objComp = new ComposicaoKit();
+    //
+    ControlePesquisaKitInternoManual CONTROLE_PESQUISA_manual = new ControlePesquisaKitInternoManual();
     //
     ControleLogSistemaDao controlLog = new ControleLogSistemaDao();
     LogSistema objLogSys = new LogSistema();
@@ -107,10 +114,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     int count;
     String dataEntrada;
     String dataSaida;
-    String dataInicial;
-    String dataFinal;
+    public static String dataInicial;
+    public static String dataFinal;
     String situacaoKit = "ABERTO";
-    String codLanc;
+    public static String codLanc;
     // VARIÁVEIS PARA OS KITS INICIAL E 15 DIAS
     int copo, prato, colher, vasilha, garfo, absorvente, bermuda, lencol, colchao, toalha, camisa, cueca, sandalia, desodorante = 0;
     int cobertor, bola, calcaoJogo, camisaJogo, parMeiao = 0;
@@ -124,9 +131,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     int kitMensal = 0;
     int kitSemetral = 0;
     int tipoEntrada = 0; // MANUAL É (0) - BIOMETRIA (1)
-    String codigoInterno;
-    String codigoKit;
+    public static String codigoInterno;
+    public static String codigoKit;
     public static int codItem;
+    public static String idItemPagto;
     String pRespostaKit = "Sim";
     java.sql.Date data;
     //
@@ -136,6 +144,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     int pKIT_mensal = 0;
     int pKIT_semestral = 0;
     int pKIT_anual = 0;
+    //
+    public static int pTOTAL_registros = 0;
+    public static String pCONFIRMARCAO_resposta = "";
     /**
      * Creates new form TelaPagamentoKitInterno
      */
@@ -450,7 +461,15 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             new String [] {
                 "Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Nome do Interno"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTabelaPagamentoKit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabelaPagamentoKitMouseClicked(evt);
@@ -1133,7 +1152,15 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             new String [] {
                 "Item", "Código", "Nome do Interno"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTabelaInternos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabelaInternosMouseClicked(evt);
@@ -1266,7 +1293,15 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             new String [] {
                 "Código", "Descrição do Produto", "Un.", "Quant."
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane4.setViewportView(jTabelaProdutosKitInterno);
         if (jTabelaProdutosKitInterno.getColumnModel().getColumnCount() > 0) {
             jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setMinWidth(70);
@@ -1554,34 +1589,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
                         dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
                         if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-                            preencherTabelaPagotKit("SELECT "
-                                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                                    + "StatusLanc,TipoKit,DescricaoPav, "
-                                    + "NomeInternoCrc "
-                                    + "FROM PAGAMENTO_KIT_INTERNOS "
-                                    + "INNER JOIN PAVILHAO "
-                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
-                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
-                                    + "INNER JOIN PRONTUARIOSCRC "
-                                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc  "
-                                    + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
-                                    + "AND'" + dataFinal + "'");
+                            PREENCHER_TABELA_GERAL_PAGO_kit();
                         } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-                            preencherTabelaPagotKit("SELECT "
-                                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                                    + "StatusLanc,TipoKit,DescricaoPav, "
-                                    + "NomeInternoCrc "
-                                    + "FROM PAGAMENTO_KIT_INTERNOS "
-                                    + "INNER JOIN PAVILHAO "
-                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
-                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
-                                    + "INNER JOIN PRONTUARIOSCRC "
-                                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                                    + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
-                                    + "AND'" + dataFinal + "' "
-                                    + "AND TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+                            PREENCHER_TABELA_GERAL_PAGO_kit0();
+
                         }
                     }
                 }
@@ -1602,34 +1613,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
                         dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
                         if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-                            preencherTabelaPagotKit("SELECT "
-                                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                                    + "StatusLanc,TipoKit,DescricaoPav, "
-                                    + "NomeInternoCrc "
-                                    + "FROM PAGAMENTO_KIT_INTERNOS "
-                                    + "INNER JOIN PAVILHAO "
-                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
-                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
-                                    + "INNER JOIN PRONTUARIOSCRC "
-                                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc  "
-                                    + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
-                                    + "AND'" + dataFinal + "'");
+                            PREENCHER_TABELA_GERAL_PAGO_kit();
                         } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-                            preencherTabelaPagotKit("SELECT "
-                                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                                    + "StatusLanc,TipoKit,DescricaoPav, "
-                                    + "NomeInternoCrc "
-                                    + "FROM PAGAMENTO_KIT_INTERNOS "
-                                    + "INNER JOIN PAVILHAO "
-                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
-                                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
-                                    + "INNER JOIN PRONTUARIOSCRC "
-                                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc  "
-                                    + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
-                                    + "AND'" + dataFinal + "' "
-                                    + "AND TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+                            PREENCHER_TABELA_GERAL_PAGO_kit0();
                         }
                     }
                 }
@@ -1646,51 +1632,15 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         } else {
             if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
                 if (!jPesqNomeInternoVisitado.getText().equals("")) {
-                    preencherTabelaPagotKit("SELECT "
-                            + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                            + "StatusLanc,TipoKit,DescricaoPav, "
-                            + "NomeInternoCrc "
-                            + "FROM PAGAMENTO_KIT_INTERNOS "
-                            + "INNER JOIN PAVILHAO "
-                            + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                            + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
-                            + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
-                            + "INNER JOIN PRONTUARIOSCRC "
-                            + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                            + "WHERE PAGAMENTO_KIT_INTERNOS.IdPagto='" + jIDPesqLanc.getText() + "'");
+                    PREENCHER_TABELA_GERAL_CODIGO_nomeInterno();
                 } else {
-                    preencherTabelaPagotKitOBS("SELECT "
-                            + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                            + "StatusLanc,TipoKit,DescricaoPav,Observacao "
-                            + "FROM PAGAMENTO_KIT_INTERNOS "
-                            + "INNER JOIN PAVILHAO "
-                            + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                            + "WHERE PAGAMENTO_KIT_INTERNOS.IdPagto='" + jIDPesqLanc.getText() + "'");
+                    PREENCHER_TABELA_GERAL_PAGO_kitOBS();
                 }
             } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
                 if (jPesqNomeInternoVisitado.getText().equals("")) {
-                    preencherTabelaPagotKitOBS("SELECT "
-                            + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                            + "StatusLanc,TipoKit,DescricaoPav "
-                            + "FROM PAGAMENTO_KIT_INTERNOS "
-                            + "INNER JOIN PAVILHAO "
-                            + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                            + "WHERE PAGAMENTO_KIT_INTERNOS.IdPagto='" + jIDPesqLanc.getText() + "' "
-                            + "AND PAGAMENTO_KIT_INTERNOS.TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+                    PREENCHER_TABELA_GERAL_PAGO_kitOBS();
                 } else {
-                    preencherTabelaPagotKit("SELECT "
-                            + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                            + "StatusLanc,TipoKit,DescricaoPav, "
-                            + "NomeInternoCrc "
-                            + "FROM PAGAMENTO_KIT_INTERNOS "
-                            + "INNER JOIN PAVILHAO "
-                            + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                            + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
-                            + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
-                            + "INNER JOIN PRONTUARIOSCRC "
-                            + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                            + "WHERE PAGAMENTO_KIT_INTERNOS.IdPagto='" + jIDPesqLanc.getText() + "' "
-                            + "AND PAGAMENTO_KIT_INTERNOS.TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+                    PREENCHER_TABELA_GERAL_CODIGO_nomeInterno();
                 }
             }
         }
@@ -1701,21 +1651,33 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         count = 0;
         flag = 1;
         if (evt.getStateChange() == evt.SELECTED) {
-            this.preencherTabelaPagotKit("SELECT "
-                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                    + "StatusLanc,TipoKit,DescricaoPav, "
-                    + "NomeInternoCrc "
-                    + "FROM PAGAMENTO_KIT_INTERNOS "
-                    + "INNER JOIN PAVILHAO "
-                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
-                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
-                    + "INNER JOIN PRONTUARIOSCRC "
-                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                    + "ORDER BY DataLanc");
+            DefaultTableModel objTodosRegistrosKit = (DefaultTableModel) jTabelaPagamentoKit.getModel();
+            try {
+                for (PagamentoKitInterno b : CONTROLE_KIT_manutencao.pBUSCAR_TODOS_registros()) {
+                    dataEntrada = String.valueOf(b.getDataLanc());
+                    String diae = dataEntrada.substring(8, 10);
+                    String mese = dataEntrada.substring(5, 7);
+                    String anoe = dataEntrada.substring(0, 4);
+                    dataEntrada = diae + "/" + mese + "/" + anoe;
+                    objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
+                    // BARRA DE ROLAGEM HORIZONTAL
+                    jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                    // ALINHAR TEXTO DA TABELA CENTRALIZADO
+                    DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+                    centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+                    //
+                    jTabelaPagamentoKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+                    jTabelaPagamentoKit.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
-            jtotalRegistros.setText("");
-            limparTabela();
+            if (pTOTAL_registros == 0) {
+                jtotalRegistros.setText("");
+                limparTabela();
+                JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+            }
         }
     }//GEN-LAST:event_jCheckBox19ItemStateChanged
 
@@ -1727,32 +1689,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "Informe um nome ou parte do nome para pesquisa.");
         } else {
             if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...") && jDataPesqInicial.getDate() == null && jDataPesqFinal.getDate() == null) {
-                preencherTabelaPagotKitInterno("SELECT "
-                        + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                        + "StatusLanc,TipoKit,DescricaoPav, "
-                        + "NomeInternoCrc "
-                        + "FROM PAGAMENTO_KIT_INTERNOS "
-                        + "INNER JOIN PAVILHAO "
-                        + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                        + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
-                        + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
-                        + "INNER JOIN PRONTUARIOSCRC "
-                        + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                        + "WHERE NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%'");
+                PREENCHER_TABELA_PAGTO_KIT_nomeInterno();
             } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...") && jDataPesqInicial.getDate() == null && jDataPesqFinal.getDate() == null) {
-                preencherTabelaPagotKitInterno("SELECT "
-                        + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                        + "StatusLanc,TipoKit,DescricaoPav, "
-                        + "NomeInternoCrc "
-                        + "FROM PAGAMENTO_KIT_INTERNOS "
-                        + "INNER JOIN PAVILHAO "
-                        + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                        + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
-                        + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
-                        + "INNER JOIN PRONTUARIOSCRC "
-                        + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                        + "WHERE NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%' "
-                        + "AND TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+
+                PREENCHER_TABELA_PAGTO_KIT_NOME_tipokit();
             } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...") && jDataPesqInicial.getDate() != null && jDataPesqFinal.getDate() != null) {
                 if (tipoServidor == null || tipoServidor.equals("")) {
                     JOptionPane.showMessageDialog(rootPane, "É necessário definir o parâmtero para o sistema operacional utilizado no servidor, (UBUNTU-LINUX ou WINDOWS SERVER).");
@@ -1763,21 +1703,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         SimpleDateFormat formatoAmerica = new SimpleDateFormat("yyyy/MM/dd");
                         dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
                         dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
-                        preencherTabelaPagotKitInterno("SELECT "
-                                + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                                + "StatusLanc,TipoKit,DescricaoPav, "
-                                + "NomeInternoCrc "
-                                + "FROM PAGAMENTO_KIT_INTERNOS "
-                                + "INNER JOIN PAVILHAO "
-                                + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                                + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
-                                + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
-                                + "INNER JOIN PRONTUARIOSCRC "
-                                + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                                + "WHERE PAGAMENTO_KIT_INTERNOS.DataLanc BETWEEN'" + dataInicial + "' "
-                                + "AND'" + dataFinal + "' "
-                                + "AND NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%' "
-                                + "AND PAGAMENTO_KIT_INTERNOS.TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+                        PREENCHER_TABELA_PAGTO_KIT_NOME_TIPO_data();
                     }
                 } else if (tipoServidor.equals("Servidor Windows/MS-SQL Server")) {
                     if (jDataPesqInicial.getDate().after(jDataPesqFinal.getDate())) {
@@ -1786,21 +1712,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         SimpleDateFormat formatoAmerica = new SimpleDateFormat("dd/MM/yyyy");
                         dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
                         dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
-                        preencherTabelaPagotKitInterno("SELECT "
-                                + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                                + "StatusLanc,TipoKit,DescricaoPav, "
-                                + "NomeInternoCrc "
-                                + "FROM PAGAMENTO_KIT_INTERNOS "
-                                + "INNER JOIN PAVILHAO "
-                                + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                                + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
-                                + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
-                                + "INNER JOIN PRONTUARIOSCRC "
-                                + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                                + "WHERE PAGAMENTO_KIT_INTERNOS.DataLanc BETWEEN'" + dataInicial + "' "
-                                + "AND'" + dataFinal + "' "
-                                + "AND NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%' "
-                                + "AND PAGAMENTO_KIT_INTERNOS.TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+                        PREENCHER_TABELA_PAGTO_KIT_NOME_TIPO_data();
                     }
                 }
             }
@@ -1831,77 +1743,67 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             bloquearCampos(!true);
             jComboBoxPavilhao.removeAllItems();
             jComboBoxTipoKit.removeAllItems();
-            //
-            conecta.abrirConexao();
             try {
-                conecta.executaSQL("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
-                        + "INNER JOIN PAVILHAO "
-                        + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                        + "WHERE IdPagto='" + IdLanc + "'");
-                conecta.rs.first();
-                jIdLanc.setText(String.valueOf(conecta.rs.getInt("IdPagto")));
-                jStatusLanc.setText(conecta.rs.getString("StatusLanc"));
-                jDataLanc.setDate(conecta.rs.getDate("DataLanc"));
-                jResponsavel.setText(conecta.rs.getString("Responsavel"));
-                jHorarioInicial.setText(conecta.rs.getString("HoraInicio"));
-                jHorarioTermino.setText(conecta.rs.getString("HoraTermino"));
-                jIdKit.setText(conecta.rs.getString("IdKit"));
-                jIdRegistroComp.setText(conecta.rs.getString("IdRegistro"));
-                jComboBoxTipoKit.addItem(conecta.rs.getString("TipoKit"));
-                jComboBoxPavilhao.addItem(conecta.rs.getString("DescricaoPav"));
-                jComboBoxKitPersonalizado.setSelectedItem(conecta.rs.getString("KitPersonalizado"));
-                //
-                pKIT_inicial = conecta.rs.getInt("ID_KIT_inicial");
-                if (pKIT_inicial == 0) {
-                    jRBtKitInicial.setSelected(!true);
-                } else if (pKIT_inicial == 1) {
-                    jRBtKitInicial.setSelected(true);
+                for (PagamentoKitInterno cc : CONTROLE_KIT_manutencao.pBUSCAR_REGISTRO_MOUSE_clicked()) {
+                    jIdLanc.setText(String.valueOf(cc.getIdPagto()));
+                    jStatusLanc.setText(cc.getStatusLanc());
+                    jDataLanc.setDate(cc.getDataLanc());
+                    jResponsavel.setText(cc.getResponsavel());
+                    jHorarioInicial.setText(cc.getHoraInicio());
+                    jHorarioTermino.setText(cc.getHoraTermino());
+                    jIdKit.setText(String.valueOf(cc.getIdKit()));
+                    jIdRegistroComp.setText(String.valueOf(cc.getIdRegistroComp()));
+                    jComboBoxTipoKit.addItem(cc.getTipoKit());
+                    jComboBoxPavilhao.addItem(cc.getDescricaoPavilhao());
+                    jComboBoxKitPersonalizado.setSelectedItem(cc.getKitPersonalizado());
+                    pKIT_inicial = cc.getiD_KIT_inicial();
+                    if (pKIT_inicial == 0) {
+                        jRBtKitInicial.setSelected(!true);
+                    } else if (pKIT_inicial == 1) {
+                        jRBtKitInicial.setSelected(true);
+                    }
+                    pKIT_decendial = cc.getiD_KIT_decendial();
+                    if (pKIT_decendial == 0) {
+                        jRBtKitDecendial.setSelected(!true);
+                    } else if (pKIT_decendial == 1) {
+                        jRBtKitDecendial.setSelected(true);
+                    }
+                    pKIT_quinzenal = cc.getiD_KIT_quinzenal();
+                    if (pKIT_quinzenal == 0) {
+                        jRBtKitQuinzenal.setSelected(!true);
+                    } else if (pKIT_quinzenal == 1) {
+                        jRBtKitQuinzenal.setSelected(true);
+                    }
+                    pKIT_mensal = cc.getiD_KIT_mensal();
+                    if (pKIT_mensal == 0) {
+                        jRBtKitMensal.setSelected(!true);
+                    } else if (pKIT_mensal == 1) {
+                        jRBtKitMensal.setSelected(true);
+                    }
+                    pKIT_semestral = cc.getiD_KIT_semestral();
+                    if (pKIT_semestral == 0) {
+                        jRBtKitSemestral.setSelected(!true);
+                    } else if (pKIT_semestral == 1) {
+                        jRBtKitSemestral.setSelected(true);
+                    }
+                    pKIT_anual = cc.getiD_KIT_anual();
+                    if (pKIT_anual == 0) {
+                        jRBtKitAnual.setSelected(!true);
+                    } else if (pKIT_anual == 1) {
+                        jRBtKitAnual.setSelected(true);
+                    }
+                    jID_REG_inicial.setText(String.valueOf(cc.getiD_REG_inicial()));
+                    jID_REG_decendial.setText(String.valueOf(cc.getiD_REG_decendial()));
+                    jID_REG_quinzenal.setText(String.valueOf(cc.getiD_REG_quinzenal()));
+                    jID_REG_mensal.setText(String.valueOf(cc.getiD_REG_mensal()));
+                    jID_REG_semestral.setText(String.valueOf(cc.getiD_REG_semestral()));
+                    jID_REG_anual.setText(String.valueOf(cc.getiD_REG_anual()));
+                    jObservacao.setText(cc.getObservacao());
                 }
-                pKIT_decendial = conecta.rs.getInt("ID_KIT_decendial");
-                if (pKIT_decendial == 0) {
-                    jRBtKitDecendial.setSelected(!true);
-                } else if (pKIT_decendial == 1) {
-                    jRBtKitDecendial.setSelected(true);
-                }
-                pKIT_quinzenal = conecta.rs.getInt("ID_KIT_quinzenal");
-                if (pKIT_quinzenal == 0) {
-                    jRBtKitQuinzenal.setSelected(!true);
-                } else if (pKIT_quinzenal == 1) {
-                    jRBtKitQuinzenal.setSelected(true);
-                }
-                pKIT_mensal = conecta.rs.getInt("ID_KIT_mensal");
-                if (pKIT_mensal == 0) {
-                    jRBtKitMensal.setSelected(!true);
-                } else if (pKIT_mensal == 1) {
-                    jRBtKitMensal.setSelected(true);
-                }
-                pKIT_semestral = conecta.rs.getInt("ID_KIT_semestral");
-                if (pKIT_semestral == 0) {
-                    jRBtKitSemestral.setSelected(!true);
-                } else if (pKIT_semestral == 1) {
-                    jRBtKitSemestral.setSelected(true);
-                }
-                pKIT_anual = conecta.rs.getInt("ID_KIT_anual");
-                if (pKIT_anual == 0) {
-                    jRBtKitAnual.setSelected(!true);
-                } else if (pKIT_anual == 1) {
-                    jRBtKitAnual.setSelected(true);
-                }
-                jID_REG_inicial.setText(conecta.rs.getString("Id_REG_inicial"));
-                jID_REG_decendial.setText(conecta.rs.getString("Id_REG_decendial"));
-                jID_REG_quinzenal.setText(conecta.rs.getString("Id_REG_quinzenal"));
-                jID_REG_mensal.setText(conecta.rs.getString("Id_REG_mensal"));
-                jID_REG_semestral.setText(conecta.rs.getString("Id_REG_semestral"));
-                jID_REG_anual.setText(conecta.rs.getString("Id_REG_anual"));
-                jObservacao.setText(conecta.rs.getString("Observacao"));
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(rootPane, "ERRO na pesquisa..." + e);
+            } catch (Exception ex) {
+                Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
             }
-            preencherTabelaItensInterno("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS "
-                    + "INNER JOIN PRONTUARIOSCRC "
-                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                    + "WHERE IdPagto='" + jIdLanc.getText() + "'"
-                    + "ORDER BY IdItem");
+            pPREENCHER_TABELA_ITENS_internos();
         }
     }//GEN-LAST:event_jTabelaPagamentoKitMouseClicked
 
@@ -2063,7 +1965,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             } else {
                 bloquearCampos(!true);
                 bloquearBotoes(!true);
-                verificarItens();
+                VERIFICAR_itens();
             }
         } else if (codigoUserB1 == codUserAcessoB1 && nomeTelaB1.equals(telaEntregaMaterialUsoB1) && codExcluirB1 == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoB1.equals("ADMINISTRADORES")) {
             objPag.setStatusLanc(jStatusLanc.getText());
@@ -2072,7 +1974,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             } else {
                 bloquearCampos(!true);
                 bloquearBotoes(!true);
-                verificarItens();
+                VERIFICAR_itens();
             }
         } else if (codigoUserB2 == codUserAcessoB2 && nomeTelaB2.equals(telaEntregaMaterialUsoB2) && codExcluirB2 == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoB2.equals("ADMINISTRADORES")) {
             objPag.setStatusLanc(jStatusLanc.getText());
@@ -2081,7 +1983,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             } else {
                 bloquearCampos(!true);
                 bloquearBotoes(!true);
-                verificarItens();
+                VERIFICAR_itens();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Acesso não autorizado, solicite liberação ao administrador.");
@@ -2165,12 +2067,16 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     objPag.setDataInsert(dataModFinal);
                     objPag.setHorarioInsert(horaMov);
                     //
-                    control.incluirPagamentoKit(objPag);
-                    buscarCodigo();
+                    CONTROLE_KIT_manutencao.incluirPagamentoKit(objPag);
+                    pBUSCAR_codigo();
                     objLog();
                     controlLog.incluirLogSistema(objLogSys); // Grava o log da operação             
                     Salvar();
-                    JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    if (pCONFIRMARCAO_resposta.equals("Sim")) {
+                        JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    } else if (pCONFIRMARCAO_resposta.equals("Não")) {
+                        JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    }
                 }
                 if (acao == 2) {
                     objPag.setUsuarioUp(nameUser);
@@ -2178,11 +2084,15 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     objPag.setHorarioUp(horaMov);
                     //
                     objPag.setIdPagto(Integer.valueOf(jIdLanc.getText()));
-                    control.alterarPagamentoKit(objPag);
+                    CONTROLE_KIT_manutencao.alterarPagamentoKit(objPag);
                     objLog();
                     controlLog.incluirLogSistema(objLogSys); // Grava o log da operação     
                     Salvar();
-                    JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    if (pCONFIRMARCAO_resposta.equals("Sim")) {
+                        JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    } else if (pCONFIRMARCAO_resposta.equals("Não")) {
+                        JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    }
                 }
             }
         } else if (codigoUserB1 == codUserAcessoB1 && nomeTelaB1.equals(telaEntregaMaterialUsoB1) && codGravarB1 == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoB1.equals("ADMINISTRADORES")) {
@@ -2215,12 +2125,16 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     objPag.setDataInsert(dataModFinal);
                     objPag.setHorarioInsert(horaMov);
                     //
-                    control.incluirPagamentoKit(objPag);
-                    buscarCodigo();
+                    CONTROLE_KIT_manutencao.incluirPagamentoKit(objPag);
+                    pBUSCAR_codigo();
                     objLog();
                     controlLog.incluirLogSistema(objLogSys); // Grava o log da operação             
                     Salvar();
-                    JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    if (pCONFIRMARCAO_resposta.equals("Sim")) {
+                        JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    } else if (pCONFIRMARCAO_resposta.equals("Não")) {
+                        JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    }
                 }
                 if (acao == 2) {
                     objPag.setUsuarioUp(nameUser);
@@ -2228,11 +2142,15 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     objPag.setHorarioUp(horaMov);
                     //
                     objPag.setIdPagto(Integer.valueOf(jIdLanc.getText()));
-                    control.alterarPagamentoKit(objPag);
+                    CONTROLE_KIT_manutencao.alterarPagamentoKit(objPag);
                     objLog();
                     controlLog.incluirLogSistema(objLogSys); // Grava o log da operação     
                     Salvar();
-                    JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    if (pCONFIRMARCAO_resposta.equals("Sim")) {
+                        JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    } else if (pCONFIRMARCAO_resposta.equals("Não")) {
+                        JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    }
                 }
             }
         } else if (codigoUserB2 == codUserAcessoB2 && nomeTelaB2.equals(telaEntregaMaterialUsoB2) && codGravarB2 == 1 || nameUser.equals("ADMINISTRADOR DO SISTEMA") || nomeGrupoB2.equals("ADMINISTRADORES")) {
@@ -2265,12 +2183,16 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     objPag.setDataInsert(dataModFinal);
                     objPag.setHorarioInsert(horaMov);
                     //
-                    control.incluirPagamentoKit(objPag);
-                    buscarCodigo();
+                    CONTROLE_KIT_manutencao.incluirPagamentoKit(objPag);
+                    pBUSCAR_codigo();
                     objLog();
                     controlLog.incluirLogSistema(objLogSys); // Grava o log da operação             
                     Salvar();
-                    JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    if (pCONFIRMARCAO_resposta.equals("Sim")) {
+                        JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    } else if (pCONFIRMARCAO_resposta.equals("Não")) {
+                        JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    }
                 }
                 if (acao == 2) {
                     objPag.setUsuarioUp(nameUser);
@@ -2278,11 +2200,15 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     objPag.setHorarioUp(horaMov);
                     //
                     objPag.setIdPagto(Integer.valueOf(jIdLanc.getText()));
-                    control.alterarPagamentoKit(objPag);
+                    CONTROLE_KIT_manutencao.alterarPagamentoKit(objPag);
                     objLog();
                     controlLog.incluirLogSistema(objLogSys); // Grava o log da operação     
                     Salvar();
-                    JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    if (pCONFIRMARCAO_resposta.equals("Sim")) {
+                        JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    } else if (pCONFIRMARCAO_resposta.equals("Não")) {
+                        JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
+                    }
                 }
             }
         } else {
@@ -2335,7 +2261,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         flag = 1;
         if (flag == 1) {
-            String idItemPagto = "" + jTabelaInternos.getValueAt(jTabelaInternos.getSelectedRow(), 0);
+            idItemPagto = "" + jTabelaInternos.getValueAt(jTabelaInternos.getSelectedRow(), 0);
             //         
             jBtNovoInterno.setEnabled(!true);
             jBtAlterarInterno.setEnabled(!true);
@@ -2346,44 +2272,35 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             //
             conecta.abrirConexao();
             try {
-                conecta.executaSQL("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS "
-                        + "INNER JOIN PRONTUARIOSCRC "
-                        + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                        + "WHERE IdItem='" + idItemPagto + "'");
-                conecta.rs.first();
-                idItem = conecta.rs.getInt("IdItem");
-                codItem = conecta.rs.getInt("IdItem");
-                jIdInterno.setText(conecta.rs.getString("IdInternoCrc"));
-                jNomeInterno.setText(conecta.rs.getString("NomeInternoCrc"));
-                // Capturando foto
-                caminho = conecta.rs.getString("FotoInternoCrc");
-                if (caminho != null) {
-                    javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminho);
-                    jFotoInternoKit.setIcon(i);
-                    jFotoInternoKit.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoKit.getWidth(), jFotoInternoKit.getHeight(), Image.SCALE_SMOOTH)));
+                for (ItensPagamentoKitInterno qq : CONTROLE_KIT_manutencao.pPESQUISAR_PRODUTOS_KITS_internoCliced()) {
+                    idItem = qq.getIdItem();
+                    codItem = qq.getIdItem();
+                    jIdInterno.setText(String.valueOf(qq.getIdInternoCrc()));
+                    jNomeInterno.setText(qq.getNomeInternoCrcKit());
+                    // Capturando foto
+                    caminho = qq.getCaminhoFoto();
+                    if (caminho != null) {
+                        javax.swing.ImageIcon i = new javax.swing.ImageIcon(caminho);
+                        jFotoInternoKit.setIcon(i);
+                        jFotoInternoKit.setIcon(new ImageIcon(i.getImage().getScaledInstance(jFotoInternoKit.getWidth(), jFotoInternoKit.getHeight(), Image.SCALE_SMOOTH)));
+                    }
+                    // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
+                    byte[] imgBytes = ((byte[]) qq.getImagemFoto());
+                    if (imgBytes != null) {
+                        ImageIcon pic = null;
+                        pic = new ImageIcon(imgBytes);
+                        Image scaled = pic.getImage().getScaledInstance(jFotoInternoKit.getWidth(), jFotoInternoKit.getHeight(), Image.SCALE_SMOOTH);
+                        ImageIcon icon = new ImageIcon(scaled);
+                        jFotoInternoKit.setIcon(icon);
+                    }
+                    jDataEntrega.setDate(qq.getDataEntrega());
+                    jHorarioPagto.setText(qq.getHoraEntrega());
                 }
-                // BUSCAR A FOTO DO ADVOGADO NO BANCO DE DADOS
-                byte[] imgBytes = ((byte[]) conecta.rs.getBytes("ImagemFrente"));
-                if (imgBytes != null) {
-                    ImageIcon pic = null;
-                    pic = new ImageIcon(imgBytes);
-                    Image scaled = pic.getImage().getScaledInstance(jFotoInternoKit.getWidth(), jFotoInternoKit.getHeight(), Image.SCALE_SMOOTH);
-                    ImageIcon icon = new ImageIcon(scaled);
-                    jFotoInternoKit.setIcon(icon);
-                }
-                jDataEntrega.setDate(conecta.rs.getDate("DataEntrega"));
-                jHorarioPagto.setText(conecta.rs.getString("Horario"));
-
-            } catch (SQLException ex) {
+            } catch (Exception ex) {
+                Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
             }
-            preencherTabelaProdutosKitInterno("SELECT DISTINCT PRODUTOS_AC.IdProd, "
-                    + "PRODUTOS_AC.DescricaoProd,PRODUTOS_AC.UnidadeProd, "
-                    + "ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.QuantProd "
-                    + "FROM ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS "
-                    + "INNER JOIN PRODUTOS_AC "
-                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdProd=PRODUTOS_AC.IdProd "
-                    + "WHERE ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdPagto='" + jIdLanc.getText() + "' "
-                    + "AND IdInternoCrc='" + jIdInterno.getText() + "'");
+            limparTabelaProdutosInternos();
+            PREENCHER_TABELA_PRODUTOS_KIT_interno();
         }
     }//GEN-LAST:event_jTabelaInternosMouseClicked
 
@@ -2427,29 +2344,24 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             horaMov = jHoraSistema.getText();
             dataModFinal = jDataSistema.getText();
             objItensPagto.setIdItem(idItem);
-
             controle.excluirPagamentoKitInterno(objItensPagto);
             objLog2();
             controlLog.incluirLogSistema(objLogSys); // Grava o log da operação            
             ExcluirInterno();
-            preencherTabelaItensInterno("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS "
-                    + "INNER JOIN PRONTUARIOSCRC "
-                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                    + "WHERE IdPagto='" + jIdLanc.getText() + "'");
+            pPREENCHER_TABELA_ITENS_internos();
             JOptionPane.showMessageDialog(rootPane, "Registro EXCLUÍDO com sucesso.");
         }
     }//GEN-LAST:event_jBtExcluirInternoActionPerformed
 
     private void jBtSalvarInternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtSalvarInternoActionPerformed
         // TODO add your handling code here:
-        verificarInternos();
+        VERIFICAR_internos();
         tipoEntrada = 0;
         if (marcaTodos == 0 && kitAnual == 0 && kitQuinzenal == 0 && kitDecimal == 0 && kitSemetral == 0 && kitMensal == 0) {
             JOptionPane.showMessageDialog(rootPane, "Informe um tipo de kit para ser entregue ao interno.");
         } else if (jIdInterno.getText().equals("") || jNomeInterno.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Informe para qual interno será o kit.");
         } else {
-
             objItensPagto.setTipoEntrada(tipoEntrada);
             objItensPagto.setDataEntrega(jDataEntrega.getDate());
             objItensPagto.setHoraEntrega(jHorarioPagto.getText());
@@ -2465,16 +2377,13 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     objItensPagto.setDataInsert(dataModFinal);
                     objItensPagto.setHorarioInsert(horaMov);
                     //
-                    buscarCodigoItem();
+                    pBUSCAR_CODIGO_item();
                     //
                     controle.incluirPagamentoKitInterno(objItensPagto);
                     objLog2();
                     controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
                     SalvarInterno();
-                    preencherTabelaItensInterno("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS "
-                            + "INNER JOIN PRONTUARIOSCRC "
-                            + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                            + "WHERE IdPagto='" + jIdLanc.getText() + "'");
+                    pPREENCHER_TABELA_ITENS_internos();
                     JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
                 }
             }
@@ -2488,10 +2397,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 objLog2();
                 controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
                 SalvarInterno();
-                preencherTabelaItensInterno("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS "
-                        + "INNER JOIN PRONTUARIOSCRC "
-                        + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                        + "WHERE IdPagto='" + jIdLanc.getText() + "'");
+                pPREENCHER_TABELA_ITENS_internos();
                 JOptionPane.showMessageDialog(rootPane, "Registro gravado com sucesso.");
             }
         }
@@ -2653,7 +2559,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox jCheckBox19;
     private javax.swing.JComboBox<String> jComboBoxKitPersonalizado;
     public static javax.swing.JComboBox jComboBoxPavilhao;
-    private javax.swing.JComboBox<String> jComboBoxPesquisarTipoKit;
+    public static javax.swing.JComboBox<String> jComboBoxPesquisarTipoKit;
     public static javax.swing.JComboBox jComboBoxTipoKit;
     public static com.toedter.calendar.JDateChooser jDataEntrega;
     private com.toedter.calendar.JDateChooser jDataLanc;
@@ -2663,7 +2569,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField jHorarioInicial;
     public static javax.swing.JFormattedTextField jHorarioPagto;
     private javax.swing.JFormattedTextField jHorarioTermino;
-    private javax.swing.JTextField jIDPesqLanc;
+    public static javax.swing.JTextField jIDPesqLanc;
     public static javax.swing.JTextField jID_REG_anual;
     public static javax.swing.JTextField jID_REG_decendial;
     public static javax.swing.JTextField jID_REG_inicial;
@@ -2722,7 +2628,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTextField jPesqNomeInternoVisitado;
+    public static javax.swing.JTextField jPesqNomeInternoVisitado;
     public static javax.swing.JRadioButton jRBtKitAnual;
     public static javax.swing.JRadioButton jRBtKitDecendial;
     public static javax.swing.JRadioButton jRBtKitInicial;
@@ -2778,7 +2684,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jComboBoxTipoKit.removeAllItems();
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * "
+            conecta.executaSQL("SELECT NomeTela "
                     + "FROM KITS_HIGIENE_INTERNO");
             conecta.rs.first();
             do {
@@ -2963,18 +2869,16 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         if (resposta == JOptionPane.YES_OPTION) {
             objPag.setStatusLanc(statusLanc);
             objPag.setIdPagto(Integer.parseInt(jIdLanc.getText()));
-            control.finalizarPagamentoKit(objPag);
+            CONTROLE_KIT_manutencao.finalizarPagamentoKit(objPag);
             jStatusLanc.setText("FINALIZADO");
             if (tipoServidor == null || tipoServidor.equals("")) {
                 JOptionPane.showMessageDialog(rootPane, "É necessário definir o parâmtero para o sistema operacional utilizado no servidor, (UBUNTU-LINUX ou WINDOWS SERVER).");
             } else if (tipoServidor.equals("Servidor Linux (Ubuntu)/MS-SQL Server")) {
                 SimpleDateFormat formatoAmerica = new SimpleDateFormat("yyyy/MM/dd");
                 String dataConvert = formatoAmerica.format(jDataLanc.getDate().getTime());
-//                JOptionPane.showMessageDialog(rootPane, "Data do sistema Convertida: " + dataConvert);
                 try {
                     java.sql.Date data = new java.sql.Date(formatoAmerica.parse(dataConvert).getTime());
                     objComp.setDataPagamentoKit(data);
-//                    JOptionPane.showMessageDialog(rootPane, "Data do sistema Convertida: " + data);
                 } catch (ParseException ex) {
                     Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -3149,67 +3053,38 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jBtAuditoria.setEnabled(true);
     }
 
-    public void verificarInternos() {
-        conecta.abrirConexao();
-        try {
-            conecta.executaSQL("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS "
-                    + "WHERE IdInternoCrc='" + jIdInterno.getText() + "' "
-                    + "AND IdPagto='" + jIdLanc.getText() + "'");
-            conecta.rs.first();
-            codigoInterno = conecta.rs.getString("IdInternoCrc");
-            codigoKit = conecta.rs.getString("IdPagto");
-        } catch (Exception e) {
-        }
-        conecta.desconecta();
+    public void VERIFICAR_internos() {
+        CONTROLE_KIT_manutencao.pVERIFICAR_interno(objPag);
     }
 
-    public void buscarCodigo() {
-        conecta.abrirConexao();
-        try {
-            conecta.executaSQL("SELECT * FROM PAGAMENTO_KIT_INTERNOS");
-            conecta.rs.last();
-            jIdLanc.setText(conecta.rs.getString("IdPagto"));
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Não foi possível obter o código do registro.");
-        }
-        conecta.desconecta();
+    public void pBUSCAR_codigo() {
+        CONTROLE_KIT_manutencao.pBUSCAR_CODIGO_manutencao(objPag);
     }
 
-    public void buscarCodigoItem() {
-        conecta.abrirConexao();
-        try {
-            conecta.executaSQL("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS ");
-            conecta.rs.last();
-            codItem = conecta.rs.getInt("IdItem");
-        } catch (Exception e) {
-        }
+    public void pBUSCAR_CODIGO_item() {
+        CONTROLE_KIT_manutencao.pBUSCAR_CODIGO_item(objPag);
     }
 
-    public void verificarItens() {
+    public void VERIFICAR_itens() {
+        CONTROLE_KIT_manutencao.pVERIFICAR_item(objPag);
         statusMov = "Excluiu";
         horaMov = jHoraSistema.getText();
         dataModFinal = jDataSistema.getText();
-        conecta.abrirConexao();
-        try {
-            conecta.executaSQL("SELECT * "
-                    + "FROM ITENS_PAGAMENTO_KIT_INTERNOS "
-                    + "WHERE IdPagto='" + jIdLanc.getText() + "'");
-            conecta.rs.first();
-            codLanc = conecta.rs.getString("IdPagto");
-            if (jIdLanc.getText().equals(codLanc)) {
-                JOptionPane.showMessageDialog(rootPane, "Antes de excluir esse Lançamento, será necessário\nexcluir primeiro os internos relacionados a esse registro.");
-            }
-            conecta.desconecta();
-        } catch (SQLException ex) {
-            int resposta = JOptionPane.showConfirmDialog(this, "Deseja realmente excluir o interno selecionado?", "Confirmação",
-                    JOptionPane.YES_NO_OPTION);
-            if (resposta == JOptionPane.YES_OPTION) {
-                objPag.setIdPagto(Integer.valueOf(jIdLanc.getText()));
-                control.excluirPagamentoKit(objPag);
-                objLog();
-                controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+        if (jIdLanc.getText().equals(codLanc)) {
+            JOptionPane.showMessageDialog(rootPane, "Antes de excluir esse Lançamento, será necessário\nexcluir primeiro os internos relacionados a esse registro.");
+        }
+        int resposta = JOptionPane.showConfirmDialog(this, "Deseja realmente excluir o interno selecionado?", "Confirmação",
+                JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.YES_OPTION) {
+            objPag.setIdPagto(Integer.valueOf(jIdLanc.getText()));
+            CONTROLE_KIT_manutencao.excluirPagamentoKit(objPag);
+            objLog();
+            controlLog.incluirLogSistema(objLogSys); // Grava o log da operação            
+            Excluir();
+            if (pCONFIRMARCAO_resposta.equals("Sim")) {
                 JOptionPane.showMessageDialog(rootPane, "Registro EXCLUIDO com sucesso !!!");
-                Excluir();
+            } else if (pCONFIRMARCAO_resposta.equals("Não")) {
+                JOptionPane.showMessageDialog(rootPane, "Registro EXCLUIDO com sucesso !!!");
             }
         }
     }
@@ -3231,283 +3106,256 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         conecta.desconecta();
     }
 
-    public void preencherTabelaPagotKit(String sql) {
-        ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Nome do Interno"};
-        conecta.abrirConexao();
+    public void PREENCHER_TABELA_GERAL_PAGO_kit() {
+        DefaultTableModel objTodosRegistrosKit = (DefaultTableModel) jTabelaPagamentoKit.getModel();
         try {
-            conecta.executaSQL(sql);
-            conecta.rs.first();
-            do {
-                count = count + 1;
-                // Formatar a data Entrada
-                dataEntrada = conecta.rs.getString("DataLanc");
+            for (PagamentoKitInterno b : CONTROLE_KIT_manutencao.pBUSCAR_TODOS_data()) {
+                dataEntrada = String.valueOf(b.getDataLanc());
                 String diae = dataEntrada.substring(8, 10);
                 String mese = dataEntrada.substring(5, 7);
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
-                jtotalRegistros.setText(Integer.toString(count)); // Converter inteiro em string para exibir na tela
-                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("TipoKit"), conecta.rs.getString("DescricaoPav"), conecta.rs.getString("NomeInternoCrc")});
-            } while (conecta.rs.next());
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Não existem dados a serem EXIBIDOS !!!");
+                objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
+                // BARRA DE ROLAGEM HORIZONTAL
+                jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                // ALINHAR TEXTO DA TABELA CENTRALIZADO
+                DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+                centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+                //
+                jTabelaPagamentoKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+                jTabelaPagamentoKit.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
-        jTabelaPagamentoKit.setModel(modelo);
-        jTabelaPagamentoKit.getColumnModel().getColumn(0).setPreferredWidth(70);
-        jTabelaPagamentoKit.getColumnModel().getColumn(0).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(1).setPreferredWidth(80);
-        jTabelaPagamentoKit.getColumnModel().getColumn(1).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(2).setPreferredWidth(80);
-        jTabelaPagamentoKit.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(100);
-        jTabelaPagamentoKit.getColumnModel().getColumn(3).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(4).setPreferredWidth(200);
-        jTabelaPagamentoKit.getColumnModel().getColumn(4).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(5).setPreferredWidth(350);
-        jTabelaPagamentoKit.getColumnModel().getColumn(5).setResizable(false);
-        jTabelaPagamentoKit.getTableHeader().setReorderingAllowed(false);
-        jTabelaPagamentoKit.setAutoResizeMode(jTabelaPagamentoKit.AUTO_RESIZE_OFF);
-        jTabelaPagamentoKit.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        alinharCamposTabela();
-        conecta.desconecta();
     }
 
-    public void preencherTabelaPagotKitOBS(String sql) {
-        ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Observação"};
-        conecta.abrirConexao();
+    public void PREENCHER_TABELA_GERAL_PAGO_kit0() {
+        DefaultTableModel objTodosRegistrosKit = (DefaultTableModel) jTabelaPagamentoKit.getModel();
         try {
-            conecta.executaSQL(sql);
-            conecta.rs.first();
-            do {
-                count = count + 1;
-                // Formatar a data Entrada
-                dataEntrada = conecta.rs.getString("DataLanc");
+            for (PagamentoKitInterno b : CONTROLE_KIT_manutencao.pBUSCAR_TODOS_data0()) {
+                dataEntrada = String.valueOf(b.getDataLanc());
                 String diae = dataEntrada.substring(8, 10);
                 String mese = dataEntrada.substring(5, 7);
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
-                jtotalRegistros.setText(Integer.toString(count)); // Converter inteiro em string para exibir na tela
-                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("TipoKit"), conecta.rs.getString("DescricaoPav"), conecta.rs.getString("Observacao")});
-            } while (conecta.rs.next());
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Não existem dados a serem EXIBIDOS !!!");
+                objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
+                // BARRA DE ROLAGEM HORIZONTAL
+                jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                // ALINHAR TEXTO DA TABELA CENTRALIZADO
+                DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+                centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+                //
+                jTabelaPagamentoKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+                jTabelaPagamentoKit.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
-        jTabelaPagamentoKit.setModel(modelo);
-        jTabelaPagamentoKit.getColumnModel().getColumn(0).setPreferredWidth(70);
-        jTabelaPagamentoKit.getColumnModel().getColumn(0).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(1).setPreferredWidth(80);
-        jTabelaPagamentoKit.getColumnModel().getColumn(1).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(2).setPreferredWidth(80);
-        jTabelaPagamentoKit.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(100);
-        jTabelaPagamentoKit.getColumnModel().getColumn(3).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(4).setPreferredWidth(200);
-        jTabelaPagamentoKit.getColumnModel().getColumn(4).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(5).setPreferredWidth(350);
-        jTabelaPagamentoKit.getColumnModel().getColumn(5).setResizable(false);
-        jTabelaPagamentoKit.getTableHeader().setReorderingAllowed(false);
-        jTabelaPagamentoKit.setAutoResizeMode(jTabelaPagamentoKit.AUTO_RESIZE_OFF);
-        jTabelaPagamentoKit.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        alinharCamposTabela();
-        conecta.desconecta();
+    }
+
+    public void PREENCHER_TABELA_GERAL_PAGO_kitCodigo() {
+        DefaultTableModel objTodosRegistrosKit = (DefaultTableModel) jTabelaPagamentoKit.getModel();
+        try {
+            for (PagamentoKitInterno b : CONTROLE_KIT_manutencao.pBUSCAR_TODOS_codigo()) {
+                dataEntrada = String.valueOf(b.getDataLanc());
+                String diae = dataEntrada.substring(8, 10);
+                String mese = dataEntrada.substring(5, 7);
+                String anoe = dataEntrada.substring(0, 4);
+                dataEntrada = diae + "/" + mese + "/" + anoe;
+                objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
+                // BARRA DE ROLAGEM HORIZONTAL
+                jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                // ALINHAR TEXTO DA TABELA CENTRALIZADO
+                DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+                centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+                //
+                jTabelaPagamentoKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+                jTabelaPagamentoKit.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void PREENCHER_TABELA_GERAL_CODIGO_nomeInterno() {
+        DefaultTableModel objTodosRegistrosKit = (DefaultTableModel) jTabelaPagamentoKit.getModel();
+        try {
+            for (PagamentoKitInterno b : CONTROLE_KIT_manutencao.pBUSCAR_REGISTRO_NOME_INTERNO_CODIGO_nome()) {
+                dataEntrada = String.valueOf(b.getDataLanc());
+                String diae = dataEntrada.substring(8, 10);
+                String mese = dataEntrada.substring(5, 7);
+                String anoe = dataEntrada.substring(0, 4);
+                dataEntrada = diae + "/" + mese + "/" + anoe;
+                objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
+                // BARRA DE ROLAGEM HORIZONTAL
+                jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                // ALINHAR TEXTO DA TABELA CENTRALIZADO
+                DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+                centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+                //
+                jTabelaPagamentoKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+                jTabelaPagamentoKit.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void PREENCHER_TABELA_GERAL_PAGO_kitOBS() {
+        DefaultTableModel objTodosRegistrosKit = (DefaultTableModel) jTabelaPagamentoKit.getModel();
+        try {
+            for (PagamentoKitInterno b : CONTROLE_KIT_manutencao.pBUSCAR_TODOS_codigoOBS()) {
+                dataEntrada = String.valueOf(b.getDataLanc());
+                String diae = dataEntrada.substring(8, 10);
+                String mese = dataEntrada.substring(5, 7);
+                String anoe = dataEntrada.substring(0, 4);
+                dataEntrada = diae + "/" + mese + "/" + anoe;
+                objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
+                // BARRA DE ROLAGEM HORIZONTAL
+                jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                // ALINHAR TEXTO DA TABELA CENTRALIZADO
+                DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+                centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+                //
+                jTabelaPagamentoKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+                jTabelaPagamentoKit.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void limparTabela() {
-        ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Nome do Interno"};
-        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
-        jTabelaPagamentoKit.setModel(modelo);
-        jTabelaPagamentoKit.getColumnModel().getColumn(0).setPreferredWidth(70);
-        jTabelaPagamentoKit.getColumnModel().getColumn(0).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(1).setPreferredWidth(80);
-        jTabelaPagamentoKit.getColumnModel().getColumn(1).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(2).setPreferredWidth(80);
-        jTabelaPagamentoKit.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(100);
-        jTabelaPagamentoKit.getColumnModel().getColumn(3).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(4).setPreferredWidth(200);
-        jTabelaPagamentoKit.getColumnModel().getColumn(4).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(5).setPreferredWidth(350);
-        jTabelaPagamentoKit.getColumnModel().getColumn(5).setResizable(false);
-        jTabelaPagamentoKit.getTableHeader().setReorderingAllowed(false);
-        jTabelaPagamentoKit.setAutoResizeMode(jTabelaPagamentoKit.AUTO_RESIZE_OFF);
-        jTabelaPagamentoKit.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        modelo.getLinhas().clear();
+        while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+            ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+        }
     }
 
-    public void alinharCamposTabela() {
-        DefaultTableCellRenderer esquerda = new DefaultTableCellRenderer();
-        DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
-        DefaultTableCellRenderer direita = new DefaultTableCellRenderer();
-        esquerda.setHorizontalAlignment(SwingConstants.LEFT);
-        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
-        direita.setHorizontalAlignment(SwingConstants.RIGHT);
-        //
-        jTabelaPagamentoKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
-        jTabelaPagamentoKit.getColumnModel().getColumn(1).setCellRenderer(centralizado);
-        jTabelaPagamentoKit.getColumnModel().getColumn(2).setCellRenderer(centralizado);
-    }
-
-    public void preencherTabelaPagotKitInterno(String sql) {
-        ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Data", "Status", "Tipo de Kit", "Pavilhão", "Nome do Interno"};
-        conecta.abrirConexao();
+    public void PREENCHER_TABELA_PAGTO_KIT_nomeInterno() {
+        DefaultTableModel objTodosRegistrosKit = (DefaultTableModel) jTabelaPagamentoKit.getModel();
         try {
-            conecta.executaSQL(sql);
-            conecta.rs.first();
-            do {
-                count = count + 1;
-                // Formatar a data Entrada
-                dataEntrada = conecta.rs.getString("DataLanc");
+            for (PagamentoKitInterno b : CONTROLE_KIT_manutencao.pBUSCAR_REGISTRO_NOME_interno()) {
+                dataEntrada = String.valueOf(b.getDataLanc());
                 String diae = dataEntrada.substring(8, 10);
                 String mese = dataEntrada.substring(5, 7);
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
-                jtotalRegistros.setText(Integer.toString(count)); // Converter inteiro em string para exibir na tela
-                dados.add(new Object[]{conecta.rs.getInt("IdPagto"), dataEntrada, conecta.rs.getString("StatusLanc"), conecta.rs.getString("TipoKit"), conecta.rs.getString("DescricaoPav"), conecta.rs.getString("NomeInternoCrc")});
-            } while (conecta.rs.next());
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Não existem dados a serem EXIBIDOS !!!");
+                objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
+                // BARRA DE ROLAGEM HORIZONTAL
+                jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                // ALINHAR TEXTO DA TABELA CENTRALIZADO
+                DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+                centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+                //
+                jTabelaPagamentoKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+                jTabelaPagamentoKit.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
-        jTabelaPagamentoKit.setModel(modelo);
-        jTabelaPagamentoKit.getColumnModel().getColumn(0).setPreferredWidth(70);
-        jTabelaPagamentoKit.getColumnModel().getColumn(0).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(1).setPreferredWidth(80);
-        jTabelaPagamentoKit.getColumnModel().getColumn(1).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(2).setPreferredWidth(80);
-        jTabelaPagamentoKit.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(3).setPreferredWidth(100);
-        jTabelaPagamentoKit.getColumnModel().getColumn(3).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(4).setPreferredWidth(200);
-        jTabelaPagamentoKit.getColumnModel().getColumn(4).setResizable(false);
-        jTabelaPagamentoKit.getColumnModel().getColumn(5).setPreferredWidth(350);
-        jTabelaPagamentoKit.getColumnModel().getColumn(5).setResizable(false);
-        jTabelaPagamentoKit.getTableHeader().setReorderingAllowed(false);
-        jTabelaPagamentoKit.setAutoResizeMode(jTabelaPagamentoKit.AUTO_RESIZE_OFF);
-        jTabelaPagamentoKit.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        alinharCamposTabela();
-        conecta.desconecta();
     }
 
-    public void preencherTabelaProdutosKitInterno(String sql) {
-        ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Descrição do Produto", "Un.", "Quant."};
-        conecta.abrirConexao();
+    public void PREENCHER_TABELA_PAGTO_KIT_NOME_tipokit() {
+        DefaultTableModel objTodosRegistrosKit = (DefaultTableModel) jTabelaPagamentoKit.getModel();
         try {
-            conecta.executaSQL(sql);
-            conecta.rs.first();
-            do {
-                dados.add(new Object[]{conecta.rs.getString("IdProd"), conecta.rs.getString("DescricaoProd"), conecta.rs.getString("UnidadeProd"), conecta.rs.getString("QuantProd")});
-            } while (conecta.rs.next());
-        } catch (SQLException ex) {
+            for (PagamentoKitInterno b : CONTROLE_KIT_manutencao.pBUSCAR_REGISTRO_NOME_INTERNO_tipoKit()) {
+                dataEntrada = String.valueOf(b.getDataLanc());
+                String diae = dataEntrada.substring(8, 10);
+                String mese = dataEntrada.substring(5, 7);
+                String anoe = dataEntrada.substring(0, 4);
+                dataEntrada = diae + "/" + mese + "/" + anoe;
+                objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
+                // BARRA DE ROLAGEM HORIZONTAL
+                jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                // ALINHAR TEXTO DA TABELA CENTRALIZADO
+                DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+                centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+                //
+                jTabelaPagamentoKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+                jTabelaPagamentoKit.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
-        jTabelaProdutosKitInterno.setModel(modelo);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setPreferredWidth(60);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setResizable(false);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(1).setPreferredWidth(340);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(1).setResizable(false);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(2).setPreferredWidth(60);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(3).setPreferredWidth(60);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(3).setResizable(false);
-        jTabelaProdutosKitInterno.getTableHeader().setReorderingAllowed(false);
-        jTabelaProdutosKitInterno.setAutoResizeMode(jTabelaProdutosKitInterno.AUTO_RESIZE_OFF);
-        jTabelaProdutosKitInterno.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        alinharCamposTabelaKitInternos();
-        conecta.desconecta();
     }
 
-    public void alinharCamposTabelaKitInternos() {
-        DefaultTableCellRenderer esquerda = new DefaultTableCellRenderer();
-        DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
-        DefaultTableCellRenderer direita = new DefaultTableCellRenderer();
-        esquerda.setHorizontalAlignment(SwingConstants.LEFT);
-        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
-        direita.setHorizontalAlignment(SwingConstants.RIGHT);
-        //
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setCellRenderer(centralizado);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(2).setCellRenderer(centralizado);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(3).setCellRenderer(direita);
+    public void PREENCHER_TABELA_PAGTO_KIT_NOME_TIPO_data() {
+        DefaultTableModel objTodosRegistrosKit = (DefaultTableModel) jTabelaPagamentoKit.getModel();
+        try {
+            for (PagamentoKitInterno b : CONTROLE_KIT_manutencao.pBUSCAR_REGISTRO_NOME_INTERNO_tipoKitData()) {
+                dataEntrada = String.valueOf(b.getDataLanc());
+                String diae = dataEntrada.substring(8, 10);
+                String mese = dataEntrada.substring(5, 7);
+                String anoe = dataEntrada.substring(0, 4);
+                dataEntrada = diae + "/" + mese + "/" + anoe;
+                objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
+                // BARRA DE ROLAGEM HORIZONTAL
+                jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                // ALINHAR TEXTO DA TABELA CENTRALIZADO
+                DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+                centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+                //
+                jTabelaPagamentoKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+                jTabelaPagamentoKit.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void PREENCHER_TABELA_PRODUTOS_KIT_interno() {
+
+        DefaultTableModel objProdutosKit = (DefaultTableModel) jTabelaProdutosKitInterno.getModel();
+        try {
+            for (ProdutoInternosKitLote pp : CONTROLE_KIT_manutencao.pPESQUISAR_PRODUTOS_KITS_PAGO_interno()) {
+                objProdutosKit.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd()});
+                // BARRA DE ROLAGEM HORIZONTAL
+                jTabelaProdutosKitInterno.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                // ALINHAR TEXTO DA TABELA CENTRALIZADO
+                DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+                centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+                //
+                jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+                jTabelaProdutosKitInterno.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+                jTabelaProdutosKitInterno.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void limparTabelaProdutosInternos() {
-        ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Código", "Descrição do Produto", "Un.", "Quant."};
-        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
-        jTabelaProdutosKitInterno.setModel(modelo);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setPreferredWidth(60);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(0).setResizable(false);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(1).setPreferredWidth(340);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(1).setResizable(false);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(2).setPreferredWidth(60);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(3).setPreferredWidth(60);
-        jTabelaProdutosKitInterno.getColumnModel().getColumn(3).setResizable(false);
-        jTabelaProdutosKitInterno.getTableHeader().setReorderingAllowed(false);
-        jTabelaProdutosKitInterno.setAutoResizeMode(jTabelaProdutosKitInterno.AUTO_RESIZE_OFF);
-        jTabelaProdutosKitInterno.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        modelo.getLinhas().clear();
-    }
-
-    public void preencherTabelaItensInterno(String sql) {
-        ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Item", "Código", "Descrição do Interno"};
-        conecta.abrirConexao();
-        try {
-            conecta.executaSQL(sql);
-            conecta.rs.first();
-            do {
-                dados.add(new Object[]{conecta.rs.getString("IdItem"), conecta.rs.getString("IdInternoCrc"), conecta.rs.getString("NomeInternoCrc")});
-            } while (conecta.rs.next());
-        } catch (SQLException ex) {
+        // APAGAR DADOS DA TABELA PRODUTOS
+        while (jTabelaProdutosKitInterno.getModel().getRowCount() > 0) {
+            ((DefaultTableModel) jTabelaProdutosKitInterno.getModel()).removeRow(0);
         }
-        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
-        jTabelaInternos.setModel(modelo);
-        jTabelaInternos.getColumnModel().getColumn(0).setPreferredWidth(60);
-        jTabelaInternos.getColumnModel().getColumn(0).setResizable(false);
-        jTabelaInternos.getColumnModel().getColumn(1).setPreferredWidth(70);
-        jTabelaInternos.getColumnModel().getColumn(1).setResizable(false);
-        jTabelaInternos.getColumnModel().getColumn(2).setPreferredWidth(350);
-        jTabelaInternos.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaInternos.getTableHeader().setReorderingAllowed(false);
-        jTabelaInternos.setAutoResizeMode(jTabelaInternos.AUTO_RESIZE_OFF);
-        jTabelaInternos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        alinarCamposTabelaInternos();
-        conecta.desconecta();
     }
 
-    public void alinarCamposTabelaInternos() {
-        DefaultTableCellRenderer esquerda = new DefaultTableCellRenderer();
-        DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
-        DefaultTableCellRenderer direita = new DefaultTableCellRenderer();
-        esquerda.setHorizontalAlignment(SwingConstants.LEFT);
-        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
-        direita.setHorizontalAlignment(SwingConstants.RIGHT);
-        //
-        jTabelaInternos.getColumnModel().getColumn(0).setCellRenderer(centralizado);
-        jTabelaInternos.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+    public void pPREENCHER_TABELA_ITENS_internos() {
+        DefaultTableModel objTabelaInternos = (DefaultTableModel) jTabelaInternos.getModel();
+        try {
+            for (ProdutosPagtoKitInterno b : CONTROLE_PESQUISA_manual.pPESQUISAR_PRODUTO_interno()) {
+                objTabelaInternos.addRow(new Object[]{b.getIdItem(), b.getIdInternoCrc(), b.getNomeInternoCrc()});
+                // BARRA DE ROLAGEM HORIZONTAL
+                jTabelaInternos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                // ALINHAR TEXTO DA TABELA CENTRALIZADO
+                DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+                centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+                //
+                jTabelaInternos.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+                jTabelaInternos.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaBiometriaKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void limparTabelaInternos() {
-        ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"Item", "Código", "Descrição do Interno"};
-        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
-        jTabelaInternos.setModel(modelo);
-        jTabelaInternos.getColumnModel().getColumn(0).setPreferredWidth(60);
-        jTabelaInternos.getColumnModel().getColumn(0).setResizable(false);
-        jTabelaInternos.getColumnModel().getColumn(1).setPreferredWidth(70);
-        jTabelaInternos.getColumnModel().getColumn(1).setResizable(false);
-        jTabelaInternos.getColumnModel().getColumn(2).setPreferredWidth(350);
-        jTabelaInternos.getColumnModel().getColumn(2).setResizable(false);
-        jTabelaInternos.getTableHeader().setReorderingAllowed(false);
-        jTabelaInternos.setAutoResizeMode(jTabelaInternos.AUTO_RESIZE_OFF);
-        jTabelaInternos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        modelo.getLinhas().clear();
+        // APAGAR DADOS DA TABELA PRODUTOS
+        while (jTabelaInternos.getModel().getRowCount() > 0) {
+            ((DefaultTableModel) jTabelaInternos.getModel()).removeRow(0);
+        }
     }
 
     public void objLog() {

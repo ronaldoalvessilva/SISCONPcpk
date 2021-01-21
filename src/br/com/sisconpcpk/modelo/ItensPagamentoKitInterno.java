@@ -56,16 +56,18 @@ public class ItensPagamentoKitInterno {
     private int desodorante;
     private int sabaoPo;
     private int kitDecimal;
-    private int kitMensal; 
+    private int kitMensal;
     private int kitSemestral;
     private int kitPersonalizado;
     private Date dataPagto;
-    private String kitPago;    
+    private String kitPago;
+    private String caminhoFoto;
+    private byte[] ImagemFoto;
 
     public ItensPagamentoKitInterno() {
     }
 
-    public ItensPagamentoKitInterno(int idItem, int idPagto, int idInternoCrc, String nomeInternoCrcKit, int copo, int prato, int colher, int vasilha, int garfo, int absorvente, int bermuda, int lencol, int colchao, int toalha, int camisa, int cueca, int sandalia, int cremeDental, int sabonete, int papelHigienico, int barbeador, int escovaDente, int mostraTodos, int kitInicial, int kitQuinzenal, int tipoEntrada, Date dataEntrega, String horaEntrega, byte[] assinaturaDigital, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp, int cobertor, int bolaJogo, int calcaoJogo, int camisaJogo, int parMeiao, int desodorante, int sabaoPo, int kitDecimal, int kitMensal, int kitSemestral, int kitPersonalizado, Date dataPagto, String kitPago) {
+    public ItensPagamentoKitInterno(int idItem, int idPagto, int idInternoCrc, String nomeInternoCrcKit, int copo, int prato, int colher, int vasilha, int garfo, int absorvente, int bermuda, int lencol, int colchao, int toalha, int camisa, int cueca, int sandalia, int cremeDental, int sabonete, int papelHigienico, int barbeador, int escovaDente, int mostraTodos, int kitInicial, int kitQuinzenal, int tipoEntrada, Date dataEntrega, String horaEntrega, byte[] assinaturaDigital, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp, int cobertor, int bolaJogo, int calcaoJogo, int camisaJogo, int parMeiao, int desodorante, int sabaoPo, int kitDecimal, int kitMensal, int kitSemestral, int kitPersonalizado, Date dataPagto, String kitPago, String caminhoFoto, byte[] ImagemFoto) {
         this.idItem = idItem;
         this.idPagto = idPagto;
         this.idInternoCrc = idInternoCrc;
@@ -114,6 +116,8 @@ public class ItensPagamentoKitInterno {
         this.kitPersonalizado = kitPersonalizado;
         this.dataPagto = dataPagto;
         this.kitPago = kitPago;
+        this.caminhoFoto = caminhoFoto;
+        this.ImagemFoto = ImagemFoto;
     }
 
     /**
@@ -786,5 +790,33 @@ public class ItensPagamentoKitInterno {
      */
     public void setKitPago(String kitPago) {
         this.kitPago = kitPago;
+    }
+
+    /**
+     * @return the caminhoFoto
+     */
+    public String getCaminhoFoto() {
+        return caminhoFoto;
+    }
+
+    /**
+     * @param caminhoFoto the caminhoFoto to set
+     */
+    public void setCaminhoFoto(String caminhoFoto) {
+        this.caminhoFoto = caminhoFoto;
+    }
+
+    /**
+     * @return the ImagemFoto
+     */
+    public byte[] getImagemFoto() {
+        return ImagemFoto;
+    }
+
+    /**
+     * @param ImagemFoto the ImagemFoto to set
+     */
+    public void setImagemFoto(byte[] ImagemFoto) {
+        this.ImagemFoto = ImagemFoto;
     }
 }

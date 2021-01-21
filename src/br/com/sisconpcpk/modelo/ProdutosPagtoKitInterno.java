@@ -21,6 +21,11 @@ public class ProdutosPagtoKitInterno {
     private float quatProd;
     private int idInternoCrc;
     private String nomeInternoCrc;
+    private String regime;
+    private String caminhoFoto;
+    private String enderecoCela;
+    private String descricaoPavilhao;
+    private byte [] imagemFrente;
     private Date dataEntrega;
     private String horario;
     private byte [] assinaturaDigitalInterno;
@@ -29,12 +34,12 @@ public class ProdutosPagtoKitInterno {
     private String horarioInsert;
     private String usuarioUp;
     private String dataUp;
-    private String horarioUp;    
+    private String horarioUp;       
 
     public ProdutosPagtoKitInterno() {
     }
 
-    public ProdutosPagtoKitInterno(int idItemProd, int idPagto, int idItem, int idProd, String descricaoProduto, float quatProd, int idInternoCrc, String nomeInternoCrc, Date dataEntrega, String horario, byte[] assinaturaDigitalInterno, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp) {
+    public ProdutosPagtoKitInterno(int idItemProd, int idPagto, int idItem, int idProd, String descricaoProduto, float quatProd, int idInternoCrc, String nomeInternoCrc, String regime, String caminhoFoto, String enderecoCela, String descricaoPavilhao, byte[] imagemFrente, Date dataEntrega, String horario, byte[] assinaturaDigitalInterno, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp) {
         this.idItemProd = idItemProd;
         this.idPagto = idPagto;
         this.idItem = idItem;
@@ -43,6 +48,11 @@ public class ProdutosPagtoKitInterno {
         this.quatProd = quatProd;
         this.idInternoCrc = idInternoCrc;
         this.nomeInternoCrc = nomeInternoCrc;
+        this.regime = regime;
+        this.caminhoFoto = caminhoFoto;
+        this.enderecoCela = enderecoCela;
+        this.descricaoPavilhao = descricaoPavilhao;
+        this.imagemFrente = imagemFrente;
         this.dataEntrega = dataEntrega;
         this.horario = horario;
         this.assinaturaDigitalInterno = assinaturaDigitalInterno;
@@ -164,6 +174,76 @@ public class ProdutosPagtoKitInterno {
      */
     public void setNomeInternoCrc(String nomeInternoCrc) {
         this.nomeInternoCrc = nomeInternoCrc;
+    }
+
+    /**
+     * @return the regime
+     */
+    public String getRegime() {
+        return regime;
+    }
+
+    /**
+     * @param regime the regime to set
+     */
+    public void setRegime(String regime) {
+        this.regime = regime;
+    }
+
+    /**
+     * @return the caminhoFoto
+     */
+    public String getCaminhoFoto() {
+        return caminhoFoto;
+    }
+
+    /**
+     * @param caminhoFoto the caminhoFoto to set
+     */
+    public void setCaminhoFoto(String caminhoFoto) {
+        this.caminhoFoto = caminhoFoto;
+    }
+
+    /**
+     * @return the enderecoCela
+     */
+    public String getEnderecoCela() {
+        return enderecoCela;
+    }
+
+    /**
+     * @param enderecoCela the enderecoCela to set
+     */
+    public void setEnderecoCela(String enderecoCela) {
+        this.enderecoCela = enderecoCela;
+    }
+
+    /**
+     * @return the descricaoPavilhao
+     */
+    public String getDescricaoPavilhao() {
+        return descricaoPavilhao;
+    }
+
+    /**
+     * @param descricaoPavilhao the descricaoPavilhao to set
+     */
+    public void setDescricaoPavilhao(String descricaoPavilhao) {
+        this.descricaoPavilhao = descricaoPavilhao;
+    }
+
+    /**
+     * @return the imagemFrente
+     */
+    public byte[] getImagemFrente() {
+        return imagemFrente;
+    }
+
+    /**
+     * @param imagemFrente the imagemFrente to set
+     */
+    public void setImagemFrente(byte[] imagemFrente) {
+        this.imagemFrente = imagemFrente;
     }
 
     /**

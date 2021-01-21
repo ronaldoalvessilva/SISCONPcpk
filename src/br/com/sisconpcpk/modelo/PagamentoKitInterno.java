@@ -44,11 +44,13 @@ public class PagamentoKitInterno {
     private Integer iD_REG_mensal;
     private Integer iD_REG_semestral;
     private Integer iD_REG_anual;
+    private Integer idInternoCrc;
+    private String nomeInternoCrc;
 
     public PagamentoKitInterno() {
     }
 
-    public PagamentoKitInterno(int idPagto, String statusLanc, Date dataLanc, String responsavel, String horaInicio, String horaTermino, String tipoKit, int idPav, String descricaoPavilhao, String observacao, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp, int idRegistroComp, int idKit, String kitPersonalizado, int iD_KIT_inicial, int iD_KIT_decendial, int iD_KIT_quinzenal, int iD_KIT_mensal, int iD_KIT_semestral, int iD_KIT_anual, Integer iD_REG_inicial, Integer iD_REG_decendial, Integer iD_REG_quinzenal, Integer iD_REG_mensal, Integer iD_REG_semestral, Integer iD_REG_anual) {
+    public PagamentoKitInterno(int idPagto, String statusLanc, Date dataLanc, String responsavel, String horaInicio, String horaTermino, String tipoKit, int idPav, String descricaoPavilhao, String observacao, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp, int idRegistroComp, int idKit, String kitPersonalizado, int iD_KIT_inicial, int iD_KIT_decendial, int iD_KIT_quinzenal, int iD_KIT_mensal, int iD_KIT_semestral, int iD_KIT_anual, Integer iD_REG_inicial, Integer iD_REG_decendial, Integer iD_REG_quinzenal, Integer iD_REG_mensal, Integer iD_REG_semestral, Integer iD_REG_anual, Integer idInternoCrc, String nomeInternoCrc) {
         this.idPagto = idPagto;
         this.statusLanc = statusLanc;
         this.dataLanc = dataLanc;
@@ -80,6 +82,8 @@ public class PagamentoKitInterno {
         this.iD_REG_mensal = iD_REG_mensal;
         this.iD_REG_semestral = iD_REG_semestral;
         this.iD_REG_anual = iD_REG_anual;
+        this.idInternoCrc = idInternoCrc;
+        this.nomeInternoCrc = nomeInternoCrc;
     }
 
     /**
@@ -514,5 +518,33 @@ public class PagamentoKitInterno {
      */
     public void setiD_REG_anual(Integer iD_REG_anual) {
         this.iD_REG_anual = iD_REG_anual;
+    }
+
+    /**
+     * @return the idInternoCrc
+     */
+    public Integer getIdInternoCrc() {
+        return idInternoCrc;
+    }
+
+    /**
+     * @param idInternoCrc the idInternoCrc to set
+     */
+    public void setIdInternoCrc(Integer idInternoCrc) {
+        this.idInternoCrc = idInternoCrc;
+    }
+
+    /**
+     * @return the nomeInternoCrc
+     */
+    public String getNomeInternoCrc() {
+        return nomeInternoCrc;
+    }
+
+    /**
+     * @param nomeInternoCrc the nomeInternoCrc to set
+     */
+    public void setNomeInternoCrc(String nomeInternoCrc) {
+        this.nomeInternoCrc = nomeInternoCrc;
     }
 }

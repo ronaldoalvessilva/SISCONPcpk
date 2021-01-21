@@ -5,9 +5,29 @@
  */
 package br.com.sisconpcpk.dao;
 
+import br.com.sisconpcpk.modelo.ItensPagamentoKitInterno;
 import br.com.sisconpcpk.modelo.PagamentoKitInterno;
+import br.com.sisconpcpk.modelo.ProdutoInternosKitLote;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.codItem;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.dataFinal;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.dataInicial;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.idItemPagto;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jComboBoxPesquisarTipoKit;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIDPesqLanc;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdInterno;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdLanc;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.codLanc;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.codigoInterno;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.codigoKit;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jPesqNomeInternoVisitado;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.pTOTAL_registros;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.pCONFIRMARCAO_resposta;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -53,7 +73,9 @@ public class PagamentoKitDao {
             pst.setInt(25, objPag.getiD_KIT_semestral());
             pst.setInt(26, objPag.getiD_KIT_anual());
             pst.execute();
+            pCONFIRMARCAO_resposta = "Sim";
         } catch (SQLException ex) {
+            pCONFIRMARCAO_resposta = "Não";
             JOptionPane.showMessageDialog(null, "Não Foi possivel INSERIR os Dados.\n\nERRO:" + ex);
         }
         conecta.desconecta();
@@ -92,7 +114,9 @@ public class PagamentoKitDao {
             pst.setInt(25, objPag.getiD_KIT_semestral());
             pst.setInt(26, objPag.getiD_KIT_anual());
             pst.executeUpdate();
+            pCONFIRMARCAO_resposta = "Sim";
         } catch (SQLException ex) {
+            pCONFIRMARCAO_resposta = "Não";
             JOptionPane.showMessageDialog(null, "Não Foi possivel ALTERAR os Dados.\n\nERRO:" + ex);
         }
         conecta.desconecta();
@@ -105,7 +129,9 @@ public class PagamentoKitDao {
         try {
             PreparedStatement pst = conecta.con.prepareStatement("DELETE PAGAMENTO_KIT_INTERNOS WHERE IdPagto='" + objPag.getIdPagto() + "'");
             pst.executeUpdate();
+            pCONFIRMARCAO_resposta = "Sim";
         } catch (SQLException ex) {
+            pCONFIRMARCAO_resposta = "Não";
             JOptionPane.showMessageDialog(null, "Não Foi possivel EXCLUIR os Dados.\n\nERRO:" + ex);
         }
         conecta.desconecta();
@@ -136,5 +162,476 @@ public class PagamentoKitDao {
             JOptionPane.showMessageDialog(null, "Não existe dados (PAVILHÃO) a ser exibido !!!" + e);
         }
         conecta.desconecta();
+    }
+
+    public PagamentoKitInterno pBUSCAR_CODIGO_manutencao(PagamentoKitInterno objPag) {
+
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL("SELECT * FROM PAGAMENTO_KIT_INTERNOS");
+            conecta.rs.last();
+            jIdLanc.setText(conecta.rs.getString("IdPagto"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível obter o código do registro.");
+        }
+        conecta.desconecta();
+        return objPag;
+    }
+
+    public PagamentoKitInterno pBUSCAR_CODIGO_item(PagamentoKitInterno objPag) {
+
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS ");
+            conecta.rs.last();
+            codItem = conecta.rs.getInt("IdItem");
+        } catch (Exception e) {
+        }
+        conecta.desconecta();
+        return objPag;
+    }
+    
+    public PagamentoKitInterno pVERIFICAR_item(PagamentoKitInterno objPag) {
+
+        conecta.abrirConexao();
+        try {
+           conecta.executaSQL("SELECT * "
+                    + "FROM ITENS_PAGAMENTO_KIT_INTERNOS "
+                    + "WHERE IdPagto='" + jIdLanc.getText() + "'");
+            conecta.rs.first();
+            codLanc = conecta.rs.getString("IdPagto");
+        } catch (Exception e) {
+        }
+        conecta.desconecta();
+        return objPag;
+    }
+
+    public PagamentoKitInterno pVERIFICAR_interno(PagamentoKitInterno objPag) {
+
+        conecta.abrirConexao();
+        try {
+            conecta.executaSQL("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS "
+                    + "WHERE IdInternoCrc='" + jIdInterno.getText() + "' "
+                    + "AND IdPagto='" + jIdLanc.getText() + "'");
+            conecta.rs.first();
+            codigoInterno = conecta.rs.getString("IdInternoCrc");
+            codigoKit = conecta.rs.getString("IdPagto");
+        } catch (Exception e) {
+        }
+        conecta.desconecta();
+        return objPag;
+    }
+    
+    //------------------------------------------- PESQUISAS -------------------------------------------------
+    public List<PagamentoKitInterno> pBUSCAR_TODOS_registros() throws Exception {
+        pTOTAL_registros = 0;
+        conecta.abrirConexao();
+        List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
+        try {
+            conecta.executaSQL("SELECT "
+                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                    + "StatusLanc,TipoKit,DescricaoPav, "
+                    + "NomeInternoCrc,Observacao "
+                    + "FROM PAGAMENTO_KIT_INTERNOS "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                    + "INNER JOIN PRONTUARIOSCRC "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                    + "ORDER BY DataLanc");
+            while (conecta.rs.next()) {
+                PagamentoKitInterno pListarTodosRegistrosKit = new PagamentoKitInterno();
+                pListarTodosRegistrosKit.setIdPagto(conecta.rs.getInt("IdPagto"));
+                pListarTodosRegistrosKit.setDataLanc(conecta.rs.getDate("DataLanc"));
+                pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
+                pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
+                pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
+                pListarTodosRegistrosKit.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
+                pListarTodosRegistrosKit.setObservacao(conecta.rs.getString("Observacao"));
+                objListaInternos.add(pListarTodosRegistrosKit);
+                pTOTAL_registros++;
+            }
+            return objListaInternos;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleProdutosKitLote.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conecta.desconecta();
+        }
+        return null;
+    }
+
+    public List<PagamentoKitInterno> pBUSCAR_TODOS_data() throws Exception {
+        conecta.abrirConexao();
+        List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
+        try {
+            conecta.executaSQL("SELECT "
+                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                    + "StatusLanc,TipoKit,DescricaoPav, "
+                    + "NomeInternoCrc "
+                    + "FROM PAGAMENTO_KIT_INTERNOS "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                    + "INNER JOIN PRONTUARIOSCRC "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc  "
+                    + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
+                    + "AND'" + dataFinal + "'");
+            while (conecta.rs.next()) {
+                PagamentoKitInterno pListarTodosRegistrosKit = new PagamentoKitInterno();
+                pListarTodosRegistrosKit.setIdPagto(conecta.rs.getInt("IdPagto"));
+                pListarTodosRegistrosKit.setDataLanc(conecta.rs.getDate("DataLanc"));
+                pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
+                pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
+                pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
+                pListarTodosRegistrosKit.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
+                pListarTodosRegistrosKit.setObservacao(conecta.rs.getString("Observacao"));
+                objListaInternos.add(pListarTodosRegistrosKit);
+            }
+            return objListaInternos;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleProdutosKitLote.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conecta.desconecta();
+        }
+        return null;
+    }
+
+    public List<PagamentoKitInterno> pBUSCAR_TODOS_data0() throws Exception {
+        conecta.abrirConexao();
+        List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
+        try {
+            conecta.executaSQL("SELECT "
+                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                    + "StatusLanc,TipoKit,DescricaoPav, "
+                    + "NomeInternoCrc "
+                    + "FROM PAGAMENTO_KIT_INTERNOS "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                    + "INNER JOIN PRONTUARIOSCRC "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc  "
+                    + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
+                    + "AND'" + dataFinal + "' "
+                    + "AND TipoKit ='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'  ");
+            while (conecta.rs.next()) {
+                PagamentoKitInterno pListarTodosRegistrosKit = new PagamentoKitInterno();
+                pListarTodosRegistrosKit.setIdPagto(conecta.rs.getInt("IdPagto"));
+                pListarTodosRegistrosKit.setDataLanc(conecta.rs.getDate("DataLanc"));
+                pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
+                pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
+                pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
+                pListarTodosRegistrosKit.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
+                pListarTodosRegistrosKit.setObservacao(conecta.rs.getString("Observacao"));
+                objListaInternos.add(pListarTodosRegistrosKit);
+            }
+            return objListaInternos;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleProdutosKitLote.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conecta.desconecta();
+        }
+        return null;
+    }
+
+    public List<PagamentoKitInterno> pBUSCAR_TODOS_codigo() throws Exception {
+        conecta.abrirConexao();
+        List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
+        try {
+            conecta.executaSQL("SELECT "
+                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                    + "StatusLanc,TipoKit,DescricaoPav, "
+                    + "NomeInternoCrc "
+                    + "FROM PAGAMENTO_KIT_INTERNOS "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                    + "INNER JOIN PRONTUARIOSCRC "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc  "
+                    + "WHERE WHERE PAGAMENTO_KIT_INTERNOS.IdPagto='" + jIDPesqLanc.getText() + "'");
+            while (conecta.rs.next()) {
+                PagamentoKitInterno pListarTodosRegistrosKit = new PagamentoKitInterno();
+                pListarTodosRegistrosKit.setIdPagto(conecta.rs.getInt("IdPagto"));
+                pListarTodosRegistrosKit.setDataLanc(conecta.rs.getDate("DataLanc"));
+                pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
+                pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
+                pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
+                pListarTodosRegistrosKit.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
+                pListarTodosRegistrosKit.setObservacao(conecta.rs.getString("Observacao"));
+                objListaInternos.add(pListarTodosRegistrosKit);
+            }
+            return objListaInternos;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleProdutosKitLote.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conecta.desconecta();
+        }
+        return null;
+    }
+
+    public List<PagamentoKitInterno> pBUSCAR_TODOS_codigoOBS() throws Exception {
+        conecta.abrirConexao();
+        List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
+        try {
+            conecta.executaSQL("SELECT "
+                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                    + "StatusLanc,TipoKit,DescricaoPav,Observacao "
+                    + "FROM PAGAMENTO_KIT_INTERNOS "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                    + "WHERE PAGAMENTO_KIT_INTERNOS.IdPagto='" + jIDPesqLanc.getText() + "'");
+            while (conecta.rs.next()) {
+                PagamentoKitInterno pListarTodosRegistrosKit = new PagamentoKitInterno();
+                pListarTodosRegistrosKit.setIdPagto(conecta.rs.getInt("IdPagto"));
+                pListarTodosRegistrosKit.setDataLanc(conecta.rs.getDate("DataLanc"));
+                pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
+                pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
+                pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
+                pListarTodosRegistrosKit.setObservacao(conecta.rs.getString("Observacao"));
+                objListaInternos.add(pListarTodosRegistrosKit);
+            }
+            return objListaInternos;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleProdutosKitLote.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conecta.desconecta();
+        }
+        return null;
+    }
+
+    public List<PagamentoKitInterno> pBUSCAR_REGISTRO_NOME_interno() throws Exception {
+        conecta.abrirConexao();
+        List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
+        try {
+            conecta.executaSQL("SELECT "
+                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                    + "StatusLanc,TipoKit,DescricaoPav, "
+                    + "NomeInternoCrc "
+                    + "FROM PAGAMENTO_KIT_INTERNOS "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                    + "INNER JOIN PRONTUARIOSCRC "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                    + "WHERE NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%'");
+            while (conecta.rs.next()) {
+                PagamentoKitInterno pListarTodosRegistrosKit = new PagamentoKitInterno();
+                pListarTodosRegistrosKit.setIdPagto(conecta.rs.getInt("IdPagto"));
+                pListarTodosRegistrosKit.setDataLanc(conecta.rs.getDate("DataLanc"));
+                pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
+                pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
+                pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
+                pListarTodosRegistrosKit.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
+                pListarTodosRegistrosKit.setObservacao(conecta.rs.getString("Observacao"));
+                objListaInternos.add(pListarTodosRegistrosKit);
+            }
+            return objListaInternos;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleProdutosKitLote.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conecta.desconecta();
+        }
+        return null;
+    }
+
+    public List<PagamentoKitInterno> pBUSCAR_REGISTRO_NOME_INTERNO_tipoKit() throws Exception {
+        conecta.abrirConexao();
+        List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
+        try {
+            conecta.executaSQL("SELECT "
+                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                    + "StatusLanc,TipoKit,DescricaoPav, "
+                    + "NomeInternoCrc "
+                    + "FROM PAGAMENTO_KIT_INTERNOS "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                    + "INNER JOIN PRONTUARIOSCRC "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                    + "WHERE NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%' "
+                    + "AND TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+            while (conecta.rs.next()) {
+                PagamentoKitInterno pListarTodosRegistrosKit = new PagamentoKitInterno();
+                pListarTodosRegistrosKit.setIdPagto(conecta.rs.getInt("IdPagto"));
+                pListarTodosRegistrosKit.setDataLanc(conecta.rs.getDate("DataLanc"));
+                pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
+                pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
+                pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
+                pListarTodosRegistrosKit.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
+                pListarTodosRegistrosKit.setObservacao(conecta.rs.getString("Observacao"));
+                objListaInternos.add(pListarTodosRegistrosKit);
+            }
+            return objListaInternos;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleProdutosKitLote.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conecta.desconecta();
+        }
+        return null;
+    }
+
+    public List<PagamentoKitInterno> pBUSCAR_REGISTRO_NOME_INTERNO_tipoKitData() throws Exception {
+        conecta.abrirConexao();
+        List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
+        try {
+            conecta.executaSQL("SELECT "
+                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                    + "StatusLanc,TipoKit,DescricaoPav, "
+                    + "NomeInternoCrc "
+                    + "FROM PAGAMENTO_KIT_INTERNOS "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                    + "INNER JOIN PRONTUARIOSCRC "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                    + "WHERE PAGAMENTO_KIT_INTERNOS.DataLanc BETWEEN'" + dataInicial + "' "
+                    + "AND'" + dataFinal + "' "
+                    + "AND NomeInternoCrc LIKE'%" + jPesqNomeInternoVisitado.getText() + "%' "
+                    + "AND PAGAMENTO_KIT_INTERNOS.TipoKit='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'");
+            while (conecta.rs.next()) {
+                PagamentoKitInterno pListarTodosRegistrosKit = new PagamentoKitInterno();
+                pListarTodosRegistrosKit.setIdPagto(conecta.rs.getInt("IdPagto"));
+                pListarTodosRegistrosKit.setDataLanc(conecta.rs.getDate("DataLanc"));
+                pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
+                pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
+                pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
+                pListarTodosRegistrosKit.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
+                pListarTodosRegistrosKit.setObservacao(conecta.rs.getString("Observacao"));
+                objListaInternos.add(pListarTodosRegistrosKit);
+            }
+            return objListaInternos;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleProdutosKitLote.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conecta.desconecta();
+        }
+        return null;
+    }
+
+    public List<PagamentoKitInterno> pBUSCAR_REGISTRO_NOME_INTERNO_CODIGO_nome() throws Exception {
+        conecta.abrirConexao();
+        List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
+        try {
+            conecta.executaSQL("SELECT "
+                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
+                    + "StatusLanc,TipoKit,DescricaoPav, "
+                    + "NomeInternoCrc "
+                    + "FROM PAGAMENTO_KIT_INTERNOS "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+                    + "INNER JOIN PRONTUARIOSCRC "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                    + "WHERE PAGAMENTO_KIT_INTERNOS.IdPagto='" + jIDPesqLanc.getText() + "'");
+            while (conecta.rs.next()) {
+                PagamentoKitInterno pListarTodosRegistrosKit = new PagamentoKitInterno();
+                pListarTodosRegistrosKit.setIdPagto(conecta.rs.getInt("IdPagto"));
+                pListarTodosRegistrosKit.setDataLanc(conecta.rs.getDate("DataLanc"));
+                pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
+                pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
+                pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
+                pListarTodosRegistrosKit.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
+                pListarTodosRegistrosKit.setObservacao(conecta.rs.getString("Observacao"));
+                objListaInternos.add(pListarTodosRegistrosKit);
+            }
+            return objListaInternos;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleProdutosKitLote.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conecta.desconecta();
+        }
+        return null;
+    }
+
+    public List<PagamentoKitInterno> pBUSCAR_REGISTRO_MOUSE_clicked() throws Exception {
+        conecta.abrirConexao();
+        List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
+        try {
+            conecta.executaSQL("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+                    + "INNER JOIN PAVILHAO "
+                    + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
+                    + "WHERE IdPagto='" + jIDPesqLanc.getText() + "'");
+            while (conecta.rs.next()) {
+                PagamentoKitInterno pListarTodosRegistrosKit = new PagamentoKitInterno();
+                pListarTodosRegistrosKit.setIdPagto(conecta.rs.getInt("IdPagto"));
+                pListarTodosRegistrosKit.setDataLanc(conecta.rs.getDate("DataLanc"));
+                pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
+                pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
+                pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
+                pListarTodosRegistrosKit.setObservacao(conecta.rs.getString("Observacao"));
+                objListaInternos.add(pListarTodosRegistrosKit);
+            }
+            return objListaInternos;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleProdutosKitLote.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conecta.desconecta();
+        }
+        return null;
+    }
+
+    public List<ProdutoInternosKitLote> pPESQUISAR_PRODUTOS_KITS_PAGO_interno() throws Exception {
+        conecta.abrirConexao();
+        List<ProdutoInternosKitLote> objListaProdutosInternos = new ArrayList<ProdutoInternosKitLote>();
+        try {
+            conecta.executaSQL("SELECT "
+                    + "DISTINCT PRODUTOS_AC.IdProd, "
+                    + "PRODUTOS_AC.DescricaoProd,PRODUTOS_AC.UnidadeProd, "
+                    + "ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.QuantProd "
+                    + "FROM ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS "
+                    + "INNER JOIN PRODUTOS_AC "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdProd=PRODUTOS_AC.IdProd "
+                    + "WHERE ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdPagto='" + jIdLanc.getText() + "' "
+                    + "AND IdInternoCrc='" + jIdInterno.getText() + "'");
+            while (conecta.rs.next()) {
+                ProdutoInternosKitLote pListarProdutosKitInternos = new ProdutoInternosKitLote();
+                pListarProdutosKitInternos.setIdProd(conecta.rs.getInt("IdProd"));
+                pListarProdutosKitInternos.setDescricaoProduto(conecta.rs.getString("DescricaoProd"));
+                pListarProdutosKitInternos.setUnidadeProd(conecta.rs.getString("UnidadeProd"));
+                pListarProdutosKitInternos.setQuantidadeProd(conecta.rs.getInt("QuantProd"));
+                objListaProdutosInternos.add(pListarProdutosKitInternos);
+            }
+            return objListaProdutosInternos;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleProdutosKitLote.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conecta.desconecta();
+        }
+        return null;
+    }
+
+    public List<ItensPagamentoKitInterno> pPESQUISAR_PRODUTOS_KITS_internoCliced() throws Exception {
+        conecta.abrirConexao();
+        List<ItensPagamentoKitInterno> objListaProdutosInternos = new ArrayList<ItensPagamentoKitInterno>();
+        try {
+            conecta.executaSQL("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS "
+                    + "INNER JOIN PRONTUARIOSCRC "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+                    + "WHERE IdItem='" + idItemPagto + "'");
+            while (conecta.rs.next()) {
+                ItensPagamentoKitInterno pListarProdutosKitInternos = new ItensPagamentoKitInterno();
+                pListarProdutosKitInternos.setIdItem(conecta.rs.getInt("IdItem"));
+                pListarProdutosKitInternos.setIdInternoCrc(conecta.rs.getInt("IdInternoCrc"));
+                pListarProdutosKitInternos.setNomeInternoCrcKit(conecta.rs.getString("NomeInternoCrc"));
+                pListarProdutosKitInternos.setCaminhoFoto(conecta.rs.getString("FotoInternoCrc"));
+                pListarProdutosKitInternos.setImagemFoto(conecta.rs.getBytes("ImagemFrente"));
+                pListarProdutosKitInternos.setDataEntrega(conecta.rs.getDate("DataEntrega"));
+                pListarProdutosKitInternos.setHoraEntrega(conecta.rs.getString("Horario"));
+                objListaProdutosInternos.add(pListarProdutosKitInternos);
+            }
+            return objListaProdutosInternos;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleProdutosKitLote.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conecta.desconecta();
+        }
+        return null;
     }
 }
