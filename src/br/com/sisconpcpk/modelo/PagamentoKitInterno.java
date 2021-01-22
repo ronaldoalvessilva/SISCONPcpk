@@ -46,11 +46,17 @@ public class PagamentoKitInterno {
     private Integer iD_REG_anual;
     private Integer idInternoCrc;
     private String nomeInternoCrc;
+    private Integer iD_BT_Kit_inicial;
+    private Integer iD_BT_Kit_decendial;
+    private Integer iD_BT_Kit_quinzenal;
+    private Integer iD_BT_Kit_mensal;
+    private Integer iD_BT_Kit_semestral;
+    private Integer iD_BT_Kit_anual;  
 
     public PagamentoKitInterno() {
     }
 
-    public PagamentoKitInterno(int idPagto, String statusLanc, Date dataLanc, String responsavel, String horaInicio, String horaTermino, String tipoKit, int idPav, String descricaoPavilhao, String observacao, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp, int idRegistroComp, int idKit, String kitPersonalizado, int iD_KIT_inicial, int iD_KIT_decendial, int iD_KIT_quinzenal, int iD_KIT_mensal, int iD_KIT_semestral, int iD_KIT_anual, Integer iD_REG_inicial, Integer iD_REG_decendial, Integer iD_REG_quinzenal, Integer iD_REG_mensal, Integer iD_REG_semestral, Integer iD_REG_anual, Integer idInternoCrc, String nomeInternoCrc) {
+    public PagamentoKitInterno(int idPagto, String statusLanc, Date dataLanc, String responsavel, String horaInicio, String horaTermino, String tipoKit, int idPav, String descricaoPavilhao, String observacao, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp, int idRegistroComp, int idKit, String kitPersonalizado, int iD_KIT_inicial, int iD_KIT_decendial, int iD_KIT_quinzenal, int iD_KIT_mensal, int iD_KIT_semestral, int iD_KIT_anual, Integer iD_REG_inicial, Integer iD_REG_decendial, Integer iD_REG_quinzenal, Integer iD_REG_mensal, Integer iD_REG_semestral, Integer iD_REG_anual, Integer idInternoCrc, String nomeInternoCrc, Integer iD_BT_Kit_inicial, Integer iD_BT_Kit_decendial, Integer iD_BT_Kit_quinzenal, Integer iD_BT_Kit_mensal, Integer iD_BT_Kit_semestral, Integer iD_BT_Kit_anual) {
         this.idPagto = idPagto;
         this.statusLanc = statusLanc;
         this.dataLanc = dataLanc;
@@ -84,6 +90,12 @@ public class PagamentoKitInterno {
         this.iD_REG_anual = iD_REG_anual;
         this.idInternoCrc = idInternoCrc;
         this.nomeInternoCrc = nomeInternoCrc;
+        this.iD_BT_Kit_inicial = iD_BT_Kit_inicial;
+        this.iD_BT_Kit_decendial = iD_BT_Kit_decendial;
+        this.iD_BT_Kit_quinzenal = iD_BT_Kit_quinzenal;
+        this.iD_BT_Kit_mensal = iD_BT_Kit_mensal;
+        this.iD_BT_Kit_semestral = iD_BT_Kit_semestral;
+        this.iD_BT_Kit_anual = iD_BT_Kit_anual;
     }
 
     /**
@@ -546,5 +558,89 @@ public class PagamentoKitInterno {
      */
     public void setNomeInternoCrc(String nomeInternoCrc) {
         this.nomeInternoCrc = nomeInternoCrc;
+    }
+
+    /**
+     * @return the iD_BT_Kit_inicial
+     */
+    public Integer getiD_BT_Kit_inicial() {
+        return iD_BT_Kit_inicial;
+    }
+
+    /**
+     * @param iD_BT_Kit_inicial the iD_BT_Kit_inicial to set
+     */
+    public void setiD_BT_Kit_inicial(Integer iD_BT_Kit_inicial) {
+        this.iD_BT_Kit_inicial = iD_BT_Kit_inicial;
+    }
+
+    /**
+     * @return the iD_BT_Kit_decendial
+     */
+    public Integer getiD_BT_Kit_decendial() {
+        return iD_BT_Kit_decendial;
+    }
+
+    /**
+     * @param iD_BT_Kit_decendial the iD_BT_Kit_decendial to set
+     */
+    public void setiD_BT_Kit_decendial(Integer iD_BT_Kit_decendial) {
+        this.iD_BT_Kit_decendial = iD_BT_Kit_decendial;
+    }
+
+    /**
+     * @return the iD_BT_Kit_quinzenal
+     */
+    public Integer getiD_BT_Kit_quinzenal() {
+        return iD_BT_Kit_quinzenal;
+    }
+
+    /**
+     * @param iD_BT_Kit_quinzenal the iD_BT_Kit_quinzenal to set
+     */
+    public void setiD_BT_Kit_quinzenal(Integer iD_BT_Kit_quinzenal) {
+        this.iD_BT_Kit_quinzenal = iD_BT_Kit_quinzenal;
+    }
+
+    /**
+     * @return the iD_BT_Kit_mensal
+     */
+    public Integer getiD_BT_Kit_mensal() {
+        return iD_BT_Kit_mensal;
+    }
+
+    /**
+     * @param iD_BT_Kit_mensal the iD_BT_Kit_mensal to set
+     */
+    public void setiD_BT_Kit_mensal(Integer iD_BT_Kit_mensal) {
+        this.iD_BT_Kit_mensal = iD_BT_Kit_mensal;
+    }
+
+    /**
+     * @return the iD_BT_Kit_semestral
+     */
+    public Integer getiD_BT_Kit_semestral() {
+        return iD_BT_Kit_semestral;
+    }
+
+    /**
+     * @param iD_BT_Kit_semestral the iD_BT_Kit_semestral to set
+     */
+    public void setiD_BT_Kit_semestral(Integer iD_BT_Kit_semestral) {
+        this.iD_BT_Kit_semestral = iD_BT_Kit_semestral;
+    }
+
+    /**
+     * @return the iD_BT_Kit_anual
+     */
+    public Integer getiD_BT_Kit_anual() {
+        return iD_BT_Kit_anual;
+    }
+
+    /**
+     * @param iD_BT_Kit_anual the iD_BT_Kit_anual to set
+     */
+    public void setiD_BT_Kit_anual(Integer iD_BT_Kit_anual) {
+        this.iD_BT_Kit_anual = iD_BT_Kit_anual;
     }
 }

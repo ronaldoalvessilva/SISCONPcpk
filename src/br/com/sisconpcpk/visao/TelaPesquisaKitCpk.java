@@ -10,6 +10,12 @@ import br.com.sisconpcpk.dao.ConectaBanco;
 import static br.com.sisconpcpk.visao.FormPrincipal.tipoServidor;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jComboBoxPavilhao;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jComboBoxTipoKit;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_Kit_anual;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_Kit_decendial;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_Kit_inicial;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_Kit_mensal;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_Kit_quinzenal;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_Kit_semestral;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -416,9 +422,9 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
         if (flag == 1) {
             idLanc = "" + TabelaRegistrosMontagemKits.getValueAt(TabelaRegistrosMontagemKits.getSelectedRow(), 0);
             jRegistroPesquisa.setText(idLanc);
-            if(!jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")){
+            if (!jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")) {
                 jIdRegistroComp.setText(idLanc);
-            }            
+            }
             idKit = "" + TabelaRegistrosMontagemKits.getValueAt(TabelaRegistrosMontagemKits.getSelectedRow(), 2);
             jCodigoKit.setText(idKit);
             tipoKit = "" + TabelaRegistrosMontagemKits.getValueAt(TabelaRegistrosMontagemKits.getSelectedRow(), 3);
@@ -427,26 +433,32 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
             if (tipoKit.equals("Kit Inicial")) {
                 jRBtKitInicialPesquisa.setSelected(true);
                 jID_REG_inicial.setText(jRegistroPesquisa.getText());
+                jID_Kit_inicial.setText(jCodigoKit.getText());
                 jRBtKitInicial.setSelected(true);
             } else if (tipoKit.equals("Kit Decendial")) {
                 jRBtKitDecendialPesquisa.setSelected(true);
                 jID_REG_decendial.setText(jRegistroPesquisa.getText());
+                jID_Kit_decendial.setText(jCodigoKit.getText());
                 jRBtKitDecendial.setSelected(true);
             } else if (tipoKit.equals("Kit Quinzenal")) {
                 jRBtKitQuinzenalPesquisa.setSelected(true);
                 jID_REG_quinzenal.setText(jRegistroPesquisa.getText());
+                jID_Kit_quinzenal.setText(jCodigoKit.getText());
                 jRBtKitQuinzenal.setSelected(true);
             } else if (tipoKit.equals("Kit Mensal")) {
                 jRBtKitMensalPesquisa.setSelected(true);
                 jID_REG_mensal.setText(jRegistroPesquisa.getText());
+                jID_Kit_mensal.setText(jCodigoKit.getText());
                 jRBtKitMensal.setSelected(true);
             } else if (tipoKit.equals("Kit Semestral")) {
                 jRBtKitSemestraPesquisa.setSelected(true);
                 jID_REG_semestral.setText(jRegistroPesquisa.getText());
+                jID_Kit_semestral.setText(jCodigoKit.getText());
                 jRBtKitSemestral.setSelected(true);
             } else if (tipoKit.equals("Kit Anual")) {
                 jRBtKitAnualPesquisa.setSelected(true);
                 jID_REG_anual.setText(jRegistroPesquisa.getText());
+                jID_Kit_anual.setText(jCodigoKit.getText());
                 jRBtKitAnual.setSelected(true);
             }
         }
@@ -640,37 +652,43 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                         jID_REG_anual.setText(jRegistroPesquisa.getText());
                         jRBtKitAnual.setSelected(true);
                     }
-                } else {                    
+                } else {
                     jComboBoxPavilhao.setSelectedItem(conecta.rs.getString("DescricaoPav"));
                     if (jRBtKitInicialPesquisa.isSelected() == true) {
                         jComboBoxTipoKit.removeAllItems();
                         jComboBoxTipoKit.addItem("Kit Personalizado");
                         jID_REG_inicial.setText(jRegistroPesquisa.getText());
+                        jID_Kit_inicial.setText(jCodigoKit.getText());
                         jRBtKitInicial.setSelected(true);
                     } else if (jRBtKitDecendialPesquisa.isSelected() == true) {
                         jComboBoxTipoKit.removeAllItems();
                         jComboBoxTipoKit.addItem("Kit Personalizado");
                         jID_REG_decendial.setText(jRegistroPesquisa.getText());
+                        jID_Kit_decendial.setText(jCodigoKit.getText());
                         jRBtKitDecendial.setSelected(true);
                     } else if (jRBtKitQuinzenalPesquisa.isSelected() == true) {
                         jComboBoxTipoKit.removeAllItems();
                         jComboBoxTipoKit.addItem("Kit Personalizado");
                         jID_REG_quinzenal.setText(jRegistroPesquisa.getText());
+                        jID_Kit_quinzenal.setText(jCodigoKit.getText());
                         jRBtKitQuinzenal.setSelected(true);
                     } else if (jRBtKitMensalPesquisa.isSelected() == true) {
                         jComboBoxTipoKit.removeAllItems();
                         jComboBoxTipoKit.addItem("Kit Personalizado");
                         jID_REG_mensal.setText(jRegistroPesquisa.getText());
+                        jID_Kit_mensal.setText(jCodigoKit.getText());
                         jRBtKitMensal.setSelected(true);
                     } else if (jRBtKitSemestraPesquisa.isSelected() == true) {
                         jComboBoxTipoKit.removeAllItems();
                         jComboBoxTipoKit.addItem("Kit Personalizado");
                         jID_REG_semestral.setText(jRegistroPesquisa.getText());
+                        jID_Kit_semestral.setText(jCodigoKit.getText());
                         jRBtKitSemestral.setSelected(true);
                     } else if (jRBtKitAnualPesquisa.isSelected() == true) {
                         jComboBoxTipoKit.removeAllItems();
                         jComboBoxTipoKit.addItem("Kit Personalizado");
                         jID_REG_anual.setText(jRegistroPesquisa.getText());
+                        jID_Kit_anual.setText(jCodigoKit.getText());
                         jRBtKitAnual.setSelected(true);
                     }
                 }

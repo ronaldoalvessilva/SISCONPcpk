@@ -5,7 +5,6 @@
  */
 package br.com.sisconpcpk.visao;
 
-import br.com.sisconpcpk.controle.ModeloTabela;
 import br.com.sisconpcpk.dao.ConectaBanco;
 import br.com.sisconpcpk.dao.ControleLogSistemaDao;
 import br.com.sisconpcpk.dao.ControlePagamentoKit;
@@ -63,16 +62,13 @@ import java.awt.Image;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -246,24 +242,36 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jObservacao = new javax.swing.JTextArea();
         jPanel15 = new javax.swing.JPanel();
-        jRBtKitMensal = new javax.swing.JRadioButton();
-        jRBtKitSemestral = new javax.swing.JRadioButton();
-        jRBtKitAnual = new javax.swing.JRadioButton();
+        jID_Kit_inicial = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
         jID_REG_inicial = new javax.swing.JTextField();
-        jID_REG_mensal = new javax.swing.JTextField();
-        jID_REG_decendial = new javax.swing.JTextField();
-        jID_REG_semestral = new javax.swing.JTextField();
-        jID_REG_quinzenal = new javax.swing.JTextField();
-        jID_REG_anual = new javax.swing.JTextField();
         jRBtKitInicial = new javax.swing.JRadioButton();
-        jRBtKitDecendial = new javax.swing.JRadioButton();
-        jRBtKitQuinzenal = new javax.swing.JRadioButton();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
+        jRBtKitDecendial = new javax.swing.JRadioButton();
+        jID_REG_decendial = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        jID_Kit_decendial = new javax.swing.JTextField();
+        jRBtKitQuinzenal = new javax.swing.JRadioButton();
+        jID_REG_quinzenal = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        jID_Kit_quinzenal = new javax.swing.JTextField();
+        jRBtKitMensal = new javax.swing.JRadioButton();
+        jID_REG_mensal = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
+        jID_Kit_mensal = new javax.swing.JTextField();
+        jRBtKitSemestral = new javax.swing.JRadioButton();
+        jID_REG_semestral = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        jID_Kit_semestral = new javax.swing.JTextField();
+        jID_REG_anual = new javax.swing.JTextField();
+        jRBtKitAnual = new javax.swing.JRadioButton();
+        jLabel33 = new javax.swing.JLabel();
+        jID_Kit_anual = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -423,7 +431,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jBtPesqData, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jComboBoxPesquisarTipoKit, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -556,7 +564,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                 .addGap(2, 2, 2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -682,64 +690,61 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jResponsavel)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel8)
+                            .addComponent(jLabel1)
+                            .addComponent(jIdLanc, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jHorarioInicial)
-                                    .addComponent(jLabel12))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jHorarioTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13))
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jStatusLanc))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jDataLanc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jComboBoxPavilhao, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(183, 183, 183)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jComboBoxTipoKit, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jIdKit, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel19)
-                                    .addComponent(jIdRegistroComp, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jResponsavel, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxPavilhao, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jIdLanc, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jStatusLanc))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jDataLanc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jComboBoxTipoKit, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBtPesquisarKit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxKitPersonalizado, 0, 102, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel20)))
-                        .addContainerGap())))
+                                .addComponent(jBtPesquisarKit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jHorarioInicial))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel13)
+                            .addComponent(jHorarioTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jIdKit, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel19)
+                            .addComponent(jIdRegistroComp, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxKitPersonalizado, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jHorarioInicial, jHorarioTermino, jIdKit, jIdRegistroComp});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jHorarioInicial, jHorarioTermino});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(4, 4, 4)
+                .addGap(6, 6, 6)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
@@ -758,27 +763,25 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     .addComponent(jLabel12)
                     .addComponent(jLabel13)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel19))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jIdRegistroComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jIdKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jHorarioTermino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jHorarioInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBoxPavilhao, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
+                    .addComponent(jLabel19)
                     .addComponent(jLabel20))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jComboBoxKitPersonalizado, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtPesquisarKit)
-                    .addComponent(jComboBoxTipoKit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6))
+                    .addComponent(jHorarioInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jHorarioTermino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jIdKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jIdRegistroComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxKitPersonalizado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jComboBoxPavilhao, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxTipoKit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtPesquisarKit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
@@ -865,17 +868,17 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jBtNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jBtAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jBtExcluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jBtSalvar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jBtCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -899,14 +902,14 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
 
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true), "Kits Personalizados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(0, 102, 0))); // NOI18N
 
-        jRBtKitMensal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRBtKitMensal.setEnabled(false);
+        jID_Kit_inicial.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jID_Kit_inicial.setText("0");
+        jID_Kit_inicial.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jID_Kit_inicial.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jID_Kit_inicial.setEnabled(false);
 
-        jRBtKitSemestral.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRBtKitSemestral.setEnabled(false);
-
-        jRBtKitAnual.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRBtKitAnual.setEnabled(false);
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel28.setText("ID Kit");
 
         jID_REG_inicial.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jID_REG_inicial.setText("0");
@@ -914,11 +917,37 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jID_REG_inicial.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jID_REG_inicial.setEnabled(false);
 
-        jID_REG_mensal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jID_REG_mensal.setText("0");
-        jID_REG_mensal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jID_REG_mensal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jID_REG_mensal.setEnabled(false);
+        jRBtKitInicial.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jRBtKitInicial.setEnabled(false);
+        jRBtKitInicial.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("Inicial");
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("Decendial");
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("Quinzenal");
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel25.setText("Mensal");
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setText("Semestral");
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel27.setText("Anual");
+
+        jRBtKitDecendial.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jRBtKitDecendial.setEnabled(false);
+        jRBtKitDecendial.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jID_REG_decendial.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jID_REG_decendial.setText("0");
@@ -926,11 +955,18 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jID_REG_decendial.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jID_REG_decendial.setEnabled(false);
 
-        jID_REG_semestral.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jID_REG_semestral.setText("0");
-        jID_REG_semestral.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jID_REG_semestral.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jID_REG_semestral.setEnabled(false);
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel29.setText("ID Kit");
+
+        jID_Kit_decendial.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jID_Kit_decendial.setText("0");
+        jID_Kit_decendial.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jID_Kit_decendial.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jID_Kit_decendial.setEnabled(false);
+
+        jRBtKitQuinzenal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jRBtKitQuinzenal.setEnabled(false);
+        jRBtKitQuinzenal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jID_REG_quinzenal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jID_REG_quinzenal.setText("0");
@@ -938,87 +974,127 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jID_REG_quinzenal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jID_REG_quinzenal.setEnabled(false);
 
+        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel30.setText("ID Kit");
+
+        jID_Kit_quinzenal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jID_Kit_quinzenal.setText("0");
+        jID_Kit_quinzenal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jID_Kit_quinzenal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jID_Kit_quinzenal.setEnabled(false);
+
+        jRBtKitMensal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jRBtKitMensal.setEnabled(false);
+        jRBtKitMensal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jID_REG_mensal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jID_REG_mensal.setText("0");
+        jID_REG_mensal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jID_REG_mensal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jID_REG_mensal.setEnabled(false);
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel31.setText("ID Kit");
+
+        jID_Kit_mensal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jID_Kit_mensal.setText("0");
+        jID_Kit_mensal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jID_Kit_mensal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jID_Kit_mensal.setEnabled(false);
+
+        jRBtKitSemestral.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jRBtKitSemestral.setEnabled(false);
+        jRBtKitSemestral.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jID_REG_semestral.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jID_REG_semestral.setText("0");
+        jID_REG_semestral.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jID_REG_semestral.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jID_REG_semestral.setEnabled(false);
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel32.setText("ID Kit");
+
+        jID_Kit_semestral.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jID_Kit_semestral.setText("0");
+        jID_Kit_semestral.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jID_Kit_semestral.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jID_Kit_semestral.setEnabled(false);
+
         jID_REG_anual.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jID_REG_anual.setText("0");
         jID_REG_anual.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jID_REG_anual.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jID_REG_anual.setEnabled(false);
 
-        jRBtKitInicial.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRBtKitInicial.setEnabled(false);
+        jRBtKitAnual.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jRBtKitAnual.setEnabled(false);
+        jRBtKitAnual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jRBtKitDecendial.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRBtKitDecendial.setEnabled(false);
+        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel33.setText("ID Kit");
 
-        jRBtKitQuinzenal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRBtKitQuinzenal.setEnabled(false);
-
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel22.setText("Kit Qui.");
-
-        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel23.setText("Kit Anu.");
-
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel24.setText("Kit Dec.");
-
-        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel25.setText("Kit Sem.");
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel26.setText("Kit Mensal");
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel27.setText("Kit Inicial");
+        jID_Kit_anual.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jID_Kit_anual.setText("0");
+        jID_Kit_anual.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jID_Kit_anual.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jID_Kit_anual.setEnabled(false);
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jID_REG_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jID_REG_mensal, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jRBtKitMensal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel26))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jRBtKitInicial)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel27)))
-                .addGap(3, 3, 3)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jID_REG_decendial, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jID_REG_semestral, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jID_REG_inicial, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(jLabel28)
+                    .addComponent(jID_Kit_inicial)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jRBtKitInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jID_REG_decendial, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(jLabel29)
+                    .addComponent(jRBtKitDecendial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jID_Kit_decendial))
+                .addGap(4, 4, 4)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jRBtKitSemestral)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jID_REG_quinzenal, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(jLabel30)
+                            .addComponent(jID_Kit_quinzenal))
+                        .addGap(4, 4, 4)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jID_REG_mensal, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                            .addComponent(jLabel31)
+                            .addComponent(jID_Kit_mensal)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                        .addComponent(jRBtKitQuinzenal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel25))
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jRBtKitMensal, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(4, 4, 4)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jID_REG_semestral, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                     .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jRBtKitDecendial)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel24)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jID_REG_quinzenal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jID_REG_anual, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jRBtKitQuinzenal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel22))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jRBtKitAnual)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel23)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel32))
+                    .addComponent(jRBtKitSemestral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jID_Kit_semestral))
+                .addGap(4, 4, 4)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jID_REG_anual, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                    .addComponent(jLabel33)
+                    .addComponent(jID_Kit_anual, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRBtKitAnual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel15Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jID_REG_inicial, jID_REG_mensal});
@@ -1031,30 +1107,48 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jID_REG_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRBtKitInicial)
-                    .addComponent(jLabel27)
-                    .addComponent(jID_REG_decendial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRBtKitDecendial)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel23)
                     .addComponent(jLabel24)
-                    .addComponent(jID_REG_quinzenal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRBtKitQuinzenal)
-                    .addComponent(jLabel22))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jID_REG_mensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRBtKitMensal)
-                    .addComponent(jLabel26)
-                    .addComponent(jID_REG_semestral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRBtKitSemestral)
                     .addComponent(jLabel25)
-                    .addComponent(jID_REG_anual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRBtKitAnual)
-                    .addComponent(jLabel23))
-                .addGap(6, 6, 6))
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel27))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jRBtKitInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRBtKitDecendial, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRBtKitQuinzenal, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRBtKitMensal, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRBtKitSemestral, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRBtKitAnual, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jID_REG_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jID_REG_decendial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jID_REG_quinzenal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jID_REG_mensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jID_REG_semestral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jID_REG_anual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel29)
+                    .addComponent(jLabel30)
+                    .addComponent(jLabel31)
+                    .addComponent(jLabel32)
+                    .addComponent(jLabel33))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jID_Kit_anual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jID_Kit_semestral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jID_Kit_mensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jID_Kit_quinzenal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jID_Kit_decendial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jID_Kit_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel15Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jID_REG_decendial, jID_REG_inicial, jID_REG_mensal, jID_REG_semestral});
+        jPanel15Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jID_Kit_mensal, jID_REG_decendial, jID_REG_inicial, jID_REG_mensal, jID_REG_semestral});
 
         jPanel15Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jID_REG_anual, jID_REG_quinzenal});
 
@@ -1064,16 +1158,13 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel10)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 410, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel15, jPanel3});
@@ -1084,13 +1175,13 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Manutenção", jPanel2);
@@ -1322,7 +1413,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1333,7 +1424,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1348,7 +1439,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jFotoInternoKit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jFotoInternoKit, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1374,7 +1465,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jBtBiometria, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1447,7 +1538,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jBtPesquisarInterno, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtFinalizar, jBtImpressao, jBtPesquisarInterno});
@@ -1457,7 +1548,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(3, 3, 3)
                 .addComponent(jBtPesquisarInterno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jBtFinalizar)
                 .addGap(3, 3, 3)
                 .addComponent(jBtImpressao)
@@ -1514,7 +1605,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 .addComponent(jBtAuditoria, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtAuditoriaItens, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jBtAjudaAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -1539,15 +1630,18 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel4, jPanel5, jPanel7, jPanel8});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -1559,12 +1653,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
-        setBounds(250, 30, 648, 521);
+        setBounds(250, 30, 637, 534);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtPesqDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPesqDataActionPerformed
@@ -1743,6 +1835,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             bloquearCampos(!true);
             jComboBoxPavilhao.removeAllItems();
             jComboBoxTipoKit.removeAllItems();
+            jComboBoxKitPersonalizado.removeAllItems();
             try {
                 for (PagamentoKitInterno cc : CONTROLE_KIT_manutencao.pBUSCAR_REGISTRO_MOUSE_clicked()) {
                     jIdLanc.setText(String.valueOf(cc.getIdPagto()));
@@ -1755,38 +1848,38 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     jIdRegistroComp.setText(String.valueOf(cc.getIdRegistroComp()));
                     jComboBoxTipoKit.addItem(cc.getTipoKit());
                     jComboBoxPavilhao.addItem(cc.getDescricaoPavilhao());
-                    jComboBoxKitPersonalizado.setSelectedItem(cc.getKitPersonalizado());
-                    pKIT_inicial = cc.getiD_KIT_inicial();
+                    jComboBoxKitPersonalizado.addItem(cc.getKitPersonalizado());
+                    pKIT_inicial = cc.getiD_BT_Kit_inicial();
                     if (pKIT_inicial == 0) {
                         jRBtKitInicial.setSelected(!true);
                     } else if (pKIT_inicial == 1) {
                         jRBtKitInicial.setSelected(true);
                     }
-                    pKIT_decendial = cc.getiD_KIT_decendial();
+                    pKIT_decendial = cc.getiD_BT_Kit_decendial();
                     if (pKIT_decendial == 0) {
                         jRBtKitDecendial.setSelected(!true);
                     } else if (pKIT_decendial == 1) {
                         jRBtKitDecendial.setSelected(true);
                     }
-                    pKIT_quinzenal = cc.getiD_KIT_quinzenal();
+                    pKIT_quinzenal = cc.getiD_BT_Kit_quinzenal();
                     if (pKIT_quinzenal == 0) {
                         jRBtKitQuinzenal.setSelected(!true);
                     } else if (pKIT_quinzenal == 1) {
                         jRBtKitQuinzenal.setSelected(true);
                     }
-                    pKIT_mensal = cc.getiD_KIT_mensal();
+                    pKIT_mensal = cc.getiD_BT_Kit_mensal();
                     if (pKIT_mensal == 0) {
                         jRBtKitMensal.setSelected(!true);
                     } else if (pKIT_mensal == 1) {
                         jRBtKitMensal.setSelected(true);
                     }
-                    pKIT_semestral = cc.getiD_KIT_semestral();
+                    pKIT_semestral = cc.getiD_BT_Kit_semestral();
                     if (pKIT_semestral == 0) {
                         jRBtKitSemestral.setSelected(!true);
                     } else if (pKIT_semestral == 1) {
                         jRBtKitSemestral.setSelected(true);
                     }
-                    pKIT_anual = cc.getiD_KIT_anual();
+                    pKIT_anual = cc.getiD_BT_Kit_anual();
                     if (pKIT_anual == 0) {
                         jRBtKitAnual.setSelected(!true);
                     } else if (pKIT_anual == 1) {
@@ -1798,6 +1891,13 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     jID_REG_mensal.setText(String.valueOf(cc.getiD_REG_mensal()));
                     jID_REG_semestral.setText(String.valueOf(cc.getiD_REG_semestral()));
                     jID_REG_anual.setText(String.valueOf(cc.getiD_REG_anual()));
+                    //
+                    jID_Kit_inicial.setText(String.valueOf(cc.getiD_KIT_inicial()));
+                    jID_Kit_decendial.setText(String.valueOf(cc.getiD_KIT_decendial()));
+                    jID_Kit_quinzenal.setText(String.valueOf(cc.getiD_KIT_quinzenal()));
+                    jID_Kit_mensal.setText(String.valueOf(cc.getiD_KIT_mensal()));
+                    jID_Kit_semestral.setText(String.valueOf(cc.getiD_KIT_semestral()));
+                    jID_Kit_anual.setText(String.valueOf(cc.getiD_KIT_anual()));
                     jObservacao.setText(cc.getObservacao());
                 }
             } catch (Exception ex) {
@@ -1880,7 +1980,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     acao = 2;
                     bloquearCampos(!true);
                     bloquearBotoes(!true);
-                    Alterar();
+                    AlterarTabelaInternosZero();
                     jComboBoxPavilhao.setEnabled(true);
                     corCampos();
                     statusMov = "Alterou";
@@ -1910,7 +2010,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     acao = 2;
                     bloquearCampos(!true);
                     bloquearBotoes(!true);
-                    Alterar();
+                    AlterarTabelaInternosZero();
                     jComboBoxPavilhao.setEnabled(true);
                     corCampos();
                     statusMov = "Alterou";
@@ -1940,7 +2040,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     acao = 2;
                     bloquearCampos(!true);
                     bloquearBotoes(!true);
-                    Alterar();
+                    AlterarTabelaInternosZero();
                     jComboBoxPavilhao.setEnabled(true);
                     corCampos();
                     statusMov = "Alterou";
@@ -2025,42 +2125,48 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 objPag.setiD_REG_mensal(Integer.valueOf(jID_REG_mensal.getText()));
                 objPag.setiD_REG_semestral(Integer.valueOf(jID_REG_semestral.getText()));
                 objPag.setiD_REG_anual(Integer.valueOf(jID_REG_anual.getText()));
+                objPag.setiD_KIT_inicial(Integer.valueOf(jID_Kit_inicial.getText()));
+                objPag.setiD_KIT_decendial(Integer.valueOf(jID_Kit_decendial.getText()));
+                objPag.setiD_KIT_quinzenal(Integer.valueOf(jID_Kit_quinzenal.getText()));
+                objPag.setiD_KIT_mensal(Integer.valueOf(jID_Kit_mensal.getText()));
+                objPag.setiD_KIT_semestral(Integer.valueOf(jID_Kit_semestral.getText()));
+                objPag.setiD_KIT_anual(Integer.valueOf(jID_Kit_anual.getText()));
                 if (jRBtKitInicial.isSelected()) {
                     pKIT_inicial = 1;
                 } else {
                     pKIT_inicial = 0;
                 }
-                objPag.setiD_KIT_inicial(pKIT_inicial);
+                objPag.setiD_BT_Kit_inicial(pKIT_inicial);
                 if (jRBtKitDecendial.isSelected()) {
                     pKIT_decendial = 1;
                 } else {
                     pKIT_decendial = 0;
                 }
-                objPag.setiD_KIT_decendial(pKIT_decendial);
+                objPag.setiD_BT_Kit_decendial(pKIT_decendial);
                 if (jRBtKitQuinzenal.isSelected()) {
                     pKIT_quinzenal = 1;
                 } else {
                     pKIT_quinzenal = 0;
                 }
-                objPag.setiD_KIT_quinzenal(pKIT_quinzenal);
+                objPag.setiD_BT_Kit_quinzenal(pKIT_quinzenal);
                 if (jRBtKitMensal.isSelected()) {
                     pKIT_mensal = 1;
                 } else {
                     pKIT_mensal = 0;
                 }
-                objPag.setiD_KIT_mensal(pKIT_mensal);
+                objPag.setiD_BT_Kit_mensal(pKIT_mensal);
                 if (jRBtKitSemestral.isSelected()) {
                     pKIT_semestral = 1;
                 } else {
                     pKIT_semestral = 0;
                 }
-                objPag.setiD_KIT_semestral(pKIT_semestral);
+                objPag.setiD_BT_Kit_semestral(pKIT_semestral);
                 if (jRBtKitAnual.isSelected()) {
                     pKIT_anual = 1;
                 } else {
                     pKIT_anual = 0;
                 }
-                objPag.setiD_KIT_anual(pKIT_anual);
+                objPag.setiD_BT_Kit_anual(pKIT_anual);
                 objPag.setObservacao(jObservacao.getText());
                 if (acao == 1) {
                     objPag.setUsuarioInsert(nameUser);
@@ -2570,6 +2676,12 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     public static javax.swing.JFormattedTextField jHorarioPagto;
     private javax.swing.JFormattedTextField jHorarioTermino;
     public static javax.swing.JTextField jIDPesqLanc;
+    public static javax.swing.JTextField jID_Kit_anual;
+    public static javax.swing.JTextField jID_Kit_decendial;
+    public static javax.swing.JTextField jID_Kit_inicial;
+    public static javax.swing.JTextField jID_Kit_mensal;
+    public static javax.swing.JTextField jID_Kit_quinzenal;
+    public static javax.swing.JTextField jID_Kit_semestral;
     public static javax.swing.JTextField jID_REG_anual;
     public static javax.swing.JTextField jID_REG_decendial;
     public static javax.swing.JTextField jID_REG_inicial;
@@ -2600,7 +2712,13 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2674,6 +2792,13 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jID_REG_semestral.setBackground(Color.white);
         jID_REG_anual.setBackground(Color.white);
         //
+        jID_Kit_inicial.setBackground(Color.white);
+        jID_Kit_decendial.setBackground(Color.white);
+        jID_Kit_quinzenal.setBackground(Color.white);
+        jID_Kit_mensal.setBackground(Color.white);
+        jID_Kit_semestral.setBackground(Color.white);
+        jID_Kit_anual.setBackground(Color.white);
+        //
         jIdInterno.setBackground(Color.white);
         jNomeInterno.setBackground(Color.white);
         jDataEntrega.setBackground(Color.white);
@@ -2726,6 +2851,13 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jID_REG_semestral.setText("0");
         jID_REG_anual.setText("0");
         //
+        jID_Kit_inicial.setText("0");
+        jID_Kit_decendial.setText("0");
+        jID_Kit_quinzenal.setText("0");
+        jID_Kit_mensal.setText("0");
+        jID_Kit_semestral.setText("0");
+        jID_Kit_anual.setText("0");
+        //
         jRBtKitInicial.setSelected(!true);
         jRBtKitDecendial.setSelected(!true);
         jRBtKitQuinzenal.setSelected(!true);
@@ -2757,6 +2889,13 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jID_REG_mensal.setEnabled(opcao);
         jID_REG_semestral.setEnabled(opcao);
         jID_REG_anual.setEnabled(opcao);
+        //
+        jID_Kit_inicial.setEnabled(opcao);
+        jID_Kit_decendial.setEnabled(opcao);
+        jID_Kit_quinzenal.setEnabled(opcao);
+        jID_Kit_mensal.setEnabled(opcao);
+        jID_Kit_semestral.setEnabled(opcao);
+        jID_Kit_anual.setEnabled(opcao);
         //
         jDataEntrega.setEnabled(opcao);
         jHorarioPagto.setEnabled(opcao);
@@ -2803,6 +2942,16 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     }
 
     public void Alterar() {
+        jResponsavel.setEnabled(true);
+        jHorarioInicial.setEnabled(true);
+        jHorarioTermino.setEnabled(true);
+        jObservacao.setEnabled(true);
+        //        
+        jBtSalvar.setEnabled(true);
+        jBtCancelar.setEnabled(true);
+    }
+
+    public void AlterarTabelaInternosZero() {
         jDataLanc.setEnabled(true);
         jResponsavel.setEnabled(true);
         jHorarioInicial.setEnabled(true);
@@ -2882,34 +3031,213 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 } catch (ParseException ex) {
                     Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                //INFORMAR QUE O KIT FOI PAGO.
-                objComp.setIdRegistroComp(Integer.valueOf(jIdRegistroComp.getText()));
-                objComp.setKitPago(pRespostaKit);
-                controlPagoKit.confirmarPagamentoKit(objComp);
-                //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
-                objComp.setIdKit(Integer.valueOf(jIdKit.getText()));
-                objComp.setKitPago("Sim");
-                controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
-                //
-                objLog();
-                controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
-                JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
-                //
-                bloquearBotoes(!true);
-                bloquearCampos(!true);
-                //
-                jBtNovo.setEnabled(true);
-                jBtAlterar.setEnabled(!true);
-                jBtExcluir.setEnabled(!true);
-                jBtSalvar.setEnabled(!true);
-                jBtCancelar.setEnabled(!true);
-                jBtFinalizar.setEnabled(!true);
-                //
-                jBtNovoInterno.setEnabled(!true);
-                jBtAlterarInterno.setEnabled(!true);
-                jBtExcluirInterno.setEnabled(!true);
-                jBtSalvarInterno.setEnabled(!true);
-                jBtCancelarInterno.setEnabled(!true);
+                if (jComboBoxKitPersonalizado.getSelectedItem().equals("Sim") && jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")) {
+                    //FAZER UM FOR
+                    if (!jID_REG_inicial.getText().equals("0") || !jID_REG_inicial.getText().equals("") || jID_REG_inicial.getText() != null) {
+                        //INFORMAR QUE O KIT FOI PAGO.
+                        objComp.setIdRegistroComp(Integer.valueOf(jID_REG_inicial.getText()));
+                        objComp.setKitPago(pRespostaKit);
+                        controlPagoKit.confirmarPagamentoKit(objComp);
+                        //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                        objComp.setIdKit(Integer.valueOf(jID_Kit_inicial.getText()));
+                        objComp.setKitPago("Sim");
+                        controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                        //
+                        objLog();
+                        controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                        JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                        //
+                        bloquearBotoes(!true);
+                        bloquearCampos(!true);
+                        //
+                        jBtNovo.setEnabled(true);
+                        jBtAlterar.setEnabled(!true);
+                        jBtExcluir.setEnabled(!true);
+                        jBtSalvar.setEnabled(!true);
+                        jBtCancelar.setEnabled(!true);
+                        jBtFinalizar.setEnabled(!true);
+                        //
+                        jBtNovoInterno.setEnabled(!true);
+                        jBtAlterarInterno.setEnabled(!true);
+                        jBtExcluirInterno.setEnabled(!true);
+                        jBtSalvarInterno.setEnabled(!true);
+                        jBtCancelarInterno.setEnabled(!true);
+                    } else if (!jID_REG_decendial.getText().equals("0") || !jID_REG_decendial.getText().equals("") || jID_REG_decendial.getText() != null) {
+                        //INFORMAR QUE O KIT FOI PAGO.
+                        objComp.setIdRegistroComp(Integer.valueOf(jID_REG_decendial.getText()));
+                        objComp.setKitPago(pRespostaKit);
+                        controlPagoKit.confirmarPagamentoKit(objComp);
+                        //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                        objComp.setIdKit(Integer.valueOf(jID_Kit_decendial.getText()));
+                        objComp.setKitPago("Sim");
+                        controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                        //
+                        objLog();
+                        controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                        JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                        //
+                        bloquearBotoes(!true);
+                        bloquearCampos(!true);
+                        //
+                        jBtNovo.setEnabled(true);
+                        jBtAlterar.setEnabled(!true);
+                        jBtExcluir.setEnabled(!true);
+                        jBtSalvar.setEnabled(!true);
+                        jBtCancelar.setEnabled(!true);
+                        jBtFinalizar.setEnabled(!true);
+                        //
+                        jBtNovoInterno.setEnabled(!true);
+                        jBtAlterarInterno.setEnabled(!true);
+                        jBtExcluirInterno.setEnabled(!true);
+                        jBtSalvarInterno.setEnabled(!true);
+                        jBtCancelarInterno.setEnabled(!true);
+                    } else if (!jID_REG_quinzenal.getText().equals("0") || !jID_REG_quinzenal.getText().equals("") || jID_REG_quinzenal.getText() != null) {
+                        //INFORMAR QUE O KIT FOI PAGO.
+                        objComp.setIdRegistroComp(Integer.valueOf(jID_REG_quinzenal.getText()));
+                        objComp.setKitPago(pRespostaKit);
+                        controlPagoKit.confirmarPagamentoKit(objComp);
+                        //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                        objComp.setIdKit(Integer.valueOf(jID_Kit_quinzenal.getText()));
+                        objComp.setKitPago("Sim");
+                        controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                        //
+                        objLog();
+                        controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                        JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                        //
+                        bloquearBotoes(!true);
+                        bloquearCampos(!true);
+                        //
+                        jBtNovo.setEnabled(true);
+                        jBtAlterar.setEnabled(!true);
+                        jBtExcluir.setEnabled(!true);
+                        jBtSalvar.setEnabled(!true);
+                        jBtCancelar.setEnabled(!true);
+                        jBtFinalizar.setEnabled(!true);
+                        //
+                        jBtNovoInterno.setEnabled(!true);
+                        jBtAlterarInterno.setEnabled(!true);
+                        jBtExcluirInterno.setEnabled(!true);
+                        jBtSalvarInterno.setEnabled(!true);
+                        jBtCancelarInterno.setEnabled(!true);
+                    } else if (!jID_REG_mensal.getText().equals("0") || !jID_REG_mensal.getText().equals("") || jID_REG_mensal.getText() != null) {
+                        //INFORMAR QUE O KIT FOI PAGO.
+                        objComp.setIdRegistroComp(Integer.valueOf(jID_REG_mensal.getText()));
+                        objComp.setKitPago(pRespostaKit);
+                        controlPagoKit.confirmarPagamentoKit(objComp);
+                        //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                        objComp.setIdKit(Integer.valueOf(jID_Kit_mensal.getText()));
+                        objComp.setKitPago("Sim");
+                        controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                        //
+                        objLog();
+                        controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                        JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                        //
+                        bloquearBotoes(!true);
+                        bloquearCampos(!true);
+                        //
+                        jBtNovo.setEnabled(true);
+                        jBtAlterar.setEnabled(!true);
+                        jBtExcluir.setEnabled(!true);
+                        jBtSalvar.setEnabled(!true);
+                        jBtCancelar.setEnabled(!true);
+                        jBtFinalizar.setEnabled(!true);
+                        //
+                        jBtNovoInterno.setEnabled(!true);
+                        jBtAlterarInterno.setEnabled(!true);
+                        jBtExcluirInterno.setEnabled(!true);
+                        jBtSalvarInterno.setEnabled(!true);
+                        jBtCancelarInterno.setEnabled(!true);
+                    } else if (!jID_REG_semestral.getText().equals("0") || !jID_REG_semestral.getText().equals("") || jID_REG_semestral.getText() != null) {
+                        //INFORMAR QUE O KIT FOI PAGO.
+                        objComp.setIdRegistroComp(Integer.valueOf(jID_REG_semestral.getText()));
+                        objComp.setKitPago(pRespostaKit);
+                        controlPagoKit.confirmarPagamentoKit(objComp);
+                        //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                        objComp.setIdKit(Integer.valueOf(jID_Kit_semestral.getText()));
+                        objComp.setKitPago("Sim");
+                        controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                        //
+                        objLog();
+                        controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                        JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                        //
+                        bloquearBotoes(!true);
+                        bloquearCampos(!true);
+                        //
+                        jBtNovo.setEnabled(true);
+                        jBtAlterar.setEnabled(!true);
+                        jBtExcluir.setEnabled(!true);
+                        jBtSalvar.setEnabled(!true);
+                        jBtCancelar.setEnabled(!true);
+                        jBtFinalizar.setEnabled(!true);
+                        //
+                        jBtNovoInterno.setEnabled(!true);
+                        jBtAlterarInterno.setEnabled(!true);
+                        jBtExcluirInterno.setEnabled(!true);
+                        jBtSalvarInterno.setEnabled(!true);
+                        jBtCancelarInterno.setEnabled(!true);
+                    } else if (!jID_REG_anual.getText().equals("0") || !jID_REG_anual.getText().equals("") || jID_REG_anual.getText() != null) {
+                        //INFORMAR QUE O KIT FOI PAGO.
+                        objComp.setIdRegistroComp(Integer.valueOf(jID_REG_anual.getText()));
+                        objComp.setKitPago(pRespostaKit);
+                        controlPagoKit.confirmarPagamentoKit(objComp);
+                        //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                        objComp.setIdKit(Integer.valueOf(jID_Kit_anual.getText()));
+                        objComp.setKitPago("Sim");
+                        controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                        //
+                        objLog();
+                        controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                        JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                        //
+                        bloquearBotoes(!true);
+                        bloquearCampos(!true);
+                        //
+                        jBtNovo.setEnabled(true);
+                        jBtAlterar.setEnabled(!true);
+                        jBtExcluir.setEnabled(!true);
+                        jBtSalvar.setEnabled(!true);
+                        jBtCancelar.setEnabled(!true);
+                        jBtFinalizar.setEnabled(!true);
+                        //
+                        jBtNovoInterno.setEnabled(!true);
+                        jBtAlterarInterno.setEnabled(!true);
+                        jBtExcluirInterno.setEnabled(!true);
+                        jBtSalvarInterno.setEnabled(!true);
+                        jBtCancelarInterno.setEnabled(!true);
+                    }
+                } else {
+                    //INFORMAR QUE O KIT FOI PAGO.
+                    objComp.setIdRegistroComp(Integer.valueOf(jIdRegistroComp.getText()));
+                    objComp.setKitPago(pRespostaKit);
+                    controlPagoKit.confirmarPagamentoKit(objComp);
+                    //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                    objComp.setIdKit(Integer.valueOf(jIdKit.getText()));
+                    objComp.setKitPago("Sim");
+                    controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                    //
+                    objLog();
+                    controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                    JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                    //
+                    bloquearBotoes(!true);
+                    bloquearCampos(!true);
+                    //
+                    jBtNovo.setEnabled(true);
+                    jBtAlterar.setEnabled(!true);
+                    jBtExcluir.setEnabled(!true);
+                    jBtSalvar.setEnabled(!true);
+                    jBtCancelar.setEnabled(!true);
+                    jBtFinalizar.setEnabled(!true);
+                    //
+                    jBtNovoInterno.setEnabled(!true);
+                    jBtAlterarInterno.setEnabled(!true);
+                    jBtExcluirInterno.setEnabled(!true);
+                    jBtSalvarInterno.setEnabled(!true);
+                    jBtCancelarInterno.setEnabled(!true);
+                }
             } else if (tipoServidor.equals("Servidor Windows/MS-SQL Server")) {
                 //INFORMAR QUE O KIT FOI PAGO.
                 objComp.setIdRegistroComp(Integer.valueOf(jIdRegistroComp.getText()));
