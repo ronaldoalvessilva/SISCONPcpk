@@ -564,7 +564,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
                 .addGap(2, 2, 2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -882,13 +882,13 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jBtSair)
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jBtNovo)
                 .addComponent(jBtAlterar)
                 .addComponent(jBtExcluir)
                 .addComponent(jBtSalvar)
-                .addComponent(jBtCancelar)
-                .addComponent(jBtSair))
+                .addComponent(jBtCancelar))
         );
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -1175,13 +1175,12 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(2, 2, 2)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.addTab("Manutenção", jPanel2);
@@ -1352,17 +1351,17 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addComponent(jBtNovoInterno, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jBtAlterarInterno, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jBtExcluirInterno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jBtSalvarInterno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jBtCancelarInterno, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jBtSairInterno, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1421,13 +1420,13 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                .addGap(2, 2, 2)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(2, 2, 2)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1548,7 +1547,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(3, 3, 3)
                 .addComponent(jBtPesquisarInterno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtFinalizar)
                 .addGap(3, 3, 3)
                 .addComponent(jBtImpressao)
@@ -1653,10 +1652,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
-        setBounds(250, 30, 637, 534);
+        setBounds(250, 30, 637, 515);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtPesqDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPesqDataActionPerformed
@@ -1724,14 +1723,26 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         } else {
             if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
                 if (!jPesqNomeInternoVisitado.getText().equals("")) {
+                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+                    }
                     PREENCHER_TABELA_GERAL_CODIGO_nomeInterno();
                 } else {
+                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+                    }
                     PREENCHER_TABELA_GERAL_PAGO_kitOBS();
                 }
             } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
                 if (jPesqNomeInternoVisitado.getText().equals("")) {
+                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+                    }
                     PREENCHER_TABELA_GERAL_PAGO_kitOBS();
                 } else {
+                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+                    }
                     PREENCHER_TABELA_GERAL_CODIGO_nomeInterno();
                 }
             }
@@ -1760,16 +1771,23 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     //
                     jTabelaPagamentoKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
                     jTabelaPagamentoKit.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+                    jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
                 }
             } catch (Exception ex) {
                 Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            if (pTOTAL_registros == 0) {
-                jtotalRegistros.setText("");
-                limparTabela();
-                JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+            // APAGAR DADOS DA TABELA PRODUTOS
+            while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
             }
+            pTOTAL_registros = 0;
+            jtotalRegistros.setText("");
+//            if (pTOTAL_registros == 0) {
+//                jtotalRegistros.setText("");
+//                limparTabela();
+//                JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+//            }
         }
     }//GEN-LAST:event_jCheckBox19ItemStateChanged
 
@@ -1834,7 +1852,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             //
             bloquearCampos(!true);
             jComboBoxPavilhao.removeAllItems();
-            jComboBoxTipoKit.removeAllItems();
+            jComboBoxTipoKit.removeAll();
             jComboBoxKitPersonalizado.removeAllItems();
             try {
                 for (PagamentoKitInterno cc : CONTROLE_KIT_manutencao.pBUSCAR_REGISTRO_MOUSE_clicked()) {
@@ -1849,55 +1867,61 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     jComboBoxTipoKit.addItem(cc.getTipoKit());
                     jComboBoxPavilhao.addItem(cc.getDescricaoPavilhao());
                     jComboBoxKitPersonalizado.addItem(cc.getKitPersonalizado());
-                    pKIT_inicial = cc.getiD_BT_Kit_inicial();
-                    if (pKIT_inicial == 0) {
-                        jRBtKitInicial.setSelected(!true);
-                    } else if (pKIT_inicial == 1) {
-                        jRBtKitInicial.setSelected(true);
+                    if (jComboBoxKitPersonalizado.getSelectedItem() != null && jComboBoxKitPersonalizado.getSelectedItem().equals("Sim")) {
+                        pKIT_inicial = cc.getiD_BT_Kit_inicial();
+                        if (pKIT_inicial == 0) {
+                            jRBtKitInicial.setSelected(!true);
+                        } else if (pKIT_inicial == 1) {
+                            jRBtKitInicial.setSelected(true);
+                        }
+                        pKIT_decendial = cc.getiD_BT_Kit_decendial();
+                        if (pKIT_decendial == 0) {
+                            jRBtKitDecendial.setSelected(!true);
+                        } else if (pKIT_decendial == 1) {
+                            jRBtKitDecendial.setSelected(true);
+                        }
+                        pKIT_quinzenal = cc.getiD_BT_Kit_quinzenal();
+                        if (pKIT_quinzenal == 0) {
+                            jRBtKitQuinzenal.setSelected(!true);
+                        } else if (pKIT_quinzenal == 1) {
+                            jRBtKitQuinzenal.setSelected(true);
+                        }
+                        pKIT_mensal = cc.getiD_BT_Kit_mensal();
+                        if (pKIT_mensal == 0) {
+                            jRBtKitMensal.setSelected(!true);
+                        } else if (pKIT_mensal == 1) {
+                            jRBtKitMensal.setSelected(true);
+                        }
+                        pKIT_semestral = cc.getiD_BT_Kit_semestral();
+                        if (pKIT_semestral == 0) {
+                            jRBtKitSemestral.setSelected(!true);
+                        } else if (pKIT_semestral == 1) {
+                            jRBtKitSemestral.setSelected(true);
+                        }
+                        pKIT_anual = cc.getiD_BT_Kit_anual();
+                        if (pKIT_anual == 0) {
+                            jRBtKitAnual.setSelected(!true);
+                        } else if (pKIT_anual == 1) {
+                            jRBtKitAnual.setSelected(true);
+                        }
+                        jID_REG_inicial.setText(String.valueOf(cc.getiD_REG_inicial()));
+                        jID_REG_decendial.setText(String.valueOf(cc.getiD_REG_decendial()));
+                        jID_REG_quinzenal.setText(String.valueOf(cc.getiD_REG_quinzenal()));
+                        jID_REG_mensal.setText(String.valueOf(cc.getiD_REG_mensal()));
+                        jID_REG_semestral.setText(String.valueOf(cc.getiD_REG_semestral()));
+                        jID_REG_anual.setText(String.valueOf(cc.getiD_REG_anual()));
+                        //
+                        jID_Kit_inicial.setText(String.valueOf(cc.getiD_KIT_inicial()));
+                        jID_Kit_decendial.setText(String.valueOf(cc.getiD_KIT_decendial()));
+                        jID_Kit_quinzenal.setText(String.valueOf(cc.getiD_KIT_quinzenal()));
+                        jID_Kit_mensal.setText(String.valueOf(cc.getiD_KIT_mensal()));
+                        jID_Kit_semestral.setText(String.valueOf(cc.getiD_KIT_semestral()));
+                        jID_Kit_anual.setText(String.valueOf(cc.getiD_KIT_anual()));
+                    } else if (jComboBoxKitPersonalizado.getSelectedItem() != null && jComboBoxKitPersonalizado.getSelectedItem().equals("Não")) {
+                        jIdKit.setText(String.valueOf(cc.getIdKit()));
+                        jIdRegistroComp.setText(String.valueOf(cc.getIdRegistroComp()));
+                        jComboBoxTipoKit.setSelectedItem(cc.getTipoKit());
                     }
-                    pKIT_decendial = cc.getiD_BT_Kit_decendial();
-                    if (pKIT_decendial == 0) {
-                        jRBtKitDecendial.setSelected(!true);
-                    } else if (pKIT_decendial == 1) {
-                        jRBtKitDecendial.setSelected(true);
-                    }
-                    pKIT_quinzenal = cc.getiD_BT_Kit_quinzenal();
-                    if (pKIT_quinzenal == 0) {
-                        jRBtKitQuinzenal.setSelected(!true);
-                    } else if (pKIT_quinzenal == 1) {
-                        jRBtKitQuinzenal.setSelected(true);
-                    }
-                    pKIT_mensal = cc.getiD_BT_Kit_mensal();
-                    if (pKIT_mensal == 0) {
-                        jRBtKitMensal.setSelected(!true);
-                    } else if (pKIT_mensal == 1) {
-                        jRBtKitMensal.setSelected(true);
-                    }
-                    pKIT_semestral = cc.getiD_BT_Kit_semestral();
-                    if (pKIT_semestral == 0) {
-                        jRBtKitSemestral.setSelected(!true);
-                    } else if (pKIT_semestral == 1) {
-                        jRBtKitSemestral.setSelected(true);
-                    }
-                    pKIT_anual = cc.getiD_BT_Kit_anual();
-                    if (pKIT_anual == 0) {
-                        jRBtKitAnual.setSelected(!true);
-                    } else if (pKIT_anual == 1) {
-                        jRBtKitAnual.setSelected(true);
-                    }
-                    jID_REG_inicial.setText(String.valueOf(cc.getiD_REG_inicial()));
-                    jID_REG_decendial.setText(String.valueOf(cc.getiD_REG_decendial()));
-                    jID_REG_quinzenal.setText(String.valueOf(cc.getiD_REG_quinzenal()));
-                    jID_REG_mensal.setText(String.valueOf(cc.getiD_REG_mensal()));
-                    jID_REG_semestral.setText(String.valueOf(cc.getiD_REG_semestral()));
-                    jID_REG_anual.setText(String.valueOf(cc.getiD_REG_anual()));
-                    //
-                    jID_Kit_inicial.setText(String.valueOf(cc.getiD_KIT_inicial()));
-                    jID_Kit_decendial.setText(String.valueOf(cc.getiD_KIT_decendial()));
-                    jID_Kit_quinzenal.setText(String.valueOf(cc.getiD_KIT_quinzenal()));
-                    jID_Kit_mensal.setText(String.valueOf(cc.getiD_KIT_mensal()));
-                    jID_Kit_semestral.setText(String.valueOf(cc.getiD_KIT_semestral()));
-                    jID_Kit_anual.setText(String.valueOf(cc.getiD_KIT_anual()));
                     jObservacao.setText(cc.getObservacao());
                 }
             } catch (Exception ex) {
@@ -1966,7 +1990,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             } else {
                 if (rows != 0) {
                     jComboBoxPavilhao.setEnabled(!true);
-                    preencherComboBoxPavilhao();
+//                    preencherComboBoxPavilhao();
                     acao = 2;
                     bloquearCampos(!true);
                     bloquearBotoes(!true);
@@ -2347,7 +2371,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 if (jStatusLanc.getText().equals("FINALIZADO")) {
                     JOptionPane.showMessageDialog(rootPane, "Lançamento já foi finalizado");
                 } else {
-                    Finalizar();
+                    FINALIZAR_kits();
                 }
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, "Não foi possível verificar se lançamento foi finalizado\nERRO: " + ex);
@@ -2842,6 +2866,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jComboBoxTipoKit.setSelectedItem("Selecione...");
         jComboBoxPavilhao.setSelectedItem("Selecione...");
         jComboBoxKitPersonalizado.setSelectedItem("Selecione...");
+        jComboBoxTipoKit.setSelectedItem("Selecione...");
         jObservacao.setText("");
         //
         jID_REG_inicial.setText("0");
@@ -3007,7 +3032,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         }
     }
 
-    public void Finalizar() {
+    public void FINALIZAR_kits() {
         statusMov = "Finalizou";
         horaMov = jHoraSistema.getText();
         dataModFinal = jDataSistema.getText();

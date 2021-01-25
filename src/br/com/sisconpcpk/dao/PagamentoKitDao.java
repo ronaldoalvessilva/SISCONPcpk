@@ -45,7 +45,7 @@ public class PagamentoKitDao {
         buscarPavilhao(objPag.getDescricaoPavilhao());
         conecta.abrirConexao();
         try {
-            PreparedStatement pst = conecta.con.prepareStatement("INSERT INTO PAGAMENTO_KIT_INTERNOS (StatusLanc,DataLanc,Responsavel,HoraInicio,HoraTermino,IdKit,TipoKit,IdRegistro,IdPav,Observacao,UsuarioInsert,DataInsert,HorarioInsert,KitPersonalizado,Id_REG_inicial,Id_REG_decendial,Id_REG_quinzenal,Id_REG_mensal,Id_REG_semestral,Id_REG_anual,iD_BT_Kit_inicial,iD_BT_Kitdecendial,iD_BT_Kit_quinzenal,iD_BT_Kit_mensal,iD_BT_Kit_semestral,iD_BT_Kit_anual,ID_KIT_inicial,ID_KIT_decendial,ID_KIT_quinzenal,ID_KIT_mensal,ID_KIT_semestral,ID_KIT_anual) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pst = conecta.con.prepareStatement("INSERT INTO PAGAMENTO_KIT_INTERNOS (StatusLanc,DataLanc,Responsavel,HoraInicio,HoraTermino,IdKit,TipoKit,IdRegistro,IdPav,Observacao,UsuarioInsert,DataInsert,HorarioInsert,KitPersonalizado,Id_REG_inicial,Id_REG_decendial,Id_REG_quinzenal,Id_REG_mensal,Id_REG_semestral,Id_REG_anual,ID_BT_Kit_inicial,ID_BT_Kit_decendial,ID_BT_Kit_quinzenal,ID_BT_Kit_mensal,ID_BT_Kit_semestral,ID_BT_Kit_anual,Id_KIT_inicial,ID_KIT_decendial,ID_KIT_quinzenal,ID_KIT_mensal,ID_KIT_semestral,ID_KIT_anual) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pst.setString(1, objPag.getStatusLanc());
             pst.setTimestamp(2, new java.sql.Timestamp(objPag.getDataLanc().getTime()));
             pst.setString(3, objPag.getResponsavel());
@@ -251,7 +251,7 @@ public class PagamentoKitDao {
                     + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
                     + "INNER JOIN PRONTUARIOSCRC "
                     + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
-                    + "ORDER BY DataLanc");
+                    + "ORDER BY PAGAMENTO_KIT_INTERNOS.IdPagto");
             while (conecta.rs.next()) {
                 PagamentoKitInterno pListarTodosRegistrosKit = new PagamentoKitInterno();
                 pListarTodosRegistrosKit.setIdPagto(conecta.rs.getInt("IdPagto"));
@@ -566,7 +566,8 @@ public class PagamentoKitDao {
         conecta.abrirConexao();
         List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
         try {
-            conecta.executaSQL("SELECT * FROM PAGAMENTO_KIT_INTERNOS "
+            conecta.executaSQL("SELECT * "
+                    + "FROM PAGAMENTO_KIT_INTERNOS "
                     + "INNER JOIN PAVILHAO "
                     + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
                     + "WHERE IdPagto='" + jIDPesqLanc.getText() + "'");
@@ -577,9 +578,10 @@ public class PagamentoKitDao {
                 pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
                 pListarTodosRegistrosKit.setResponsavel(conecta.rs.getString("Responsavel"));
                 pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
+                pListarTodosRegistrosKit.setIdKit(conecta.rs.getInt("IdKit"));
+                pListarTodosRegistrosKit.setIdRegistroComp(conecta.rs.getInt("IdRegistro"));
                 pListarTodosRegistrosKit.setHoraInicio(conecta.rs.getString("HoraInicio"));
                 pListarTodosRegistrosKit.setHoraTermino(conecta.rs.getString("HoraTermino"));
-                pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
                 pListarTodosRegistrosKit.setKitPersonalizado(conecta.rs.getString("KitPersonalizado"));
                 pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
                 pListarTodosRegistrosKit.setiD_BT_Kit_inicial(conecta.rs.getInt("ID_BT_Kit_inicial"));
