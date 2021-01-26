@@ -1680,10 +1680,25 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
                         dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
                         if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+                            while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                                ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+                            }
                             PREENCHER_TABELA_GERAL_PAGO_kit();
+                            if (pTOTAL_registros == 0) {
+                                jtotalRegistros.setText("");
+                                limparTabela();
+                                JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+                            }
                         } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+                            while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                                ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+                            }
                             PREENCHER_TABELA_GERAL_PAGO_kit0();
-
+                            if (pTOTAL_registros == 0) {
+                                jtotalRegistros.setText("");
+                                limparTabela();
+                                JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+                            }
                         }
                     }
                 }
@@ -1704,9 +1719,25 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
                         dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
                         if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+                            while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                                ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+                            }
                             PREENCHER_TABELA_GERAL_PAGO_kit();
+                            if (pTOTAL_registros == 0) {
+                                jtotalRegistros.setText("");
+                                limparTabela();
+                                JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+                            }
                         } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+                            while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                                ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+                            }
                             PREENCHER_TABELA_GERAL_PAGO_kit0();
+                            if (pTOTAL_registros == 0) {
+                                jtotalRegistros.setText("");
+                                limparTabela();
+                                JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+                            }
                         }
                     }
                 }
@@ -1721,31 +1752,51 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         if (jIDPesqLanc.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Informe um ID para pesquisa.");
         } else {
-            if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-                if (!jPesqNomeInternoVisitado.getText().equals("")) {
-                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
-                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
-                    }
-                    PREENCHER_TABELA_GERAL_CODIGO_nomeInterno();
-                } else {
-                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
-                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
-                    }
-                    PREENCHER_TABELA_GERAL_PAGO_kitOBS();
-                }
-            } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-                if (jPesqNomeInternoVisitado.getText().equals("")) {
-                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
-                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
-                    }
-                    PREENCHER_TABELA_GERAL_PAGO_kitOBS();
-                } else {
-                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
-                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
-                    }
-                    PREENCHER_TABELA_GERAL_CODIGO_nomeInterno();
-                }
+//            if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+//                if (!jIDPesqLanc.getText().equals("")) {
+            while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
             }
+            PREENCHER_TABELA_GERAL_CODIGO_nomeInterno();
+            if (pTOTAL_registros == 0) {
+                jtotalRegistros.setText("");
+                limparTabela();
+                JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+            }
+//                } else {
+//                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+//                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+//                    }
+//                    PREENCHER_TABELA_GERAL_PAGO_kitOBS();
+//                    if (pTOTAL_registros == 0) {
+//                        jtotalRegistros.setText("");
+//                        limparTabela();
+//                        JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+//                    }
+//                }
+//            } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+//                if (jIDPesqLanc.getText().equals("")) {
+//                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+//                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+//                    }
+//                    PREENCHER_TABELA_GERAL_PAGO_kitOBS();
+//                    if (pTOTAL_registros == 0) {
+//                        jtotalRegistros.setText("");
+//                        limparTabela();
+//                        JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+//                    }
+//                } else {
+//                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+//                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+//                    }
+//                    PREENCHER_TABELA_GERAL_CODIGO_nomeInterno();
+//                    if (pTOTAL_registros == 0) {
+//                        jtotalRegistros.setText("");
+//                        limparTabela();
+//                        JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+//                    }
+//                }
+//            }
         }
     }//GEN-LAST:event_jBtPesqIDActionPerformed
 
@@ -1754,6 +1805,12 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         count = 0;
         flag = 1;
         if (evt.getStateChange() == evt.SELECTED) {
+            // APAGAR DADOS DA TABELA PRODUTOS
+            while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+            }
+            pTOTAL_registros = 0;
+            jtotalRegistros.setText("");
             DefaultTableModel objTodosRegistrosKit = (DefaultTableModel) jTabelaPagamentoKit.getModel();
             try {
                 for (PagamentoKitInterno b : CONTROLE_KIT_manutencao.pBUSCAR_TODOS_registros()) {
@@ -1799,10 +1856,27 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "Informe um nome ou parte do nome para pesquisa.");
         } else {
             if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...") && jDataPesqInicial.getDate() == null && jDataPesqFinal.getDate() == null) {
+                // APAGAR DADOS DA TABELA PRODUTOS
+                while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                    ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+                }
                 PREENCHER_TABELA_PAGTO_KIT_nomeInterno();
+                if (pTOTAL_registros == 0) {
+                    jtotalRegistros.setText("");
+                    limparTabela();
+                    JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+                }
             } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...") && jDataPesqInicial.getDate() == null && jDataPesqFinal.getDate() == null) {
-
+                // APAGAR DADOS DA TABELA PRODUTOS
+                while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                    ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+                }
                 PREENCHER_TABELA_PAGTO_KIT_NOME_tipokit();
+                if (pTOTAL_registros == 0) {
+                    jtotalRegistros.setText("");
+                    limparTabela();
+                    JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+                }
             } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...") && jDataPesqInicial.getDate() != null && jDataPesqFinal.getDate() != null) {
                 if (tipoServidor == null || tipoServidor.equals("")) {
                     JOptionPane.showMessageDialog(rootPane, "É necessário definir o parâmtero para o sistema operacional utilizado no servidor, (UBUNTU-LINUX ou WINDOWS SERVER).");
@@ -1813,7 +1887,16 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         SimpleDateFormat formatoAmerica = new SimpleDateFormat("yyyy/MM/dd");
                         dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
                         dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
+                        // APAGAR DADOS DA TABELA PRODUTOS
+                        while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                            ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+                        }
                         PREENCHER_TABELA_PAGTO_KIT_NOME_TIPO_data();
+                        if (pTOTAL_registros == 0) {
+                            jtotalRegistros.setText("");
+                            limparTabela();
+                            JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+                        }
                     }
                 } else if (tipoServidor.equals("Servidor Windows/MS-SQL Server")) {
                     if (jDataPesqInicial.getDate().after(jDataPesqFinal.getDate())) {
@@ -1822,7 +1905,16 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         SimpleDateFormat formatoAmerica = new SimpleDateFormat("dd/MM/yyyy");
                         dataInicial = formatoAmerica.format(jDataPesqInicial.getDate().getTime());
                         dataFinal = formatoAmerica.format(jDataPesqFinal.getDate().getTime());
+                        // APAGAR DADOS DA TABELA PRODUTOS
+                        while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                            ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+                        }
                         PREENCHER_TABELA_PAGTO_KIT_NOME_TIPO_data();
+                        if (pTOTAL_registros == 0) {
+                            jtotalRegistros.setText("");
+                            limparTabela();
+                            JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+                        }
                     }
                 }
             }
@@ -3058,7 +3150,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 }
                 if (jComboBoxKitPersonalizado.getSelectedItem().equals("Sim") && jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")) {
                     //FAZER UM FOR
-                    if (!jID_REG_inicial.getText().equals("0") || !jID_REG_inicial.getText().equals("") || jID_REG_inicial.getText() != null) {
+                    if (jRBtKitInicial.isSelected()) {
                         //INFORMAR QUE O KIT FOI PAGO.
                         objComp.setIdRegistroComp(Integer.valueOf(jID_REG_inicial.getText()));
                         objComp.setKitPago(pRespostaKit);
@@ -3087,7 +3179,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         jBtExcluirInterno.setEnabled(!true);
                         jBtSalvarInterno.setEnabled(!true);
                         jBtCancelarInterno.setEnabled(!true);
-                    } else if (!jID_REG_decendial.getText().equals("0") || !jID_REG_decendial.getText().equals("") || jID_REG_decendial.getText() != null) {
+                    }
+                    if (jRBtKitDecendial.isSelected()) {
                         //INFORMAR QUE O KIT FOI PAGO.
                         objComp.setIdRegistroComp(Integer.valueOf(jID_REG_decendial.getText()));
                         objComp.setKitPago(pRespostaKit);
@@ -3116,7 +3209,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         jBtExcluirInterno.setEnabled(!true);
                         jBtSalvarInterno.setEnabled(!true);
                         jBtCancelarInterno.setEnabled(!true);
-                    } else if (!jID_REG_quinzenal.getText().equals("0") || !jID_REG_quinzenal.getText().equals("") || jID_REG_quinzenal.getText() != null) {
+                    }
+                    if (jRBtKitQuinzenal.isSelected()) {
                         //INFORMAR QUE O KIT FOI PAGO.
                         objComp.setIdRegistroComp(Integer.valueOf(jID_REG_quinzenal.getText()));
                         objComp.setKitPago(pRespostaKit);
@@ -3145,7 +3239,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         jBtExcluirInterno.setEnabled(!true);
                         jBtSalvarInterno.setEnabled(!true);
                         jBtCancelarInterno.setEnabled(!true);
-                    } else if (!jID_REG_mensal.getText().equals("0") || !jID_REG_mensal.getText().equals("") || jID_REG_mensal.getText() != null) {
+                    }
+                    if (jRBtKitMensal.isSelected()) {
                         //INFORMAR QUE O KIT FOI PAGO.
                         objComp.setIdRegistroComp(Integer.valueOf(jID_REG_mensal.getText()));
                         objComp.setKitPago(pRespostaKit);
@@ -3174,7 +3269,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         jBtExcluirInterno.setEnabled(!true);
                         jBtSalvarInterno.setEnabled(!true);
                         jBtCancelarInterno.setEnabled(!true);
-                    } else if (!jID_REG_semestral.getText().equals("0") || !jID_REG_semestral.getText().equals("") || jID_REG_semestral.getText() != null) {
+                    }
+                    if (jRBtKitSemestral.isSelected()) {
                         //INFORMAR QUE O KIT FOI PAGO.
                         objComp.setIdRegistroComp(Integer.valueOf(jID_REG_semestral.getText()));
                         objComp.setKitPago(pRespostaKit);
@@ -3203,7 +3299,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         jBtExcluirInterno.setEnabled(!true);
                         jBtSalvarInterno.setEnabled(!true);
                         jBtCancelarInterno.setEnabled(!true);
-                    } else if (!jID_REG_anual.getText().equals("0") || !jID_REG_anual.getText().equals("") || jID_REG_anual.getText() != null) {
+                    }
+                    if (jRBtKitAnual.isSelected()) {
                         //INFORMAR QUE O KIT FOI PAGO.
                         objComp.setIdRegistroComp(Integer.valueOf(jID_REG_anual.getText()));
                         objComp.setKitPago(pRespostaKit);
@@ -3273,32 +3370,216 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 } catch (ParseException ex) {
                     Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                objComp.setKitPago(pRespostaKit);
-                controlPagoKit.confirmarPagamentoKit(objComp);
-                //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
-                objComp.setIdKit(Integer.valueOf(jIdKit.getText()));
-                objComp.setKitPago("Sim");
-                controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
-                //
-                objLog();
-                controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
-                JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
-                //
-                bloquearBotoes(!true);
-                bloquearCampos(!true);
-                //
-                jBtNovo.setEnabled(true);
-                jBtAlterar.setEnabled(!true);
-                jBtExcluir.setEnabled(!true);
-                jBtSalvar.setEnabled(!true);
-                jBtCancelar.setEnabled(!true);
-                jBtFinalizar.setEnabled(!true);
-                //
-                jBtNovoInterno.setEnabled(!true);
-                jBtAlterarInterno.setEnabled(!true);
-                jBtExcluirInterno.setEnabled(!true);
-                jBtSalvarInterno.setEnabled(!true);
-                jBtCancelarInterno.setEnabled(!true);
+                if (jComboBoxKitPersonalizado.getSelectedItem().equals("Sim") && jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")) {
+                    //FAZER UM FOR
+                    if (jRBtKitInicial.isSelected()) {
+                        //INFORMAR QUE O KIT FOI PAGO.
+                        objComp.setIdRegistroComp(Integer.valueOf(jID_REG_inicial.getText()));
+                        objComp.setKitPago(pRespostaKit);
+                        controlPagoKit.confirmarPagamentoKit(objComp);
+                        //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                        objComp.setIdKit(Integer.valueOf(jID_Kit_inicial.getText()));
+                        objComp.setKitPago("Sim");
+                        controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                        //
+                        objLog();
+                        controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                        JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                        //
+                        bloquearBotoes(!true);
+                        bloquearCampos(!true);
+                        //
+                        jBtNovo.setEnabled(true);
+                        jBtAlterar.setEnabled(!true);
+                        jBtExcluir.setEnabled(!true);
+                        jBtSalvar.setEnabled(!true);
+                        jBtCancelar.setEnabled(!true);
+                        jBtFinalizar.setEnabled(!true);
+                        //
+                        jBtNovoInterno.setEnabled(!true);
+                        jBtAlterarInterno.setEnabled(!true);
+                        jBtExcluirInterno.setEnabled(!true);
+                        jBtSalvarInterno.setEnabled(!true);
+                        jBtCancelarInterno.setEnabled(!true);
+                    }
+                    if (jRBtKitDecendial.isSelected()) {
+                        //INFORMAR QUE O KIT FOI PAGO.
+                        objComp.setIdRegistroComp(Integer.valueOf(jID_REG_decendial.getText()));
+                        objComp.setKitPago(pRespostaKit);
+                        controlPagoKit.confirmarPagamentoKit(objComp);
+                        //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                        objComp.setIdKit(Integer.valueOf(jID_Kit_decendial.getText()));
+                        objComp.setKitPago("Sim");
+                        controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                        //
+                        objLog();
+                        controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                        JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                        //
+                        bloquearBotoes(!true);
+                        bloquearCampos(!true);
+                        //
+                        jBtNovo.setEnabled(true);
+                        jBtAlterar.setEnabled(!true);
+                        jBtExcluir.setEnabled(!true);
+                        jBtSalvar.setEnabled(!true);
+                        jBtCancelar.setEnabled(!true);
+                        jBtFinalizar.setEnabled(!true);
+                        //
+                        jBtNovoInterno.setEnabled(!true);
+                        jBtAlterarInterno.setEnabled(!true);
+                        jBtExcluirInterno.setEnabled(!true);
+                        jBtSalvarInterno.setEnabled(!true);
+                        jBtCancelarInterno.setEnabled(!true);
+                    }
+                    if (jRBtKitQuinzenal.isSelected()) {
+                        //INFORMAR QUE O KIT FOI PAGO.
+                        objComp.setIdRegistroComp(Integer.valueOf(jID_REG_quinzenal.getText()));
+                        objComp.setKitPago(pRespostaKit);
+                        controlPagoKit.confirmarPagamentoKit(objComp);
+                        //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                        objComp.setIdKit(Integer.valueOf(jID_Kit_quinzenal.getText()));
+                        objComp.setKitPago("Sim");
+                        controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                        //
+                        objLog();
+                        controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                        JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                        //
+                        bloquearBotoes(!true);
+                        bloquearCampos(!true);
+                        //
+                        jBtNovo.setEnabled(true);
+                        jBtAlterar.setEnabled(!true);
+                        jBtExcluir.setEnabled(!true);
+                        jBtSalvar.setEnabled(!true);
+                        jBtCancelar.setEnabled(!true);
+                        jBtFinalizar.setEnabled(!true);
+                        //
+                        jBtNovoInterno.setEnabled(!true);
+                        jBtAlterarInterno.setEnabled(!true);
+                        jBtExcluirInterno.setEnabled(!true);
+                        jBtSalvarInterno.setEnabled(!true);
+                        jBtCancelarInterno.setEnabled(!true);
+                    }
+                    if (jRBtKitMensal.isSelected()) {
+                        //INFORMAR QUE O KIT FOI PAGO.
+                        objComp.setIdRegistroComp(Integer.valueOf(jID_REG_mensal.getText()));
+                        objComp.setKitPago(pRespostaKit);
+                        controlPagoKit.confirmarPagamentoKit(objComp);
+                        //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                        objComp.setIdKit(Integer.valueOf(jID_Kit_mensal.getText()));
+                        objComp.setKitPago("Sim");
+                        controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                        //
+                        objLog();
+                        controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                        JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                        //
+                        bloquearBotoes(!true);
+                        bloquearCampos(!true);
+                        //
+                        jBtNovo.setEnabled(true);
+                        jBtAlterar.setEnabled(!true);
+                        jBtExcluir.setEnabled(!true);
+                        jBtSalvar.setEnabled(!true);
+                        jBtCancelar.setEnabled(!true);
+                        jBtFinalizar.setEnabled(!true);
+                        //
+                        jBtNovoInterno.setEnabled(!true);
+                        jBtAlterarInterno.setEnabled(!true);
+                        jBtExcluirInterno.setEnabled(!true);
+                        jBtSalvarInterno.setEnabled(!true);
+                        jBtCancelarInterno.setEnabled(!true);
+                    }
+                    if (jRBtKitSemestral.isSelected()) {
+                        //INFORMAR QUE O KIT FOI PAGO.
+                        objComp.setIdRegistroComp(Integer.valueOf(jID_REG_semestral.getText()));
+                        objComp.setKitPago(pRespostaKit);
+                        controlPagoKit.confirmarPagamentoKit(objComp);
+                        //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                        objComp.setIdKit(Integer.valueOf(jID_Kit_semestral.getText()));
+                        objComp.setKitPago("Sim");
+                        controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                        //
+                        objLog();
+                        controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                        JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                        //
+                        bloquearBotoes(!true);
+                        bloquearCampos(!true);
+                        //
+                        jBtNovo.setEnabled(true);
+                        jBtAlterar.setEnabled(!true);
+                        jBtExcluir.setEnabled(!true);
+                        jBtSalvar.setEnabled(!true);
+                        jBtCancelar.setEnabled(!true);
+                        jBtFinalizar.setEnabled(!true);
+                        //
+                        jBtNovoInterno.setEnabled(!true);
+                        jBtAlterarInterno.setEnabled(!true);
+                        jBtExcluirInterno.setEnabled(!true);
+                        jBtSalvarInterno.setEnabled(!true);
+                        jBtCancelarInterno.setEnabled(!true);
+                    }
+                    if (jRBtKitAnual.isSelected()) {
+                        //INFORMAR QUE O KIT FOI PAGO.
+                        objComp.setIdRegistroComp(Integer.valueOf(jID_REG_anual.getText()));
+                        objComp.setKitPago(pRespostaKit);
+                        controlPagoKit.confirmarPagamentoKit(objComp);
+                        //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                        objComp.setIdKit(Integer.valueOf(jID_Kit_anual.getText()));
+                        objComp.setKitPago("Sim");
+                        controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                        //
+                        objLog();
+                        controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                        JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                        //
+                        bloquearBotoes(!true);
+                        bloquearCampos(!true);
+                        //
+                        jBtNovo.setEnabled(true);
+                        jBtAlterar.setEnabled(!true);
+                        jBtExcluir.setEnabled(!true);
+                        jBtSalvar.setEnabled(!true);
+                        jBtCancelar.setEnabled(!true);
+                        jBtFinalizar.setEnabled(!true);
+                        //
+                        jBtNovoInterno.setEnabled(!true);
+                        jBtAlterarInterno.setEnabled(!true);
+                        jBtExcluirInterno.setEnabled(!true);
+                        jBtSalvarInterno.setEnabled(!true);
+                        jBtCancelarInterno.setEnabled(!true);
+                    }
+                } else {
+                    objComp.setKitPago(pRespostaKit);
+                    controlPagoKit.confirmarPagamentoKit(objComp);
+                    //CONFIRMAR O PAGAMENTO DO KIT TAMBÉM NA TABELA "PROGRAMACAO_PAGAMENTO_KITS_INTERNOS" DA PROGRAMAÇÃO INDEPENDENTE.
+                    objComp.setIdKit(Integer.valueOf(jIdKit.getText()));
+                    objComp.setKitPago("Sim");
+                    controlPagoKit.confirmarPagamentoKitProgramacao(objComp);
+                    //
+                    objLog();
+                    controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
+                    JOptionPane.showMessageDialog(rootPane, "Registro FINALIZADO com sucesso !!!");
+                    //
+                    bloquearBotoes(!true);
+                    bloquearCampos(!true);
+                    //
+                    jBtNovo.setEnabled(true);
+                    jBtAlterar.setEnabled(!true);
+                    jBtExcluir.setEnabled(!true);
+                    jBtSalvar.setEnabled(!true);
+                    jBtCancelar.setEnabled(!true);
+                    jBtFinalizar.setEnabled(!true);
+                    //
+                    jBtNovoInterno.setEnabled(!true);
+                    jBtAlterarInterno.setEnabled(!true);
+                    jBtExcluirInterno.setEnabled(!true);
+                    jBtSalvarInterno.setEnabled(!true);
+                    jBtCancelarInterno.setEnabled(!true);
+                }
             }
         }
     }
@@ -3468,6 +3749,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String mese = dataEntrada.substring(5, 7);
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
+                jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
                 objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -3492,6 +3774,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String mese = dataEntrada.substring(5, 7);
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
+                jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
                 objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -3516,6 +3799,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String mese = dataEntrada.substring(5, 7);
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
+                jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
                 objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -3540,6 +3824,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String mese = dataEntrada.substring(5, 7);
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
+                jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
                 objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -3564,6 +3849,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String mese = dataEntrada.substring(5, 7);
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
+                jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
                 objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -3594,6 +3880,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String mese = dataEntrada.substring(5, 7);
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
+                jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
                 objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -3618,6 +3905,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String mese = dataEntrada.substring(5, 7);
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
+                jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
                 objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -3642,6 +3930,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String mese = dataEntrada.substring(5, 7);
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
+                jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
                 objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
