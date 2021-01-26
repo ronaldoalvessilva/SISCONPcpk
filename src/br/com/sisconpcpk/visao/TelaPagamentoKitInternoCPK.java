@@ -1365,13 +1365,13 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jBtSairInterno)
             .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jBtNovoInterno)
                 .addComponent(jBtAlterarInterno)
                 .addComponent(jBtExcluirInterno)
                 .addComponent(jBtSalvarInterno)
-                .addComponent(jBtCancelarInterno)
-                .addComponent(jBtSairInterno))
+                .addComponent(jBtCancelarInterno))
         );
 
         jTabelaProdutosKitInterno.setAutoCreateRowSorter(true);

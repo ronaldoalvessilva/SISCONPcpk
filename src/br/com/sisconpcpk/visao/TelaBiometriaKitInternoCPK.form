@@ -1080,7 +1080,7 @@
           <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="OBS.: MUDAN&#xc7;AS NA FORMA DE PAGAR &lt;KIT PERSONALISADO&gt;"/>
+        <Property name="text" type="java.lang.String" value="OBS.: MUDAN&#xc7;AS NA FORMA DE PAGAR &lt;KIT PERSONALISADO&gt; - TESTE"/>
       </Properties>
     </Component>
   </SubComponents>
