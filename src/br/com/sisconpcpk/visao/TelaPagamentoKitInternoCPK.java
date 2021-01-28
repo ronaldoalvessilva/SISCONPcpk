@@ -2340,6 +2340,54 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 objPag.setTipoKit((String) jComboBoxTipoKit.getSelectedItem());
                 objPag.setDescricaoPavilhao((String) jComboBoxPavilhao.getSelectedItem());
                 objPag.setKitPersonalizado((String) jComboBoxKitPersonalizado.getSelectedItem());
+                objPag.setiD_REG_inicial(Integer.valueOf(jID_REG_inicial.getText()));
+                objPag.setiD_REG_decendial(Integer.valueOf(jID_REG_decendial.getText()));
+                objPag.setiD_REG_quinzenal(Integer.valueOf(jID_REG_quinzenal.getText()));
+                objPag.setiD_REG_mensal(Integer.valueOf(jID_REG_mensal.getText()));
+                objPag.setiD_REG_semestral(Integer.valueOf(jID_REG_semestral.getText()));
+                objPag.setiD_REG_anual(Integer.valueOf(jID_REG_anual.getText()));
+                objPag.setiD_KIT_inicial(Integer.valueOf(jID_Kit_inicial.getText()));
+                objPag.setiD_KIT_decendial(Integer.valueOf(jID_Kit_decendial.getText()));
+                objPag.setiD_KIT_quinzenal(Integer.valueOf(jID_Kit_quinzenal.getText()));
+                objPag.setiD_KIT_mensal(Integer.valueOf(jID_Kit_mensal.getText()));
+                objPag.setiD_KIT_semestral(Integer.valueOf(jID_Kit_semestral.getText()));
+                objPag.setiD_KIT_anual(Integer.valueOf(jID_Kit_anual.getText()));
+                if (jRBtKitInicial.isSelected()) {
+                    pKIT_inicial = 1;
+                } else {
+                    pKIT_inicial = 0;
+                }
+                objPag.setiD_BT_Kit_inicial(pKIT_inicial);
+                if (jRBtKitDecendial.isSelected()) {
+                    pKIT_decendial = 1;
+                } else {
+                    pKIT_decendial = 0;
+                }
+                objPag.setiD_BT_Kit_decendial(pKIT_decendial);
+                if (jRBtKitQuinzenal.isSelected()) {
+                    pKIT_quinzenal = 1;
+                } else {
+                    pKIT_quinzenal = 0;
+                }
+                objPag.setiD_BT_Kit_quinzenal(pKIT_quinzenal);
+                if (jRBtKitMensal.isSelected()) {
+                    pKIT_mensal = 1;
+                } else {
+                    pKIT_mensal = 0;
+                }
+                objPag.setiD_BT_Kit_mensal(pKIT_mensal);
+                if (jRBtKitSemestral.isSelected()) {
+                    pKIT_semestral = 1;
+                } else {
+                    pKIT_semestral = 0;
+                }
+                objPag.setiD_BT_Kit_semestral(pKIT_semestral);
+                if (jRBtKitAnual.isSelected()) {
+                    pKIT_anual = 1;
+                } else {
+                    pKIT_anual = 0;
+                }
+                objPag.setiD_BT_Kit_anual(pKIT_anual);
                 objPag.setObservacao(jObservacao.getText());
                 if (acao == 1) {
                     objPag.setUsuarioInsert(nameUser);
@@ -2398,6 +2446,54 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 objPag.setTipoKit((String) jComboBoxTipoKit.getSelectedItem());
                 objPag.setDescricaoPavilhao((String) jComboBoxPavilhao.getSelectedItem());
                 objPag.setKitPersonalizado((String) jComboBoxKitPersonalizado.getSelectedItem());
+                objPag.setiD_REG_inicial(Integer.valueOf(jID_REG_inicial.getText()));
+                objPag.setiD_REG_decendial(Integer.valueOf(jID_REG_decendial.getText()));
+                objPag.setiD_REG_quinzenal(Integer.valueOf(jID_REG_quinzenal.getText()));
+                objPag.setiD_REG_mensal(Integer.valueOf(jID_REG_mensal.getText()));
+                objPag.setiD_REG_semestral(Integer.valueOf(jID_REG_semestral.getText()));
+                objPag.setiD_REG_anual(Integer.valueOf(jID_REG_anual.getText()));
+                objPag.setiD_KIT_inicial(Integer.valueOf(jID_Kit_inicial.getText()));
+                objPag.setiD_KIT_decendial(Integer.valueOf(jID_Kit_decendial.getText()));
+                objPag.setiD_KIT_quinzenal(Integer.valueOf(jID_Kit_quinzenal.getText()));
+                objPag.setiD_KIT_mensal(Integer.valueOf(jID_Kit_mensal.getText()));
+                objPag.setiD_KIT_semestral(Integer.valueOf(jID_Kit_semestral.getText()));
+                objPag.setiD_KIT_anual(Integer.valueOf(jID_Kit_anual.getText()));
+                if (jRBtKitInicial.isSelected()) {
+                    pKIT_inicial = 1;
+                } else {
+                    pKIT_inicial = 0;
+                }
+                objPag.setiD_BT_Kit_inicial(pKIT_inicial);
+                if (jRBtKitDecendial.isSelected()) {
+                    pKIT_decendial = 1;
+                } else {
+                    pKIT_decendial = 0;
+                }
+                objPag.setiD_BT_Kit_decendial(pKIT_decendial);
+                if (jRBtKitQuinzenal.isSelected()) {
+                    pKIT_quinzenal = 1;
+                } else {
+                    pKIT_quinzenal = 0;
+                }
+                objPag.setiD_BT_Kit_quinzenal(pKIT_quinzenal);
+                if (jRBtKitMensal.isSelected()) {
+                    pKIT_mensal = 1;
+                } else {
+                    pKIT_mensal = 0;
+                }
+                objPag.setiD_BT_Kit_mensal(pKIT_mensal);
+                if (jRBtKitSemestral.isSelected()) {
+                    pKIT_semestral = 1;
+                } else {
+                    pKIT_semestral = 0;
+                }
+                objPag.setiD_BT_Kit_semestral(pKIT_semestral);
+                if (jRBtKitAnual.isSelected()) {
+                    pKIT_anual = 1;
+                } else {
+                    pKIT_anual = 0;
+                }
+                objPag.setiD_BT_Kit_anual(pKIT_anual);
                 objPag.setObservacao(jObservacao.getText());
                 if (acao == 1) {
                     objPag.setUsuarioInsert(nameUser);
