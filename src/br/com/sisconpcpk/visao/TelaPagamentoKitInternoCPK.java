@@ -89,7 +89,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     PagamentoKitDao CONTROLE_KIT_manutencao = new PagamentoKitDao();
     //   
     ItensPagamentoKitInterno objItensPagto = new ItensPagamentoKitInterno();
-    PagamentoKitInternosDao controle = new PagamentoKitInternosDao();
+    PagamentoKitInternosDao CONTROLE_PRODUTOS_internos = new PagamentoKitInternosDao();
     //
     ControlePagamentoKit controlPagoKit = new ControlePagamentoKit();
     ComposicaoKit objComp = new ComposicaoKit();
@@ -1832,18 +1832,18 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             } catch (Exception ex) {
                 Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
             }
+             if (pTOTAL_registros == 0) {
+                jtotalRegistros.setText("");
+                limparTabela();
+                JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+            }
         } else {
             // APAGAR DADOS DA TABELA PRODUTOS
             while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
                 ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
             }
             pTOTAL_registros = 0;
-            jtotalRegistros.setText("");
-//            if (pTOTAL_registros == 0) {
-//                jtotalRegistros.setText("");
-//                limparTabela();
-//                JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
-//            }
+            jtotalRegistros.setText("");          
         }
     }//GEN-LAST:event_jCheckBox19ItemStateChanged
 
@@ -2081,7 +2081,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             } else {
                 if (rows != 0) {
                     jComboBoxPavilhao.setEnabled(!true);
-//                    preencherComboBoxPavilhao();
                     acao = 2;
                     bloquearCampos(!true);
                     bloquearBotoes(!true);
@@ -2111,7 +2110,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             } else {
                 if (rows != 0) {
                     jComboBoxPavilhao.setEnabled(!true);
-                    preencherComboBoxPavilhao();
                     acao = 2;
                     bloquearCampos(!true);
                     bloquearBotoes(!true);
@@ -2151,7 +2149,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     horaMov = jHoraSistema.getText();
                     dataModFinal = jDataSistema.getText();
                 } else {
-                    preencherComboBoxPavilhao();
                     acao = 2;
                     bloquearCampos(!true);
                     bloquearBotoes(!true);
@@ -2661,7 +2658,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             horaMov = jHoraSistema.getText();
             dataModFinal = jDataSistema.getText();
             objItensPagto.setIdItem(idItem);
-            controle.excluirPagamentoKitInterno(objItensPagto);
+            CONTROLE_PRODUTOS_internos.excluirPagamentoKitInterno(objItensPagto);
             objLog2();
             controlLog.incluirLogSistema(objLogSys); // Grava o log da operação            
             ExcluirInterno();
@@ -2696,7 +2693,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     //
                     pBUSCAR_CODIGO_item();
                     //
-                    controle.incluirPagamentoKitInterno(objItensPagto);
+                    CONTROLE_PRODUTOS_internos.incluirPagamentoKitInterno(objItensPagto);
                     objLog2();
                     controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
                     SalvarInterno();
@@ -2710,7 +2707,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 objItensPagto.setHorarioUp(horaMov);
                 //
                 objItensPagto.setIdItem(idItem);
-                controle.alterarPagamentoKitInterno(objItensPagto);
+                CONTROLE_PRODUTOS_internos.alterarPagamentoKitInterno(objItensPagto);
                 objLog2();
                 controlLog.incluirLogSistema(objLogSys); // Grava o log da operação
                 SalvarInterno();
@@ -3822,7 +3819,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jComboBoxPavilhao.removeAllItems();
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * "
+            conecta.executaSQL("SELECT "
+                    + "DescricaoPav "
                     + "FROM PAVILHAO "
                     + "ORDER BY DescricaoPav");
             conecta.rs.first();
@@ -4116,14 +4114,21 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     public void buscarAcessoUsuario(String nomeTelaAcesso) {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM USUARIOS "
+            conecta.executaSQL("SELECT "
+                    + "IdUsuario, "
+                    + "NomeUsuario "
+                    + "FROM USUARIOS "
                     + "WHERE NomeUsuario='" + nameUser + "'");
             conecta.rs.first();
             codigoUserB1 = conecta.rs.getInt("IdUsuario");
         } catch (Exception e) {
         }
         try {
-            conecta.executaSQL("SELECT * FROM USUARIOS_GRUPOS "
+            conecta.executaSQL("SELECT "
+                    + "USUARIOS_GRUPOS.IdUsuario, "
+                    + "GRUPOUSUARIOS.IdGrupo, "
+                    + "GRUPOUSUARIOS.NomeGrupo "
+                    + "FROM USUARIOS_GRUPOS "
                     + "INNER JOIN GRUPOUSUARIOS "
                     + "ON USUARIOS_GRUPOS.IdGrupo=GRUPOUSUARIOS.IdGrupo "
                     + "WHERE IdUsuario='" + codigoUserB1 + "'");
@@ -4134,7 +4139,16 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         } catch (Exception e) {
         }
         try {
-            conecta.executaSQL("SELECT * FROM TELAS_ACESSO "
+            conecta.executaSQL("SELECT "
+                    + "IdUsuario, "
+                    + "NomeTela, "
+                    + "Abrir, "
+                    + "Incluir, "
+                    + "Alterar, "
+                    + "Excluir, "
+                    + "Gravar, "
+                    + "Consultar "
+                    + "FROM TELAS_ACESSO "
                     + "WHERE IdUsuario='" + codigoUserB1 + "' "
                     + "AND NomeTela='" + nomeTelaAcesso + "'");
             conecta.rs.first();

@@ -42,7 +42,7 @@ public class PagamentoKitDao {
     int codPav;
 
     public PagamentoKitInterno incluirPagamentoKit(PagamentoKitInterno objPag) {
-        buscarPavilhao(objPag.getDescricaoPavilhao());
+        BUSCAR_pavilhao(objPag.getDescricaoPavilhao());
         conecta.abrirConexao();
         try {
             PreparedStatement pst = conecta.con.prepareStatement("INSERT INTO PAGAMENTO_KIT_INTERNOS (StatusLanc,DataLanc,Responsavel,HoraInicio,HoraTermino,IdKit,TipoKit,IdRegistro,IdPav,Observacao,UsuarioInsert,DataInsert,HorarioInsert,KitPersonalizado,Id_REG_inicial,Id_REG_decendial,Id_REG_quinzenal,Id_REG_mensal,Id_REG_semestral,Id_REG_anual,ID_BT_Kit_inicial,ID_BT_Kit_decendial,ID_BT_Kit_quinzenal,ID_BT_Kit_mensal,ID_BT_Kit_semestral,ID_BT_Kit_anual,Id_KIT_inicial,ID_KIT_decendial,ID_KIT_quinzenal,ID_KIT_mensal,ID_KIT_semestral,ID_KIT_anual) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -89,7 +89,7 @@ public class PagamentoKitDao {
     }
 
     public PagamentoKitInterno alterarPagamentoKit(PagamentoKitInterno objPag) {
-        buscarPavilhao(objPag.getDescricaoPavilhao());
+        BUSCAR_pavilhao(objPag.getDescricaoPavilhao());
         conecta.abrirConexao();
         try {
             PreparedStatement pst = conecta.con.prepareStatement("UPDATE PAGAMENTO_KIT_INTERNOS SET StatusLanc=?,DataLanc=?,Responsavel=?,HoraInicio=?,HoraTermino=?,IdKit=?,TipoKit=?,IdRegistro=?,IdPav=?,Observacao=?,UsuarioUp=?,DataUp=?,HorarioUp=?,KitPersonalizado=?,Id_REG_inicial=?,Id_REG_decendial=?,Id_REG_quinzenal=?,Id_REG_mensal=?,Id_REG_semestral=?,Id_REG_anual=?,ID_BT_Kit_inicial=?,ID_BT_Kit_decendial=?,ID_BT_Kit_quinzenal=?,ID_BT_Kit_mensal=?,ID_BT_Kit_semestral=?,ID_BT_Kit_anual=?,ID_KIT_inicial=?,ID_KIT_decendial=?,ID_KIT_quinzenal=?,ID_KIT_mensal=?,ID_KIT_semestral=?,ID_KIT_anual=? WHERE IdPagto='" + objPag.getIdPagto() + "'");
@@ -164,10 +164,13 @@ public class PagamentoKitDao {
         return objPag;
     }
 
-    public void buscarPavilhao(String desc) {
+    public void BUSCAR_pavilhao(String desc) {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM PAVILHAO WHERE DescricaoPav='" + desc + "'");
+            conecta.executaSQL("SELECT "
+                    + "IdPav,DescricaoPav "
+                    + "FROM PAVILHAO "
+                    + "WHERE DescricaoPav='" + desc + "'");
             conecta.rs.first();
             codPav = conecta.rs.getInt("IdPav");
         } catch (Exception e) {
@@ -180,7 +183,9 @@ public class PagamentoKitDao {
 
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM PAGAMENTO_KIT_INTERNOS");
+            conecta.executaSQL("SELECT "
+                    + "IdPagto "
+                    + "FROM PAGAMENTO_KIT_INTERNOS");
             conecta.rs.last();
             jIdLanc.setText(conecta.rs.getString("IdPagto"));
         } catch (Exception e) {
@@ -194,7 +199,9 @@ public class PagamentoKitDao {
 
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS ");
+            conecta.executaSQL("SELECT "
+                    + "IdItem "
+                    + "FROM ITENS_PAGAMENTO_KIT_INTERNOS");
             conecta.rs.last();
             codItem = conecta.rs.getInt("IdItem");
         } catch (Exception e) {
@@ -207,7 +214,8 @@ public class PagamentoKitDao {
 
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * "
+            conecta.executaSQL("SELECT "
+                    + "IdPagto "
                     + "FROM ITENS_PAGAMENTO_KIT_INTERNOS "
                     + "WHERE IdPagto='" + jIdLanc.getText() + "'");
             conecta.rs.first();
@@ -222,7 +230,9 @@ public class PagamentoKitDao {
 
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM ITENS_PAGAMENTO_KIT_INTERNOS "
+            conecta.executaSQL("SELECT "
+                    + "IdPagto,IdInternoCrc "
+                    + "FROM ITENS_PAGAMENTO_KIT_INTERNOS "
                     + "WHERE IdInternoCrc='" + jIdInterno.getText() + "' "
                     + "AND IdPagto='" + jIdLanc.getText() + "'");
             conecta.rs.first();

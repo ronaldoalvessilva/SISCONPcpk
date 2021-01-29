@@ -31,7 +31,7 @@ public class PagamentoKitInternosDao {
     String pKIT_PAGO = "Não";
 
     public ItensPagamentoKitInterno incluirPagamentoKitInterno(ItensPagamentoKitInterno objItensPagto) {
-        buscarInterno(objItensPagto.getNomeInternoCrcKit(), objItensPagto.getIdInternoCrc());
+        BUSCAR_interno(objItensPagto.getNomeInternoCrcKit(), objItensPagto.getIdInternoCrc());
         conecta.abrirConexao();
         try {
             PreparedStatement pst = conecta.con.prepareStatement("INSERT INTO ITENS_PAGAMENTO_KIT_INTERNOS (IdPagto,IdInternoCrc,"
@@ -59,7 +59,7 @@ public class PagamentoKitInternosDao {
     }
 
     public ItensPagamentoKitInterno alterarPagamentoKitInterno(ItensPagamentoKitInterno objItensPagto) {
-        buscarInterno(objItensPagto.getNomeInternoCrcKit(), objItensPagto.getIdInternoCrc());
+        BUSCAR_interno(objItensPagto.getNomeInternoCrcKit(), objItensPagto.getIdInternoCrc());
         conecta.abrirConexao();
         try {
             PreparedStatement pst = conecta.con.prepareStatement("UPDATE ITENS_PAGAMENTO_KIT_INTERNOS SET IdPagto=?,IdInternoCrc=?,"
@@ -97,12 +97,14 @@ public class PagamentoKitInternosDao {
         return objItensPagto;
     }
 
-    public void buscarInterno(String desc, int cod) {
+    public void BUSCAR_interno(String desc, int cod) {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT PRONTUARIOSCRC.IdInternoCrc, "
+            conecta.executaSQL("SELECT "
+                    + "PRONTUARIOSCRC.IdInternoCrc, "
                     + "PRONTUARIOSCRC.NomeInternoCrc "
-                    + "FROM PRONTUARIOSCRC WHERE NomeInternoCrc='" + desc + "' "
+                    + "FROM PRONTUARIOSCRC "
+                    + "WHERE NomeInternoCrc='" + desc + "' "
                     + "AND IdInternoCrc='" + cod + "'");
             conecta.rs.first();
             codInterno = conecta.rs.getInt("IdInternoCrc");
