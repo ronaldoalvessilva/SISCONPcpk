@@ -37,6 +37,10 @@ import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_decendi
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_quinzenal;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_semestral;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_anual;
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JLabel;
+import javax.swing.JTable;
 
 /**
  *
@@ -68,6 +72,8 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
     String tipoKit = "";
     String pKitPago = "Não";
     String pStatusComposicao = "FINALIZADO";
+    //
+    String CLASS = "";
 
     /**
      * Creates new form TelaPesquisaKitCpk
@@ -134,7 +140,6 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
 
         grupoBotoes.add(jRBtKitInicialPesquisa);
         jRBtKitInicialPesquisa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRBtKitInicialPesquisa.setSelected(true);
         jRBtKitInicialPesquisa.setText("Inicial");
         jRBtKitInicialPesquisa.setEnabled(false);
 
@@ -206,32 +211,13 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRBtKitInicialPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jRegistroPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRBtKitDecendialPesquisa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRBtKitQuinzenalPesquisa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRBtKitMensalPesquisa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRBtKitSemestraPesquisa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRBtKitAnualPesquisa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCheckBox1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel5)
+                        .addGap(4, 4, 4)
+                        .addComponent(jRegistroPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCodigoKit, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,7 +232,24 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDataPesFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtPesquisaData, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jBtPesquisaData, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRBtKitInicialPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRBtKitDecendialPesquisa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRBtKitQuinzenalPesquisa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRBtKitMensalPesquisa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRBtKitSemestraPesquisa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRBtKitAnualPesquisa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCheckBox1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -264,7 +267,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3)
                     .addComponent(jDataPesFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtPesquisaData))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel4)
                     .addComponent(jRBtKitInicialPesquisa)
@@ -274,9 +277,10 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                     .addComponent(jRBtKitSemestraPesquisa)
                     .addComponent(jRBtKitAnualPesquisa)
                     .addComponent(jCheckBox1))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        TabelaRegistrosMontagemKits.setAutoCreateRowSorter(true);
         TabelaRegistrosMontagemKits.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         TabelaRegistrosMontagemKits.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -285,27 +289,21 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
             new String [] {
                 "Registro", "Data Registro", "ID Kit", "Tipo Kit", "Código", "Colaborador"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         TabelaRegistrosMontagemKits.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TabelaRegistrosMontagemKitsMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(TabelaRegistrosMontagemKits);
-        if (TabelaRegistrosMontagemKits.getColumnModel().getColumnCount() > 0) {
-            TabelaRegistrosMontagemKits.getColumnModel().getColumn(0).setMinWidth(70);
-            TabelaRegistrosMontagemKits.getColumnModel().getColumn(0).setMaxWidth(70);
-            TabelaRegistrosMontagemKits.getColumnModel().getColumn(1).setMinWidth(80);
-            TabelaRegistrosMontagemKits.getColumnModel().getColumn(1).setMaxWidth(80);
-            TabelaRegistrosMontagemKits.getColumnModel().getColumn(2).setMinWidth(60);
-            TabelaRegistrosMontagemKits.getColumnModel().getColumn(2).setMaxWidth(60);
-            TabelaRegistrosMontagemKits.getColumnModel().getColumn(3).setMinWidth(70);
-            TabelaRegistrosMontagemKits.getColumnModel().getColumn(3).setMaxWidth(70);
-            TabelaRegistrosMontagemKits.getColumnModel().getColumn(4).setMinWidth(60);
-            TabelaRegistrosMontagemKits.getColumnModel().getColumn(4).setMaxWidth(60);
-            TabelaRegistrosMontagemKits.getColumnModel().getColumn(5).setMinWidth(350);
-            TabelaRegistrosMontagemKits.getColumnModel().getColumn(5).setMaxWidth(350);
-        }
 
         jPanel38.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED)));
 
@@ -400,7 +398,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jPanel37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -410,10 +408,10 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtConfimar)
                     .addComponent(jBtSair))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(3, 3, 3))
         );
 
-        setBounds(350, 30, 678, 333);
+        setBounds(350, 30, 678, 350);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TabelaRegistrosMontagemKitsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaRegistrosMontagemKitsMouseClicked
@@ -795,7 +793,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
         TabelaRegistrosMontagemKits.getColumnModel().getColumn(5).setResizable(false);
         TabelaRegistrosMontagemKits.getTableHeader().setReorderingAllowed(false);
         TabelaRegistrosMontagemKits.setAutoResizeMode(TabelaRegistrosMontagemKits.AUTO_RESIZE_OFF);
-        TabelaRegistrosMontagemKits.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        TabelaRegistrosMontagemKits.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);     
         alinharCamposTabelaRegistrosMontagemKits();
         conecta.desconecta();
     }
