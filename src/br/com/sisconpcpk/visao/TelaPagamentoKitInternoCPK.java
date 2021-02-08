@@ -143,6 +143,8 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
     //
     public static int pTOTAL_registros = 0;
     public static String pCONFIRMARCAO_resposta = "";
+    //
+
     /**
      * Creates new form TelaPagamentoKitInterno
      */
@@ -1751,51 +1753,31 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         if (jIDPesqLanc.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Informe um ID para pesquisa.");
         } else {
-//            if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-//                if (!jIDPesqLanc.getText().equals("")) {
-            while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
-                ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+            if (jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+                if (!jIDPesqLanc.getText().equals("")) {
+                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+                    }
+                    PREENCHER_TABELA_GERAL_PAGO_kitOBS();
+                    if (pTOTAL_registros == 0) {
+                        jtotalRegistros.setText("");
+                        limparTabela();
+                        JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+                    }
+                }
+            } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
+                if (jIDPesqLanc.getText().equals("")) {
+                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
+                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
+                    }
+                    PREENCHER_TABELA_GERAL_PAGO_kitOBS();
+                    if (pTOTAL_registros == 0) {
+                        jtotalRegistros.setText("");
+                        limparTabela();
+                        JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
+                    }
+                }
             }
-            PREENCHER_TABELA_GERAL_CODIGO_nomeInterno();
-            if (pTOTAL_registros == 0) {
-                jtotalRegistros.setText("");
-                limparTabela();
-                JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
-            }
-//                } else {
-//                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
-//                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
-//                    }
-//                    PREENCHER_TABELA_GERAL_PAGO_kitOBS();
-//                    if (pTOTAL_registros == 0) {
-//                        jtotalRegistros.setText("");
-//                        limparTabela();
-//                        JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
-//                    }
-//                }
-//            } else if (!jComboBoxPesquisarTipoKit.getSelectedItem().equals("Selecione...")) {
-//                if (jIDPesqLanc.getText().equals("")) {
-//                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
-//                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
-//                    }
-//                    PREENCHER_TABELA_GERAL_PAGO_kitOBS();
-//                    if (pTOTAL_registros == 0) {
-//                        jtotalRegistros.setText("");
-//                        limparTabela();
-//                        JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
-//                    }
-//                } else {
-//                    while (jTabelaPagamentoKit.getModel().getRowCount() > 0) {
-//                        ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
-//                    }
-//                    PREENCHER_TABELA_GERAL_CODIGO_nomeInterno();
-//                    if (pTOTAL_registros == 0) {
-//                        jtotalRegistros.setText("");
-//                        limparTabela();
-//                        JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
-//                    }
-//                }
-//            }
         }
     }//GEN-LAST:event_jBtPesqIDActionPerformed
 
@@ -1818,7 +1800,11 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     String mese = dataEntrada.substring(5, 7);
                     String anoe = dataEntrada.substring(0, 4);
                     dataEntrada = diae + "/" + mese + "/" + anoe;
-                    objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
+                    //MUDAR O NOME DA COLUNA QUE DESEJA
+                    int vColIndex = 5;
+                    jTabelaPagamentoKit.getColumnModel().getColumn(vColIndex).setHeaderValue("Observação");
+                    jTabelaPagamentoKit.getTableHeader().resizeAndRepaint();
+                    objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getObservacao()});
                     // BARRA DE ROLAGEM HORIZONTAL
                     jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                     // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -1832,7 +1818,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             } catch (Exception ex) {
                 Logger.getLogger(TelaPagamentoKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
             }
-             if (pTOTAL_registros == 0) {
+            if (pTOTAL_registros == 0) {
                 jtotalRegistros.setText("");
                 limparTabela();
                 JOptionPane.showMessageDialog(rootPane, "Não existem registros a serem exibidos.");
@@ -1843,7 +1829,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 ((DefaultTableModel) jTabelaPagamentoKit.getModel()).removeRow(0);
             }
             pTOTAL_registros = 0;
-            jtotalRegistros.setText("");          
+            jtotalRegistros.setText("");
         }
     }//GEN-LAST:event_jCheckBox19ItemStateChanged
 
@@ -3843,7 +3829,11 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
                 jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
-                objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
+                //MUDAR O NOME DA COLUNA QUE DESEJA
+                int vColIndex = 5;
+                jTabelaPagamentoKit.getColumnModel().getColumn(vColIndex).setHeaderValue("Observação");
+                jTabelaPagamentoKit.getTableHeader().resizeAndRepaint();
+                objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getObservacao()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                 // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -3868,7 +3858,11 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
                 jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
-                objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
+                //MUDAR O NOME DA COLUNA QUE DESEJA
+                int vColIndex = 5;
+                jTabelaPagamentoKit.getColumnModel().getColumn(vColIndex).setHeaderValue("Observação");
+                jTabelaPagamentoKit.getTableHeader().resizeAndRepaint();
+                objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getObservacao()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                 // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -3918,6 +3912,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
                 jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
+                int vColIndex = 5;
+                jTabelaPagamentoKit.getColumnModel().getColumn(vColIndex).setHeaderValue("Nome do Interno");
+                jTabelaPagamentoKit.getTableHeader().resizeAndRepaint();
                 objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -3943,7 +3940,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
                 jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
-                objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
+                int vColIndex = 5;
+                jTabelaPagamentoKit.getColumnModel().getColumn(vColIndex).setHeaderValue("Observação");
+                jTabelaPagamentoKit.getTableHeader().resizeAndRepaint();
+                objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getObservacao()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                 // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -3974,6 +3974,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
                 jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
+                int vColIndex = 5;
+                jTabelaPagamentoKit.getColumnModel().getColumn(vColIndex).setHeaderValue("Nome do Interno");
+                jTabelaPagamentoKit.getTableHeader().resizeAndRepaint();
                 objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -3999,6 +4002,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
                 jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
+                int vColIndex = 5;
+                jTabelaPagamentoKit.getColumnModel().getColumn(vColIndex).setHeaderValue("Nome do Interno");
+                jTabelaPagamentoKit.getTableHeader().resizeAndRepaint();
                 objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -4024,6 +4030,9 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                 String anoe = dataEntrada.substring(0, 4);
                 dataEntrada = diae + "/" + mese + "/" + anoe;
                 jtotalRegistros.setText(String.valueOf(pTOTAL_registros));
+                  int vColIndex = 5;
+                jTabelaPagamentoKit.getColumnModel().getColumn(vColIndex).setHeaderValue("Nome do Interno");
+                jTabelaPagamentoKit.getTableHeader().resizeAndRepaint();
                 objTodosRegistrosKit.addRow(new Object[]{b.getIdPagto(), dataEntrada, b.getStatusLanc(), b.getTipoKit(), b.getDescricaoPavilhao(), b.getNomeInternoCrc()});
                 // BARRA DE ROLAGEM HORIZONTAL
                 jTabelaPagamentoKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);

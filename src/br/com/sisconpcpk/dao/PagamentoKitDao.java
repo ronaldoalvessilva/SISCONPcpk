@@ -251,16 +251,21 @@ public class PagamentoKitDao {
         List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
         try {
             conecta.executaSQL("SELECT "
-                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                    + "StatusLanc,TipoKit,DescricaoPav, "
-                    + "NomeInternoCrc,Observacao "
+                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto, "
+                    + "PAGAMENTO_KIT_INTERNOS.DataLanc, "
+                    + "PAGAMENTO_KIT_INTERNOS.StatusLanc, "
+                    + "PAGAMENTO_KIT_INTERNOS.TipoKit, "
+                    + "PAGAMENTO_KIT_INTERNOS.Observacao, "
+                    + "PAVILHAO.DescricaoPav "
+//                    + "PRONTUARIOSCRC.IdInternoCrc, "
+//                    + "PRONTUARIOSCRC.NomeInternoCrc "
                     + "FROM PAGAMENTO_KIT_INTERNOS "
                     + "INNER JOIN PAVILHAO "
                     + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
-                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
-                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
-                    + "INNER JOIN PRONTUARIOSCRC "
-                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
+//                    + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
+//                    + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
+//                    + "INNER JOIN PRONTUARIOSCRC "
+//                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
                     + "ORDER BY PAGAMENTO_KIT_INTERNOS.IdPagto");
             while (conecta.rs.next()) {
                 PagamentoKitInterno pListarTodosRegistrosKit = new PagamentoKitInterno();
@@ -269,7 +274,8 @@ public class PagamentoKitDao {
                 pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
                 pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
                 pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
-                pListarTodosRegistrosKit.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
+//                pListarTodosRegistrosKit.setIdInternoCrc(conecta.rs.getInt("IdInternoCrc"));
+//                pListarTodosRegistrosKit.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
                 pListarTodosRegistrosKit.setObservacao(conecta.rs.getString("Observacao"));
                 objListaInternos.add(pListarTodosRegistrosKit);
                 pTOTAL_registros++;
@@ -289,16 +295,21 @@ public class PagamentoKitDao {
         List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
         try {
             conecta.executaSQL("SELECT "
-                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                    + "StatusLanc,TipoKit,DescricaoPav, "
-                    + "Observacao, NomeInternoCrc "
+                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto, "
+                    + "PAGAMENTO_KIT_INTERNOS.DataLanc, "
+                    + "PAGAMENTO_KIT_INTERNOS.StatusLanc, "
+                    + "PAGAMENTO_KIT_INTERNOS.TipoKit, "
+                    + "PAGAMENTO_KIT_INTERNOS.Observacao, "
+                    + "PAVILHAO.DescricaoPav, "
+                    + "PRONTUARIOSCRC.IdInternoCrc, "
+                    + "PRONTUARIOSCRC.NomeInternoCrc "
                     + "FROM PAGAMENTO_KIT_INTERNOS "
                     + "INNER JOIN PAVILHAO "
                     + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
                     + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
                     + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
                     + "INNER JOIN PRONTUARIOSCRC "
-                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc  "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
                     + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
                     + "AND'" + dataFinal + "'");
             while (conecta.rs.next()) {
@@ -308,6 +319,7 @@ public class PagamentoKitDao {
                 pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
                 pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
                 pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
+                pListarTodosRegistrosKit.setIdInternoCrc(conecta.rs.getInt("IdInternoCrc"));
                 pListarTodosRegistrosKit.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
                 pListarTodosRegistrosKit.setObservacao(conecta.rs.getString("Observacao"));
                 objListaInternos.add(pListarTodosRegistrosKit);
@@ -328,16 +340,21 @@ public class PagamentoKitDao {
         List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
         try {
             conecta.executaSQL("SELECT "
-                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                    + "StatusLanc,TipoKit,DescricaoPav, "
-                    + "Observacao,NomeInternoCrc "
+                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto, "
+                    + "PAGAMENTO_KIT_INTERNOS.DataLanc, "
+                    + "PAGAMENTO_KIT_INTERNOS.StatusLanc, "
+                    + "PAGAMENTO_KIT_INTERNOS.TipoKit, "
+                    + "PAGAMENTO_KIT_INTERNOS.Observacao, "
+                    + "PAVILHAO.DescricaoPav, "
+                    + "PRONTUARIOSCRC.IdInternoCrc, "
+                    + "PRONTUARIOSCRC.NomeInternoCrc "
                     + "FROM PAGAMENTO_KIT_INTERNOS "
                     + "INNER JOIN PAVILHAO "
                     + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
                     + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
                     + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
                     + "INNER JOIN PRONTUARIOSCRC "
-                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc  "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
                     + "WHERE DataLanc BETWEEN'" + dataInicial + "' "
                     + "AND'" + dataFinal + "' "
                     + "AND TipoKit ='" + jComboBoxPesquisarTipoKit.getSelectedItem() + "'  ");
@@ -348,6 +365,7 @@ public class PagamentoKitDao {
                 pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
                 pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
                 pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
+                pListarTodosRegistrosKit.setIdInternoCrc(conecta.rs.getInt("IdInternoCrc"));
                 pListarTodosRegistrosKit.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
                 pListarTodosRegistrosKit.setObservacao(conecta.rs.getString("Observacao"));
                 objListaInternos.add(pListarTodosRegistrosKit);
@@ -368,16 +386,21 @@ public class PagamentoKitDao {
         List<PagamentoKitInterno> objListaInternos = new ArrayList<PagamentoKitInterno>();
         try {
             conecta.executaSQL("SELECT "
-                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto,DataLanc, "
-                    + "StatusLanc,TipoKit,DescricaoPav, "
-                    + "NomeInternoCrc "
+                    + "DISTINCT PAGAMENTO_KIT_INTERNOS.IdPagto, "
+                    + "PAGAMENTO_KIT_INTERNOS.DataLanc, "
+                    + "PAGAMENTO_KIT_INTERNOS.StatusLanc, "
+                    + "PAGAMENTO_KIT_INTERNOS.TipoKit, "
+                    + "PAGAMENTO_KIT_INTERNOS.Observacao, "
+                    + "PAVILHAO.DescricaoPav, "
+                    + "PRONTUARIOSCRC.IdInternoCrc, "
+                    + "PRONTUARIOSCRC.NomeInternoCrc "
                     + "FROM PAGAMENTO_KIT_INTERNOS "
                     + "INNER JOIN PAVILHAO "
                     + "ON PAGAMENTO_KIT_INTERNOS.IdPav=PAVILHAO.IdPav "
                     + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS "
                     + "ON PAGAMENTO_KIT_INTERNOS.IdPagto=ITENS_PAGAMENTO_KIT_INTERNOS.IdPagto "
                     + "INNER JOIN PRONTUARIOSCRC "
-                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc  "
+                    + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdInternoCrc=PRONTUARIOSCRC.IdInternoCrc "
                     + "WHERE WHERE PAGAMENTO_KIT_INTERNOS.IdPagto='" + jIDPesqLanc.getText() + "'");
             while (conecta.rs.next()) {
                 PagamentoKitInterno pListarTodosRegistrosKit = new PagamentoKitInterno();
@@ -386,6 +409,7 @@ public class PagamentoKitDao {
                 pListarTodosRegistrosKit.setStatusLanc(conecta.rs.getString("StatusLanc"));
                 pListarTodosRegistrosKit.setTipoKit(conecta.rs.getString("TipoKit"));
                 pListarTodosRegistrosKit.setDescricaoPavilhao(conecta.rs.getString("DescricaoPav"));
+                pListarTodosRegistrosKit.setIdInternoCrc(conecta.rs.getInt("IdInternoCrc"));
                 pListarTodosRegistrosKit.setNomeInternoCrc(conecta.rs.getString("NomeInternoCrc"));
                 pListarTodosRegistrosKit.setObservacao(conecta.rs.getString("Observacao"));
                 objListaInternos.add(pListarTodosRegistrosKit);
@@ -615,13 +639,13 @@ public class PagamentoKitDao {
                 pListarTodosRegistrosKit.setiD_BT_Kit_quinzenal(conecta.rs.getInt("ID_BT_Kit_quinzenal"));
                 pListarTodosRegistrosKit.setiD_BT_Kit_mensal(conecta.rs.getInt("ID_BT_Kit_mensal"));
                 pListarTodosRegistrosKit.setiD_BT_Kit_semestral(conecta.rs.getInt("ID_BT_Kit_semestral"));
-                pListarTodosRegistrosKit.setiD_BT_Kit_anual(conecta.rs.getInt("ID_BT_Kit_anual"));                 
-                pListarTodosRegistrosKit.setiD_REG_inicial(conecta.rs.getInt("ID_REG_inicial")); 
+                pListarTodosRegistrosKit.setiD_BT_Kit_anual(conecta.rs.getInt("ID_BT_Kit_anual"));
+                pListarTodosRegistrosKit.setiD_REG_inicial(conecta.rs.getInt("ID_REG_inicial"));
                 pListarTodosRegistrosKit.setiD_REG_decendial(conecta.rs.getInt("ID_REG_decendial"));
                 pListarTodosRegistrosKit.setiD_REG_quinzenal(conecta.rs.getInt("ID_REG_quinzenal"));
                 pListarTodosRegistrosKit.setiD_REG_mensal(conecta.rs.getInt("ID_REG_mensal"));
                 pListarTodosRegistrosKit.setiD_REG_semestral(conecta.rs.getInt("ID_REG_semestral"));
-                pListarTodosRegistrosKit.setiD_REG_anual(conecta.rs.getInt("ID_REG_anual"));                
+                pListarTodosRegistrosKit.setiD_REG_anual(conecta.rs.getInt("ID_REG_anual"));
                 pListarTodosRegistrosKit.setiD_KIT_inicial(conecta.rs.getInt("ID_KIT_inicial"));
                 pListarTodosRegistrosKit.setiD_KIT_decendial(conecta.rs.getInt("ID_KIT_decendial"));
                 pListarTodosRegistrosKit.setiD_KIT_quinzenal(conecta.rs.getInt("ID_KIT_quinzenal"));
