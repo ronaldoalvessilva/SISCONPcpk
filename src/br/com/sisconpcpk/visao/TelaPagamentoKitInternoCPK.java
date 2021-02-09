@@ -1930,7 +1930,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
             bloquearCampos(!true);
             jComboBoxPavilhao.removeAllItems();
             jComboBoxTipoKit.removeAll();
-            jComboBoxKitPersonalizado.removeAllItems();
             try {
                 for (PagamentoKitInterno cc : CONTROLE_KIT_manutencao.pBUSCAR_REGISTRO_MOUSE_clicked()) {
                     jIdLanc.setText(String.valueOf(cc.getIdPagto()));
@@ -1943,7 +1942,7 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                     jIdRegistroComp.setText(String.valueOf(cc.getIdRegistroComp()));
                     jComboBoxTipoKit.addItem(cc.getTipoKit());
                     jComboBoxPavilhao.addItem(cc.getDescricaoPavilhao());
-                    jComboBoxKitPersonalizado.addItem(cc.getKitPersonalizado());
+                    jComboBoxKitPersonalizado.setSelectedItem(cc.getKitPersonalizado());
                     if (jComboBoxKitPersonalizado.getSelectedItem() != null && jComboBoxKitPersonalizado.getSelectedItem().equals("Sim")) {
                         pKIT_inicial = cc.getiD_BT_Kit_inicial();
                         if (pKIT_inicial == 0) {
@@ -3036,7 +3035,6 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
         jComboBoxTipoKit.setSelectedItem("Selecione...");
         jComboBoxPavilhao.setSelectedItem("Selecione...");
         jComboBoxKitPersonalizado.setSelectedItem("Selecione...");
-        jComboBoxTipoKit.setSelectedItem("Selecione...");
         jObservacao.setText("");
         //
         jID_REG_inicial.setText("0");
