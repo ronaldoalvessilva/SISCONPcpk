@@ -1994,9 +1994,10 @@ public class TelaPagamentoKitInternoCPK extends javax.swing.JInternalFrame {
                         jID_Kit_semestral.setText(String.valueOf(cc.getiD_KIT_semestral()));
                         jID_Kit_anual.setText(String.valueOf(cc.getiD_KIT_anual()));
                     } else if (jComboBoxKitPersonalizado.getSelectedItem() != null && jComboBoxKitPersonalizado.getSelectedItem().equals("Não")) {
+                        jComboBoxTipoKit.removeAllItems();
                         jIdKit.setText(String.valueOf(cc.getIdKit()));
                         jIdRegistroComp.setText(String.valueOf(cc.getIdRegistroComp()));
-                        jComboBoxTipoKit.setSelectedItem(cc.getTipoKit());
+                        jComboBoxTipoKit.addItem(cc.getTipoKit());
                     }
                     jObservacao.setText(cc.getObservacao());
                 }
