@@ -375,19 +375,21 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBtConfimar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBtConfimar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtSair))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jBtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtConfimar, jBtSair});
@@ -600,8 +602,20 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
         flag = 1;
         if (flag == 1) {
             conecta.abrirConexao();
+            jComboBoxPavilhao.removeAllItems();
             try {
-                conecta.executaSQL("SELECT * FROM COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
+                conecta.executaSQL("SELECT "
+                        + "COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdRegistroComp, "
+                        + "COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.StatusComp, "
+                        + "COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.DataComp, "
+                        + "COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdKit, "
+                        + "KITS_HIGIENE_INTERNO.KitInicial, "
+                        + "KITS_HIGIENE_INTERNO.KitDecendial, "
+                        + "KITS_HIGIENE_INTERNO.KitQuinzenal,KitMensal, "
+                        + "KITS_HIGIENE_INTERNO.KitSemestral,KitAnual, "
+                        + "PAVILHAO.IdPav, "
+                        + "PAVILHAO.DescricaoPav "
+                        + "FROM COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE "
                         + "INNER JOIN COLABORADOR "
                         + "ON COMPOSICAO_PAGAMENTO_KIT_INTERNOS_LOTE.IdFunc=COLABORADOR.IdFunc "
                         + "INNER JOIN KITS_HIGIENE_INTERNO "
@@ -618,7 +632,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                 if (!jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")) {
                     jIdKit.setText(String.valueOf(conecta.rs.getInt("IdKit")));
                     jIdRegistroComp.setText(String.valueOf(conecta.rs.getInt("IdRegistroComp")));
-                    jComboBoxPavilhao.setSelectedItem(conecta.rs.getString("DescricaoPav"));
+                    jComboBoxPavilhao.addItem(conecta.rs.getString("DescricaoPav"));
                     if (jRBtKitInicialPesquisa.isSelected() == true) {
                         jComboBoxTipoKit.removeAllItems();
                         jComboBoxTipoKit.addItem("Kit Inicial");
@@ -651,7 +665,7 @@ public class TelaPesquisaKitCpk extends javax.swing.JInternalFrame {
                         jRBtKitAnual.setSelected(true);
                     }
                 } else {
-                    jComboBoxPavilhao.setSelectedItem(conecta.rs.getString("DescricaoPav"));
+                    jComboBoxPavilhao.addItem(conecta.rs.getString("DescricaoPav"));
                     if (jRBtKitInicialPesquisa.isSelected() == true) {
                         jComboBoxTipoKit.removeAllItems();
                         jComboBoxTipoKit.addItem("Kit Personalizado");
