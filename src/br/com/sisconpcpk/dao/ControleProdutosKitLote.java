@@ -96,10 +96,12 @@ public class ControleProdutosKitLote {
         conecta.abrirConexao();
         List<ProdutoInternosKitLote> listaInternosPavilhaoSelecionados = new ArrayList<ProdutoInternosKitLote>();
         try {
-            conecta.executaSQL("SELECT DISTINCT ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd, "
+            conecta.executaSQL("SELECT DISTINCT "
+                    + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd, "
+                    + "PRODUTOS_KITS_HIGIENE_INTERNO.IdKit, "
                     + "PRODUTOS_AC.DescricaoProd,PRODUTOS_AC.UnidadeProd, "
-                    + "PRODUTOS_KITS_HIGIENE_INTERNO.QuantItem, "
-                    + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd "
+                    + "PRODUTOS_KITS_HIGIENE_INTERNO.QuantItem "
+//                    + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd "
                     + "FROM ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd=PRODUTOS_AC.IdProd "
@@ -112,7 +114,7 @@ public class ControleProdutosKitLote {
                     + "INNER JOIN PRODUTOS_KITS_HIGIENE_INTERNO "
                     + "ON PRODUTOS_AC.IdProd=PRODUTOS_KITS_HIGIENE_INTERNO.IdProd "
                     + "WHERE IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
-                    + "AND KITS_HIGIENE_INTERNO.IdKit='" + jIdKit.getText() + "' "
+                    + "AND PRODUTOS_KITS_HIGIENE_INTERNO.IdKit='" + jIdKit.getText() + "' "
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + estoque + "'");   
             while (conecta.rs.next()) {
                 ProdutoInternosKitLote pDigiProd = new ProdutoInternosKitLote();
@@ -120,9 +122,8 @@ public class ControleProdutosKitLote {
                 pDigiProd.setDescricaoProduto(conecta.rs.getString("DescricaoProd"));
                 pDigiProd.setUnidadeProd(conecta.rs.getString("UnidadeProd"));
                 pDigiProd.setQuantidadeProd(conecta.rs.getFloat("QuantItem"));
-                pDigiProd.setQtdEstoque(conecta.rs.getFloat("QuantProd"));
+//                pDigiProd.setQtdEstoque(conecta.rs.getFloat("QuantProd"));
                 listaInternosPavilhaoSelecionados.add(pDigiProd);
-//                qtdProd = qtdProd + 1;
             }
             return listaInternosPavilhaoSelecionados;
         } catch (SQLException ex) {

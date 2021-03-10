@@ -252,9 +252,17 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Descrição do Produto", "Un.", "Quant.", "Estoque"
+                "Código", "Descrição do Produto", "Un.", "Quant."
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jTabelaProdutosKit);
         if (jTabelaProdutosKit.getColumnModel().getColumnCount() > 0) {
             jTabelaProdutosKit.getColumnModel().getColumn(0).setMinWidth(70);
@@ -265,8 +273,6 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             jTabelaProdutosKit.getColumnModel().getColumn(2).setMaxWidth(60);
             jTabelaProdutosKit.getColumnModel().getColumn(3).setMinWidth(70);
             jTabelaProdutosKit.getColumnModel().getColumn(3).setMaxWidth(70);
-            jTabelaProdutosKit.getColumnModel().getColumn(4).setMinWidth(70);
-            jTabelaProdutosKit.getColumnModel().getColumn(4).setMaxWidth(70);
         }
 
         jBtVerificarKit.setForeground(new java.awt.Color(0, 102, 0));
@@ -1508,7 +1514,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             ProdutoInternosKitLote p = new ProdutoInternosKitLote();
             try {
                 for (ProdutoInternosKitLote pp : CONTROLE_PRODUTOS_kit.read()) {
-                    produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd(), pp.getQtdEstoque()});
+                    produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd()});
                     // BARRA DE ROLAGEM HORIZONTAL
                     jTabelaProdutosKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                     // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -1518,7 +1524,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     jTabelaProdutosKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(2).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(3).setCellRenderer(centralizado);
-                    jTabelaProdutosKit.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+//                    jTabelaProdutosKit.getColumnModel().getColumn(4).setCellRenderer(centralizado);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(TelaBiometriaKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
@@ -1535,7 +1541,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             ProdutoInternosKitLote p = new ProdutoInternosKitLote();
             try {
                 for (ProdutoInternosKitLote pp : CONTROLE_PESQUISA_manual.read()) {
-                    produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd(), pp.getQtdEstoque()});
+                    produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd()});
                     // BARRA DE ROLAGEM HORIZONTAL
                     jTabelaProdutosKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                     // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -1545,7 +1551,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     jTabelaProdutosKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(2).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(3).setCellRenderer(centralizado);
-                    jTabelaProdutosKit.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+//                    jTabelaProdutosKit.getColumnModel().getColumn(4).setCellRenderer(centralizado);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(TelaBiometriaKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
@@ -1578,7 +1584,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             ProdutoInternosKitLote p = new ProdutoInternosKitLote();
             try {
                 for (ProdutoInternosKitLote pp : CONTROLE_PESQUISA_personalizado.PRODUTOS_BIO_read()) {
-                    produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd(), pp.getQtdEstoque()});
+                    produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd()});
                     // BARRA DE ROLAGEM HORIZONTAL
                     jTabelaProdutosKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                     // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -1588,7 +1594,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     jTabelaProdutosKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(2).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(3).setCellRenderer(centralizado);
-                    jTabelaProdutosKit.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+//                    jTabelaProdutosKit.getColumnModel().getColumn(4).setCellRenderer(centralizado);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(TelaBiometriaKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
@@ -1606,8 +1612,8 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             DefaultTableModel produtosSelecionados = (DefaultTableModel) jTabelaProdutosKit.getModel();
             ProdutoInternosKitLote p = new ProdutoInternosKitLote();
             try {
-                for (ProdutoInternosKitLote pp : CONTROLE_PESQUISA_personalizado.read()) {
-                    produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd(), pp.getQtdEstoque()});
+                for (ProdutoInternosKitLote pp : CONTROLE_PESQUISA_personalizado.PRODUTOS_MANUAL_read()) {
+                    produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd()});
                     // BARRA DE ROLAGEM HORIZONTAL
                     jTabelaProdutosKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                     // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -1617,7 +1623,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     jTabelaProdutosKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(2).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(3).setCellRenderer(centralizado);
-                    jTabelaProdutosKit.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+//                    jTabelaProdutosKit.getColumnModel().getColumn(4).setCellRenderer(centralizado);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(TelaBiometriaKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
