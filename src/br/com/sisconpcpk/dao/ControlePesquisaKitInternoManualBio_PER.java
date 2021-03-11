@@ -80,7 +80,7 @@ public class ControlePesquisaKitInternoManualBio_PER {
                     + "PRODUTOS_KITS_HIGIENE_INTERNO.IdKit, "
                     + "PRODUTOS_AC.DescricaoProd,PRODUTOS_AC.UnidadeProd, "
                     + "PRODUTOS_KITS_HIGIENE_INTERNO.QuantItem "
-                    + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd "
+//                    + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd "
                     + "FROM ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd=PRODUTOS_AC.IdProd "
