@@ -34,11 +34,10 @@ public class ControlePesquisaKitInternoManualBio_PER {
         try {
             conecta.executaSQL("SELECT DISTINCT "
                     + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd, "
-                    + "PRODUTOS_KITS_HIGIENE_INTERNO.IdKit, "
+                    + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdKit, "
                     + "PRODUTOS_AC.DescricaoProd, "
                     + "PRODUTOS_AC.UnidadeProd, "
                     + "PRODUTOS_KITS_HIGIENE_INTERNO.QuantItem "
-                    //                    + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd "
                     + "FROM ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd=PRODUTOS_AC.IdProd "
@@ -51,7 +50,6 @@ public class ControlePesquisaKitInternoManualBio_PER {
                     + "INNER JOIN PRODUTOS_KITS_HIGIENE_INTERNO "
                     + "ON PRODUTOS_AC.IdProd=PRODUTOS_KITS_HIGIENE_INTERNO.IdProd "
                     + "WHERE IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
-//                    + "PRODUTOS_KITS_HIGIENE_INTERNO.IdKit='" + jIdKit.getText() + "' "
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' ");
             while (conecta.rs.next()) {
                 ProdutoInternosKitLote pDigiProd = new ProdutoInternosKitLote();
@@ -59,7 +57,6 @@ public class ControlePesquisaKitInternoManualBio_PER {
                 pDigiProd.setDescricaoProduto(conecta.rs.getString("DescricaoProd"));
                 pDigiProd.setUnidadeProd(conecta.rs.getString("UnidadeProd"));
                 pDigiProd.setQuantidadeProd(conecta.rs.getFloat("QuantItem"));
-//                pDigiProd.setQtdEstoque(conecta.rs.getFloat("QuantProd"));
                 listaInternosPavilhaoSelecionados.add(pDigiProd);
             }
             return listaInternosPavilhaoSelecionados;
@@ -77,10 +74,9 @@ public class ControlePesquisaKitInternoManualBio_PER {
         try {
             conecta.executaSQL("SELECT DISTINCT "
                     + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd, "
-                    + "PRODUTOS_KITS_HIGIENE_INTERNO.IdKit, "
+                    + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdKit, "
                     + "PRODUTOS_AC.DescricaoProd,PRODUTOS_AC.UnidadeProd, "
                     + "PRODUTOS_KITS_HIGIENE_INTERNO.QuantItem "
-//                    + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd "
                     + "FROM ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd=PRODUTOS_AC.IdProd "
@@ -93,7 +89,6 @@ public class ControlePesquisaKitInternoManualBio_PER {
                     + "INNER JOIN PRODUTOS_KITS_HIGIENE_INTERNO "
                     + "ON PRODUTOS_AC.IdProd=PRODUTOS_KITS_HIGIENE_INTERNO.IdProd "
                     + "WHERE IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
-//                    + "AND PRODUTOS_KITS_HIGIENE_INTERNO.IdKit='" + jIdKit.getText() + "'"
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "'");
             while (conecta.rs.next()) {
                 ProdutoInternosKitLote pDigiProd = new ProdutoInternosKitLote();
@@ -101,7 +96,6 @@ public class ControlePesquisaKitInternoManualBio_PER {
                 pDigiProd.setDescricaoProduto(conecta.rs.getString("DescricaoProd"));
                 pDigiProd.setUnidadeProd(conecta.rs.getString("UnidadeProd"));
                 pDigiProd.setQuantidadeProd(conecta.rs.getFloat("QuantItem"));
-//                pDigiProd.setQtdEstoque(conecta.rs.getFloat("QuantProd"));
                 listaInternosPavilhaoSelecionados.add(pDigiProd);
             }
             return listaInternosPavilhaoSelecionados;
