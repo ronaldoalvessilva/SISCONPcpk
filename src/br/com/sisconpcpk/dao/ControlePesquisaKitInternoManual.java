@@ -21,6 +21,7 @@ import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.statusFinal;
 import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.pRegistroComp;
 import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.pCodigoProd;
 import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.pQuantidade;
+import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.pTOTAL_ITENS_pesquisado;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jComboBoxPavilhao;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_Kit_anual;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_Kit_decendial;
@@ -165,6 +166,7 @@ public class ControlePesquisaKitInternoManual {
     }
 
     public List<ProdutoInternosKitLote> read() throws Exception {
+        pTOTAL_ITENS_pesquisado = 0;
         conecta.abrirConexao();
         List<ProdutoInternosKitLote> listaInternosPavilhaoSelecionados = new ArrayList<ProdutoInternosKitLote>();
         try {
@@ -173,7 +175,6 @@ public class ControlePesquisaKitInternoManual {
                     + "PRODUTOS_KITS_HIGIENE_INTERNO.IdKit, "
                     + "PRODUTOS_AC.DescricaoProd,PRODUTOS_AC.UnidadeProd, "
                     + "PRODUTOS_KITS_HIGIENE_INTERNO.QuantItem "
-//                    + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd "
                     + "FROM ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd=PRODUTOS_AC.IdProd "
@@ -194,8 +195,8 @@ public class ControlePesquisaKitInternoManual {
                 pDigiProd.setDescricaoProduto(conecta.rs.getString("DescricaoProd"));
                 pDigiProd.setUnidadeProd(conecta.rs.getString("UnidadeProd"));
                 pDigiProd.setQuantidadeProd(conecta.rs.getFloat("QuantItem"));
-//                pDigiProd.setQtdEstoque(conecta.rs.getFloat("QuantProd"));
                 listaInternosPavilhaoSelecionados.add(pDigiProd);
+                pTOTAL_ITENS_pesquisado++;
             }
             return listaInternosPavilhaoSelecionados;
         } catch (SQLException ex) {

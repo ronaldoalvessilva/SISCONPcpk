@@ -118,6 +118,8 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     //
     int pZERO = 0;
     String utilizado = "Sim";
+    int pTOTAL_ITENS_gravado = 0;
+    public static int pTOTAL_ITENS_pesquisado = 0;
 
     /**
      * Creates new form TelaBiometriaKitInterno
@@ -240,6 +242,10 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel18 = new javax.swing.JLabel();
         jComboBoxOperacao = new javax.swing.JComboBox<>();
+        jLabel19 = new javax.swing.JLabel();
+        jTotalItens = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jTOTAL_REG_GRAVADO = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("...::: Registro de Kit de Internos {Biometria} :::...");
@@ -485,7 +491,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jBtIniciarLeitor)
                     .addComponent(jBtCancelarLeitura))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -710,12 +716,39 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         });
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel18.setForeground(new java.awt.Color(0, 0, 153));
         jLabel18.setText("Operação de Pesquisa:");
 
         jComboBoxOperacao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jComboBoxOperacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Pesquisa por Biometria", "Pesquisa Manual" }));
         jComboBoxOperacao.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jComboBoxOperacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxOperacaoActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel19.setText("Total de Itens:");
+
+        jTotalItens.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTotalItens.setForeground(new java.awt.Color(204, 0, 0));
+        jTotalItens.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTotalItens.setText("0");
+        jTotalItens.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jTotalItens.setDisabledTextColor(new java.awt.Color(204, 0, 0));
+        jTotalItens.setEnabled(false);
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 102, 0));
+        jLabel20.setText("Total Gravado:");
+
+        jTOTAL_REG_GRAVADO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTOTAL_REG_GRAVADO.setForeground(new java.awt.Color(0, 102, 0));
+        jTOTAL_REG_GRAVADO.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTOTAL_REG_GRAVADO.setText("0");
+        jTOTAL_REG_GRAVADO.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -732,12 +765,21 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     .addComponent(jSeparator2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBtVerificarKit)
-                        .addGap(55, 55, 55)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTotalItens, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxOperacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jComboBoxOperacao, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTOTAL_REG_GRAVADO, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -756,13 +798,18 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jTotalItens, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19)
                     .addComponent(jBtVerificarKit)
                     .addComponent(jLabel18)
                     .addComponent(jComboBoxOperacao, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20)
+                    .addComponent(jTOTAL_REG_GRAVADO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -774,6 +821,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
 
     private void jBtSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtSalvarActionPerformed
         // TODO add your handling code here:
+        jBtSair.setEnabled(!true);
         VERIFICAR_LIBERACAO_BIOMETRIA_internos();
         VERIFICAR_LIBERACAO_MANUAL_internos();
         Integer rows = jTabelaProdutosKit.getRowCount();
@@ -834,7 +882,6 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                 Salvar();
                 bloquearCampos();
                 gravarDadosBanco();
-                //  limparCamposBiometria();
             }
         }
     }//GEN-LAST:event_jBtSalvarActionPerformed
@@ -928,7 +975,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtCancelarLeituraActionPerformed
 
     private void jBtVerificarKitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtVerificarKitActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
         if (jComboBoxTipoKit.getSelectedItem().equals("Kit Personalizado")) {
             if (jComboBoxOperacao.getSelectedItem().equals("Selecione...")) {
                 JOptionPane.showMessageDialog(rootPane, "Selecione o tipo de pesquisa dos produtos.");
@@ -962,6 +1009,15 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             pPESQUISAR_INTERNO_kit();
         }
     }//GEN-LAST:event_jBtConfirmarActionPerformed
+
+    private void jComboBoxOperacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOperacaoActionPerformed
+        // TODO add your handling code here:
+        if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual")) {
+            jTabbedPane1.setSelectedIndex(1);
+        } else if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa por Biometria")) {
+            jTabbedPane1.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_jComboBoxOperacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1035,7 +1091,9 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1060,8 +1118,10 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     public static javax.swing.JTextField jRegimeKitBio1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField jTOTAL_REG_GRAVADO;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTabelaProdutosKit;
+    private javax.swing.JTextField jTotalItens;
     // End of variables declaration//GEN-END:variables
 
     private static Runnable LerDigital1 = new Runnable() {
@@ -1393,6 +1453,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jPavilhaoKitBio1.setBackground(Color.white);
         jCelaKitBio1.setBackground(Color.white);
         //
+        jTotalItens.setBackground(Color.white);
         jDataEntrega1.setBackground(Color.white);
         jHorarioPagto1.setBackground(Color.white);
     }
@@ -1515,6 +1576,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             try {
                 for (ProdutoInternosKitLote pp : CONTROLE_PRODUTOS_kit.read()) {
                     produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd()});
+                    jTotalItens.setText(String.valueOf(pTOTAL_ITENS_pesquisado));
                     // BARRA DE ROLAGEM HORIZONTAL
                     jTabelaProdutosKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                     // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -1524,7 +1586,6 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     jTabelaProdutosKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(2).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(3).setCellRenderer(centralizado);
-//                    jTabelaProdutosKit.getColumnModel().getColumn(4).setCellRenderer(centralizado);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(TelaBiometriaKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
@@ -1542,6 +1603,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             try {
                 for (ProdutoInternosKitLote pp : CONTROLE_PESQUISA_manual.read()) {
                     produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd()});
+                    jTotalItens.setText(String.valueOf(pTOTAL_ITENS_pesquisado));
                     // BARRA DE ROLAGEM HORIZONTAL
                     jTabelaProdutosKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                     // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -1551,7 +1613,6 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     jTabelaProdutosKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(2).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(3).setCellRenderer(centralizado);
-//                    jTabelaProdutosKit.getColumnModel().getColumn(4).setCellRenderer(centralizado);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(TelaBiometriaKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
@@ -1585,6 +1646,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             try {
                 for (ProdutoInternosKitLote pp : CONTROLE_PESQUISA_personalizado.PRODUTOS_BIO_read()) {
                     produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd()});
+                    jTotalItens.setText(String.valueOf(pTOTAL_ITENS_pesquisado));
                     // BARRA DE ROLAGEM HORIZONTAL
                     jTabelaProdutosKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                     // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -1594,7 +1656,6 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     jTabelaProdutosKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(2).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(3).setCellRenderer(centralizado);
-//                    jTabelaProdutosKit.getColumnModel().getColumn(4).setCellRenderer(centralizado);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(TelaBiometriaKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
@@ -1614,6 +1675,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
             try {
                 for (ProdutoInternosKitLote pp : CONTROLE_PESQUISA_personalizado.PRODUTOS_MANUAL_read()) {
                     produtosSelecionados.addRow(new Object[]{pp.getIdProd(), pp.getDescricaoProduto(), pp.getUnidadeProd(), pp.getQuantidadeProd()});
+                    jTotalItens.setText(String.valueOf(pTOTAL_ITENS_pesquisado));
                     // BARRA DE ROLAGEM HORIZONTAL
                     jTabelaProdutosKit.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                     // ALINHAR TEXTO DA TABELA CENTRALIZADO
@@ -1623,7 +1685,6 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     jTabelaProdutosKit.getColumnModel().getColumn(0).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(2).setCellRenderer(centralizado);
                     jTabelaProdutosKit.getColumnModel().getColumn(3).setCellRenderer(centralizado);
-//                    jTabelaProdutosKit.getColumnModel().getColumn(4).setCellRenderer(centralizado);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(TelaBiometriaKitInternoCPK.class.getName()).log(Level.SEVERE, null, ex);
@@ -1665,6 +1726,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
     }
 
     public void gravarDadosBanco() {
+        pTOTAL_ITENS_gravado = 0;
         // THREAD DOS DADOS
         try {
             Thread t0 = new Thread() {
@@ -1963,7 +2025,14 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                                 objItensPagtoProd.setQuatProd(pSaldo);
                                 CONTROLE_PRODUTOS_internos.alterarPagamentoProdutoKitInterno(objItensPagtoProd);
                             }
-                        }
+                        }// FIM DA PERSISTÊNCIA
+                        pTOTAL_ITENS_gravado = i + 1;
+                        jTOTAL_REG_GRAVADO.setText(String.valueOf(pTOTAL_ITENS_gravado));
+                        jProgressBar1.setValue(i);
+                    }
+                    if (pTOTAL_ITENS_gravado == pTOTAL_ITENS_pesquisado) {
+                        JOptionPane.showMessageDialog(rootPane, "Operação Concluída com sucesso...");
+                        jBtSair.setEnabled(true);
                     }
                     //
                     limparCamposBiometria();
@@ -1991,7 +2060,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                         pPESQUISA_PAGAMENTO_KIT_INTERNOS_mensal();
                         pPESQUISA_PAGAMENTO_KIT_INTERNOS_semestral();
                         pPESQUISA_PAGAMENTO_KIT_INTERNOS_anual();
-                    }
+                    }                   
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException ex) {
@@ -2026,7 +2095,6 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                         }
                     }
                     jProgressBar1.setValue(0);
-                    JOptionPane.showMessageDialog(rootPane, "Operação Concluída com sucesso...");
                     try {
                     } catch (Exception e) {
                     }
@@ -2053,6 +2121,9 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
         jCelaKitBio.setText("");
         jDataEntrega1.setDate(null);
         jHorarioPagto1.setText("");
+        //
+        jTotalItens.setText("0");
+        jTOTAL_REG_GRAVADO.setText("0");
     }
 
     public void PREENCHER_TABELA_internos() {

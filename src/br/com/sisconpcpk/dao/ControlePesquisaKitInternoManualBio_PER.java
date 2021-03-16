@@ -8,6 +8,13 @@ package br.com.sisconpcpk.dao;
 import br.com.sisconpcpk.modelo.ProdutoInternosKitLote;
 import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.jIdInternoKitBio;
 import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.jIdInternoKitBio1;
+import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.pTOTAL_ITENS_pesquisado;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_anual;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_decendial;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_inicial;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_mensal;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_quinzenal;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_semestral;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdKit;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,8 +34,10 @@ public class ControlePesquisaKitInternoManualBio_PER {
     int codInt;
     String utilizado = "Sim";
     int quant = 0;
+    int pZERO = 0;
 
     public List<ProdutoInternosKitLote> PRODUTOS_MANUAL_read() throws Exception {
+        pTOTAL_ITENS_pesquisado = 0;
         conecta.abrirConexao();
         List<ProdutoInternosKitLote> listaInternosPavilhaoSelecionados = new ArrayList<ProdutoInternosKitLote>();
         try {
@@ -50,7 +59,29 @@ public class ControlePesquisaKitInternoManualBio_PER {
                     + "INNER JOIN PRODUTOS_KITS_HIGIENE_INTERNO "
                     + "ON PRODUTOS_AC.IdProd=PRODUTOS_KITS_HIGIENE_INTERNO.IdProd "
                     + "WHERE IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
-                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' ");
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp='" + jID_REG_inicial.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp!='" + pZERO + "' "
+                    + "OR IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp='" + jID_REG_decendial.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp!='" + pZERO + "' "
+                    + "OR IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp='" + jID_REG_quinzenal.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp!='" + pZERO + "' "
+                    + "OR IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp='" + jID_REG_mensal.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp!='" + pZERO + "' "
+                    + "OR IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp='" + jID_REG_semestral.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp!='" + pZERO + "' "
+                    + "OR IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp='" + jID_REG_anual.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp!='" + pZERO + "' ");
             while (conecta.rs.next()) {
                 ProdutoInternosKitLote pDigiProd = new ProdutoInternosKitLote();
                 pDigiProd.setIdProd(conecta.rs.getInt("IdProd"));
@@ -58,6 +89,7 @@ public class ControlePesquisaKitInternoManualBio_PER {
                 pDigiProd.setUnidadeProd(conecta.rs.getString("UnidadeProd"));
                 pDigiProd.setQuantidadeProd(conecta.rs.getFloat("QuantItem"));
                 listaInternosPavilhaoSelecionados.add(pDigiProd);
+                pTOTAL_ITENS_pesquisado++;
             }
             return listaInternosPavilhaoSelecionados;
         } catch (SQLException ex) {
@@ -69,6 +101,7 @@ public class ControlePesquisaKitInternoManualBio_PER {
     }
 
     public List<ProdutoInternosKitLote> PRODUTOS_BIO_read() throws Exception {
+        pTOTAL_ITENS_pesquisado = 0;
         conecta.abrirConexao();
         List<ProdutoInternosKitLote> listaInternosPavilhaoSelecionados = new ArrayList<ProdutoInternosKitLote>();
         try {
@@ -89,7 +122,29 @@ public class ControlePesquisaKitInternoManualBio_PER {
                     + "INNER JOIN PRODUTOS_KITS_HIGIENE_INTERNO "
                     + "ON PRODUTOS_AC.IdProd=PRODUTOS_KITS_HIGIENE_INTERNO.IdProd "
                     + "WHERE IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
-                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "'");
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp='" + jID_REG_inicial.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp!='" + pZERO + "' "
+                    + "OR IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp='" + jID_REG_decendial.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp!='" + pZERO + "' "
+                    + "OR IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp='" + jID_REG_quinzenal.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp!='" + pZERO + "' "
+                    + "OR IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp='" + jID_REG_mensal.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp!='" + pZERO + "' "
+                    + "OR IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp='" + jID_REG_semestral.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp!='" + pZERO + "' "
+                    + "OR IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp='" + jID_REG_anual.getText() + "' "
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp!='" + pZERO + "' ");
             while (conecta.rs.next()) {
                 ProdutoInternosKitLote pDigiProd = new ProdutoInternosKitLote();
                 pDigiProd.setIdProd(conecta.rs.getInt("IdProd"));
@@ -97,6 +152,7 @@ public class ControlePesquisaKitInternoManualBio_PER {
                 pDigiProd.setUnidadeProd(conecta.rs.getString("UnidadeProd"));
                 pDigiProd.setQuantidadeProd(conecta.rs.getFloat("QuantItem"));
                 listaInternosPavilhaoSelecionados.add(pDigiProd);
+                pTOTAL_ITENS_pesquisado++;
             }
             return listaInternosPavilhaoSelecionados;
         } catch (SQLException ex) {
@@ -107,3 +163,6 @@ public class ControlePesquisaKitInternoManualBio_PER {
         return null;
     }
 }
+
+
+//   + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp IN('" + jID_REG_decendial.getText() + "','"  + jID_REG_quinzenal.getText() + "')");

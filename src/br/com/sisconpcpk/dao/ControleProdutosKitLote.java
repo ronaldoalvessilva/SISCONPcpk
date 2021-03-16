@@ -7,6 +7,7 @@ package br.com.sisconpcpk.dao;
 
 import br.com.sisconpcpk.modelo.ProdutoInternosKitLote;
 import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.jIdInternoKitBio;
+import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.pTOTAL_ITENS_pesquisado;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -83,7 +84,12 @@ public class ControleProdutosKitLote {
     public void buscarProduto(String nome, int codigo) {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM PRODUTOS_AC WHERE DescricaoProd='" + nome + "'AND IdProd='" + codigo + "'");
+            conecta.executaSQL("SELECT "
+                    + "IdProd, "
+                    + "DescricaoProd "
+                    + "* FROM PRODUTOS_AC "
+                    + "WHERE DescricaoProd='" + nome + "' "
+                    + "AND IdProd='" + codigo + "'");
             conecta.rs.first();
             codProd = conecta.rs.getInt("IdProd");
         } catch (SQLException ex) {
@@ -93,6 +99,7 @@ public class ControleProdutosKitLote {
     }
 
     public List<ProdutoInternosKitLote> read() throws Exception {
+        pTOTAL_ITENS_pesquisado = 0;
         conecta.abrirConexao();
         List<ProdutoInternosKitLote> listaInternosPavilhaoSelecionados = new ArrayList<ProdutoInternosKitLote>();
         try {
@@ -101,7 +108,6 @@ public class ControleProdutosKitLote {
                     + "PRODUTOS_KITS_HIGIENE_INTERNO.IdKit, "
                     + "PRODUTOS_AC.DescricaoProd,PRODUTOS_AC.UnidadeProd, "
                     + "PRODUTOS_KITS_HIGIENE_INTERNO.QuantItem "
-//                    + "ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd "
                     + "FROM ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO "
                     + "INNER JOIN PRODUTOS_AC "
                     + "ON ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdProd=PRODUTOS_AC.IdProd "
@@ -115,15 +121,15 @@ public class ControleProdutosKitLote {
                     + "ON PRODUTOS_AC.IdProd=PRODUTOS_KITS_HIGIENE_INTERNO.IdProd "
                     + "WHERE IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
                     + "AND PRODUTOS_KITS_HIGIENE_INTERNO.IdKit='" + jIdKit.getText() + "' "
-                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + estoque + "'");   
+                    + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + estoque + "'");
             while (conecta.rs.next()) {
                 ProdutoInternosKitLote pDigiProd = new ProdutoInternosKitLote();
                 pDigiProd.setIdProd(conecta.rs.getInt("IdProd"));
                 pDigiProd.setDescricaoProduto(conecta.rs.getString("DescricaoProd"));
                 pDigiProd.setUnidadeProd(conecta.rs.getString("UnidadeProd"));
                 pDigiProd.setQuantidadeProd(conecta.rs.getFloat("QuantItem"));
-//                pDigiProd.setQtdEstoque(conecta.rs.getFloat("QuantProd"));
                 listaInternosPavilhaoSelecionados.add(pDigiProd);
+                pTOTAL_ITENS_pesquisado++;
             }
             return listaInternosPavilhaoSelecionados;
         } catch (SQLException ex) {
