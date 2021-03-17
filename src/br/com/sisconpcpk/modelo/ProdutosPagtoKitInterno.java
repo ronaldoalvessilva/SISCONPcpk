@@ -34,12 +34,13 @@ public class ProdutosPagtoKitInterno {
     private String horarioInsert;
     private String usuarioUp;
     private String dataUp;
-    private String horarioUp;       
+    private String horarioUp; 
+    private float quantItem;
 
     public ProdutosPagtoKitInterno() {
     }
 
-    public ProdutosPagtoKitInterno(int idItemProd, int idPagto, int idItem, int idProd, String descricaoProduto, float quatProd, int idInternoCrc, String nomeInternoCrc, String regime, String caminhoFoto, String enderecoCela, String descricaoPavilhao, byte[] imagemFrente, Date dataEntrega, String horario, byte[] assinaturaDigitalInterno, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp) {
+    public ProdutosPagtoKitInterno(int idItemProd, int idPagto, int idItem, int idProd, String descricaoProduto, float quatProd, int idInternoCrc, String nomeInternoCrc, String regime, String caminhoFoto, String enderecoCela, String descricaoPavilhao, byte[] imagemFrente, Date dataEntrega, String horario, byte[] assinaturaDigitalInterno, String usuarioInsert, String dataInsert, String horarioInsert, String usuarioUp, String dataUp, String horarioUp, float quantItem) {
         this.idItemProd = idItemProd;
         this.idPagto = idPagto;
         this.idItem = idItem;
@@ -62,6 +63,7 @@ public class ProdutosPagtoKitInterno {
         this.usuarioUp = usuarioUp;
         this.dataUp = dataUp;
         this.horarioUp = horarioUp;
+        this.quantItem = quantItem;
     }
 
     /**
@@ -370,5 +372,19 @@ public class ProdutosPagtoKitInterno {
      */
     public void setHorarioUp(String horarioUp) {
         this.horarioUp = horarioUp;
+    }
+
+    /**
+     * @return the quantItem
+     */
+    public float getQuantItem() {
+        return quantItem;
+    }
+
+    /**
+     * @param quantItem the quantItem to set
+     */
+    public void setQuantItem(float quantItem) {
+        this.quantItem = quantItem;
     }
 }

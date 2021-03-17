@@ -37,7 +37,7 @@ public class ControleItensProdutosPagamentoKitInternoDao {
             pst.setInt(2, objItensPagtoProd.getIdItem());
             pst.setInt(3, codProd);
             pst.setInt(4, codInterno);
-            pst.setFloat(5, objItensPagtoProd.getQuatProd());
+            pst.setFloat(5, objItensPagtoProd.getQuantItem());
             if (objItensPagtoProd.getDataEntrega() != null) {
                 pst.setTimestamp(6, new java.sql.Timestamp(objItensPagtoProd.getDataEntrega().getTime()));
             } else {
@@ -63,7 +63,8 @@ public class ControleItensProdutosPagamentoKitInternoDao {
             PreparedStatement pst = conecta.con.prepareStatement("DELETE FROM ITENS_PAGAMENTO_KIT_INTERNOS "
                     + "INNER JOIN ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS "
                     + "ON ITENS_PAGAMENTO_KIT_INTERNOS.IdItem=ITENS_PAGAMENTO_KIT_INTERNOS_PRODUTOS.IdItem "
-                    + "WHERE IdInternoCrc='" + objItensPagtoProd.getIdInternoCrc() + "'AND IdPagto=");
+                    + "WHERE IdInternoCrc='" + objItensPagtoProd.getIdInternoCrc() + "' "
+                    + "AND IdPagto='" + objItensPagtoProd.getIdPagto() + "'");
             pst.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não Foi possivel EXCLUIR os Dados.\n\nERRO:" + ex);
@@ -73,7 +74,7 @@ public class ControleItensProdutosPagamentoKitInternoDao {
     }
 
     public ProdutosPagtoKitInterno alterarPagamentoProdutoKitInterno(ProdutosPagtoKitInterno objItensPagtoProd) {
-        buscarProduto(objItensPagtoProd.getDescricaoProduto(), objItensPagtoProd.getIdProd());
+//        buscarProduto(objItensPagtoProd.getDescricaoProduto(), objItensPagtoProd.getIdProd());
         conecta.abrirConexao();
         try {
             PreparedStatement pst = conecta.con.prepareStatement("UPDATE ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO SET QuantProd=? "
@@ -92,7 +93,10 @@ public class ControleItensProdutosPagamentoKitInternoDao {
     public void buscarProduto(String desc, int cod) {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM PRODUTOS_AC "
+            conecta.executaSQL("SELECT "
+                    + "IdProd, "
+                    + "DescricaoProd "
+                    + "FROM PRODUTOS_AC "
                     + "WHERE DescricaoProd='" + desc + "' "
                     + "AND IdProd='" + cod + "'");
             conecta.rs.first();
@@ -106,7 +110,10 @@ public class ControleItensProdutosPagamentoKitInternoDao {
     public void buscarInternoCrc(String nome, int id) {
         conecta.abrirConexao();
         try {
-            conecta.executaSQL("SELECT * FROM PRONTUARIOSCRC "
+            conecta.executaSQL("SELECT "
+                    + "IdInternoCrc, "
+                    + "NomeInternoCrc "
+                    + "FROM PRONTUARIOSCRC "
                     + "WHERE NomeInternoCrc='" + nome + "' "
                     + "AND IdInternoCrc='" + id + "'");
             conecta.rs.first();

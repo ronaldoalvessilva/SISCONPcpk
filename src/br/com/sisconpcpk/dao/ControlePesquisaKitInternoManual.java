@@ -22,6 +22,7 @@ import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.pRegistroComp;
 import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.pCodigoProd;
 import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.pQuantidade;
 import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.pTOTAL_ITENS_pesquisado;
+import static br.com.sisconpcpk.visao.TelaBiometriaKitInternoCPK.pID_kit;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jComboBoxPavilhao;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_Kit_anual;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_Kit_decendial;
@@ -29,9 +30,6 @@ import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_Kit_inicial
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_Kit_mensal;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_Kit_quinzenal;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_Kit_semestral;
-import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_decendial;
-import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_inicial;
-import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_quinzenal;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdKit;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -41,12 +39,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdLanc;
-import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitAnual;
-import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitDecendial;
-import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitInicial;
-import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitMensal;
-import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitQuinzenal;
-import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitSemestral;
 
 /**
  *
@@ -62,6 +54,7 @@ public class ControlePesquisaKitInternoManual {
     String utilizado = "Sim";
     int quant = 0;
     int pZERO = 0;
+    
 
     public ProdutoInternosKitLote alterarKitInicial(ProdutoInternosKitLote objProdKit) {
 
@@ -558,6 +551,7 @@ public class ControlePesquisaKitInternoManual {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
             conecta.rs.first();
             pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pID_kit = conecta.rs.getInt("Idkit");
             pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
             pCodigoProd = conecta.rs.getInt("IdProd");
             pQuantidade = conecta.rs.getInt("QuantProd");
@@ -587,6 +581,7 @@ public class ControlePesquisaKitInternoManual {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
             conecta.rs.first();
             pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pID_kit = conecta.rs.getInt("Idkit");
             pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
             pCodigoProd = conecta.rs.getInt("IdProd");
             pQuantidade = conecta.rs.getInt("QuantProd");
@@ -617,6 +612,7 @@ public class ControlePesquisaKitInternoManual {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
             conecta.rs.first();
             pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pID_kit = conecta.rs.getInt("Idkit");
             pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
             pCodigoProd = conecta.rs.getInt("IdProd");
             pQuantidade = conecta.rs.getInt("QuantProd");
@@ -646,6 +642,7 @@ public class ControlePesquisaKitInternoManual {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
             conecta.rs.first();
             pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pID_kit = conecta.rs.getInt("Idkit");
             pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
             pCodigoProd = conecta.rs.getInt("IdProd");
             pQuantidade = conecta.rs.getInt("QuantProd");
@@ -675,6 +672,7 @@ public class ControlePesquisaKitInternoManual {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
             conecta.rs.first();
             pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pID_kit = conecta.rs.getInt("Idkit");
             pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
             pCodigoProd = conecta.rs.getInt("IdProd");
             pQuantidade = conecta.rs.getInt("QuantProd");
@@ -704,6 +702,7 @@ public class ControlePesquisaKitInternoManual {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
             conecta.rs.first();
             pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pID_kit = conecta.rs.getInt("Idkit");
             pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
             pCodigoProd = conecta.rs.getInt("IdProd");
             pQuantidade = conecta.rs.getInt("QuantProd");
@@ -733,6 +732,7 @@ public class ControlePesquisaKitInternoManual {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
             conecta.rs.first();
             pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pID_kit = conecta.rs.getInt("Idkit");
             pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
             pCodigoProd = conecta.rs.getInt("IdProd");
             pQuantidade = conecta.rs.getInt("QuantProd");
@@ -762,6 +762,7 @@ public class ControlePesquisaKitInternoManual {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
             conecta.rs.first();
             pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pID_kit = conecta.rs.getInt("Idkit");
             pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
             pCodigoProd = conecta.rs.getInt("IdProd");
             pQuantidade = conecta.rs.getInt("QuantProd");
@@ -792,6 +793,7 @@ public class ControlePesquisaKitInternoManual {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
             conecta.rs.first();
             pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pID_kit = conecta.rs.getInt("Idkit");
             pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
             pCodigoProd = conecta.rs.getInt("IdProd");
             pQuantidade = conecta.rs.getInt("QuantProd");
@@ -820,6 +822,7 @@ public class ControlePesquisaKitInternoManual {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
             conecta.rs.first();
             pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pID_kit = conecta.rs.getInt("Idkit");
             pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
             pCodigoProd = conecta.rs.getInt("IdProd");
             pQuantidade = conecta.rs.getInt("QuantProd");
@@ -848,6 +851,7 @@ public class ControlePesquisaKitInternoManual {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
             conecta.rs.first();
             pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pID_kit = conecta.rs.getInt("Idkit");
             pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
             pCodigoProd = conecta.rs.getInt("IdProd");
             pQuantidade = conecta.rs.getInt("QuantProd");
@@ -876,6 +880,7 @@ public class ControlePesquisaKitInternoManual {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
             conecta.rs.first();
             pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pID_kit = conecta.rs.getInt("Idkit");
             pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
             pCodigoProd = conecta.rs.getInt("IdProd");
             pQuantidade = conecta.rs.getInt("QuantProd");
@@ -904,6 +909,7 @@ public class ControlePesquisaKitInternoManual {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
             conecta.rs.first();
             pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pID_kit = conecta.rs.getInt("Idkit");
             pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
             pCodigoProd = conecta.rs.getInt("IdProd");
             pQuantidade = conecta.rs.getInt("QuantProd");
@@ -932,6 +938,7 @@ public class ControlePesquisaKitInternoManual {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + pZERO + "'");
             conecta.rs.first();
             pRegistroComp = conecta.rs.getInt("IdRegistroComp");
+            pID_kit = conecta.rs.getInt("Idkit");
             pCodigoInterno = conecta.rs.getInt("IdInternoCrc");
             pCodigoProd = conecta.rs.getInt("IdProd");
             pQuantidade = conecta.rs.getInt("QuantProd");
@@ -983,5 +990,4 @@ public class ControlePesquisaKitInternoManual {
         }
         return null;
     }
-
 }
