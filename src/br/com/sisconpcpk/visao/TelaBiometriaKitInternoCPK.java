@@ -31,6 +31,7 @@ import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_quinzen
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jID_REG_semestral;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdKit;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdLanc;
+import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jIdRegistroComp;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitAnual;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitDecendial;
 import static br.com.sisconpcpk.visao.TelaPagamentoKitInternoCPK.jRBtKitInicial;
@@ -1885,17 +1886,15 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                                 }
                                 //PESQUISAR O PRODUTO DO INTERNO PARA DA BAIXA.
                                 pPESQUISAR_INTERNO_biometria();
-                                if (jIdKit.getText().equals(pID_kit) && objItensPagtoProd.getIdProd() == pCodigoProd) {
-                                    objItensPagtoProd.setIdPagto(pRegistroComp);
-                                    objItensPagtoProd.setIdProd((int) jTabelaProdutosKit.getValueAt(i, 0));
-                                    objItensPagtoProd.setDescricaoProduto((String) jTabelaProdutosKit.getValueAt(i, 1));
-                                    objItensPagtoProd.setIdInternoCrc(Integer.valueOf(jIdInternoKitBio.getText()));
-                                    objItensPagtoProd.setNomeInternoCrc(jNomeInternoKitBio.getText());
-                                    objItensPagtoProd.setQuantItem((float) jTabelaProdutosKit.getValueAt(i, 3));
-                                    pSaldo = (int) (pQuantidade - objItensPagtoProd.getQuantItem());
-                                    objItensPagtoProd.setQuatProd(pSaldo);
-                                    CONTROLE_PRODUTOS_internos.alterarPagamentoProdutoKitInterno(objItensPagtoProd);
-                                }
+                                objItensPagtoProd.setIdPagto(pRegistroComp);
+                                objItensPagtoProd.setIdProd((int) jTabelaProdutosKit.getValueAt(i, 0));
+                                objItensPagtoProd.setDescricaoProduto((String) jTabelaProdutosKit.getValueAt(i, 1));
+                                objItensPagtoProd.setIdInternoCrc(Integer.valueOf(jIdInternoKitBio.getText()));
+                                objItensPagtoProd.setNomeInternoCrc(jNomeInternoKitBio.getText());
+                                objItensPagtoProd.setQuantItem((float) jTabelaProdutosKit.getValueAt(i, 3));
+                                pSaldo = (int) (pQuantidade - objItensPagtoProd.getQuantItem());
+                                objItensPagtoProd.setQuatProd(pSaldo);
+                                CONTROLE_PRODUTOS_internos.alterarPagamentoProdutoKitInterno(objItensPagtoProd);
                             }
                             // PAGAMENTO QUANDO A BIOMETRIA NÃO FUNCIONAR POR ALGUM MOTIVO
                         } else if (jComboBoxOperacao.getSelectedItem().equals("Pesquisa Manual")) {
@@ -2017,7 +2016,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                                 objItensPagtoProd.setNomeInternoCrc(jNomeInternoKitBio1.getText());
                                 objItensPagtoProd.setIdProd((int) jTabelaProdutosKit.getValueAt(i, 0));
                                 objItensPagtoProd.setDescricaoProduto((String) jTabelaProdutosKit.getValueAt(i, 1));
-                                objItensPagtoProd.setQuatProd((float) jTabelaProdutosKit.getValueAt(i, 3));
+                                objItensPagtoProd.setQuantItem((float) jTabelaProdutosKit.getValueAt(i, 3));
                                 objItensPagtoProd.setDataEntrega(jDataEntrega.getDate());
                                 objItensPagtoProd.setHorario(jHorarioPagto.getText());
                                 objItensPagtoProd.setAssinaturaDigitalInterno(pDigitalCapturada);
@@ -2043,23 +2042,22 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                                 }
                                 //PESQUISAR O PRODUTO DO INTERNO PARA DA BAIXA.
                                 pPESQUISAR_INTERNO_KIT_especifico();
-                                if (jIdKit.getText().equals(pID_kit) && objItensPagtoProd.getIdProd() == pCodigoProd) {
-                                    objItensPagtoProd.setIdPagto(pRegistroComp);
-                                    objItensPagtoProd.setIdProd((int) jTabelaProdutosKit.getValueAt(i, 0));
-                                    objItensPagtoProd.setDescricaoProduto((String) jTabelaProdutosKit.getValueAt(i, 1));
-                                    objItensPagtoProd.setIdInternoCrc(Integer.valueOf(jIdInternoKitBio1.getText()));
-                                    objItensPagtoProd.setNomeInternoCrc(jNomeInternoKitBio1.getText());
-                                    objItensPagtoProd.setQuantItem((float) jTabelaProdutosKit.getValueAt(i, 3));
-                                    pSaldo = (int) (pQuantidade - objItensPagtoProd.getQuantItem());
-                                    objItensPagtoProd.setQuatProd(pSaldo);
-                                    CONTROLE_PRODUTOS_internos.alterarPagamentoProdutoKitInterno(objItensPagtoProd);
-                                }
+                                objItensPagtoProd.setIdPagto(pRegistroComp);
+                                objItensPagtoProd.setIdProd((int) jTabelaProdutosKit.getValueAt(i, 0));
+                                objItensPagtoProd.setDescricaoProduto((String) jTabelaProdutosKit.getValueAt(i, 1));
+                                objItensPagtoProd.setIdInternoCrc(Integer.valueOf(jIdInternoKitBio1.getText()));
+                                objItensPagtoProd.setNomeInternoCrc(jNomeInternoKitBio1.getText());
+                                objItensPagtoProd.setQuantItem((float) jTabelaProdutosKit.getValueAt(i, 3));
+                                pSaldo = (int) (pQuantidade - objItensPagtoProd.getQuantItem());
+                                objItensPagtoProd.setQuatProd(pSaldo);
+                                CONTROLE_PRODUTOS_internos.alterarPagamentoProdutoKitInterno(objItensPagtoProd);
                             }
                         }// FIM DA PERSISTÊNCIA
                         pTOTAL_ITENS_gravado = i + 1;
                         jTOTAL_REG_GRAVADO.setText(String.valueOf(pTOTAL_ITENS_gravado));
                         jProgressBar1.setValue(i);
                     }
+                    jProgressBar1.setValue(100);
                     if (pTOTAL_ITENS_gravado == pTOTAL_ITENS_pesquisado) {
                         JOptionPane.showMessageDialog(rootPane, "Operação Concluída com sucesso...");
                         jBtSair.setEnabled(true);
@@ -2092,7 +2090,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                         pPESQUISA_PAGAMENTO_KIT_INTERNOS_anual();
                     }
                     try {
-                        Thread.sleep(10);
+                        Thread.sleep(100);
                     } catch (InterruptedException ex) {
                     }
                 }
@@ -2120,7 +2118,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                             jProgressBar1.setValue((b + 1));
                         }
                         try {
-                            Thread.sleep(300);
+                            Thread.sleep(100);
                         } catch (InterruptedException ex) {
                         }
                     }
