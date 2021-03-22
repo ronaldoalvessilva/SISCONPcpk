@@ -300,11 +300,9 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Nome Completo do Interno");
-        jLabel2.setEnabled(false);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Pavilhão");
-        jLabel3.setEnabled(false);
 
         jIdInternoKitBio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jIdInternoKitBio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -331,18 +329,15 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Cela");
-        jLabel6.setEnabled(false);
 
         jCelaKitBio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jCelaKitBio.setEnabled(false);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Data Entrega");
-        jLabel7.setEnabled(false);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setText("Horário");
-        jLabel8.setEnabled(false);
 
         jHorarioPagto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jHorarioPagto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -1804,7 +1799,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                                         objItensPagtoProd.setDescricaoProduto((String) jTabelaProdutosKit.getValueAt(i, 1));
                                         objItensPagtoProd.setIdInternoCrc(Integer.valueOf(jIdInternoKitBio.getText()));
                                         objItensPagtoProd.setNomeInternoCrc(jNomeInternoKitBio.getText());
-                                        objItensPagtoProd.setQuantItem((int) jTabelaProdutosKit.getValueAt(i, 3));
+                                        objItensPagtoProd.setQuantItem((float) jTabelaProdutosKit.getValueAt(i, 3));
                                         pSaldo = (int) (pQuantidade - objItensPagtoProd.getQuantItem());
                                         objItensPagtoProd.setQuatProd(pSaldo);
                                         CONTROLE_PRODUTOS_internos.alterarPagamentoProdutoKitInterno(objItensPagtoProd);

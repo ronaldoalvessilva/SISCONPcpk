@@ -354,7 +354,6 @@
                       <Font name="Tahoma" size="11" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Nome Completo do Interno"/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel3">
@@ -363,7 +362,6 @@
                       <Font name="Tahoma" size="11" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Pavilh&#xe3;o"/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jIdInternoKitBio">
@@ -455,7 +453,6 @@
                       <Font name="Tahoma" size="11" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cela"/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jCelaKitBio">
@@ -477,7 +474,6 @@
                       <Font name="Tahoma" size="11" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Data Entrega"/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
@@ -486,7 +482,6 @@
                       <Font name="Tahoma" size="11" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Hor&#xe1;rio"/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JFormattedTextField" name="jHorarioPagto">
