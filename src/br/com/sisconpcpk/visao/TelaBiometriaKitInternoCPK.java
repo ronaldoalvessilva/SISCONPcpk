@@ -52,6 +52,7 @@ import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -817,6 +818,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
 
     private void jBtSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtSalvarActionPerformed
         // TODO add your handling code here:
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); //Impedir que a janela seja fechada pelo X
         jBtSair.setEnabled(!true);
         VERIFICAR_LIBERACAO_BIOMETRIA_internos();
         VERIFICAR_LIBERACAO_MANUAL_internos();
@@ -2055,6 +2057,7 @@ public class TelaBiometriaKitInternoCPK extends javax.swing.JDialog {
                     jProgressBar1.setValue(100);
                     if (pTOTAL_ITENS_gravado == pTOTAL_ITENS_pesquisado) {
                         JOptionPane.showMessageDialog(rootPane, "Operação Concluída com sucesso...");
+                        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //Impedir que a janela seja fechada pelo X
                         jBtSair.setEnabled(true);
                     }
                     //
