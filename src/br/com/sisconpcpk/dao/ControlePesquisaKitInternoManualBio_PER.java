@@ -125,7 +125,7 @@ public class ControlePesquisaKitInternoManualBio_PER {
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' "
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp='" + jID_REG_inicial.getText() + "' "
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp!='" + pZERO + "' "
-                    + "OR IdInternoCrc='" + jIdInternoKitBio1.getText() + "' "
+                    + "OR IdInternoCrc='" + jIdInternoKitBio.getText() + "' "
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.QuantProd>'" + quant + "' "
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp='" + jID_REG_decendial.getText() + "' "
                     + "AND ITENS_PRODUTOS_AGRUPADOS_KIT_COMPLETO_INCOMPLETO.IdRegistroComp!='" + pZERO + "' "
